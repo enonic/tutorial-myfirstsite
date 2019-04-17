@@ -2,7 +2,9 @@
 
 A step-by-step tutorial for building your first website with Enonic XP
 
-image::images/ready-set-code.jpg["Ready...Set...Code!", width=50%, align="center"]
+WARN: This guide is under construction, do not use
+
+image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
 
 
 == Introduction
