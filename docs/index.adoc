@@ -11,23 +11,23 @@ image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
 
 This guide will take you through the steps of creating a site, using the basic building blocks of Enonic XP.
 
-During this exercise you will learn how to:
+During this exercise you will:
 
-* create new project using a starter
+* create new project using the starter
 * Learn about content types
 * Define pages and parts
 * TODO more?
 
 
-== Create and deploy app
+== Create project
 
-Visit the https://developer.enonic.com/start[Getting started guide]
+Visit the https://developer.enonic.com/start[Getting started guide] and complete the setup process:
 
-NOTE: If you have already installed CLI, you may skip step 1 in the "getting started guide"
+* Step 1: If you have already installed CLI, you may skip this step
+* Step 2: Choose "My First Website" starter
+* Wrapping up: Install the apps from the Welcome tour, we will need some of them later on.
 
-. Complete each step in the guide, but remember to choose "My First Website" in step 2
-
-NOTE: Remember to install the apps from the Welcome tour, as we will need Content Studio later on. If XP tour does not start automatically, simply click the top left icon on the home screen
+NOTE: If XP tour does not start automatically, simply click the top left icon on the home screen
 
 You should now have an XP sandbox and the application running on http://localhost:8080
 
@@ -38,49 +38,88 @@ To verify that your app started successfully, you should find an entry similar t
   2019-04-09 13:40:40,765 INFO ... Application [<my.project.name>] installed successfully
 ====
 
+The project folder created should now contain a project structure, looking something like this:
 
-== Content Studio
+[source,files]
+----
+sample-code/ <!--1-->
+docs/ <!--2-->
+src/
+  main/
+    java/ <!--3-->
+    resources/ <!--4-->
+      import/ <!--5-->
+      assets/
+      services/
+      sites/
+        content-types/ <!--6-->
+          country/
+          city/
+        site.xml <!--7-->
+----
 
-We're now ready to start building our site.
-To launch `Content Studio`, simply select it from the main menu.
+<1> Holds sample code we will use throughout this tutorial
+<2> Contains the documentation you are reading now
+<3> Optional folder for Java code (used to import sample site in this starter)
+<4> Main location for XP specific project code
+<5> The sample site data are located here and imported when the app starts
+<6> The starter ships with two content types, country and city
+<7> Site descriptor, specifying this is a site app
 
-NOTE: If you cannot see Content Studio in the menu, it has not been installed. Install it by completing the Welcome tour (Icon on home screen).
-
-For convenience, the starter includes the `Hello World` sample site with some sample countries and city content items.
-
-You should see the following:
-
-TODO Image
-
+NOTE: The various "gradle" files on project root are used by the build system to produce the application executable.
 
 
-==== Site descriptor
+== Sample Site
 
-An application can serve many purposes and building sites is just one of them. The `site.xml` file is the descriptor that will let *Enonic
-XP* know that this app can be added to a site. Response filters and controller mappings can be set up in the site descriptor as well as
-application configurations (see http://docs.enonic.com/en/stable/developer/site/site.html#site-descriptor[Site descriptors]).
+For convenience, the starter includes a `Hello World` sample site with some relevant content (countries and cities).
+The items are imported the first time the application starts.
 
-A basic `site.xml` file was automatically created by the `init-project` script and we don't need to make any changes for now. Later in this
-tutorial we will edit `site.xml` to add a site-wide configuration.
+To see the site and content, launch `Content Studio` by selecting it from the main menu in XP's admin console:
 
-  [project-root]/src/main/resources/site/site.xml
+[NOTE]
+====
+If you cannot see Content Studio in the menu, it has not been installed.
+Install it through the Welcome tour, or install directly from the `Applications` app found in the main menu.
+====
 
+image::images/sample-content.png["Tree structure showing countries and cities in Content Studio", width=734px]
 
+== Content Types
 
-==== Application description and icon
+Every item created content studio is based on a specific content type.
+Content types are the basic building blocks of the XP CMS.
 
-The `application.xml` file at `[project-root]/src/main/resources/application.xml` can be edited to provide a suitable description for
-your app. Go ahead and give your app a custom description.
+XP ships with a set of standard content types such as `Site`, `Folder` and a set of specialized types to handle files, also called `Media Types`.
 
-The `application.svg` file can be replaced with a custom app icon. The description and icon will be visible in the admin tools.
+Apps may contain custom content types.
+In our case, the conten types `Country` and `City` are pre-defined in the starter.
 
-NOTE: Most of the files we will be working with are inside the "site" directory in the project folder - `src/main/resources/site. All file
-  paths from now on will begin with `site/`.
+The Content types definition files are located in your project folder under `src/main/resources/site/content-types`
 
-==== Page Component
+Every content type must have its own folder and a corresponding xml descriptor file.
 
-Page components are the most basic building blocks of websites in *Enonic XP* (see http://docs.enonic.com/en/stable/developer/site/page/index.html#page[Page]). They require a JavaScript
-controller and optionally an XML descriptor and an HTML view. This first example does not need a descriptor file.
+The City content type looks something like this for an editor:
+
+image::images/city-cty.png["Form for the city content type", width=820px]
+
+While the descriptor file looks like this:
+
+.src/main/resources/site/content-types/city/city.xml
+[source,xml]
+----
+include::../src/main/resources/site/content-types/city/city.xml[]
+----
+
+More information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system] are available in the https://developer.enonic.com/docs/xp/[XP reference documentation].
+
+NOTE: XP also offers a way to serve raw content through an API, check out the
+
+== Pages
+
+Page components are the most basic building blocks of websites in XP.
+All components require at least a JavaScript controller and optionally an XML descriptor.
+
+Our first example will only use a controller.
 
 A page controller (see http://docs.enonic.com/en/stable/developer/site/page/index.html#page[Page]) is a JavaScript file that handles requests such as *GET* and *POST*.
 Controllers usually pass data in the form of a JavaScript object to be dynamically rendered in an HTML view. No data is passed in the
@@ -111,83 +150,7 @@ NOTE: Each page controller must reside in its own folder under the `site/pages` 
   must be the same as the directory that contains it. The HTML view file can reside anywhere in the project and have any valid file name.
   This allows view files to be shared between components.
 
-==== Create Site
-
-Now that the files are in place, we can create the site in a browser using the Content Studio admin tool.
-Switch between different tools by clicking the image:images/icon-menu.png[Menu icon, 30] menu icon (top right) to open the Launcher panel.
-
-. In your browser, navigate to the *Content Studio* tool. (Use the menu icon at the top right)
-. Click *New* and select *Site* from the list of content types (Opens a tab for editing the new site).
-. Fill in the form with *Display Name*: _Hello World_.
-. Select your *MyApp* application in the *Applications* dropdown.
-. If you don't see a blue area on the right of the page then click image:images/icon-monitor.png[Menu icon, 30] button in the toolbar to open the *Page Editor*.
-. Use the dropdown in the *Page Editor* (blue area) to select the "_hello_" page.
-. Click the *Save draft* button in the toolbar (top-left).
-. Now close the *Hello World* site editor tab to see the content pane.
-
-When you click on the *Hello World* site content, the preview should look something like this:
-
-image::images/hello-world-site1.jpg["Hello World site", width=90%, align="center"]
-
-****
-This concludes part one of the tutorial.
-
-*Let's review:*
-
-You've learned how to initialize a new project with the CLI toolbox init-project.
-
-
-Then you set the `$XP_HOME` environment variable and deployed the app with gradle.
-
-Next, you created a page component with a JavaScript
-controller and an HTML view file.
-
-Finally, you created a site in the Content Studio and added the app and page component to the site.
-
-This might seem like a lot of work just to make a static page; but we have laid a solid foundation in preparation for dynamically displaying
-structured content in reusable components which you will learn about in the next section.
-
-****
-
-
-== Part 2: Content types and parts
-
-****
-Now it is time to introduce content types for structured data and how to display the data with part components. You will also learn how to build pages and page templates with components and regions.
-****
-
-=== Add some Countries
-
-In order to make our `World` slightly more interesting, we will add some countries as structured data.
-
-The structure of data (such as countries) are defined in XML files and are referred to as _Content Types_. The content type defines the form (and underlying schema) of items you manage.
-
-. Create a folder named “_country_” inside the “_content-types_” folder of your project.
-. Create an XML file named “_country.xml_” in the “_country_” folder and paste in the code below for the `Country` content type.
-
-+
-.Country content type:
-[source,XML]
-----
-include::../src/main/resources/site/content-types/country/country.xml[]
-----
-+
-
-Each content type can have a custom icon that will be visible in the *Content Studio* interface. Though not required, content icons can be helpful for content editors.
-
-. Copy the image below to the the same folder (`content-types/country`) with the name _country.png_.
-
-image::images/country.png["Country content type", width=100, align="center"]
-
-This content type defines form inputs for _description_ and _population_. Every content has a built-in field for _Display Name_. When the app is redeployed, you can create a new content of type *Country* in the *Content Studio*. The *Country* content type will produce the form seen below. Each country content that is created with this form will become a page in the site when a page component is added to it with the dropdown in the page editor on the right. More on this later.
-
-image::images/country-content-form.jpg["Country Content form", width=90%, align="center"]
-
-
-NOTE: Each content type must reside in its own folder under the `site/content-types` directory. The name of the content type XML file and the icon PNG file must be the same as the directory that contains them.
-
-
-=== Create the Country Part
+=== Parts
 
 We also need a way to display the data from our *Country* content type. This time, rather than making another page controller, we will create a http://docs.enonic.com/en/stable/developer/site/part/index.html#part[Part] component. *Parts are reusable components* that can be added to _regions_ in pages or layout components - more on this later.
 
@@ -213,7 +176,7 @@ include::../src/main/resources/site/parts/country/country.html[]
 +
 
 
-=== The Hello Region Page
+=== Regions
 
 Parts start to make sense when placed into a _region_. Regions are “slots” contained within pages or layouts. Pages and layouts may contain multiple regions, and each region must have a unique name.
 
@@ -291,7 +254,7 @@ When you click on the country in the content pane, you should see a preview of t
 
 image::images/country-content-rendered.jpg["Country Content rendered", width=90%, align="center"]
 
-=== The Country Page Template
+=== Page
 
 With our current solution, sadly, we would have to create a new page for every country we add. As this is not a very effective way of working with large data sets, we will create a page template that will automatically render all country content.
 
@@ -433,7 +396,7 @@ All of the project’s files are now complete. The rest of the steps will be per
 
 image::images/app-config.jpg["Myapp config", width=90%, align="center"]
 
-=== Create Cities
+=== City list part
 
 Now let’s make use of the new city content type and part component. First we need to add the `City list` part to the `Country` page template.
 
@@ -442,21 +405,6 @@ Now let’s make use of the new city content type and part component. First we n
 . Under the *Insert* tab, click and drag a _Part_ image:images/icon-part.png[Part, 30] to the page region below the _country_ part. (This may be a bit tricky because the _country_ part is small.) You could also right-click on the word _Country_ and then use the context menu to insert the part.
 . Select the _City list_ part from the dropdown in the box.
 . Save and close the tab.
-
-Now we need to create a few _City_ contents under each country. (Sample data is available in the table below.)
-
-. From the content pane, select a country content that you created earlier. It is important that each city content is created under its country.
-. Right-click the country content and select *New*. The *Create content* dialogue will open.
-. Now select _City_ from the list of content types.
-. Fill in the city name and location; the population is optional. The location format must be comma separated latitude and longitude with decimals.
-. Save draft.
-. Create several more city contents below each country content by repeating the previous steps. Sample data is provided in the table below.
-
-image::images/city-data-table.png["Sample city data", width=90%, align="center"]
-
-Each country page will now have a list of the cities you created with a Google map of the location. It should look something like this:
-
-image::images/city-list.png["City list", width=90%, align="center"]
 
 
 === Configure City List
@@ -475,7 +423,7 @@ image::images/city-list-config.jpg["City list", width=90%, align="center"]
 
 === Go Online
 
-Now that your _Hello World_ site is complete, it’s time to publish.
+Now that your "Hello World" site is complete, it’s time to publish.
 
 . Select the _Hello World_ site in the content browse panel
 . Right-click and select *Publish* from the context menu, or click the *Publish* button in the toolbar
@@ -503,26 +451,6 @@ Why re-invent the wheel for each app you make? Reusable code can be created in l
 
 A website can be created from a single app. But a site’s functionality can be extended by adding other pre-made apps. SEO Meta Fields, Disqus comments and Google Analytics are just a few of the many apps that can instantly add features to your site. See what’s available at the http://market.enonic.com/applications[Enonic Market].
 
-==== Handling Multiple projects
-
-A *best practice* for working on multiple projects would involve keeping a separate `XP_HOME` folder for each project. The folder structure for such a setup would look something like this:
-
-    /Users/<name>/development
-    /Users/<name>/development/software/<xp-install-version>
-    /Users/<name>/development/xp-homes/<project-name>/home
-    /Users/<name>/development/projects/<project-name>/<project-source-files>
-
-An actual implementation with projects called my-first-app and company-site would look like this:
-
-    /Users/mla/development/software/enonic-xp-6.14.1
-    /Users/mla/development/xp-homes/my-first-app/home
-    /Users/mla/development/xp-homes/company-site/home
-    /Users/mla/development/projects/my-first-app/...
-    /Users/mla/development/projects/company-site/...
-
-This allows you to have one *Enonic XP* installation for each version and as many different `XP_HOME` folders as you need for your projects. When switching from one project to another, you only have to change the `XP_HOME` environment variable and then restart the installation of the *Enonic XP* version that the project was created for.
-
-Check this http://labs.enonic.com/articles/working-with-multiple-xp-projects[Enonic Labs article] for a more in-depth process. It also includes some bash scripting that will help with setting and changing `$XP_HOME` and starting and stopping *XP*.
 
 ==== Logging JSON objects
 
@@ -553,10 +481,6 @@ Both dev-mode and Gradle continuous-mode require the `$XP_HOME` environment vari
 
 == Next Steps
 
-This tutorial only covered the basics of app development. Explore the documentation for more in-depth coverage.
-
-Check our https://github.com/enonic[GitHub] page for examples of more advanced apps. The https://github.com/enonic/app-superhero-blog[Superhero blog] app is also a good place to see more advanced code. The https://github.com/enonic/app-google-analytics[Google Analytics] app demonstrates extending the *Content Studio* interface.
-
-The HTML files in this tutorial used *Thymeleaf* for dynamic data. Visit the http://www.thymeleaf.org/documentation.html[Thymeleaf documentation] to learn more about it.
+This tutorial only covered the basics of site development. Explore the documentation for more in-depth coverage.
 
 Need help? Ask questions on our https://discuss.enonic.com/[forum] or answer questions from others.
