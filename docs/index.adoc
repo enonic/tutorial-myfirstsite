@@ -11,21 +11,25 @@ image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
 
 This guide will take you through the steps of creating a site, using the basic building blocks of Enonic XP.
 
-During this exercise you will:
+During this exercise you will learn how to:
 
-* create new project using the starter
-* Learn about content types
-* Define pages and parts
+* create a new project based on this starter
+* build content types
+* work with page components and controllers
+* use page templates
 * TODO more?
 
 
 == Create project
 
-Visit the https://developer.enonic.com/start[Getting started guide] and complete the setup process:
+Visit the https://developer.enonic.com/start[Getting started guide] and complete the setup process.
+
+Some hints to the process:
 
 * Step 1: If you have already installed CLI, you may skip this step
 * Step 2: Choose "My First Website" starter
-* Wrapping up: Install the apps from the Welcome tour, we will need some of them later on.
+* Step 3: Deploy and start the XP sandbox
+* Wrapping up: Remember to install the apps from the Welcome tour, we will need some of them later on.
 
 NOTE: If XP tour does not start automatically, simply click the top left icon on the home screen
 
@@ -68,7 +72,6 @@ src/
 
 NOTE: The various "gradle" files on project root are used by the build system to produce the application executable.
 
-
 == Sample Site
 
 For convenience, the starter includes a `Hello World` sample site with some relevant content (countries and cities).
@@ -86,71 +89,73 @@ image::images/sample-content.png["Tree structure showing countries and cities in
 
 == Content Types
 
-Every item created content studio is based on a specific content type.
-Content types are the basic building blocks of the XP CMS.
+All item created by the cms and content studio are based on a content type.
+Content types can be considered the core concept of the XP CMS.
 
 XP ships with a set of standard content types such as `Site`, `Folder` and a set of specialized types to handle files, also called `Media Types`.
-
-Apps may contain custom content types.
-In our case, the conten types `Country` and `City` are pre-defined in the starter.
-
-The Content types definition files are located in your project folder under `src/main/resources/site/content-types`
-
-Every content type must have its own folder and a corresponding xml descriptor file.
+Additionally, apps may contain custom content types.
+In our case, the content types `Country` and `City` are pre-defined in the starter.
 
 The City content type looks something like this for an editor:
 
 image::images/city-cty.png["Form for the city content type", width=820px]
 
 While the descriptor file looks like this:
-
 .src/main/resources/site/content-types/city/city.xml
 [source,xml]
 ----
 include::../src/main/resources/site/content-types/city/city.xml[]
 ----
 
+For a better UI, you may also include an icon (svg or png are recommended) for your content types.
+Icons make it easier for editors to use Content Studio.
+
 More information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system] are available in the https://developer.enonic.com/docs/xp/[XP reference documentation].
 
-NOTE: XP also offers a way to serve raw content through an API, check out the
+NOTE: If you are looking for "headless content" - XP also offers a way to serve raw content through an API, check out https://developer.enonic.com/start/headless-cms[the Headless CMS starter]
 
 == Pages
 
-Page components are the most basic building blocks of websites in XP.
-All components require at least a JavaScript controller and optionally an XML descriptor.
+We now have some content, but no preview or rendering of the items.
+To support server-side rendering, XP provides a server side https://developer.enonic.com/docs/xp/stable/runtime/framework[Javascript framework and controllers].
 
-Our first example will only use a controller.
+A page component is essentially is a JavaScript file that handles requests such as *GET* and *POST*.
+Optionally, controllers may use templating engines to simplify output of HTML (or even other results when desired)
 
-A page controller (see http://docs.enonic.com/en/stable/developer/site/page/index.html#page[Page]) is a JavaScript file that handles requests such as *GET* and *POST*.
-Controllers usually pass data in the form of a JavaScript object to be dynamically rendered in an HTML view. No data is passed in the
-example below, but the view file is specified and rendered as static HTML.
+=== Create page component
 
-. Create a folder called `hello` inside the `site/pages` directory.
-
-. Create the page controller and page view files specified below inside the `hello` folder:
+. In your project, create a folder called `hello`: `src/main/resources/site/pages/hello/`.
+. Place a controller file inside the component folder:
 +
+.Controller: src/main/resources/site/pages/hello/hello.js
 [source,javascript]
 ----
-include::../src/main/resources/site/pages/hello/hello.js[]
+include::code/pages/hello/hello.js[]
 ----
 +
-
-The `view`  below is a simple HTML file. This file will be updated later to handle dynamic content.
-
+. Once the file is in place, redeploy the app:
 +
-[source,HTML]
-----
-include::../src/main/resources/site/pages/hello/hello.html[]
-----
+  enonic project deploy
 +
 
-. Once these files are in place, redeploy the app from the terminal with `./gradlew deploy`.
+NOTE: Each page controller must reside in its own folder under the `site/pages` directory.
+  The name of the controller JavaScript file must be the same as the directory that contains it.
+  The HTML view file can reside anywhere in the project and have any valid file name.
+  As such, templates may easily shared between components.
 
-NOTE: Each page controller must reside in its own folder under the `site/pages` directory. The name of the controller JavaScript file
-  must be the same as the directory that contains it. The HTML view file can reside anywhere in the project and have any valid file name.
-  This allows view files to be shared between components.
+=== Setup page
 
-=== Parts
+Now, lets map the page component to our content.
+
+. Click edit on the site
+. From the preview panel, select the "Hello" page component
+
+You should now see something like this in the preview area:
+
+image::images/todo.png["Simple static web page saying 'Hello world'", width=734px]
+
+
+== Parts
 
 We also need a way to display the data from our *Country* content type. This time, rather than making another page controller, we will create a http://docs.enonic.com/en/stable/developer/site/part/index.html#part[Part] component. *Parts are reusable components* that can be added to _regions_ in pages or layout components - more on this later.
 
@@ -174,6 +179,9 @@ The part controller file above handles the *GET* request and passes the country 
 include::../src/main/resources/site/parts/country/country.html[]
 ----
 +
+
+
+
 
 
 === Regions
