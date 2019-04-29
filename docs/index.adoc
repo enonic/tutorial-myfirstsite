@@ -1,4 +1,6 @@
 = My first website starter
+:toc: right
+:experimental:
 
 A step-by-step tutorial for building your first website with Enonic XP
 
@@ -116,179 +118,171 @@ NOTE: If you are looking for "headless content" - XP also offers a way to serve 
 
 == Pages
 
-We now have some content, but no preview or rendering of the items.
-To support server-side rendering, XP provides a server side https://developer.enonic.com/docs/xp/stable/runtime/framework[Javascript framework and controllers].
+We now have some content, but no preview or rendering.
+To perform server side rendering, XP provides a https://developer.enonic.com/docs/xp/stable/runtime/framework[Javascript framework].
+Page components are essentially different JavaScript controllers used by the CMS to perform such rendering.
 
-A page component is essentially is a JavaScript file that handles requests such as *GET* and *POST*.
-Optionally, controllers may use templating engines to simplify output of HTML (or even other results when desired)
 
-=== Create page component
+=== Page controller
 
-. In your project, create a folder called `hello`: `src/main/resources/site/pages/hello/`.
-. Place a controller file inside the component folder:
+Follow the steps below to create a page controller called "Hello"
+
+. Create the component folder `src/main/resources/site/pages/hello/`.
+. Place a controller file inside the new folder:
 +
-.Controller: src/main/resources/site/pages/hello/hello.js
-[source,javascript]
+.src/main/resources/site/pages/hello/hello.js
+[source,js]
 ----
 include::code/pages/hello/hello.js[]
 ----
 +
-. Once the file is in place, redeploy the app:
+. When completed, redeploy the app
 +
   enonic project deploy
 +
 
-NOTE: Each page controller must reside in its own folder under the `site/pages` directory.
+NOTE: Page controllers must reside in its own folder under the `site/pages/` directory.
   The name of the controller JavaScript file must be the same as the directory that contains it.
-  The HTML view file can reside anywhere in the project and have any valid file name.
-  As such, templates may easily shared between components.
 
 === Setup page
 
-Now, lets map the page component to our content.
+Using Content Studio, we will now map the component to a content item
 
-. Click edit on the site
-. From the preview panel, select the "Hello" page component
+. Select the site content "Hello World" and click btn:[edit]
+. From the preview panel on the right, choose the "Hello" page controller:
++
+video::images/hello-world.mp4["Animation showing process of setting up page" options=autoplay]
 
-You should now see something like this in the preview area:
 
-image::images/todo.png["Simple static web page saying 'Hello world'", width=734px]
+== Using templates
+
+Our first controller produced HTML directly.
+According to the MVC (Model View Controller) pattern,
+we should separate the View (the template) from the controller.
+In this step, we'll upgrade our page component to use the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf templating engine]:
+
+. To make sure Thymeleaf is added to our project, we must update the `gradle.build` file.
+Uncomment the following line from the "dependencies" section:
++
+      include "com.enonic.lib:lib-thymeleaf:2.0.0-RC1"
++
+. Update the `hello.js` controller with the code below:
++
+.src/main/resources/site/pages/hello.js
+[source,js]
+----
+include::code/pages/hello-template/hello.js[]
+----
++
+. Add the template file `hello.html` to the component folder
++
+.src/main/resources/site/pages/hello/hello.html
+[source,html]
+----
+include::code/pages/hello-template/hello.html[]
+----
++
+. Redeploy the app:
++
+  enonic project deploy
++
+
+Refresh the site preview, and you should now see: "*Hello world - of templates*" instead.
+
+
+== Regions
+
+XP also includes a page editor.
+In addition to choose a controller, the editor also lets you compose pages by drag'n dropping other components into it.
+
+To enable drag'n drop support for a page, we must use regions.
+
+Lets start by creating a new page component, with a single region called `main`.
+
+. Create the folder `src/main/resources/site/pages/hello-region/` in your project
+. Add the controller and template files below:
++
+.src/main/resources/site/pages/hello-region/hello-region.js
+[source,js]
+----
+include::code/pages/hello-region/hello-region.js[]
+----
++
+.hello-region.html:
+[source,HTML]
+----
+include::code/pages/hello-region/hello-region.html[]
+----
++
+. Additionally, we'll add a descriptor file - specifying the name of the region.
++
+.src/main/resources/site/pages/hello-region/hello-region.xml
+[source,XML]
+----
+include::code/pages/hello-region/hello-region.xml[]
+----
++
+. Redeploy your app once again!
++
+  enonic project deploy
++
+. Select, and edit your favourite country in the list
+. Activate the page editor and choose the `Hello Region!` controller from the list.
++
+video::images/hello-regions.mp4[options=autoplay]
+
+TIP: Try drag'n dropping components into the region placeholder.
 
 
 == Parts
 
-We also need a way to display the data from our *Country* content type. This time, rather than making another page controller, we will create a http://docs.enonic.com/en/stable/developer/site/part/index.html#part[Part] component. *Parts are reusable components* that can be added to _regions_ in pages or layout components - more on this later.
+We now need a way to display the data from our *Country* content type.
+This time, rather than making another page controller, we will create a part.
 
-. Create a folder called _country_ inside the _parts_ folder in your project.
-. Add the part controller and view files inside the _country_ folder:
+Parts are components that can be added to regions.
 
+. Create the folder `src/main/resources/site/parts/country/ in your project.
+. Add the part controller and template files below into the folder:
 +
-.Country part controller:
+.country.js
 [source,Javascript]
 ----
 include::../src/main/resources/site/parts/country/country.js[]
 ----
 +
-
-The part controller file above handles the *GET* request and passes the country content data to the view file which is shown below.
-
-+
-.Country part view:
+.country.html
 [source,HTML]
 ----
 include::../src/main/resources/site/parts/country/country.html[]
 ----
 +
-
-
-
-
-
-=== Regions
-
-Parts start to make sense when placed into a _region_. Regions are “slots” contained within pages or layouts. Pages and layouts may contain multiple regions, and each region must have a unique name.
-
-Let’s create a new page component with a single region called _Main_. Later we will use the *Content Studio* to place the _Country_ part into this region.
-
-The benefit of a region (see http://docs.enonic.com/en/stable/developer/site/page/index.html#apps-page-regions[Regions]) is that a page component can be re-used across multiple different pages by simply adding different parts to them as needed.
-
-. Create a folder called _hello-region_ in your `project’s site/pages/` folder.
-. Add the _Hello region_ page descriptor, controller and view files:
-
+. Build and deploy your app once more
 +
-.Page descriptor:
-[source,XML]
-----
-include::../src/main/resources/site/pages/hello-region/hello-region.xml[]
-----
+  enonic project deploy
 +
 
-The XML file above is a http://docs.enonic.com/en/stable/developer/site/page/index.html#apps-page-descriptor[Descriptor]. Regions and page configurations can be defined here.
+=== Add part to page
 
-+
-.Page controller:
-[source,Javascript]
-----
-include::../src/main/resources/site/pages/hello-region/hello-region.js[]
-----
-+
+Parts use the
 
-This page controller uses a portal library (see `lib-portal` in http://docs.enonic.com/en/stable/reference/libraries/index.html#js-libraries[Javascript Libraries]) to get the content and extract the _main_ region which was defined in the descriptor XML file.
-
-+
-.Page view:
-[source,HTML]
-----
-include::../src/main/resources/site/pages/hello-region/hello-region.html[]
-----
-+
-
-The view file above defines the place on the page where the region will render component parts that are dragged and dropped in the *Page Editor*.
-
-. When done - redeploy your app once again!
-
-  ./gradlew deploy
-
-NOTE: You can restart XP in http://docs.enonic.com/en/stable/developer/projects/devmode.html#gradle-dev-mode[Development mode] and then the app won’t have to be redeployed after making changes.
-
-=== Add your favorite country
-
-Now that the _Country_ content type is installed (and we have a part to display them), we can create new countries using the *Content Studio* interface.
-
-. Right-click on the _Hello World_ site from the navigation tree and select *New*. The *Create Content* dialogue will open.
-. Select _Country_ from the list of content types.
-. Fill in the form with the details of your favorite country.
-
-Similar to the site, we must also configure a view for the country
-
-[start=4]
-. In the toolbar, in the top right corner of the page, click the image:images/icon-monitor.png[Menu icon, 30] button to activate the *Page Editor* (panel on the right-hand side with blue background).
-
-image::images/country-content-edit.jpg["Country Content form", width=90%, align="center"]
-
-[start=5]
-. In the *Page Editor* select _Hello Region_ from the template selector dropdown. If the dropdown arrow is not visible, double-click inside the option field or start typing "_hello world_" in it to see the options.
-
-The blue box with _Drop here_ is the region that we defined in the project code and it’s where we add components here in the *Page Editor*.
-
-[start=6]
-. Click the image:images/icon-cog.png[Cog icon, 30] button in the toolbar to open the *Inspection Panel* (far right).
-. In the *Inspection Panel*, click the *Insert* tab. This reveals a list of default component types that can be placed into regions.
-. Click and drag a new part (image:images/icon-part.png[Part icon, 30]) into the box on the page.
-. A new dropdown option will appear. Select the _country_ part.
-. Save draft and close the content edit tab.
 
 When you click on the country in the content pane, you should see a preview of the rendered page, something like this:
 
 image::images/country-content-rendered.jpg["Country Content rendered", width=90%, align="center"]
 
-=== Page
+=== Page Templates
 
-With our current solution, sadly, we would have to create a new page for every country we add. As this is not a very effective way of working with large data sets, we will create a page template that will automatically render all country content.
+With our current approach, we would have to set up a new page for every country added.
+A more efficient approach is to use page templates.
 
-. Select the Templates item image:images/icon-templates.png[Templates icon, 30] located below the _Hello World_ site in the content panel.
-. Click *New* and select _Page Template_.
-. Fill in the form as follows:
-
-:: . Display Name: _Country_
-:: . Supports: _Country_ (select from the list of content types)
-
-. If the blue *Page Editor* panel is not displayed on the right, click the image:images/icon-monitor.png[Menu icon, 30] button in the toolbar.
-. Select the _Hello Region_ controller with the dropdown in the blue *Page Editor* panel.
-. Open the *Inspection Panel* (activated with the image:images/icon-cog.png[Cog icon, 30] button in the toolbar).
-. Under the _Insert_ tab, drag and drop a new _part_ (image:images/icon-part.png[Part icon, 30]) into the empty region where it says _Drop here_.
-. Select the _country_ part from the dropdown.
-. Click _Save draft_ in the toolbar and close the tab.
+A single page templates can be used to render all country content items.
 
 Every _Country_ content you create from now on will use this template by default.
 
-NOTE: The *Supports* property is the key. A page template will support rendering of the content types specified here.
+NOTE: The *Supports* property is key. A page template will support rendering of the content types specified here.
 
 Try this out by creating a few new countries in your site. Be aware that every content you create will be a child of the content that was selected in the content pane, so make sure you select the _Hello World_ site before clicking *New* in the toolbar. Or better yet, get in the habit of right-clicking the desired parent content and selecting *New* from the context menu. This way you will never accidentally create a content in the wrong place.
 
-NOTE: Starting from *Enonic XP 6.11*, the *Detail Panel* on the far right of the *Browse View* has a little box showing the rendering mode. Compare your favorite country to other countries that are rendered automatically:
-
-image::images/rendering-mode-view.png["Rendering mode", width=90%, align="center"]
 
 === Extra task
 

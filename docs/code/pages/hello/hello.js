@@ -13,8 +13,8 @@ exports.get = function(req) {
                   <title>${content.displayName}</title>
                 </head>
                 <body>
-                  <h1>${content.displayName} we made it!</h1>
+                  <h1>${content.displayName} - we made it!</h1>
                 </body>
-              </html>`;
+              </html>`
     }
 };

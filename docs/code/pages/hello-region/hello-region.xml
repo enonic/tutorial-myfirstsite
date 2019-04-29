@@ -1,6 +1,7 @@
-<page>
-  <display-name>Hello Region</display-name>
-  <config/>
+<page xmlns="urn:enonic:xp:model:1.0">
+  <display-name>Hello Regions!</display-name>
+  <description>Drag'n drop enabled</description>
+  <form/>
   <regions>
     <region name="main"/>
   </regions>

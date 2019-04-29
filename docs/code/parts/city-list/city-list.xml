@@ -1,4 +1,4 @@
-<part>
+<part xmlns="urn:enonic:xp:model:1.0">
   <display-name>City list</display-name>
   <config>
     <input type="ComboBox" name="mapType">
