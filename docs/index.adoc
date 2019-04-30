@@ -247,13 +247,13 @@ Parts are components that can be added to regions.
 .country.js
 [source,Javascript]
 ----
-include::../src/main/resources/site/parts/country/country.js[]
+include::code/parts/country/country.js[]
 ----
 +
 .country.html
 [source,HTML]
 ----
-include::../src/main/resources/site/parts/country/country.html[]
+include::code/parts/country/country.html[]
 ----
 +
 . Build and deploy your app once more
@@ -301,38 +301,13 @@ image::images/page-template-automatic.jpg["Automatic Page Template", width=90%, 
 You can select another *Page template* at any time, or even customize the presentation of a single content.
 
 
-== Part 3: Configurable components
+== Component configuration
 
 ****
 Welcome to part three. Here we will create a new content type for cities and a configurable component to display them. You will also learn how to make app configurations and you will get more practice with the *Content Studio*. Part three will conclude with content publishing and some advice and best practices.
 ****
 
-=== Hello Geo World
-
-The home page of the site now shows a list of the countries we have added. To make this even more exciting, we will add a _City_ content type with geo-location and a _City list_ part with configuration capabilities.
-
-==== City content
-
-The next steps will create a content type for adding cities with location coordinates.
-
-. Create a folder named city inside the project’s ``site/content-types`` folder.
-. Add the content type file below to your project. The file must be named `city.xml`, in accordance with the content type’s folder name (`city`).
-
-+
-.City content type:
-[source,XML]
-----
-include::../src/main/resources/site/content-types/city/city.xml[]
-----
-+
-
-The file above defines a content type for cities with a required field for the location in latitude and longitude.
-
-. Copy the image below and save it in the same folder with the _City_ content type. Name it _city.png_.
-
-image::images/city.png["City content type", width=100, align="center"]
-
-==== City list part
+=== City list part
 
 We need a part component to display the city data. It will list the cities and show a Google map of each location.
 
@@ -343,7 +318,7 @@ We need a part component to display the city data. It will list the cities and s
 .City list part descriptor:
 [source,XML]
 ----
-include::../src/main/resources/site/parts/city-list/city-list.xml[]
+include::code/parts/city-list/city-list.xml[]
 ----
 +
 
@@ -355,7 +330,7 @@ The part descriptor above has a configuration similar to those found in content 
 .City list part controller:
 [source,Javascript]
 ----
-include::../src/main/resources/site/parts/city-list/city-list.js[]
+include::code/parts/city-list/city-list.js[]
 ----
 +
 
@@ -367,7 +342,7 @@ There are a few things to note in this controller file. It gets the part configu
 .City list part view:
 [source,HTML]
 ----
-include::../src/main/resources/site/parts/city-list/city-list.html[]
+include::code/parts/city-list/city-list.html[]
 ----
 +
 There is just one more file to edit and then all the code for this project will be complete.
@@ -382,7 +357,7 @@ There is just one more file to edit and then all the code for this project will 
 .Site descriptor:
 [source,XML]
 ----
-include::../src/main/resources/site/site.xml[]
+include::code/site.xml[]
 ----
 +
 
@@ -443,9 +418,9 @@ We are always looking for https://discuss.enonic.com/[feedback].
 Now take a look at some Pro Tips.
 
 
-=== Pro Tips
+== Pro Tips
 
-==== Adding libraries to your project
+=== Adding libraries to your project
 
 Why re-invent the wheel for each app you make? Reusable code can be created in libraries and added to any XP project. Some essential tools can be found in the https://github.com/enonic/lib-util[Util lib], https://github.com/enonic/lib-menu[Menu lib], https://github.com/enonic/lib-recaptcha[RECAPTCHA] and https://github.com/enonic/lib-landingpage[Landing page] libraries.
 
@@ -454,7 +429,7 @@ Why re-invent the wheel for each app you make? Reusable code can be created in l
 A website can be created from a single app. But a site’s functionality can be extended by adding other pre-made apps. SEO Meta Fields, Disqus comments and Google Analytics are just a few of the many apps that can instantly add features to your site. See what’s available at the http://market.enonic.com/applications[Enonic Market].
 
 
-==== Logging JSON objects
+=== Logging JSON objects
 
 While developing an app, it can be helpful to see the structure of objects returned by library functions. The best way to do this is to set up a utilities JavaScript file in the project lib folder. Add the following function to the utilities file:
 
@@ -473,7 +448,7 @@ Call the log function in any controller like the example below and then check th
 
 This logging function and many other useful functions are included in the https://github.com/enonic/lib-util[Util library].
 
-==== Continuous build with Dev Mode or Gradle
+=== Continuous build with Dev Mode or Gradle
 
 It can be quite time consuming to frequently use the terminal to redeploy an app during development. Starting *Enonic XP* in _dev-mode_ will make most changes to your app code visible immediately on _localhost_. See the http://docs.enonic.com/en/stable/developer/projects/devmode.html#gradle-dev-mode[Development mode] page for more information about its capabilities and limitations.
 
