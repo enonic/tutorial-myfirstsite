@@ -19,7 +19,7 @@ During this exercise you will learn how to:
 * build content types
 * work with page components and controllers
 * use page templates
-* TODO more?
+* TODO
 
 
 == Create project
