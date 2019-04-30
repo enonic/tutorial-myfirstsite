@@ -6,9 +6,10 @@ A step-by-step tutorial for building your first website with Enonic XP
 
 WARNING: This guide is under construction, do not use!
 
+////
+
 image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
 
-////
 
 == Introduction
 
@@ -232,8 +233,6 @@ include::code/pages/hello-region/hello-region.xml[]
 video::images/hello-regions.mp4[options=autoplay]
 
 TIP: Try drag'n dropping components into the region placeholder.
-
-////
 
 == Parts
 
@@ -462,3 +461,5 @@ Both dev-mode and Gradle continuous-mode require the `$XP_HOME` environment vari
 This tutorial only covered the basics of site development. Explore the documentation for more in-depth coverage.
 
 Need help? Ask questions on our https://discuss.enonic.com/[forum] or answer questions from others.
+
+////
