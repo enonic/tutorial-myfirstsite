@@ -8,6 +8,7 @@ WARNING: This guide is under construction, do not use!
 
 image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
 
+////
 
 == Introduction
 
@@ -232,6 +233,7 @@ video::images/hello-regions.mp4[options=autoplay]
 
 TIP: Try drag'n dropping components into the region placeholder.
 
+////
 
 == Parts
 
