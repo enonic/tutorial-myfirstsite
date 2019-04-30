@@ -153,7 +153,6 @@ Using Content Studio, we will now map the component to a content item
 +
 video::images/hello-world.mp4["Animation showing process of setting up page" options=autoplay]
 
-////
 == Using templates
 
 Our first controller produced HTML directly.
@@ -461,5 +460,3 @@ Both dev-mode and Gradle continuous-mode require the `$XP_HOME` environment vari
 This tutorial only covered the basics of site development. Explore the documentation for more in-depth coverage.
 
 Need help? Ask questions on our https://discuss.enonic.com/[forum] or answer questions from others.
-
-////
