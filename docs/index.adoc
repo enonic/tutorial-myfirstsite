@@ -151,9 +151,9 @@ Using Content Studio, we will now map the component to a content item
 . Select the site content "Hello World" and click btn:[edit]
 . From the preview panel on the right, choose the "Hello" page controller:
 +
-//video::images/hello-world.mp4["Animation showing process of setting up page" options=autoplay]
+video::images/hello-world.mp4["Animation showing process of setting up page" options=autoplay]
 
-
+////
 == Using templates
 
 Our first controller produced HTML directly.
@@ -229,7 +229,7 @@ include::code/pages/hello-region/hello-region.xml[]
 . Select, and edit your favourite country in the list
 . Activate the page editor and choose the `Hello Region!` controller from the list.
 +
-//video::images/hello-regions.mp4[options=autoplay]
+video::images/hello-regions.mp4[options=autoplay]
 
 TIP: Try drag'n dropping components into the region placeholder.
 
@@ -461,3 +461,5 @@ Both dev-mode and Gradle continuous-mode require the `$XP_HOME` environment vari
 This tutorial only covered the basics of site development. Explore the documentation for more in-depth coverage.
 
 Need help? Ask questions on our https://discuss.enonic.com/[forum] or answer questions from others.
+
+////
