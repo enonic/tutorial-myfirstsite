@@ -1,5 +1,5 @@
-var portal = require('/lib/xp/portal'); // Import the portal library
-var thymeleaf = require('/lib/xp/thymeleaf'); // Import the Thymeleaf library
+var portal = require('/lib/xp/portal');
+var thymeleaf = require('/lib/thymeleaf');
 
 // Handle the GET request
 exports.get = function(req) {
@@ -10,8 +10,8 @@ exports.get = function(req) {
     // Prepare the model object with the needed data from the content
     var model = {
         name: content.displayName,
-        description: content.data.description,
-        population: content.data.population
+        population: content.data.population || "Unknown",
+        description: content.data.description || "Missing description",
     };
 
     // Specify the view file to use

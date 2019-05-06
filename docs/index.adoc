@@ -3,28 +3,31 @@
 
 A step-by-step tutorial for building your first website with Enonic XP
 
-WARNING: This guide is under construction, do not use!
-
-image::images/ready-set-code.jpg["Ready...Set...Code!", width=500px]
-
-
 == Introduction
 
 This guide will take you through the steps of creating a site, using the basic building blocks of Enonic XP.
 
-During this exercise you will learn how to:
+During this exercise you will:
 
-* create a new project based on this starter
-* build content types
-* work with page components and controllers
-* use page templates
-* TODO
+* perform basic tasks with Content Studio
+* make use of content types
+* setup pages and parts
+* create page templates
+* make parts configurable
+* contribute scripts to pages
+* configure the app from file
+* and more...
+
+image::images/ready-set-code.svg["Ready...Set...Code!", width=720px]
 
 
 == Create project
 
-Visit the https://developer.enonic.com/start[Getting started guide] and complete the setup process.
+If you have not previously installed XP.
+Please visit the https://developer.enonic.com/start[Getting started guide] to get going.
 
+[NOTE]
+====
 Some hints to the process:
 
 * Step 1: If you have already installed CLI, you may skip this step
@@ -32,7 +35,8 @@ Some hints to the process:
 * Step 3: Deploy and start the XP sandbox
 * Wrapping up: Remember to install the apps from the Welcome tour, we will need some of them later on.
 
-NOTE: If XP tour does not start automatically, simply click the top left icon on the home screen
+If the XP tour does not start automatically, simply click the top left icon on the home screen
+====
 
 You should now have an XP sandbox and the application running on http://localhost:8080
 
@@ -47,7 +51,7 @@ The project folder created should now contain a project structure, looking somet
 
 [source,files]
 ----
-sample-../code-samples/ <!--1-->
+code-samples/ <!--1-->
 docs/ <!--2-->
 src/
   main/
@@ -60,7 +64,9 @@ src/
         content-types/ <!--6-->
           country/
           city/
-        site.xml <!--7-->
+        parts/ <!--7-->
+        pages/ <!--8-->
+        site.xml <!--9-->
 ----
 
 <1> Holds sample code we will use throughout this tutorial
@@ -69,7 +75,9 @@ src/
 <4> Main location for XP specific project code
 <5> The sample site data are located here and imported when the app starts
 <6> The starter ships with two content types, country and city
-<7> Site descriptor, specifying this is a site app
+<7> Part components - used for building pages
+<8> Page components - root component for pages
+<9> Site descriptor, specifying this is a site app
 
 NOTE: The various "gradle" files on project root are used by the build system to produce the application executable.
 
@@ -152,11 +160,11 @@ Using Content Studio, we will now map the component to a content item
 +
 video::images/hello-world.mp4["Animation showing process of setting up page" options=autoplay, width=1024px]
 
-== Using templates
+== Using Views
 
 Our first controller produced HTML directly.
 According to the MVC (Model View Controller) pattern,
-we should separate the View (the template) from the controller.
+we should separate the View (template) from the controller.
 In this step, we'll upgrade our page component to use the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf templating engine]:
 
 . To make sure Thymeleaf is added to our project, we must update the `gradle.build` file.
@@ -169,15 +177,15 @@ Uncomment the following line from the "dependencies" section:
 .src/main/resources/site/pages/hello.js
 [source,js]
 ----
-include::../code-samples/pages/hello-template/hello.js[]
+include::../code-samples/pages/hello-view/hello.js[]
 ----
 +
-. Add the template file `hello.html` to the component folder
+. Add the view file `hello.html` to the component folder
 +
 .src/main/resources/site/pages/hello/hello.html
 [source,html]
 ----
-include::../code-samples/pages/hello-template/hello.html[]
+include::../code-samples/pages/hello-view/hello.html[]
 ----
 +
 . Redeploy the app:
@@ -185,7 +193,7 @@ include::../code-samples/pages/hello-template/hello.html[]
   enonic project deploy
 +
 
-Refresh the site preview, and you should now see: "*Hello world - of templates*" instead.
+Refresh the site preview, and you should now see: "*Hello world - of views*" instead.
 
 
 == Regions
@@ -233,21 +241,21 @@ TIP: Try drag'n dropping components into the region placeholder.
 
 == Parts
 
-We now need a way to display the data from our *Country* content type.
-This time, rather than making another page controller, we will create a part.
+Its time to show some more data from our *Country* content type.
 
-Parts are components that can be added to regions.
+Rather than making another page, we will now create a "part".
+Parts are essentially components that can be added to regions.
 
-. Create the folder `src/main/resources/site/parts/country/ in your project.
+. Create the folder `src/main/resources/site/parts/country/` in your project.
 . Add the part controller and template files below into the folder:
 +
-.country.js
-[source,Javascript]
+.src/main/resources/site/parts/country/country.js
+[source,js]
 ----
 include::../code-samples/parts/country/country.js[]
 ----
 +
-.country.html
+.src/main/resources/site/parts/country/country.html
 [source,HTML]
 ----
 include::../code-samples/parts/country/country.html[]
@@ -257,204 +265,163 @@ include::../code-samples/parts/country/country.html[]
 +
   enonic project deploy
 +
+. Finally, add the part to the country page created earlier:
++
+video::images/country-part.mp4[options=autoplay, width=1024px]
 
-=== Add part to page
 
-Parts use the
+== Page Templates
 
-
-When you click on the country in the content pane, you should see a preview of the rendered page, something like this:
-
-image::images/country-content-rendered.jpg["Country Content rendered", width=90%, align="center"]
-
-=== Page Templates
-
-With our current approach, we would have to set up a new page for every country added.
+With our current approach, we would have to configure a new page for every country added.
 A more efficient approach is to use page templates.
+Page templates can be used to render multiple content items of specific content types.
 
-A single page templates can be used to render all country content items.
+Lets create a page template from the country page we just made:
 
-Every _Country_ content you create from now on will use this template by default.
-
-NOTE: The *Supports* property is key. A page template will support rendering of the content types specified here.
-
-Try this out by creating a few new countries in your site. Be aware that every content you create will be a child of the content that was selected in the content pane, so make sure you select the _Hello World_ site before clicking *New* in the toolbar. Or better yet, get in the habit of right-clicking the desired parent content and selecting *New* from the context menu. This way you will never accidentally create a content in the wrong place.
-
-
-=== Extra task
-
-*Make your Favorite Country use the page template too!*
-
-You might remember that your favorite country was “hardcoded” - so let’s change it to use templates as well.
-
-. In the *Browse View* panel, double-click the country content to edit it.
-. Open the *Inspection Panel* with the image:images/icon-cog.png[Cog icon, 30] button and select the *Inspect* tab if it’s not already selected.
-. You should see a label for *Page Template* with _Custom_ selected and a label for *Page controller* with _Hello Region_ selected. If you see a label for *Part* instead then click on the page above the country name to select the page. Then click the *Inspect* tab. (See image below)
-. Now select _Automatic_ from under the *Page Template* label in the *Inspect* tab.
-. Save draft and close the tab.
-
-image::images/page-template-automatic.jpg["Automatic Page Template", width=90%, align="center"]
-
-You can select another *Page template* at any time, or even customize the presentation of a single content.
-
-
-== Component configuration
-
-****
-Welcome to part three. Here we will create a new content type for cities and a configurable component to display them. You will also learn how to make app configurations and you will get more practice with the *Content Studio*. Part three will conclude with content publishing and some advice and best practices.
-****
-
-=== City list part
-
-We need a part component to display the city data. It will list the cities and show a Google map of each location.
-
-. Create a folder named `city-list` inside the project’s `site/parts` folder.
-. Add the part descriptor file. It must be named `city-list.xml`.
-
+. Edit the country page we produced earlier, select the page and choose "Save as Page template"
+. A new browser tab will open with the template, rename it and save. Please note the "Supports" field. This declares which content types the template supports.
 +
-.City list part descriptor:
-[source,XML]
-----
-include::../code-samples/parts/city-list/city-list.xml[]
-----
+video::images/create-template.mp4[options=autoplay, width=1024px]
+
+NOTE: You should now be able to verify that the template applies to the other country items as well.
+
+=== Toggle template
+
+Your favorite country still uses a “hardcoded” page - so let’s change it to use the template as well.
+
+. Edit your favourite country, open the page editor and open the page inspection tab
+. Change the "Template" setting from "Custom" to "Automatic"
+
+
+NOTE: You can select another template, or customize the presentation of a single content at any time.
+
+== Advanced part
+
+Lets try something slightly more advanced.
+
+In this task, we will add a new part that does the following:
+
+* Lists cities within a country.
+* Uses Google Maps to show each city on the map, and it can be configured.
+* Uses page processors to contribute javascript to the page's header.
+* Allows the part to be configured
+
+. Create a new part `src/main/resources/site/parts/city-list`.
+. Add the part controller and template files below:
 +
-
-The part descriptor above has a configuration similar to those found in content types.
-
-. Add the part controller file. It must be named `city-list.js`.
-
-+
-.City list part controller:
-[source,Javascript]
+.src/main/resources/site/parts/city-list/city-list.js
+[source,js]
 ----
 include::../code-samples/parts/city-list/city-list.js[]
 ----
 +
-
-There are a few things to note in this controller file. It gets the part configuration for zoom and map type which were defined in the part descriptor. It also gets the site configuration for the *Google Maps API* key which we will define later in the `site.xml` file. *Page Contributions* are used to put the *Google Maps* JavaScript into the head of the document.
-
-. Add the part view file. It must be named `city-list.html` to match the `resolve` function in the controller.
-
-+
-.City list part view:
+.src/main/resources/site/parts/city-list/city-list.html
 [source,HTML]
 ----
 include::../code-samples/parts/city-list/city-list.html[]
 ----
 +
-There is just one more file to edit and then all the code for this project will be complete.
-
-
-=== App configuration
-
-*Google Maps* won’t work without an API key. We need somewhere to enter the key so that it can be accessed by any component that needs it. The perfect place to define a site-wide configuration is in the site descriptor.
-
-. Replace the contents of the `site.xml` file at `site/site.xml` with the code below.
+. Also add a descriptor file. It includes a form, similar to a content type. The part controller above extracts the form configuration and uses it.
 +
-.Site descriptor:
+.src/main/resources/site/parts/city-list/city-list.xml
 [source,XML]
 ----
-include::../code-samples/site.xml[]
+include::../code-samples/parts/city-list/city-list.xml[]
 ----
 +
+. Build and deploy your app once more
++
+  enonic project deploy
++
+. Finally, add this part to the "country" template we created earlier. Effectively applying it to all countries.
++
+video::images/advanced-part.mp4[options=autoplay, width=1024px]
 
-The inputs defined in the site descriptor will appear in a form when editing the site content in the *Content Studio*.
+NOTE: Thanks to the descriptor file, you may optionally configure the part by using the context menu of the page editor.
 
-. If you didn’t start XP in http://docs.enonic.com/en/stable/developer/projects/devmode.html#gradle-dev-mode[Development mode] then build and deploy your project one final time with `./gradlew deploy`.
+== Config management
 
-All of the project’s files are now complete. The rest of the steps will be performed in the *Content Studio* interface.
+Our app is using the Google Maps API.
+Heavy usage of Googles services requires a valid API key.
 
-[start=3]
-. Edit the site content. You will notice that the `Myapp` application is now red due to a missing required configuration.
-. Click the pencil icon to edit the `Myapp` configuration and enter your *Google API* key. You can get a *Google API* key from the Google developers site if you don’t already have one.
+Hardcoding an API key into your app is far from ideal.
+Luckily, XP provides a simple way to inject configuration, like the API key, without having to change your app.
 
-image::images/app-config.jpg["Myapp config", width=90%, align="center"]
+. Start by https://developers.google.com/maps/documentation/javascript/get-api-key[getting yourself a Google API key]
+. Create a file called <name.of.your.app>.cfg i.e. "my.first.site.cfg" with the following content:
++
+  maps.apiKey = <your google api key>
++
+. Copy this file into your sandbox' config folder. The sandbox is located in your users home folder at .enonic/sandboxes/<name-of-sandbox>/home/config/
+. After placing the file in the sandbox, you should now see a line from the sandbox log showing something like this:
++
+  2019-05-05 20:07:39,462 INFO  c.e.x.s.i.config.ConfigInstallerImpl - Loaded config for [<name.of.your.app>]
++
 
-=== City list part
-
-Now let’s make use of the new city content type and part component. First we need to add the `City list` part to the `Country` page template.
-
-. Edit the `Country` page template. Find it in the content pane below the templates image:images/icon-templates.png[Templates icon, 30]
-. Open the *Inspect Panel* by clicking the image:images/icon-cog.png[Inspect panel, 30] button in the toolbar.
-. Under the *Insert* tab, click and drag a _Part_ image:images/icon-part.png[Part, 30] to the page region below the _country_ part. (This may be a bit tricky because the _country_ part is small.) You could also right-click on the word _Country_ and then use the context menu to insert the part.
-. Select the _City list_ part from the dropdown in the box.
-. Save and close the tab.
-
-
-=== Configure City List
-
-The _City list_ part descriptor (`site/parts/city-list/city-list.xml`) has configuration inputs for the map type and zoom level. You can set the default values for these inputs by editing the `City list` part in the `Country page` template.
-
-. Open the _Country page_ template for editing.
-. Open the *Inspection Panel* by clicking the image:images/icon-cog.png[Inspect panel, 30] button in the toolbar.
-. Click on the _City list_ part in the *Page Editor* panel.
-. Under the *Inspect* tab of the *Inspection Panel*, set the Map type to _HYBRID_ and Zoom level to _12_.
-. Save draft and close the edit tab.
-
-Now all of the countries will show the city maps with the new settings. You can override these defaults for any individual country by editing the _Country_ content and changing its _City list_ part configuration.
-
-image::images/city-list-config.jpg["City list", width=90%, align="center"]
-
-=== Go Online
-
-Now that your "Hello World" site is complete, it’s time to publish.
-
-. Select the _Hello World_ site in the content browse panel
-. Right-click and select *Publish* from the context menu, or click the *Publish* button in the toolbar
-. The *Publishing Wizard* will appear. You may click the image:images/icon-children.png[Child items, 30] icon to see all child nodes that will also be published.
-. Verify that all your items are listed and click *Publish*!
-
-When publishing content, all the selected items and changes are “cloned” from *draft* to the *master* branch (http://docs.enonic.com/en/stable/developer/node-domain/repository.html#node-domain-repository[Repository]).
-
-You will always see the draft version of content in the preview panel and the *Page Editor* of the *Content Studio*. If you have placed your site on root level, you can also see your live site at this url: `http://localhost:8080/portal/master/hello-world`.
-
-Well done, you have just created *your first site for Enonic XP*! The Enonic team congratulates you - we look forward to seeing all the brilliant things you will make.
-
-We are always looking for https://discuss.enonic.com/[feedback].
-
-Now take a look at some Pro Tips.
+To verify that the configuration is in use,
+check the source code for a country page to see the following:
++
+  <script src="http://maps.googleapis.com/maps/api/js?key=yourGoogleKey>"></script></head>
++
 
 
-== Pro Tips
+== Go Online
 
-=== Adding libraries to your project
+Now that the setup of our "Hello World" site is completed, it’s time to publish.
 
-Why re-invent the wheel for each app you make? Reusable code can be created in libraries and added to any XP project. Some essential tools can be found in the https://github.com/enonic/lib-util[Util lib], https://github.com/enonic/lib-menu[Menu lib], https://github.com/enonic/lib-recaptcha[RECAPTCHA] and https://github.com/enonic/lib-landingpage[Landing page] libraries.
+. Select the "Hello World" site in the content browse panel
+. Select *Publish* from the toolbar menu. The *Publishing Wizard* will now appear
+. Tick the Tree icon to the left and verify that all desired items are included.
+. click *Publish*!
 
-==== Adding apps to your site
-
-A website can be created from a single app. But a site’s functionality can be extended by adding other pre-made apps. SEO Meta Fields, Disqus comments and Google Analytics are just a few of the many apps that can instantly add features to your site. See what’s available at the http://market.enonic.com/applications[Enonic Market].
+video::images/go-online.mp4[options=autoplay, width=1024px]
 
 
-=== Logging JSON objects
+When working in Content Studio, you always work in and see the items of the draft branch.
+When publishing, the included items are merged from *draft* to the *master* branch
 
-While developing an app, it can be helpful to see the structure of objects returned by library functions. The best way to do this is to set up a utilities JavaScript file in the project lib folder. Add the following function to the utilities file:
+NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/default/master/hello-world`.
 
-    site/lib/utilities.js
+*Well done!*
 
-    exports.log = function (data) {
-      log.info('Utilities log %s', JSON.stringify(data, null, 4));
-    };
+The Enonic team congratulates you on building your first XP site :)
 
-Call the log function in any controller like the example below and then check the log after refreshing the page.
+
+== Nice to know
+
+=== Setting up vhosts
+
+If you want to go live on a production server, you will need to configure a vhost.
+Vhosts map the internal XP URI to a public facing URL i.e. mydomain.com -> /site/default/master/hello-world.
+
+Read more about https://developer.enonic.com/docs/xp/stable/deployment/config#vhost[vhost configuration] in the XP docs.
+
+=== Adding more apps
+
+A site can be created from a single app, but you may also add more.
+SEO Meta Fields, Disqus comments and Google Analytics are just a few of the many apps that can instantly add new features to your site.
+
+To add an app, install an app from the "Applications" tool in the main menu.
+Once installed, edit your site and add the application in the apps field.
+
+=== Logging
+
+While developing an app, it can be helpful to see the structure of objects returned by library functions.
+A way to do this is by creating up a small utility script.
+
+.src/main/resources/lib/utilities.js
+[source,js]
+----
+exports.log = function (data) {
+  log.info('Utilities log %s', JSON.stringify(data, null, 4));
+};
+----
+
+Next, call the log function in any controller like the example below and then check the log after refreshing the page.
 
     var util = require('utilities');
 
     var content = portal.getContent();
     util.log(content);
 
-This logging function and many other useful functions are included in the https://github.com/enonic/lib-util[Util library].
-
-=== Continuous build with Dev Mode or Gradle
-
-It can be quite time consuming to frequently use the terminal to redeploy an app during development. Starting *Enonic XP* in _dev-mode_ will make most changes to your app code visible immediately on _localhost_. See the http://docs.enonic.com/en/stable/developer/projects/devmode.html#gradle-dev-mode[Development mode] page for more information about its capabilities and limitations.
-
-Another option is to use `./gradlew -t deploy` in the terminal from the project root. This will automatically build and redeploy your app every time changes to a file are detected. This method is slower than dev-mode, but it handles some situations that dev-mode doesn’t. *Gradle 2.7* or newer is required.
-
-Both dev-mode and Gradle continuous-mode require the `$XP_HOME` environment variable to be set in the terminal window.
-
-== Next Steps
-
-This tutorial only covered the basics of site development. Explore the documentation for more in-depth coverage.
-
-Need help? Ask questions on our https://discuss.enonic.com/[forum] or answer questions from others.
+This function and many more are included in the https://market.enonic.com/vendors/enonic/util-lib[Util Library]

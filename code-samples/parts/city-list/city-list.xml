@@ -1,6 +1,7 @@
 <part xmlns="urn:enonic:xp:model:1.0">
   <display-name>City list</display-name>
-  <config>
+  <display-name>Show all cities with Google Maps</display-name>
+  <form>
     <input type="ComboBox" name="mapType">
       <label>Map type</label>
       <occurrences minimum="0" maximum="1"/>
@@ -19,5 +20,5 @@
       </config>
       <occurrences minimum="0" maximum="1"/>
     </input>
-  </config>
+  </form>
 </part>
