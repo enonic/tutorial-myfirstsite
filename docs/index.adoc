@@ -9,13 +9,11 @@ This guide will take you through the steps of creating a site, using the basic b
 
 During this exercise you will:
 
-* perform basic tasks with Content Studio
-* make use of content types
+* learn about content types
 * setup pages and parts
 * create page templates
-* make parts configurable
 * contribute scripts to pages
-* configure the app from file
+* provide configuration from file
 * and more...
 
 image::images/ready-set-code.svg["Ready...Set...Code!", width=720px]
