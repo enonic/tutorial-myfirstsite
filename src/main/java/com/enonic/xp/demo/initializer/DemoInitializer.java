@@ -1,88 +1,69 @@
 package com.enonic.xp.demo.initializer;
 
-import java.util.concurrent.Callable;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.enonic.xp.app.ApplicationKey;
-import com.enonic.xp.content.ApplyContentPermissionsParams;
-import com.enonic.xp.content.Content;
 import com.enonic.xp.content.ContentConstants;
 import com.enonic.xp.content.ContentPath;
 import com.enonic.xp.content.ContentService;
-import com.enonic.xp.content.UpdateContentParams;
+import com.enonic.xp.context.Context;
 import com.enonic.xp.context.ContextAccessor;
 import com.enonic.xp.context.ContextBuilder;
-import com.enonic.xp.context.Context;
 import com.enonic.xp.export.ExportService;
 import com.enonic.xp.export.ImportNodesParams;
 import com.enonic.xp.export.NodeImportResult;
 import com.enonic.xp.index.IndexService;
+import com.enonic.xp.lib.content.BaseContextHandler;
 import com.enonic.xp.node.NodePath;
-import com.enonic.xp.security.PrincipalKey;
+import com.enonic.xp.script.bean.BeanContext;
 import com.enonic.xp.security.RoleKeys;
-import com.enonic.xp.security.SecurityService;
 import com.enonic.xp.security.User;
-import com.enonic.xp.security.IdProviderKey;
-import com.enonic.xp.security.acl.AccessControlEntry;
-import com.enonic.xp.security.acl.AccessControlList;
-import com.enonic.xp.security.acl.Permission;
 import com.enonic.xp.security.auth.AuthenticationInfo;
 import com.enonic.xp.vfs.VirtualFile;
 import com.enonic.xp.vfs.VirtualFiles;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
-@Component(immediate = true)
 public class DemoInitializer
+    extends BaseContextHandler
 {
 
-    private static final AccessControlList PERMISSIONS =
-        AccessControlList.of( AccessControlEntry.create().principal( RoleKeys.EVERYONE ).allow( Permission.READ ).build(),
-                              AccessControlEntry.create().principal( RoleKeys.CONTENT_MANAGER_ADMIN ).allowAll().build(),
-                              AccessControlEntry.create().principal( RoleKeys.CONTENT_MANAGER_APP ).allow( Permission.READ ).build(),
-                              AccessControlEntry.create().principal( RoleKeys.ADMIN ).allowAll().build() );
+    private Supplier<ContentService> contentService;
 
+    private Supplier<ExportService> exportService;
 
-    private ContentService contentService;
-
-    private ExportService exportService;
-
-    private SecurityService securityService;
-
-    private IndexService indexService;
+    private Supplier<IndexService> indexService;
 
     private final Logger LOG = LoggerFactory.getLogger( DemoInitializer.class );
 
-    private static final PrincipalKey SUPER_USER_KEY = PrincipalKey.ofUser( IdProviderKey.system(), "su" );
-
-    @Activate
-    public void initialize()
-        throws Exception
+    @Override
+    protected Boolean doExecute()
     {
-
-        if ( this.indexService.isMaster() )
+        if ( this.indexService.get().isMaster() )
         {
             runAs( createInitContext(), () -> {
                 doInitialize();
                 return null;
             } );
         }
+
+        return true;
     }
 
     private Context createInitContext()
     {
+
         return ContextBuilder.from( ContextAccessor.current() ).
             authInfo( AuthenticationInfo.create().principals( RoleKeys.CONTENT_MANAGER_ADMIN ).user( User.ANONYMOUS ).build() ).
             branch( ContentConstants.BRANCH_DRAFT ).
             repositoryId( ContentConstants.CONTENT_REPO.getId() ).
             build();
     }
+
 
     private void doInitialize()
         throws Exception
@@ -99,7 +80,7 @@ public class DemoInitializer
         final VirtualFile source = VirtualFiles.from( bundle, "/import" );
         final VirtualFile xsltTransformer = VirtualFiles.from( bundle, "/import/replace_app.xsl" );
 
-        final NodeImportResult nodeImportResult = this.exportService.importNodes( ImportNodesParams.create().
+        final NodeImportResult nodeImportResult = exportService.get().importNodes( ImportNodesParams.create().
             source( source ).
             targetNodePath( NodePath.create( "/content" ).build() ).
             includeNodeIds( true ).
@@ -109,24 +90,6 @@ public class DemoInitializer
             build() );
 
         logImport( nodeImportResult );
-
-        // set permissions
-        final Content demoContent = contentService.getByPath( demoSitePath );
-        if ( demoContent != null )
-        {
-            final UpdateContentParams setFeaturesPermissions = new UpdateContentParams().
-                contentId( demoContent.getId() ).
-                editor( ( content ) -> {
-                    content.permissions = PERMISSIONS;
-                    content.inheritPermissions = false;
-                } );
-            contentService.update( setFeaturesPermissions );
-
-            contentService.applyPermissions( ApplyContentPermissionsParams.create().
-                contentId( demoContent.getId() ).
-                overwriteChildPermissions( true ).
-                build() );
-        }
     }
 
     private void logImport( final NodeImportResult nodeImportResult )
@@ -143,18 +106,23 @@ public class DemoInitializer
         nodeImportResult.getExportedBinaries().forEach( LOG::info );
 
         LOG.info( "-------------------" );
-        LOG.info( "Errors:" );
-        for ( final NodeImportResult.ImportError importError : nodeImportResult.getImportErrors() )
-        {
-            LOG.info( importError.getMessage(), importError.getException() );
+
+        final List<NodeImportResult.ImportError> errors = nodeImportResult.getImportErrors();
+        if (errors != null && errors.size() > 0) {
+            LOG.warn( "Errors:" );
+            for ( final NodeImportResult.ImportError importError : errors ) {
+                LOG.warn( importError.getMessage(), importError.getException() );
+            }
+            LOG.info( "-------------------" );
         }
+
     }
 
     private boolean hasContent( final ContentPath path )
     {
         try
         {
-            return this.contentService.getByPath( path ) != null;
+            return contentService.get().getByPath( path ) != null;
         }
         catch ( final Exception e )
         {
@@ -162,28 +130,12 @@ public class DemoInitializer
         }
     }
 
-    @Reference
-    public void setExportService( final ExportService exportService )
+    @Override
+    public void initialize( final BeanContext context )
     {
-        this.exportService = exportService;
-    }
-
-    @Reference
-    public void setContentService( final ContentService contentService )
-    {
-        this.contentService = contentService;
-    }
-
-    @Reference
-    public void setSecurityService( final SecurityService securityService )
-    {
-        this.securityService = securityService;
-    }
-
-    @Reference
-    public void setIndexService( final IndexService indexService )
-    {
-        this.indexService = indexService;
+        this.indexService = context.getService( IndexService.class );
+        this.contentService = context.getService( ContentService.class );
+        this.exportService = context.getService( ExportService.class );
     }
 
     private <T> T runAs( final Context context, final Callable<T> runnable )
