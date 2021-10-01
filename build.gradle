@@ -17,7 +17,9 @@ dependencies {
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
     include "com.enonic.xp:lib-context:${xpVersion}"
+    include "com.enonic.xp:lib-export:${xpVersion}"
     include "com.enonic.xp:lib-cluster:${xpVersion}"
+    include "com.enonic.xp:lib-project:${xpVersion}"
     //include "com.enonic.xp:lib-auth:${xpVersion}"
     //include "com.enonic.xp:lib-i18n:${xpVersion}"
     //include "com.enonic.xp:lib-io:${xpVersion}"
@@ -27,7 +29,6 @@ dependencies {
 }
 
 repositories {
-    mavenLocal()
-    jcenter()
-    xp.enonicRepo()
+    mavenCentral()
+    xp.enonicRepo('dev')
 }
