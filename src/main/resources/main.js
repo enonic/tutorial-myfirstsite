@@ -4,9 +4,9 @@ const clusterLib = require('/lib/xp/cluster');
 const exportLib = require('/lib/xp/export');
 
 const projectData = {
-    id: 'firstsite',
-    displayName: 'firstsite',
-    description: 'My first site',
+    id: 'myfirstsite',
+    displayName: 'My Site',
+    description: 'My site description',
     readAccess: {
         public: true
     }
