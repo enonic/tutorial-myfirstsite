@@ -1,0 +1,451 @@
+= Tutorial: My first site
+:toc: right
+:experimental:
+:imagesdir: media/
+:sourcedir: ../
+
+A step-by-step introduction to building websites with the Enonic JS framework.
+
+TIP: If you are primarily looking to use Enonic's headless API. Visit https://developer.enonic.com/docs/intro[the intro tutorial] instead. 
+
+== Introduction
+
+During this exercise you will:
+
+* set up a local Enonic developer environment
+* create an Enonic app
+* install and use Content Studio
+* learn about the structure of an Enonic app
+* learn about content types
+* setup pages and parts
+* use page templates
+* manage static assets
+* and then some...
+
+image::ready-set-code.svg["Ready...Set...Code!", width=720px]
+
+== Install Enonic CLI
+
+The Command Line Interface is an essential tool for developers.
+
+If you have `npm` on your device, run this command: 
+
+  npm install -g @enonic/cli
+
+If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
+
+To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI. 
+
+To see all available options, simply run `enonic`.
+
+TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
+
+== Create a sandbox
+
+A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:
+
+  enonic sandbox create
+
+Give it a name, i.e. `myfirstsite`, and select the most recent version of Enonic XP from the list that appears.
+
+Start the sandbox with this command:
+
+  enonic sandbox start --dev
+
+Select the `intro` sandbox from the list, and it will boot up in development mode.
+
+TIP: Dev mode will automatically load changes in your code when developing.
+
+== Create app
+
+From a **new terminal window**, run the following command to create the application.
+
+IMPORTANT: Use the default options when prompted.
+
+  enonic project create -r tutorial-myfirstsite
+
+[TIP]
+====
+The command uses the https://github.com/enonic/tutorial-myfirstsite[My first site^] Github repo  as a starter (template) for the app.
+====
+
+== Project structure
+
+The project folder created should now contain a basic app structure, looking something like this:
+
+[source,files]
+----
+build.gradle //<1>
+settings.gradle
+build/ //<2>
+code-samples/ //<3>
+docs/ //<4>
+src/
+  main/
+    resources/
+      import/ //<5>
+      assets/ //<6>
+      sites/
+        content-types/ //<7>
+          country/
+          city/
+        parts/ //<8>
+        pages/ //<9>
+----
+
+<1> gradle files are used by the app build system
+<2> Contains output files produced by the build
+<3> Code samples that will be used in this tutorial
+<4> Contains the documentation you are reading now
+<5> Contains sample content that is imported when the app starts
+<6> Location for static assets
+<7> Two pre-defined content types, country and city
+<8> Part components - used to compose pages
+<9> Page components - root component for pages
+
+== Building and Deploying
+
+Assuming you did not change the default directory name `myproject/` when creating the app - build and deploy the app with the following commands: 
+
+  cd myproject
+  enonic project deploy
+
+Select the `myfirstsite` sandbox from the list, and the app will use this from now on.
+
+[NOTE]
+====
+Look for a line like this in the sandbox log to verify that the app has started:
+
+  2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully
+====
+
+
+== Install Content Studio
+
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
+
+. **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
++
+. **Open the Applications app** from the top right `XP menu -> Applications`.
++
+image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
++
+. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it. 
++
+image::install-content-studio.png["Install the Content Studio app", width="760px"]
+
+== Sample content
+
+When the application started, it automatically created a Content Studio project called `My First Site`, and imported some sample content. Let's have a closer look:
+
+. Open Content Studio, which is now available in `XP menu -> Content Studio`.
+
+. Select the `My First Site` project when prompted, and you should now see the imported content.
+
+image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
+
+== Content Types
+
+Every content item has a specific a content type.
+
+Enonic XP ships with a set of standard content types such as `Shortcut`, `Folder`, `Site` and a range of `Media Types` that handle different kind of files.
+
+Additionally, an application may define custom content types.
+In our case, the content types `Country` and `City` already exist in the application.
+
+In Content Studio, the `City` content type looks something like this:
+
+image::city-form.png["Form for the city content type", width=1024px]
+
+The content type is defined in a file, looking like this:
+
+.src/main/resources/site/content-types/city/city.xml
+[source,xml]
+----
+include::{sourcedir}/src/main/resources/site/content-types/city/city.xml[]
+----
+
+Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^] 
+
+== Pages
+
+At the moment, we have some content, but no preview or rendering.
+As a headless CMS, Enonic supports use 3rd party front-ends - but Enonic also has an an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework]. This can be used to customize the platform, or, like in our case render pages for a website.
+
+Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it.
+
+=== Page component
+
+The app includes a pre-defined page component.
+In addition to the controller, this component also uses an html template - aka the view in the Model View Controller (MVC) pattern. They look like this:
+
+TIP: The JavaScript controller file must use the same name as the component directory.
+
+.src/main/resources/site/pages/hello/hello.js
+[source,JavaScript]
+----
+include::{sourcedir}/src/main/resources/site/pages/hello/hello.js[]
+----
+
+.src/main/resources/site/pages/hello/hello.html
+[source,HTML]
+----
+include::{sourcedir}/src/main/resources/site/pages/hello/hello.html[]
+----
+
+NOTE: The view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^] 
+
+
+=== Create page
+
+To actually have the `hello` page component render something, it must be mapped to a content item:
+
+. Select the site content `Hello World` and click btn:[edit]
+. From the preview panel on the right, select the `Hello` page component in the list. Your changes will automatically save, and the page preview will render the result.
+
+image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]
+
+
+== Regions
+
+Content Studio's page editor also supports adding more components to a page, using drag'n drop.
+
+To support this, the page component must define one or more regions.
+
+Complete the steps below to add a single region called `main` to the `hello` page component.
+
+. Start off by **adding a component descriptor**. The descriptor statically declears the region:
++
+.src/main/resources/site/pages/hello/hello.xml
+[source,XML]
+----
+include::../code-samples/pages/hello-region/hello.xml[]
+----
++
+. **Update your controller and view** with the code below to support the new region:
++
+.src/main/resources/site/pages/hello/hello.js
+[source,js]
+----
+include::../code-samples/pages/hello-region/hello.js[]
+----
++
+.src/main/resources/site/pages/hello/hello.html:
+[source,HTML]
+----
+include::../code-samples/pages/hello-region/hello.html[]
+----
++
+Your sandbox should automatially pickup the changes, as we are running in dev mode.
++
+. Back in Content Studio, select, and **edit one of the contry content items**.
+. Activate the page editor (from the top right monitor icon) and select the `Hello` component.
++
+image::hello-regions.gif["Setting up a page with a region", width=1024px]
+
+You now have a page with a region. Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
+
+== Parts
+
+You're now ready to present some more information from the *Country* content type.
+
+Rather than making another page component, let's create a `part`. Parts are essentially components that can be added to regions.
+
+. Create the folder `src/main/resources/site/parts/country/` in your project.
+. Add the part controller and view files below to the folder:
++
+.src/main/resources/site/parts/country/country.js
+[source,js]
+----
+include::../code-samples/parts/country/country.js[]
+----
++
+.src/main/resources/site/parts/country/country.html
+[source,HTML]
+----
+include::../code-samples/parts/country/country.html[]
+----
++
+. When done, the part can be added to the page by drag'n dropping a part component from the right-hand-side, then select the `Country` component from the list.
++
+image::country-part.gif["Inserting the new country part",width=1024px]
+
+
+== Configurable part
+
+Let's try something slightly more advanced.
+
+In this task, you'll add a new part that does the following:
+
+* Lists cities within a country.
+* Supports configuation for image cropping format
+* Includes a real-time cropped image of each city
+
+Complete the steps below to try it out:
+
+. Create the `City list` part by adding the controller and view files:
++
+.src/main/resources/site/parts/city-list/city-list.js
+[source,js]
+----
+include::../code-samples/parts/city-list/city-list.js[]
+----
++
+.src/main/resources/site/parts/city-list/city-list.html
+[source,HTML]
+----
+include::../code-samples/parts/city-list/city-list.html[]
+----
++
+. This time, also add a component descriptor.
+This descriptor includes a form (similar to a content type). The form allow editors to configure the part, once it is placed on the page.
++
+.src/main/resources/site/parts/city-list/city-list.xml
+[source,XML]
+----
+include::../code-samples/parts/city-list/city-list.xml[]
+----
++
+. Add the new part to the page you created earlier.
+. Finally, configure the part by selecting it and changing the settings in the right hand panel.
++
+NOTE: The controller is also configured to log model passed to the view, check sandbox log after visiting a country page to see what is happening.
+
+image::config-part.gif["Add city list to page and configure it to show widescreen images", width=1024px]
+
+TIP: The images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image.
+
+== Page Templates
+
+With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.
+
+By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.
+
+Let's create a page template from the country page you just made:
+
+. Edit the country page made in the previous step, in the visual editor - select the page and choose "Save as Page template" from the right hand component panel.
+. A new browser tab will open with the new template. Rename it and save. 
++
+TIP: The `Supports` field defines which content type(s) the template will apply to.
++
+image::page-template.gif["Creating a page template from the country page", width=1024px]
+
+NOTE: Try clicking the other countries to verify that the template actually works as intended.
+
+=== Toggle template
+
+Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.
+
+. Edit the initial country, open the page editor and select the page.
+. From the right hand component view, change the "Template" setting from "Custom" to "Automatic"
+
+
+NOTE: For each content item, you can select a specific template, or customize the presentation at any time.
+
+== Static assets
+
+So far, the site is made up of dynamic HTML and images. 
+Let's have a look at how to handle static assets like graphics, CCS and JavaScript files.
+
+Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service]. 
+By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
+
+Your application already includes the sample asset `assets/mvp.css`.
+Let's put it to work by adding the CSS to the page component:
+
+**Update your page component view** with the following content:
++
+.src/main/resources/site/pages/hello/hello.html
+[source,HTML]
+----
+include::{sourcedir}/code-samples/pages/hello-static/hello.html[]
+----
+
+And you should see this glorious result.
+
+image::css.png["Countries page in dark mode after adding the css", width=1024px]
+
+TIP: There were only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.
+
+=== Perfect cache
+In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.
+
+How does it work? 
+The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app.
+The `portal.assetUrl()` function uses this signature when generating the URL, ensuring that clients always get the most recent version.
+
+NOTE: When running in dev mode (like you do now), cache headers are deactivated
+
+=== Lib static
+
+If you're using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal.
+
+For this purpose, you can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
+
+We will not go into details in this tutorial, but lib-static is pre-bundled with selected app starters like https://market.enonic.com/vendors/enonic/webpack-starter[Webpack Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
+
+
+== Go Online
+
+Now that the setup of `Hello World` site is completed, it's time to publish.
+
+. Select the `Hello World` site in the content browse panel
+. Select *Publish Tree* from the top right action menu. The *Publishing Wizard* will now appear
+. Several `In progress` items are blocking publishing - click `Mark as ready` to fix this.
+. click *Publish*!
+
+image::publish.gif["Demonstrating how to publish all items in the project", width=1024px]
+
+What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from *draft* to the *master* branch
+
+NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/myfirstsite/master/hello-world`.
+
+*Well done!*
+
+ 🎉 Congratulations on building your first Enonic site - The Enonic team.
+
+
+== Appendix
+
+Below are some nice to know features and tricks:
+
+=== Setting up vhosts
+
+If you want to go live on a production server, you will need to configure a vhost.
+Vhosts map the internal XP URI to a public facing URL i.e. mydomain.com -> /site/default/master/hello-world.
+
+Read more about https://developer.enonic.com/docs/xp/stable/deployment/config#vhost[vhost configuration] in the XP docs.
+
+=== Adding more apps
+
+A site can be created from a single app, but you may also add more.
+https://market.enonic.com/vendors/enonic/seo-metafields[SEO Meta Fields^], https://market.enonic.com/vendors/enonic/com.enonic.app.google.tagmanager[Google Tag Manager^] and https://market.enonic.com/vendors/enonic/siteimprove[Siteimprove^] are just a few of the many apps that can instantly add new features to your site.
+
+To add an app, install an app from the `XP menu -> Applications` app.
+Once installed, edit your site and add the application to the list of linked apps.
+
+=== Logging
+
+While developing an app, it can be helpful to see the structure of objects returned by library functions.
+
+A way to do this is by creating up a small utility script.
+
+.src/main/resources/lib/utilities.js
+[source,js]
+----
+exports.log = function (data) {
+  log.info('Utilities log %s', JSON.stringify(data, null, 4));
+};
+----
+
+Then, call the log function in any controller like the example below and then check the log after refreshing the page.
+
+[source,js]
+----
+var util = require('utilities');
+
+var content = portal.getContent();
+util.log(content);
+----
+
+This function and many more are included in the https://market.enonic.com/vendors/enonic/util-lib[Util Library]

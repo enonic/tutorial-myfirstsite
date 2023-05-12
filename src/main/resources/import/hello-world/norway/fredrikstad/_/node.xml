@@ -2,16 +2,22 @@
     <id>c571d1fa-8037-4399-a17f-ce4259a4a49f</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2019-04-16T16:01:43.965Z</timestamp>
+    <timestamp>2023-05-12T11:19:12.729Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:cms.cm.app">
+        <principal key="role:system.admin">
             <allow type="array">
                 <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.admin">
+        <principal key="role:cms.project.myfirstsite.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -35,6 +41,45 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:cms.project.myfirstsite.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.editor">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.author">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
     </permissions>
     <data>
         <boolean name="valid">true</boolean>
@@ -42,7 +87,7 @@
         <string name="type">company.starter.myfirstsite:city</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2019-04-16T16:01:43.965Z</dateTime>
+        <dateTime name="modifiedTime">2023-05-12T11:19:12.728Z</dateTime>
         <string name="modifier">user:system:su</string>
         <string name="creator">user:system:su</string>
         <dateTime name="createdTime">2019-04-16T15:47:34.845Z</dateTime>
@@ -51,9 +96,14 @@
             <dateTime isNull="true" name="from"/>
             <dateTime isNull="true" name="to"/>
         </property-set>
+        <property-set name="workflow">
+            <string name="state">READY</string>
+            <property-set name="checks"/>
+        </property-set>
         <property-set name="data">
             <geoPoint name="location">59.2206,10.8646</geoPoint>
-            <long name="population">81036</long>
+            <long name="population">83885</long>
+            <string name="slogan">Det årnær sæ</string>
         </property-set>
     </data>
     <indexConfigs>

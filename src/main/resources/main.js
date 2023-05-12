@@ -5,8 +5,8 @@ const exportLib = require('/lib/xp/export');
 
 const projectData = {
     id: 'myfirstsite',
-    displayName: 'My Site',
-    description: 'My site description',
+    displayName: 'My First Site',
+    description: 'Intro to building websites with the Enonic framework',
     readAccess: {
         public: true
     }
@@ -49,7 +49,7 @@ function initializeProject() {
             log.info('Importing "' + projectData.id + '" data');
             runInContext(createContent);
         } else {
-            log.error('Project "' + projectData.id + '" failed to be created');
+            log.error('Project "' + projectData.id + '" failed to import');
         }
     }
 }
@@ -64,20 +64,9 @@ function createContent() {
         },
         includeNodeIds: true
     });
-    log.info('-------------------');
-    log.info('Imported nodes:');
-    importNodes.addedNodes.forEach(element => log.info(element));
-    log.info('-------------------');
-    log.info('Updated nodes:');
-    importNodes.updatedNodes.forEach(element => log.info(element));
-    log.info('-------------------');
-    log.info('Imported binaries:');
-    importNodes.importedBinaries.forEach(element => log.info(element));
-    log.info('-------------------');
-    if (importNodes.importErrors.length !== 0) {
+    if (importNodes.importErrors.length > 0) {
         log.warning('Errors:');
         importNodes.importErrors.forEach(element => log.warning(element.message));
-        log.info('-------------------');
     }
 }
 

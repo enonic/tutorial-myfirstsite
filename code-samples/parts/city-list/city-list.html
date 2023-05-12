@@ -1,0 +1,12 @@
+<div class="cities" style="min-height:100px;">
+    <h2>Cities</h2>
+    <p data-th-if="${#lists.isEmpty(cities)}">No cities found</p>
+    <div data-th-unless="${#lists.isEmpty(cities)}" class="city" data-th-each="city : ${cities}">
+        <h3 data-th-text="${city.name}">Utopia</h3>
+        <figure>
+            <img data-th-if="${city.photo}" data-th-src="${city.photo}"/>
+            <figcaption data-th-if="${city.caption}" data-th-text="${city.caption}">Best city every</figcaption>
+        </figure>
+        <br/>
+    </div>
+</div>
