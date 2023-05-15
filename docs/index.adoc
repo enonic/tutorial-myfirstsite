@@ -136,7 +136,13 @@ image::install-content-studio.png["Install the Content Studio app", width="760px
 
 == Sample content
 
-When the application started, it automatically created a Content Studio project called `My First Site`, and imported some sample content. Let's have a closer look:
+On the `Dashboard`, a Content Studio widget should now have appeared. It shows that we already have some sample content available.
+
+image::dashboard.png["Install the Content Studio app", width="1024px"]
+
+A content project called `My First Site` andthe sample content gets imported when you application was started the first time. 
+
+Let's have a closer look:
 
 . Open Content Studio, which is now available in `XP menu -> Content Studio`.
 
@@ -214,7 +220,7 @@ To support this, the page component must define one or more regions.
 
 Complete the steps below to add a single region called `main` to the `hello` page component.
 
-. Start off by **adding a component descriptor**. The descriptor statically declears the region:
+. Start off by **adding a component descriptor**. The descriptor statically declares the region:
 +
 .src/main/resources/site/pages/hello/hello.xml
 [source,XML]
@@ -354,18 +360,18 @@ Your application already includes the sample asset `assets/mvp.css`.
 Let's put it to work by adding the CSS to the page component:
 
 **Update your page component view** with the following content:
-+
+
 .src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
 include::{sourcedir}/code-samples/pages/hello-static/hello.html[]
 ----
 
-And you should see this glorious result.
+There are only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.
+
+If you're using `dark mode`, the result will look something like this:
 
 image::css.png["Countries page in dark mode after adding the css", width=1024px]
-
-TIP: There were only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.
 
 === Perfect cache
 In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.
