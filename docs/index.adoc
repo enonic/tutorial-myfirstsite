@@ -211,7 +211,6 @@ To actually have the `hello` page component render something, it must be mapped 
 
 image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]
 
-
 == Regions
 
 Content Studio's page editor also supports adding more components to a page, using drag'n drop.
