@@ -855,7 +855,28 @@ In our case, the content types <code>Country</code> and <code>City</code> alread
 <div class="listingblock">
 <div class="title">src/main/resources/site/content-types/city/city.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">Unresolved directive in index.adoc - include::..//src/main/resources/site/content-types/city/city.xml[]</code></pre>
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;City&lt;/display-name&gt;
+  &lt;description&gt;Place where many people live&lt;/description&gt;
+  &lt;super-type&gt;base:structured&lt;/super-type&gt;
+  &lt;form&gt;
+    &lt;input type="ImageSelector" name="photo"&gt;
+      &lt;label&gt;Photo&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+    &lt;/input&gt;
+    &lt;input type="TextLine" name="slogan"&gt;
+      &lt;label&gt;City slogan&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+    &lt;/input&gt;
+    &lt;input type="Long" name="population"&gt;
+      &lt;label&gt;Population&lt;/label&gt;
+      &lt;occurrences minimum="1" maximum="1"/&gt;
+      &lt;config&gt;
+          &lt;min&gt;1&lt;/min&gt;
+      &lt;/config&gt;
+    &lt;/input&gt;
+  &lt;/form&gt;
+&lt;/content-type&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -894,13 +915,39 @@ The JavaScript controller file must use the same name as the component directory
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.js</div>
 <div class="content">
-<pre class="highlight"><code class="language-JavaScript" data-lang="JavaScript">Unresolved directive in index.adoc - include::..//src/main/resources/site/pages/hello/hello.js[]</code></pre>
+<pre class="highlight"><code class="language-JavaScript" data-lang="JavaScript">const portal = require('/lib/xp/portal'); // Import the portal library
+const thymeleaf = require('/lib/thymeleaf'); // Import the Thymeleaf library
+
+// Handle the GET request
+exports.get = function(req) {
+
+    // Prepare the model that will be passed to the view
+    const model = {
+        displayName: portal.getContent().displayName
+    };
+
+    // Specify the template file to use
+    const view = resolve('hello.html');
+
+    // Return the merged view and model in the response object
+    return {
+        body: thymeleaf.render(view, model)
+    };
+};</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">Unresolved directive in index.adoc - include::..//src/main/resources/site/pages/hello/hello.html[]</code></pre>
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1 data-th-text="${displayName} + ' - we made it!'"&gt;Sample header&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -958,7 +1005,14 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">Unresolved directive in index.adoc - include::../code-samples/pages/hello-region/hello.xml[]</code></pre>
+<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;Hello Regions!&lt;/display-name&gt;
+  &lt;description&gt;Drag'n drop enabled&lt;/description&gt;
+  &lt;form/&gt;
+  &lt;regions&gt;
+    &lt;region name="main"/&gt;
+  &lt;/regions&gt;
+&lt;/page&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -967,13 +1021,51 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.js</div>
 <div class="content">
-<pre class="highlight"><code class="language-js" data-lang="js">Unresolved directive in index.adoc - include::../code-samples/pages/hello-region/hello.js[]</code></pre>
+<pre class="highlight"><code class="language-js" data-lang="js">var portal = require('/lib/xp/portal'); // Import the portal library
+var thymeleaf = require('/lib/thymeleaf'); // Import the Thymeleaf library
+
+// Handle the GET request
+exports.get = function(req) {
+
+    // Get the content that is using the page
+    var content = portal.getContent();
+
+    // Prepare the model that will be passed to the view
+    var model = {
+      displayName: portal.getContent().displayName,
+      mainRegion: content.page.regions.main
+    }
+
+    // Specify the view file to use
+    var view = resolve('hello.html');
+
+    // Return the merged view and model in the response object
+    return {
+        body: thymeleaf.render(view, model)
+    }
+};</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html:</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">Unresolved directive in index.adoc - include::../code-samples/pages/hello-region/hello.html[]</code></pre>
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1 data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main data-portal-region="main"&gt;
+        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
+            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;  
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1017,13 +1109,39 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.js</div>
 <div class="content">
-<pre class="highlight"><code class="language-js" data-lang="js">Unresolved directive in index.adoc - include::../code-samples/parts/country/country.js[]</code></pre>
+<pre class="highlight"><code class="language-js" data-lang="js">var portal = require('/lib/xp/portal');
+var thymeleaf = require('/lib/thymeleaf');
+
+// Handle the GET request
+exports.get = function(req) {
+
+    // Get the country content as a JSON object
+    var content = portal.getContent();
+
+    // Prepare the model object with the needed data from the content
+    var model = {
+        name: content.displayName,
+        population: content.data.population || "Unknown",
+        description: content.data.description || "Missing description",
+    };
+
+    // Specify the view file to use
+    var view = resolve('country.html');
+
+    // Return the merged view and model in the response object
+    return {
+        body: thymeleaf.render(view, model)
+    }
+};</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">Unresolved directive in index.adoc - include::../code-samples/parts/country/country.html[]</code></pre>
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div&gt;
+    &lt;div data-th-if="${population}" data-th-text="'Population: ' + ${population}"&gt;5 gazillions&lt;/div&gt;
+    &lt;div data-th-if="${description}" data-th-text="${description}"&gt;Nice city indeed&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -1071,13 +1189,85 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.js</div>
 <div class="content">
-<pre class="highlight"><code class="language-js" data-lang="js">Unresolved directive in index.adoc - include::../code-samples/parts/city-list/city-list.js[]</code></pre>
+<pre class="highlight"><code class="language-js" data-lang="js">var contentLib = require('/lib/xp/content');
+var portal = require('/lib/xp/portal');
+var thymeleaf = require('/lib/thymeleaf');
+
+// Specify the view file to use
+const view = resolve('city-list.html');
+
+// Handle the GET request
+exports.get = function (req) {
+
+    // Get the part configuration for the map
+    const config = portal.getComponent().config;
+    const countryPath = portal.getContent()._path;
+    const componentPath = portal.getComponent().path;
+
+    // Get all child item cities's  
+    const result = contentLib.query({
+        start: 0,
+        count: 100,
+        contentTypes: [
+            app.name + ':city'
+        ],
+        query: "_path LIKE '/content" + countryPath + "/*'",
+        sort: "modifiedTime DESC"
+    });
+
+    const cities = [];
+
+    // Create a crop based on configuration
+    const crop = config.crop || 'ORIGINAL';
+    let scale; 
+    if (crop == 'SQUARE') { scale = 'square(1080)'}
+    else if (crop == 'WIDESCREEN') { scale = 'block(1080,300)'}
+    else { scale = 'width(1080)'}
+
+    if (result.hits.length &gt; 0) {
+
+        // Loop through the contents and extract the needed data
+        result.hits.forEach((item)=&gt;{
+
+            const city = {};
+            city.name = item.displayName;
+            city.photo = item.data.photo ? portal.imageUrl({
+                id: item.data.photo,
+                scale: scale,
+            }) : null;
+            const population = item.data.population ? 'population: ' + item.data.population : '';
+            city.caption = [item.data.slogan, population].filter(Boolean).join(' - ');
+            cities.push(city);
+
+        })
+    }
+
+    // Specify the view file to use
+    const model = {cities};
+    log.info('Model object %s', JSON.stringify(model, null, 4));
+
+    // Return the response object
+    return {
+        body: thymeleaf.render(view, model)
+    };
+};</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">Unresolved directive in index.adoc - include::../code-samples/parts/city-list/city-list.html[]</code></pre>
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div class="cities" style="min-height:100px;"&gt;
+    &lt;h2&gt;Cities&lt;/h2&gt;
+    &lt;p data-th-if="${#lists.isEmpty(cities)}"&gt;No cities found&lt;/p&gt;
+    &lt;div data-th-unless="${#lists.isEmpty(cities)}" class="city" data-th-each="city : ${cities}"&gt;
+        &lt;h3 data-th-text="${city.name}"&gt;Utopia&lt;/h3&gt;
+        &lt;figure&gt;
+            &lt;img data-th-if="${city.photo}" data-th-src="${city.photo}"/&gt;
+            &lt;figcaption data-th-if="${city.caption}" data-th-text="${city.caption}"&gt;Best city every&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;br/&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -1087,7 +1277,21 @@ This descriptor includes a form (similar to a content type). The form allow edit
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">Unresolved directive in index.adoc - include::../code-samples/parts/city-list/city-list.xml[]</code></pre>
+<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;City list&lt;/display-name&gt;
+  &lt;description&gt;Show all cities in a country&lt;/description&gt;
+  &lt;form&gt;
+    &lt;input type="ComboBox" name="crop"&gt;
+      &lt;label&gt;Image crop&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+      &lt;config&gt;
+        &lt;option value="ORIGINAL"&gt;Original&lt;/option&gt;
+        &lt;option value="WIDESCREEN"&gt;Widescreen&lt;/option&gt;
+        &lt;option value="SQUARE"&gt;Square&lt;/option&gt;
+      &lt;/config&gt;
+    &lt;/input&gt;
+  &lt;/form&gt;
+&lt;/part&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -1232,7 +1436,24 @@ Let&#8217;s put it to work by adding the CSS to the page component:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">Unresolved directive in index.adoc - include::..//code-samples/pages/hello-static/hello.html[]</code></pre>
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+&lt;html color-mode="user"&gt;
+  &lt;head&gt;
+    &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
+    &lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;    
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1 data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main data-portal-region="main"&gt;
+        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
+            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;  
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1398,7 +1619,7 @@ util.log(content);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-04 12:03:39 UTC
+Last updated 2023-08-07 09:33:34 UTC
 </div>
 </div>
 </body>
