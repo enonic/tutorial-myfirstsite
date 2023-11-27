@@ -493,7 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you are primarily looking to use Enonic&#8217;s headless API. Visit <a href="https://developer.enonic.com/docs/intro">the intro tutorial</a> instead.
+If you are primarily looking to use Enonic&#8217;s headless API, visit <a href="https://developer.enonic.com/docs/intro">the intro tutorial</a> instead.
 </td>
 </tr>
 </table>
@@ -524,7 +524,7 @@ If you are primarily looking to use Enonic&#8217;s headless API. Visit <a href="
 <p>learn about content types</p>
 </li>
 <li>
-<p>setup pages and parts</p>
+<p>set up pages and parts</p>
 </li>
 <li>
 <p>use page templates</p>
@@ -1619,7 +1619,7 @@ util.log(content);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-07 09:34:43 UTC
+Last updated 2023-11-27 09:05:32 UTC
 </div>
 </div>
 </body>
