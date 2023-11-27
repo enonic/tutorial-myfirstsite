@@ -6,7 +6,7 @@
 
 A step-by-step introduction to building websites with the Enonic JS framework.
 
-TIP: If you are primarily looking to use Enonic's headless API. Visit https://developer.enonic.com/docs/intro[the intro tutorial] instead. 
+TIP: If you are primarily looking to use Enonic's headless API, visit https://developer.enonic.com/docs/intro[the intro tutorial] instead.
 
 == Introduction
 
@@ -17,7 +17,7 @@ During this exercise you will:
 * install and use Content Studio
 * learn about the structure of an Enonic app
 * learn about content types
-* setup pages and parts
+* set up pages and parts
 * use page templates
 * manage static assets
 * and then some...
@@ -28,13 +28,13 @@ image::ready-set-code.svg["Ready...Set...Code!", width=720px]
 
 The Command Line Interface is an essential tool for developers.
 
-If you have `npm` on your device, run this command: 
+If you have `npm` on your device, run this command:
 
   npm install -g @enonic/cli
 
 If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
 
-To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI. 
+To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI.
 
 To see all available options, simply run `enonic`.
 
@@ -105,7 +105,7 @@ src/
 
 == Building and Deploying
 
-Assuming you did not change the default directory name `myproject/` when creating the app - build and deploy the app with the following commands: 
+Assuming you did not change the default directory name `myproject/` when creating the app - build and deploy the app with the following commands:
 
   cd myproject
   enonic project deploy
@@ -130,7 +130,7 @@ https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the 
 +
 image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
 +
-. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it. 
+. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
 +
 image::install-content-studio.png["Install the Content Studio app", width="760px"]
 
@@ -140,7 +140,7 @@ On the `Dashboard`, a Content Studio widget should now have appeared. It shows t
 
 image::dashboard.png["Install the Content Studio app", width="1024px"]
 
-A content project called `My First Site` andthe sample content gets imported when you application was started the first time. 
+A content project called `My First Site` andthe sample content gets imported when you application was started the first time.
 
 Let's have a closer look:
 
@@ -171,7 +171,7 @@ The content type is defined in a file, looking like this:
 include::{sourcedir}/src/main/resources/site/content-types/city/city.xml[]
 ----
 
-Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^] 
+Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]
 
 == Pages
 
@@ -199,7 +199,7 @@ include::{sourcedir}/src/main/resources/site/pages/hello/hello.js[]
 include::{sourcedir}/src/main/resources/site/pages/hello/hello.html[]
 ----
 
-NOTE: The view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^] 
+NOTE: The view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^]
 
 
 === Create page
@@ -329,7 +329,7 @@ By creating a page template, and map it to a specific content types, all items o
 Let's create a page template from the country page you just made:
 
 . Edit the country page made in the previous step, in the visual editor - select the page and choose "Save as Page template" from the right hand component panel.
-. A new browser tab will open with the new template. Rename it and save. 
+. A new browser tab will open with the new template. Rename it and save.
 +
 TIP: The `Supports` field defines which content type(s) the template will apply to.
 +
@@ -349,10 +349,10 @@ NOTE: For each content item, you can select a specific template, or customize th
 
 == Static assets
 
-So far, the site is made up of dynamic HTML and images. 
+So far, the site is made up of dynamic HTML and images.
 Let's have a look at how to handle static assets like graphics, CCS and JavaScript files.
 
-Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service]. 
+Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service].
 By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
 
 Your application already includes the sample asset `assets/mvp.css`.
@@ -375,7 +375,7 @@ image::css.png["Countries page in dark mode after adding the css", width=1024px]
 === Perfect cache
 In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.
 
-How does it work? 
+How does it work?
 The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app.
 The `portal.assetUrl()` function uses this signature when generating the URL, ensuring that clients always get the most recent version.
 
