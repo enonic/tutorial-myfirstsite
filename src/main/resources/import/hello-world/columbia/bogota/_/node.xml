@@ -1,23 +1,17 @@
 <node>
-    <id>05b59c1a-b469-4dd1-8011-1cc7f594e903</id>
+    <id>a38388fd-d15a-49cd-b5c5-ee33877aba80</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2023-05-12T10:56:06.889Z</timestamp>
+    <timestamp>2023-12-12T20:54:33.427Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:system.admin">
+        <principal key="role:system.everyone">
             <allow type="array">
                 <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.myfirstsite.owner">
+        <principal key="role:system.admin">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -41,15 +35,15 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
+        <principal key="role:cms.project.myfirstsite.owner">
             <allow type="array">
                 <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -65,18 +59,24 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
         <principal key="role:cms.project.myfirstsite.author">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
                 <value>MODIFY</value>
                 <value>DELETE</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.viewer">
+            <allow type="array">
+                <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -87,24 +87,22 @@
         <string name="type">company.starter.myfirstsite:city</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2023-05-12T10:56:06.888Z</dateTime>
+        <dateTime name="modifiedTime">2023-12-12T20:54:30.538Z</dateTime>
         <string name="modifier">user:system:su</string>
         <string name="creator">user:system:su</string>
-        <dateTime name="createdTime">2019-04-16T15:40:28.919Z</dateTime>
+        <dateTime name="createdTime">2023-12-12T20:32:28.051Z</dateTime>
         <property-set name="publish">
-            <dateTime isNull="true" name="first"/>
-            <dateTime isNull="true" name="from"/>
-            <dateTime isNull="true" name="to"/>
+            <dateTime name="first">2023-12-12T20:54:33.371Z</dateTime>
+            <dateTime name="from">2023-12-12T20:54:33.371Z</dateTime>
         </property-set>
         <property-set name="workflow">
             <string name="state">READY</string>
             <property-set name="checks"/>
         </property-set>
         <property-set name="data">
-            <geoPoint name="location">4.5981,-74.0758</geoPoint>
+            <reference name="photo">4826daa9-022c-4629-a751-fd3e06c5724a</reference>
+            <string name="slogan">2 600 metres closer to the stars</string>
             <long name="population">7743955</long>
-            <reference name="photo">9716a8c6-181f-4e7e-a1d8-d35995407abb</reference>
-            <string name="slogan"> 2 600 metres closer to the stars</string>
         </property-set>
     </data>
     <indexConfigs>
