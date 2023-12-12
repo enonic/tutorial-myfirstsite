@@ -1,0 +1,44 @@
+{
+  "menuItems": [
+    {
+      "title": "1 - Setup",
+      "document": "setup"
+    },
+    {
+      "title": "2 - Content",
+      "document": "content"
+    },
+    {
+      "title": "3 - Content types",
+      "document": "content-types"
+    },
+    {
+      "title": "4 - Pages",
+      "document": "pages"
+    },
+    {
+      "title": "5 - Regions",
+      "document": "regions"
+    },
+    {
+      "title": "6 - Parts",
+      "document": "parts"
+    },
+    {
+      "title": "7 - Page templates",
+      "document": "page-templates"
+    },
+    {
+      "title": "8 - Static assets",
+      "document": "static-assets"
+    },
+    {
+      "title": "9 - Go online",
+      "document": "go-online"
+    },
+    {
+      "title": "10 - Appendix",
+      "document": "appendix"
+    }
+  ]
+}

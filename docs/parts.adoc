@@ -1,0 +1,72 @@
+:imagesdir: media/
+:sourcedir: ../
+
+== Parts
+
+You're now ready to present some more information from the *Country* content type.
+
+Rather than making another page component, let's create a `part`. Parts are essentially components that can be added to regions.
+
+. Create the folder `src/main/resources/site/parts/country/` in your project.
+. Add the part controller and view files below to the folder:
++
+.src/main/resources/site/parts/country/country.js
+[source,js]
+----
+include::{source_dir}code-samples/parts/country/country.js[]
+----
++
+.src/main/resources/site/parts/country/country.html
+[source,HTML]
+----
+include::{source_dir}code-samples/parts/country/country.html[]
+----
++
+. When done, the part can be added to the page by drag'n dropping a part component from the right-hand-side, then select the `Country` component from the list.
++
+image::country-part.gif["Inserting the new country part",width=1024px]
+
+
+== Configurable part
+
+Let's try something slightly more advanced.
+
+In this task, you'll add a new part that does the following:
+
+* Lists cities within a country.
+* Supports configuation for image cropping format
+* Includes a real-time cropped image of each city
+
+Complete the steps below to try it out:
+
+. Create the `City list` part by adding the controller and view files:
++
+.src/main/resources/site/parts/city-list/city-list.js
+[source,js]
+----
+include::{source_dir}code-samples/parts/city-list/city-list.js[]
+----
++
+.src/main/resources/site/parts/city-list/city-list.html
+[source,HTML]
+----
+include::{source_dir}code-samples/parts/city-list/city-list.html[]
+----
++
+. This time, also add a component descriptor.
+This descriptor includes a form (similar to a content type). The form allow editors to configure the part, once it is placed on the page.
++
+.src/main/resources/site/parts/city-list/city-list.xml
+[source,XML]
+----
+include::{source_dir}code-samples/parts/city-list/city-list.xml[]
+----
++
+. Add the new part to the page you created earlier.
+. Finally, configure the part by selecting it and changing the settings in the right hand panel.
++
+NOTE: The controller is also configured to log model passed to the view, check sandbox log after visiting a country page to see what is happening.
+
+image::config-part.gif["Add city list to page and configure it to show widescreen images", width=1024px]
+
+TIP: The images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image.

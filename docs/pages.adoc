@@ -1,0 +1,40 @@
+:imagesdir: media/
+:sourcedir: ../
+
+== Pages
+
+At the moment, we have some content, but no preview or rendering.
+As a headless CMS, Enonic supports use 3rd party front-ends - but Enonic also has an an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework]. This can be used to customize the platform, or, like in our case render pages for a website.
+
+Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it.
+
+=== Page component
+
+The app includes a pre-defined page component.
+In addition to the controller, this component also uses an html template - aka the view in the Model View Controller (MVC) pattern. They look like this:
+
+TIP: The JavaScript controller file must use the same name as the component directory.
+
+.src/main/resources/site/pages/hello/hello.js
+[source,JavaScript]
+----
+include::{sourcedir}/src/main/resources/site/pages/hello/hello.js[]
+----
+
+.src/main/resources/site/pages/hello/hello.html
+[source,HTML]
+----
+include::{sourcedir}/src/main/resources/site/pages/hello/hello.html[]
+----
+
+NOTE: The view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^]
+
+
+=== Create page
+
+To actually have the `hello` page component render something, it must be mapped to a content item:
+
+. Select the site content `Hello World` and click btn:[edit]
+. From the preview panel on the right, select the `Hello` page component in the list. Your changes will automatically save, and the page preview will render the result.
+
+image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]

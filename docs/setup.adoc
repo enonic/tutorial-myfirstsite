@@ -1,0 +1,111 @@
+:imagesdir: media/
+
+== Install Enonic CLI
+
+The Command Line Interface is an essential tool for developers.
+
+If you have `npm` on your device, run this command:
+
+  npm install -g @enonic/cli
+
+If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
+
+To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI.
+
+To see all available options, simply run `enonic`.
+
+TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
+
+== Create a sandbox
+
+A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:
+
+  enonic sandbox create
+
+Give it a name, i.e. `myfirstsite`, and select the most recent version of Enonic XP from the list that appears.
+
+Start the sandbox with this command:
+
+  enonic sandbox start --dev
+
+Select the `intro` sandbox from the list, and it will boot up in development mode.
+
+TIP: Dev mode will automatically load changes in your code when developing.
+
+== Create app
+
+From a **new terminal window**, run the following command to create the application.
+
+IMPORTANT: Use the default options when prompted.
+
+  enonic project create -r tutorial-myfirstsite
+
+[TIP]
+====
+The command uses the https://github.com/enonic/tutorial-myfirstsite[My first site^] Github repo  as a starter (template) for the app.
+====
+
+== Project structure
+
+The project folder created should now contain a basic app structure, looking something like this:
+
+[source,files]
+----
+build.gradle //<1>
+settings.gradle
+build/ //<2>
+code-samples/ //<3>
+docs/ //<4>
+src/
+  main/
+    resources/
+      import/ //<5>
+      assets/ //<6>
+      sites/
+        content-types/ //<7>
+          country/
+          city/
+        parts/ //<8>
+        pages/ //<9>
+----
+
+<1> gradle files are used by the app build system
+<2> Contains output files produced by the build
+<3> Code samples that will be used in this tutorial
+<4> Contains the documentation you are reading now
+<5> Contains sample content that is imported when the app starts
+<6> Location for static assets
+<7> Two pre-defined content types, country and city
+<8> Part components - used to compose pages
+<9> Page components - root component for pages
+
+== Building and Deploying
+
+Assuming you did not change the default directory name `myproject/` when creating the app - build and deploy the app with the following commands:
+
+  cd myproject
+  enonic project deploy
+
+Select the `myfirstsite` sandbox from the list, and the app will use this from now on.
+
+[NOTE]
+====
+Look for a line like this in the sandbox log to verify that the app has started:
+
+  2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully
+====
+
+
+== Install Content Studio
+
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
+
+. **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
++
+. **Open the Applications app** from the top right `XP menu -> Applications`.
++
+image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
++
+. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
++
+image::install-content-studio.png["Install the Content Studio app", width="760px"]

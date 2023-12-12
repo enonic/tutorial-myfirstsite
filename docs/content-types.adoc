@@ -1,0 +1,25 @@
+:imagesdir: media/
+:sourcedir: ../
+
+== Content Types
+
+Every content item has a specific a content type.
+
+Enonic XP ships with a set of standard content types such as `Shortcut`, `Folder`, `Site` and a range of `Media Types` that handle different kind of files.
+
+Additionally, an application may define custom content types.
+In our case, the content types `Country` and `City` already exist in the application.
+
+In Content Studio, the `City` content type looks something like this:
+
+image::city-form.png["Form for the city content type", width=1024px]
+
+The content type is defined in a file, looking like this:
+
+.src/main/resources/site/content-types/city/city.xml
+[source,xml]
+----
+include::{sourcedir}/src/main/resources/site/content-types/city/city.xml[]
+----
+
+Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]

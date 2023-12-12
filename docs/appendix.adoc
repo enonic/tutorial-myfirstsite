@@ -1,0 +1,45 @@
+
+== Appendix
+
+Below are some nice to know features and tricks:
+
+=== Setting up vhosts
+
+If you want to go live on a production server, you will need to configure a vhost.
+Vhosts map the internal XP URI to a public facing URL i.e. mydomain.com -> /site/default/master/hello-world.
+
+Read more about https://developer.enonic.com/docs/xp/stable/deployment/config#vhost[vhost configuration] in the XP docs.
+
+=== Adding more apps
+
+A site can be created from a single app, but you may also add more.
+https://market.enonic.com/vendors/enonic/seo-metafields[SEO Meta Fields^], https://market.enonic.com/vendors/enonic/com.enonic.app.google.tagmanager[Google Tag Manager^] and https://market.enonic.com/vendors/enonic/siteimprove[Siteimprove^] are just a few of the many apps that can instantly add new features to your site.
+
+To add an app, install an app from the `XP menu -> Applications` app.
+Once installed, edit your site and add the application to the list of linked apps.
+
+=== Logging
+
+While developing an app, it can be helpful to see the structure of objects returned by library functions.
+
+A way to do this is by creating up a small utility script.
+
+.src/main/resources/lib/utilities.js
+[source,js]
+----
+exports.log = function (data) {
+  log.info('Utilities log %s', JSON.stringify(data, null, 4));
+};
+----
+
+Then, call the log function in any controller like the example below and then check the log after refreshing the page.
+
+[source,js]
+----
+var util = require('utilities');
+
+var content = portal.getContent();
+util.log(content);
+----
+
+This function and many more are included in the https://market.enonic.com/vendors/enonic/util-lib[Util Library]

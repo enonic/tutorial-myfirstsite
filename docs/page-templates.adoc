@@ -1,0 +1,28 @@
+:imagesdir: media/
+
+== Page Templates
+
+With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.
+
+By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.
+
+Let's create a page template from the country page you just made:
+
+. Edit the country page made in the previous step, in the visual editor - select the page and choose "Save as Page template" from the right hand component panel.
+. A new browser tab will open with the new template. Rename it and save.
++
+TIP: The `Supports` field defines which content type(s) the template will apply to.
++
+image::page-template.gif["Creating a page template from the country page", width=1024px]
+
+NOTE: Try clicking the other countries to verify that the template actually works as intended.
+
+=== Toggle template
+
+Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.
+
+. Edit the initial country, open the page editor and select the page.
+. From the right hand component view, change the "Template" setting from "Custom" to "Automatic"
+
+
+NOTE: For each content item, you can select a specific template, or customize the presentation at any time.

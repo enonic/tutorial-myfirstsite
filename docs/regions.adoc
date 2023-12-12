@@ -1,0 +1,41 @@
+:imagesdir: media/
+:sourcedir: ../
+
+== Regions
+
+Content Studio's page editor also supports adding more components to a page, using drag'n drop.
+
+To support this, the page component must define one or more regions.
+
+Complete the steps below to add a single region called `main` to the `hello` page component.
+
+. Start off by **adding a component descriptor**. The descriptor statically declares the region:
++
+.src/main/resources/site/pages/hello/hello.xml
+[source,XML]
+----
+include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
+----
++
+. **Update your controller and view** with the code below to support the new region:
++
+.src/main/resources/site/pages/hello/hello.js
+[source,js]
+----
+include::{sourcedir}code-samples/pages/hello-region/hello.js[]
+----
++
+.src/main/resources/site/pages/hello/hello.html:
+[source,HTML]
+----
+include::{sourcedir}code-samples/pages/hello-region/hello.html[]
+----
++
+Your sandbox should automatially pickup the changes, as we are running in dev mode.
++
+. Back in Content Studio, select, and **edit one of the contry content items**.
+. Activate the page editor (from the top right monitor icon) and select the `Hello` component.
++
+image::hello-regions.gif["Setting up a page with a region", width=1024px]
+
+You now have a page with a region. Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
