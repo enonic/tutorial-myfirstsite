@@ -10,16 +10,16 @@ Rather than making another page component, let's create a `part`. Parts are esse
 . Create the folder `src/main/resources/site/parts/country/` in your project.
 . Add the part controller and view files below to the folder:
 +
-.src/main/resources/site/parts/country/country.js
-[source,js]
+.src/main/resources/site/parts/country/country.ts
+[source,ts]
 ----
-include::{source_dir}code-samples/parts/country/country.js[]
+include::{sourcedir}code-samples/parts/country/country.ts[]
 ----
 +
 .src/main/resources/site/parts/country/country.html
 [source,HTML]
 ----
-include::{source_dir}code-samples/parts/country/country.html[]
+include::{sourcedir}code-samples/parts/country/country.html[]
 ----
 +
 . When done, the part can be added to the page by drag'n dropping a part component from the right-hand-side, then select the `Country` component from the list.
@@ -44,13 +44,13 @@ Complete the steps below to try it out:
 .src/main/resources/site/parts/city-list/city-list.js
 [source,js]
 ----
-include::{source_dir}code-samples/parts/city-list/city-list.js[]
+include::{sourcedir}code-samples/parts/city-list/city-list.js[]
 ----
 +
 .src/main/resources/site/parts/city-list/city-list.html
 [source,HTML]
 ----
-include::{source_dir}code-samples/parts/city-list/city-list.html[]
+include::{sourcedir}code-samples/parts/city-list/city-list.html[]
 ----
 +
 . This time, also add a component descriptor.
@@ -59,7 +59,7 @@ This descriptor includes a form (similar to a content type). The form allow edit
 .src/main/resources/site/parts/city-list/city-list.xml
 [source,XML]
 ----
-include::{source_dir}code-samples/parts/city-list/city-list.xml[]
+include::{sourcedir}code-samples/parts/city-list/city-list.xml[]
 ----
 +
 . Add the new part to the page you created earlier.

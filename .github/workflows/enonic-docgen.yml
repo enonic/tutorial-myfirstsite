@@ -17,3 +17,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-secret: ${{ secrets.DEVELOPER_PORTAL_WEBHOOK_SECRET }}
+          fetch-depth: 0
