@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- Delete this file if you are building a web app -->
 <site>
-  <form/>
+	<form>
+		<input name="sampleProperty" type="TextLine">
+			<label>Site-wide property</label>
+		</input>
+	</form>
+	<processors>
+		<response-processor name="sampleProcessor" order="10"/>
+		<response-processor name="browserSync" order="99"/>
+	</processors>
+	<mappings>
+		<mapping controller="/site/static.js" order="50">
+			<pattern>/static/.+</pattern>
+		</mapping>
+	</mappings>
 </site>
