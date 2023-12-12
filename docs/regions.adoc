@@ -19,10 +19,10 @@ include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
 +
 . **Update your controller and view** with the code below to support the new region:
 +
-.src/main/resources/site/pages/hello/hello.js
-[source,js]
+.src/main/resources/site/pages/hello/hello.ts
+[source,ts]
 ----
-include::{sourcedir}code-samples/pages/hello-region/hello.js[]
+include::{sourcedir}code-samples/pages/hello-region/hello.ts[]
 ----
 +
 .src/main/resources/site/pages/hello/hello.html:
