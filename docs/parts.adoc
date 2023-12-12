@@ -41,10 +41,10 @@ Complete the steps below to try it out:
 
 . Create the `City list` part by adding the controller and view files:
 +
-.src/main/resources/site/parts/city-list/city-list.js
-[source,js]
+.src/main/resources/site/parts/city-list/city-list.ts
+[source,ts]
 ----
-include::{sourcedir}code-samples/parts/city-list/city-list.js[]
+include::{sourcedir}code-samples/parts/city-list/city-list.ts[]
 ----
 +
 .src/main/resources/site/parts/city-list/city-list.html
