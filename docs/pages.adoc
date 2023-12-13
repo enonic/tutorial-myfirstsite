@@ -15,16 +15,16 @@ In addition to the controller, this component also uses an html template - aka t
 
 TIP: The JavaScript controller file must use the same name as the component directory.
 
-.src/main/resources/site/pages/hello/hello.js
-[source,JavaScript]
+.src/main/resources/site/pages/hello/hello.ts
+[source,js]
 ----
-include::{sourcedir}/src/main/resources/site/pages/hello/hello.js[]
+include::{sourcedir}src/main/resources/site/pages/hello/hello.ts[]
 ----
 
 .src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
-include::{sourcedir}/src/main/resources/site/pages/hello/hello.html[]
+include::{sourcedir}src/main/resources/site/pages/hello/hello.html[]
 ----
 
 NOTE: The view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^]

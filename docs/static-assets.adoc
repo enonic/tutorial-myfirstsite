@@ -17,7 +17,7 @@ Let's put it to work by adding the CSS to the page component:
 .src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
-include::{sourcedir}/code-samples/pages/hello-static/hello.html[]
+include::{sourcedir}code-samples/pages/hello-static/hello.html[]
 ----
 
 There are only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.

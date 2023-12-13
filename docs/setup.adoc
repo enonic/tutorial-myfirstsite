@@ -32,7 +32,7 @@ Select the `intro` sandbox from the list, and it will boot up in development mod
 
 TIP: Dev mode will automatically load changes in your code when developing.
 
-== Create app
+== Create the app
 
 From a **new terminal window**, run the following command to create the application.
 

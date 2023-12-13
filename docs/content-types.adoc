@@ -19,7 +19,7 @@ The content type is defined in a file, looking like this:
 .src/main/resources/site/content-types/city/city.xml
 [source,xml]
 ----
-include::{sourcedir}/src/main/resources/site/content-types/city/city.xml[]
+include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
 ----
 
 Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]
