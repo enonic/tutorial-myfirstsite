@@ -1,14 +1,33 @@
 :imagesdir: media/
 :sourcedir: ../
 
+== Content
+
+On the `Dashboard`, a Content Studio widget should now have appeared. It shows that we already have some sample content available.
+
+image::dashboard.png["Install the Content Studio app", width="1024px"]
+
+A content project called `My First Site` and the sample content gets imported when your application was started the first time.
+
+Let's have a closer look... start by opening Content Studio, which is now available in `XP menu -> Content Studio`. You should now see some imported content.
+
+image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
+
+As can be seen, Columbia, Norway, USA and Templates are all child content of the root hello-world content (ignore "Templates" for now, you'll get to know about it later). Select the hello-world content and click on edit.
+
+image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=1024px]
+
+Note that under "Applications" your "My firt site" app is attached to that hello world root content. For now it is sufficient to understand that this assignment is responsible to enhance the root content with all the goodies from your app. One of this goodies is enabling you to create new content based on new types, a.k.a content types, defined by your app. 
+
+Currently, the my first site starter comes with two content types: `Country` and `City`, which are defined under `src/main/resources/site/content-types`.
+
 == Content Types
 
 Every content item has a specific a content type.
 
 Enonic XP ships with a set of standard content types such as `Shortcut`, `Folder`, `Site` and a range of `Media Types` that handle different kind of files.
 
-Additionally, an application may define custom content types.
-In our case, the content types `Country` and `City` already exist in the application.
+Additionally, an application may define its own custom content types. As mentioned, your application already have two content types defined. Let's explore a bit the `City` content type.
 
 In Content Studio, the `City` content type looks something like this:
 
@@ -22,4 +41,13 @@ The content type is defined in a file, looking like this:
 include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
 ----
 
+Now that you understand the basics of content and content types, use Content Studio to create a new content of type `Country` with a child content of type `City`.
+
+== Summary
+
+You've got introduced to content items and content types, and if followed along, even created some content based on the existing content types from your application.
+
+Let's now move forward to previewing or rendering the existing content. To do that, we'll start with the concept of `Pages`.
+
 Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]
+

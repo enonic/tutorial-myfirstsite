@@ -133,8 +133,8 @@ image::install-content-studio.png["Install the Content Studio app", width="760px
 
 == Summary
 
-In this section you have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters, executed CLI commands to `build` your app , `deploy` it to your sandbox, and run the app in `dev` mode, and finally, installed Content Studio app.
+You have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters, executed CLI commands to `build` your app , `deploy` it to your sandbox, and run the app in `dev` mode, and finally, installed Content Studio app.
 
 That's a good start! 
 
-Let's now use content studio to investigate more about our created app and its content.
+Let's now use Content Studio to investigate our created app and its contents.
