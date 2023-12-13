@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+      - "issue-18"
     paths:
       - 'docs/**'
   workflow_dispatch:
