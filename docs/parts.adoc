@@ -8,7 +8,13 @@ You're now ready to present some more information from the *Country* content typ
 Rather than making another page component, let's create a `part`. Parts are essentially components that can be added to regions.
 
 . Create the folder `src/main/resources/site/parts/country/` in your project.
-. Add the part controller and view files below to the folder:
+. Add the part schema, controller and view files below to the folder:
++
+.src/main/resources/site/parts/country/country.xml
+[source,xml]
+----
+include::{sourcedir}code-samples/parts/country/country.xml[]
+----
 +
 .src/main/resources/site/parts/country/country.ts
 [source,ts]
@@ -22,9 +28,9 @@ include::{sourcedir}code-samples/parts/country/country.ts[]
 include::{sourcedir}code-samples/parts/country/country.html[]
 ----
 +
-. When done, the part can be added to the page by drag'n dropping a part component from the right-hand-side, then select the `Country` component from the list.
+. When done, the part can be added to the page by drag'n dropping a part component from the right-hand-side, then select the `Country` component from the list. By the end, you should have something like this:
 +
-image::country-part.gif["Inserting the new country part",width=1024px]
+image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=512px]
 
 
 == Configurable part
@@ -39,7 +45,13 @@ In this task, you'll add a new part that does the following:
 
 Complete the steps below to try it out:
 
-. Create the `City list` part by adding the controller and view files:
+. Create the `City list` part by adding the schema, controller and view files:
++
+.src/main/resources/site/parts/city-list/city-list.xml
+[source,xml]
+----
+include::{sourcedir}code-samples/parts/city-list/city-list.xml[]
+----
 +
 .src/main/resources/site/parts/city-list/city-list.ts
 [source,ts]
@@ -53,20 +65,19 @@ include::{sourcedir}code-samples/parts/city-list/city-list.ts[]
 include::{sourcedir}code-samples/parts/city-list/city-list.html[]
 ----
 +
-. This time, also add a component descriptor.
-This descriptor includes a form (similar to a content type). The form allow editors to configure the part, once it is placed on the page.
-+
-.src/main/resources/site/parts/city-list/city-list.xml
-[source,XML]
-----
-include::{sourcedir}code-samples/parts/city-list/city-list.xml[]
-----
-+
 . Add the new part to the page you created earlier.
 . Finally, configure the part by selecting it and changing the settings in the right hand panel.
 +
 NOTE: The controller is also configured to log model passed to the view, check sandbox log after visiting a country page to see what is happening.
-
-image::config-part.gif["Add city list to page and configure it to show widescreen images", width=1024px]
-
++
+image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1024px]
++
 TIP: The images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image.
+
+TIP: To learn more about parts, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/parts[parts] documentation.
+
+== Summary
+
+You've been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your application.
+
+Next you'll learn about layouts, which are basically parts that also accepts regions.
