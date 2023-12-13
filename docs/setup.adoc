@@ -2,7 +2,7 @@
 
 == Install Enonic CLI
 
-The Command Line Interface is an essential tool for developers.
+The Enonic CLI (Command Line Interface) is an essential tool for developing with Enonic.
 
 If you have `npm` on your device, run this command:
 
@@ -18,17 +18,23 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 == Create a sandbox
 
-A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:
+A sandbox is a local developer instance of our platform - Enonic XP. 
+
+Each sandbox is isolated from the other ones and can run our platform in different versions.
+
+Create a sandbox by running this command in your terminal:
 
   enonic sandbox create
 
-Give it a name, i.e. `myfirstsite`, and select the most recent version of Enonic XP from the list that appears.
+Give it a name, i.e. `MySandbox`, and agree to continue with the most recent version of Enonic XP.
 
-Start the sandbox with this command:
+The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.
+
+After the download is finished, start the sandbox with this command:
 
   enonic sandbox start --dev
 
-Select the `intro` sandbox from the list, and it will boot up in development mode.
+Select the `MySandbox` sandbox from the list, and it will boot up in development mode.
 
 TIP: Dev mode will automatically load changes in your code when developing.
 
@@ -52,7 +58,6 @@ The project folder created should now contain a basic app structure, looking som
 [source,files]
 ----
 build.gradle //<1>
-settings.gradle
 build/ //<2>
 code-samples/ //<3>
 docs/ //<4>
@@ -79,22 +84,38 @@ src/
 <8> Part components - used to compose pages
 <9> Page components - root component for pages
 
-== Building and Deploying
+== Building, deploying and dev mode
 
-Assuming you did not change the default directory name `myproject/` when creating the app - build and deploy the app with the following commands:
+=== Building
+
+Assuming you did not change the default directory name `myproject/` when creating the app, build it with the following commands:
 
   cd myproject
+  enonic project build
+
+
+=== Deploying
+
+Now, that you've built it, you can make the app available to your previsouly created sandbox by deploying it with
+
   enonic project deploy
 
-Select the `myfirstsite` sandbox from the list, and the app will use this from now on.
+Select the `MySandbox` sandbox from the list, and the app will use this from now on.
 
 [NOTE]
 ====
 Look for a line like this in the sandbox log to verify that the app has started:
 
-  2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully
+  2019-04-09 13:40:40,765 INFO ... Application [company.starter.myfirstsite] installed successfully
 ====
 
+=== Dev mode
+
+From now on you'll be constantly updating the app, so to avoid the need to re-build and re-deploy every time you'd like to see the changes, start the project in `dev` mode by running:
+
+  enonic project dev
+
+TIP: For further details on the dev command, check the https://developer.enonic.com/docs/enonic-cli/stable/dev#dev[CLI's dev command documentation]
 
 == Install Content Studio
 
@@ -109,3 +130,11 @@ image::xp-menu-applications.png["Go to Applications from the XP menu", width="31
 . **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
 +
 image::install-content-studio.png["Install the Content Studio app", width="760px"]
+
+== Summary
+
+In this section you have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters, executed CLI commands to `build` your app , `deploy` it to your sandbox, and run the app in `dev` mode, and finally, installed Content Studio app.
+
+That's a good start! 
+
+Let's now use content studio to investigate more about our created app and its content.
