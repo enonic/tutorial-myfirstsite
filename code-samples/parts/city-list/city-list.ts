@@ -1,15 +1,14 @@
+import { Content, PartComponent } from '@enonic-types/core';
 import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import {render} from '/lib/thymeleaf';
 import {query} from '/lib/xp/content';
-import {getComponent, getContent, imageUrl} from '/lib/xp/portal';
+import {getComponent, getContent, imageUrl, ImageUrlParams} from '/lib/xp/portal';
 
-type City = {
-    name: string
-    photo?: string
-    caption: string
-}
+type PartDescriptor = "company.starter.myfirstsite:city-list"
+type PartConfig = { crop: 'ORGINAL' | 'WIDESCREEN' | 'SQUARE' }
+type ContentCity = { photo?: string, slogan?: string, population: string }
 
 // Specify the view file to use
 const VIEW = resolve('./city-list.html');
@@ -18,11 +17,11 @@ const VIEW = resolve('./city-list.html');
 export function get(): Response {
 
     // Get the part configuration for the map
-    const config = getComponent().config;
+    const config = getComponent<PartComponent<PartDescriptor, PartConfig>>().config;
     const countryPath = getContent()._path;
 
     // Get all child item cities's  
-    const result = query({
+    const result = query<Content<ContentCity>>({
         start: 0,
         count: 100,
         contentTypes: [app.name + ':city'],
@@ -34,10 +33,10 @@ export function get(): Response {
     const scale = getImageScale(config.crop)
 
     // Map results to cities
-    const cities: City[] = (result.hits || []).map(item=> ({
+    const cities = (result.hits || []).map(item=> ({
         name: item.displayName,
         photo: item.data.photo && imageUrl({ id: item.data.photo, scale: scale }),
-        caption: getCitySlogan(item.data.slogan, item.data.population)
+        caption: getCitySlogan(item.data.slogan,item.data.population)
     }));
 
     // Set the model object
@@ -54,7 +53,7 @@ export function get(): Response {
     return response;
 }
 
-function getImageScale(crop: string = 'ORIGINAL'): string {
+function getImageScale(crop: string = 'ORIGINAL'): ImageUrlParams['scale'] {
     if (crop == 'SQUARE') { 
         return 'square(1080)';
     }

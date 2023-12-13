@@ -1,4 +1,8 @@
 <div>
-    <div data-th-if="${population}" data-th-text="'Population: ' + ${population}">5 gazillions</div>
-    <div data-th-if="${description}" data-th-text="${description}">Nice city indeed</div>
+    <ul>
+        <li data-th-if="${description}" data-th-text="${description}">Nice city indeed</li>
+        <li data-th-if="${wikipedia}">
+            <a data-th-href="${wikipedia}">Wikipedia</a>
+        </li>
+    </ul>
 </div>
