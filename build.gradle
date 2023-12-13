@@ -21,9 +21,10 @@ dependencies {
     include "com.enonic.xp:lib-export:${xpVersion}"
     include "com.enonic.xp:lib-cluster:${xpVersion}"
     include "com.enonic.xp:lib-project:${xpVersion}"
+	include 'com.enonic.lib:lib-cache:2.2.0'
+	include 'com.enonic.lib:lib-http-client:3.2.1'
 	include "com.enonic.lib:lib-thymeleaf:2.1.0"
 	include "com.enonic.lib:lib-mustache:2.1.1"
-
 }
 
 repositories {
@@ -59,17 +60,6 @@ tasks.register('dev', NpmTask) {
 	]
 }
 
-tasks.register('npmTest', NpmTask) {
-	args = [
-		'run',
-		'test'
-	]
-	dependsOn npmInstall
-	environment = [
-		'FORCE_COLOR': 'true',
-	]
-}
-
 tasks.register('npmCheck', NpmTask) {
 	dependsOn npmInstall
 	args = [
@@ -83,7 +73,6 @@ tasks.register('npmCheck', NpmTask) {
 
 // If you ALWAYS want to SKIP `test` and `check` tasks on development build, wrap this inside an 'if...'
 // if (!(project.hasProperty('dev') || project.hasProperty('development'))) {
-test.dependsOn npmTest
 check.dependsOn npmCheck
 // }
 

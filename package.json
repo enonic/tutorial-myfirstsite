@@ -76,7 +76,6 @@
     "check:types": "concurrently -g -r --timings npm:check:types:*",
     "check:types:server": "npx tsc --noEmit",
     "lint": "eslint --cache src/main/resources/**/*.ts",
-    "test": "jest --no-cache --coverage",
     "watch": "concurrently -c auto npm:watch:*",
     "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --no-snippet --watch",
     "watch:sass": "npm run build:sass -- --watch",

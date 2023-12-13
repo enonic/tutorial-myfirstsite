@@ -6,7 +6,6 @@
 		</input>
 	</form>
 	<processors>
-		<response-processor name="sampleProcessor" order="10"/>
 		<response-processor name="browserSync" order="99"/>
 	</processors>
 	<mappings>
