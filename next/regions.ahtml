@@ -440,6 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#regions">Regions</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -536,7 +537,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Back in Content Studio, select, and <strong>edit one of the contry content items</strong>.</p>
+<p>Back in Content Studio, select, and <strong>edit one of the country content items</strong>.</p>
 </li>
 <li>
 <p>Activate the page editor (from the top right monitor icon) and select the <code>Hello</code> component.</p>
@@ -549,14 +550,40 @@ export function get(): Response {
 </ol>
 </div>
 <div class="paragraph">
-<p>You now have a page with a region. Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+<p>You now have a page with a region!</p>
+</div>
+<div class="paragraph">
+<p>Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about regions, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/regions">regions</a> documentation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve been introduced to regions, a concept that can be used on a page, as you just saw, but also on layouts, a new concept you&#8217;ll be introduced later on.</p>
+</div>
+<div class="paragraph">
+<p>Next you&#8217;ll learn about part, which are highly customizable components that can be inserted into regions.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 17:13:46 UTC
+Last updated 2023-12-13 23:37:17 UTC
 </div>
 </div>
 </body>

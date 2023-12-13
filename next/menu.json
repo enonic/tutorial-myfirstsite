@@ -5,24 +5,24 @@
       "document": "setup"
     },
     {
-      "title": "2 - Content",
-      "document": "content"
-    },
-    {
-      "title": "3 - Content types",
+      "title": "2 - Content types",
       "document": "content-types"
     },
     {
-      "title": "4 - Pages",
+      "title": "3 - Pages",
       "document": "pages"
     },
     {
-      "title": "5 - Regions",
+      "title": "4 - Regions",
       "document": "regions"
     },
     {
-      "title": "6 - Parts",
+      "title": "5 - Parts",
       "document": "parts"
+    },
+    {
+      "title": "6 - Layouts",
+      "document": "layouts"
     },
     {
       "title": "7 - Page templates",

@@ -441,6 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#parts">Parts</a></li>
 <li><a href="#configurable_part">Configurable part</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -460,15 +461,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Create the folder <code>src/main/resources/site/parts/country/</code> in your project.</p>
 </li>
 <li>
-<p>Add the part controller and view files below to the folder:</p>
+<p>Add the part schema, controller and view files below to the folder:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/site/parts/country/country.xml</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;Country&lt;/display-name&gt;
+  &lt;description&gt;Show simple details of the country&lt;/description&gt;
+  &lt;form&gt;
+  &lt;/form&gt;
+&lt;/part&gt;</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { Content } from '@enonic-types/core';
+import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import {render} from '/lib/thymeleaf';
 import {getContent} from '/lib/xp/portal';
+
+type ContentCountry = { description?: string, wikipedia?: string }
 
 // Specify the view file to use
 const VIEW = resolve('./country.html');
@@ -477,13 +492,13 @@ const VIEW = resolve('./country.html');
 export function get(): Response {
 
     // Get the country content as a JSON object
-    const content = getContent();
+    const content = getContent&lt;Content&lt;ContentCountry&gt;&gt;();
 
     // Prepare the model object with the needed data from the content
     const model = {
         name: content.displayName,
-        population: content.data.population || "Unknown",
-        description: content.data.description || "Missing description",
+        description: content.data?.description || "Missing description",
+        wikipedia: content.data?.wikipedia
     }
 
     // Prepare the response object
@@ -499,17 +514,21 @@ export function get(): Response {
 <div class="title">src/main/resources/site/parts/country/country.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div&gt;
-    &lt;div data-th-if="${population}" data-th-text="'Population: ' + ${population}"&gt;5 gazillions&lt;/div&gt;
-    &lt;div data-th-if="${description}" data-th-text="${description}"&gt;Nice city indeed&lt;/div&gt;
+    &lt;ul&gt;
+        &lt;li data-th-if="${description}" data-th-text="${description}"&gt;Nice city indeed&lt;/li&gt;
+        &lt;li data-th-if="${wikipedia}"&gt;
+            &lt;a data-th-href="${wikipedia}"&gt;Wikipedia&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>When done, the part can be added to the page by drag&#8217;n dropping a part component from the right-hand-side, then select the <code>Country</code> component from the list.</p>
+<p>When done, the part can be added to the page by drag&#8217;n dropping a part component from the right-hand-side, then select the <code>Country</code> component from the list. By the end, you should have something like this:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/country-part.gif" alt="Inserting the new country part" width="1024px">
+<img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="512px">
 </div>
 </div>
 </li>
@@ -545,22 +564,41 @@ export function get(): Response {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create the <code>City list</code> part by adding the controller and view files:</p>
+<p>Create the <code>City list</code> part by adding the schema, controller and view files:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;City list&lt;/display-name&gt;
+  &lt;description&gt;Show all cities in a country&lt;/description&gt;
+  &lt;form&gt;
+    &lt;input type="ComboBox" name="crop"&gt;
+      &lt;label&gt;Image crop&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+      &lt;config&gt;
+        &lt;option value="ORIGINAL"&gt;Original&lt;/option&gt;
+        &lt;option value="WIDESCREEN"&gt;Widescreen&lt;/option&gt;
+        &lt;option value="SQUARE"&gt;Square&lt;/option&gt;
+      &lt;/config&gt;
+    &lt;/input&gt;
+  &lt;/form&gt;
+&lt;/part&gt;</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { Content, PartComponent } from '@enonic-types/core';
+import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import {render} from '/lib/thymeleaf';
 import {query} from '/lib/xp/content';
-import {getComponent, getContent, imageUrl} from '/lib/xp/portal';
+import {getComponent, getContent, imageUrl, ImageUrlParams} from '/lib/xp/portal';
 
-type City = {
-    name: string
-    photo?: string
-    caption: string
-}
+type PartDescriptor = "company.starter.myfirstsite:city-list"
+type PartConfig = { crop: 'ORGINAL' | 'WIDESCREEN' | 'SQUARE' }
+type ContentCity = { photo?: string, slogan?: string, population: string }
 
 // Specify the view file to use
 const VIEW = resolve('./city-list.html');
@@ -569,11 +607,11 @@ const VIEW = resolve('./city-list.html');
 export function get(): Response {
 
     // Get the part configuration for the map
-    const config = getComponent().config;
+    const config = getComponent&lt;PartComponent&lt;PartDescriptor, PartConfig&gt;&gt;().config;
     const countryPath = getContent()._path;
 
     // Get all child item cities's  
-    const result = query({
+    const result = query&lt;Content&lt;ContentCity&gt;&gt;({
         start: 0,
         count: 100,
         contentTypes: [app.name + ':city'],
@@ -585,10 +623,10 @@ export function get(): Response {
     const scale = getImageScale(config.crop)
 
     // Map results to cities
-    const cities: City[] = (result.hits || []).map(item=&gt; ({
+    const cities = (result.hits || []).map(item=&gt; ({
         name: item.displayName,
         photo: item.data.photo &amp;&amp; imageUrl({ id: item.data.photo, scale: scale }),
-        caption: getCitySlogan(item.data.slogan, item.data.population)
+        caption: getCitySlogan(item.data.slogan,item.data.population)
     }));
 
     // Set the model object
@@ -605,7 +643,7 @@ export function get(): Response {
     return response;
 }
 
-function getImageScale(crop: string = 'ORIGINAL'): string {
+function getImageScale(crop: string = 'ORIGINAL'): ImageUrlParams['scale'] {
     if (crop == 'SQUARE') { 
         return 'square(1080)';
     }
@@ -643,30 +681,6 @@ function getCitySlogan(slogan: string, population?: string): string {
 </div>
 </li>
 <li>
-<p>This time, also add a component descriptor.
-This descriptor includes a form (similar to a content type). The form allow editors to configure the part, once it is placed on the page.</p>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;City list&lt;/display-name&gt;
-  &lt;description&gt;Show all cities in a country&lt;/description&gt;
-  &lt;form&gt;
-    &lt;input type="ComboBox" name="crop"&gt;
-      &lt;label&gt;Image crop&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;option value="ORIGINAL"&gt;Original&lt;/option&gt;
-        &lt;option value="WIDESCREEN"&gt;Widescreen&lt;/option&gt;
-        &lt;option value="SQUARE"&gt;Square&lt;/option&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/part&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
 <p>Add the new part to the page you created earlier.</p>
 </li>
 <li>
@@ -683,12 +697,9 @@ The controller is also configured to log model passed to the view, check sandbox
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
 <div class="imageblock">
 <div class="content">
-<img src="media/config-part.gif" alt="Add city list to page and configure it to show widescreen images" width="1024px">
+<img src="media/city-list-part-on-columbia.png" alt="Result of adding city list part to page and configure it to show widescreen images" width="1024px">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -703,12 +714,38 @@ The images are scaled and cropped in real-time by the <a href="https://developer
 </tr>
 </table>
 </div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about parts, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/parts">parts</a> documentation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your application.</p>
+</div>
+<div class="paragraph">
+<p>Next you&#8217;ll learn about layouts, which are basically parts that also accepts regions.</p>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 17:13:46 UTC
+Last updated 2023-12-13 23:37:17 UTC
 </div>
 </div>
 </body>

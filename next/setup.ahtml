@@ -443,8 +443,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#create_a_sandbox">Create a sandbox</a></li>
 <li><a href="#create_the_app">Create the app</a></li>
 <li><a href="#project_structure">Project structure</a></li>
-<li><a href="#building_and_deploying">Building and Deploying</a></li>
+<li><a href="#building_deploying_and_dev_mode">Building, deploying and dev mode</a>
+<ul class="sectlevel2">
+<li><a href="#building">Building</a></li>
+<li><a href="#deploying">Deploying</a></li>
+<li><a href="#dev_mode">Dev mode</a></li>
+</ul>
+</li>
 <li><a href="#install_content_studio">Install Content Studio</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -453,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="install_enonic_cli"><a class="link" href="#install_enonic_cli">Install Enonic CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Command Line Interface is an essential tool for developers.</p>
+<p>The Enonic CLI (Command Line Interface) is an essential tool for developing with Enonic.</p>
 </div>
 <div class="paragraph">
 <p>If you have <code>npm</code> on your device, run this command:</p>
@@ -490,7 +497,13 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a sandbox</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:</p>
+<p>A sandbox is a local developer instance of our platform - Enonic XP.</p>
+</div>
+<div class="paragraph">
+<p>Each sandbox is isolated from the other ones and can run our platform in different versions.</p>
+</div>
+<div class="paragraph">
+<p>Create a sandbox by running this command in your terminal:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -498,10 +511,13 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 </div>
 <div class="paragraph">
-<p>Give it a name, i.e. <code>myfirstsite</code>, and select the most recent version of Enonic XP from the list that appears.</p>
+<p>Give it a name, i.e. <code>MySandbox</code>, and agree to continue with the most recent version of Enonic XP.</p>
 </div>
 <div class="paragraph">
-<p>Start the sandbox with this command:</p>
+<p>The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
+</div>
+<div class="paragraph">
+<p>After the download is finished, start the sandbox with this command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -509,7 +525,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 </div>
 <div class="paragraph">
-<p>Select the <code>intro</code> sandbox from the list, and it will boot up in development mode.</p>
+<p>Select the <code>MySandbox</code> sandbox from the list, and it will boot up in development mode.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -573,7 +589,6 @@ Use the default options when prompted.
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-files" data-lang="files">build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
-settings.gradle
 build/ <i class="conum" data-value="2"></i><b>(2)</b>
 code-samples/ <i class="conum" data-value="3"></i><b>(3)</b>
 docs/ <i class="conum" data-value="4"></i><b>(4)</b>
@@ -633,19 +648,32 @@ src/
 </div>
 </div>
 <div class="sect1">
-<h2 id="building_and_deploying"><a class="link" href="#building_and_deploying">Building and Deploying</a></h2>
+<h2 id="building_deploying_and_dev_mode"><a class="link" href="#building_deploying_and_dev_mode">Building, deploying and dev mode</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="building"><a class="link" href="#building">Building</a></h3>
 <div class="paragraph">
-<p>Assuming you did not change the default directory name <code>myproject/</code> when creating the app - build and deploy the app with the following commands:</p>
+<p>Assuming you did not change the default directory name <code>myproject/</code> when creating the app, build it with the following commands:</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>cd myproject
-enonic project deploy</pre>
+enonic project build</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deploying"><a class="link" href="#deploying">Deploying</a></h3>
+<div class="paragraph">
+<p>Now, that you&#8217;ve built it, you can make the app available to your previsouly created sandbox by deploying it with</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic project deploy</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Select the <code>myfirstsite</code> sandbox from the list, and the app will use this from now on.</p>
+<p>Select the <code>MySandbox</code> sandbox from the list, and the app will use this from now on.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -659,12 +687,36 @@ enonic project deploy</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully</pre>
+<pre>2019-04-09 13:40:40,765 INFO ... Application [company.starter.myfirstsite] installed successfully</pre>
 </div>
 </div>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dev_mode"><a class="link" href="#dev_mode">Dev mode</a></h3>
+<div class="paragraph">
+<p>From now on you&#8217;ll be constantly updating the app, so to avoid the need to re-build and re-deploy every time you&#8217;d like to see the changes, start the project in <code>dev</code> mode by running:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic project dev</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For further details on the dev command, check the <a href="https://developer.enonic.com/docs/enonic-cli/stable/dev#dev">CLI&#8217;s dev command documentation</a>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -699,10 +751,24 @@ enonic project deploy</pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters, executed CLI commands to <code>build</code> your app , <code>deploy</code> it to your sandbox, and run the app in <code>dev</code> mode, and finally, installed Content Studio app.</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s a good start!</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s now use Content Studio to investigate our created app and its contents.</p>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 17:13:46 UTC
+Last updated 2023-12-13 23:37:17 UTC
 </div>
 </div>
 </body>

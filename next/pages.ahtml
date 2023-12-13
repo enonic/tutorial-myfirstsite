@@ -445,6 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#create_page">Create page</a></li>
 </ul>
 </li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -453,8 +454,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="pages"><a class="link" href="#pages">Pages</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At the moment, we have some content, but no preview or rendering.
-As a headless CMS, Enonic supports use 3rd party front-ends - but Enonic also has an an embedded JavaScript runtime, and a <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>. This can be used to customize the platform, or, like in our case render pages for a website.</p>
+<p>At the moment, we have some content, but no preview or rendering.</p>
+</div>
+<div class="paragraph">
+<p>As a headless CMS, Enonic supports use 3rd party front-ends, but Enonic also has an an embedded JavaScript runtime, and a <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>.</p>
+</div>
+<div class="paragraph">
+<p>This can be used to customize the platform, or, like in our case render pages for a website.</p>
 </div>
 <div class="paragraph">
 <p>Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it.</p>
@@ -462,8 +468,10 @@ As a headless CMS, Enonic supports use 3rd party front-ends - but Enonic also ha
 <div class="sect2">
 <h3 id="page_component"><a class="link" href="#page_component">Page component</a></h3>
 <div class="paragraph">
-<p>The app includes a pre-defined page component.
-In addition to the controller, this component also uses an html template - aka the view in the Model View Controller (MVC) pattern. They look like this:</p>
+<p>The app includes a pre-defined page component named <code>hello</code>.</p>
+</div>
+<div class="paragraph">
+<p>In addition to the controller, this component also uses an html template - a.k.a the view in the Model View Controller (MVC) pattern. They look like this:</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -556,13 +564,39 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <img src="media/hello-world.gif" alt="Demonstrating the process of setting up a page" width="1024px">
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about pages, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages">pages</a> documentation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this point we were able to attach a hello page component to the hello-world site content, which is great!</p>
+</div>
+<div class="paragraph">
+<p>A good reader will note the page is not completely static, i.e, it will ouput a <code>displayName</code> followed by a hardcoded text ` - we made it!`&#8230;&#8203; but that&#8217;s it. Even though it is not static, it doesn&#8217;t do much.</p>
+</div>
+<div class="paragraph">
+<p>Next you&#8217;ll be introduced to the conecept of regions, that will enable your pages to receive other components making it rich and dynamic.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 17:13:46 UTC
+Last updated 2023-12-13 23:37:17 UTC
 </div>
 </div>
 </body>
