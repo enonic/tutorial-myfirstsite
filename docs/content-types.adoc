@@ -13,7 +13,7 @@ Let's have a closer look... start by opening Content Studio, which is now availa
 
 image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
 
-As can be seen, Columbia, Norway, USA and Templates are all child content of the root hello-world content (ignore "Templates" for now, you'll get to know about it later). Select the hello-world content and click on edit.
+As can be seen, Columbia, Norway, USA and Templates are all child content of the root hello-world content (ignore "Templates" for now, you'll get to know about it later). Select the hello-world content and click on btn:[edit].
 
 image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=1024px]
 

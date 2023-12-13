@@ -4,14 +4,18 @@
 == Pages
 
 At the moment, we have some content, but no preview or rendering.
-As a headless CMS, Enonic supports use 3rd party front-ends - but Enonic also has an an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework]. This can be used to customize the platform, or, like in our case render pages for a website.
+
+As a headless CMS, Enonic supports use 3rd party front-ends, but Enonic also has an an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework]. 
+
+This can be used to customize the platform, or, like in our case render pages for a website.
 
 Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it.
 
 === Page component
 
-The app includes a pre-defined page component.
-In addition to the controller, this component also uses an html template - aka the view in the Model View Controller (MVC) pattern. They look like this:
+The app includes a pre-defined page component named `hello`.
+
+In addition to the controller, this component also uses an html template - a.k.a the view in the Model View Controller (MVC) pattern. They look like this:
 
 TIP: The JavaScript controller file must use the same name as the component directory.
 
@@ -38,3 +42,12 @@ To actually have the `hello` page component render something, it must be mapped 
 . From the preview panel on the right, select the `Hello` page component in the list. Your changes will automatically save, and the page preview will render the result.
 
 image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]
+
+
+== Summary
+
+At this point we were able to attach a hello page component to the hello-world site content, which is great!
+
+A good reader will note the page is not completely static, i.e, it will ouput a `displayName` followed by a hardcoded text ` - we made it!`... but that's it. Even though it is not static, it doesn't do much.
+
+Next you'll be introduced to the conecept of regions, that will enable your pages to receive other components making it rich and dynamic.
