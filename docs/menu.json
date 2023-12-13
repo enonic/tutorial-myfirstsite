@@ -21,19 +21,23 @@
       "document": "parts"
     },
     {
-      "title": "6 - Page templates",
+      "title": "6 - Layouts",
+      "document": "layouts"
+    },
+    {
+      "title": "7 - Page templates",
       "document": "page-templates"
     },
     {
-      "title": "7 - Static assets",
+      "title": "8 - Static assets",
       "document": "static-assets"
     },
     {
-      "title": "8 - Go online",
+      "title": "9 - Go online",
       "document": "go-online"
     },
     {
-      "title": "9 - Appendix",
+      "title": "10 - Appendix",
       "document": "appendix"
     }
   ]

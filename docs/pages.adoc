@@ -43,6 +43,7 @@ To actually have the `hello` page component render something, it must be mapped 
 
 image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]
 
+TIP: To learn more about pages, visit the https://developer.enonic.com/docs/xp/stable/cms/pages[pages] documentation.
 
 == Summary
 

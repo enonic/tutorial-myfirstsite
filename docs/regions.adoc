@@ -33,9 +33,19 @@ include::{sourcedir}code-samples/pages/hello-region/hello.html[]
 +
 Your sandbox should automatially pickup the changes, as we are running in dev mode.
 +
-. Back in Content Studio, select, and **edit one of the contry content items**.
+. Back in Content Studio, select, and **edit one of the country content items**.
 . Activate the page editor (from the top right monitor icon) and select the `Hello` component.
 +
 image::hello-regions.gif["Setting up a page with a region", width=1024px]
 
-You now have a page with a region. Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
+You now have a page with a region! 
+
+Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
+
+TIP: To learn more about regions, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/regions[regions] documentation.
+
+== Summary
+
+You've been introduced to regions, a concept that can be used on a page, as you just saw, but also on layouts, a new concept you'll be introduced later on.
+
+Next you'll learn about part, which are highly customizable components that can be inserted into regions.

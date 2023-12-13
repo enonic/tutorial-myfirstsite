@@ -43,11 +43,11 @@ include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
 
 Now that you understand the basics of content and content types, use Content Studio to create a new content of type `Country` with a child content of type `City`.
 
+TIP: Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[standard content types] and about https://developer.enonic.com/docs/xp/stable/cms/schemas[custom content types]
+
 == Summary
 
 You've got introduced to content items and content types, and if followed along, even created some content based on the existing content types from your application.
 
 Let's now move forward to previewing or rendering the existing content. To do that, we'll start with the concept of `Pages`.
-
-Visit these links for more information about https://developer.enonic.com/docs/xp/stable/cms/content-types[Content types^] and the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]
 
