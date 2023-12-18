@@ -70,7 +70,7 @@
     "clean": "rimraf build",
     "build": "concurrently -c auto -g --timings npm:build:*",
     "minify": "concurrently -c auto -g --timings 'npm:build:browser -- --minify' npm:build:sass 'npm:build:server -- --minify' 'npm:build:static -- --minify'",
-    "build:sass": "npx sass src/main/resources/assets/style/sass:build/resources/main/assets/styles --style compressed",
+    "build:sass": "npx sass src/main/resources/assets/styles:build/resources/main/assets/styles --style compressed",
     "build:server": "npx tsup -d build/resources/main",
     "check": "concurrently -c auto -g --timings npm:lint npm:check:types",
     "check:types": "concurrently -g -r --timings npm:check:types:*",

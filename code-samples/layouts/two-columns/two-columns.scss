@@ -1,0 +1,16 @@
+.two-columns {
+    display: grid;
+    gap: 2rem;
+
+    &--33_66 {
+        grid-template-columns: calc(33.3% - 1rem) auto;
+    }
+
+    &--50_50 {
+        grid-template-columns: repeat(2, calc(50% - 1rem));
+    }
+    
+    &--66_33 {
+        grid-template-columns: calc(66.6% - 2rem) auto;
+    }
+}

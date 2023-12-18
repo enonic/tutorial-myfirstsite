@@ -1,0 +1,70 @@
+:imagesdir: media/
+:sourcedir: ../
+
+== Layouts: parts with regions
+
+If you have the need to have a customizable part that also accept some regions, then a layout is the feature you're looking for.
+
+Our goal from now on will be to come up with a layout with a custom config for two columns, each column using a region to accept injectable content. The custom config will be responsible to set the sizes for each of those two columns.
+
+Let's start by defining the descriptor for the `two-columns` layout:
+
+.src/main/resources/site/layouts/two-columns/two-columns.xml
+[source,xml]
+----
+include::{sourcedir}code-samples/layouts/two-columns/two-columns.xml[]
+----
+
+note that it doesn't change much from what you've seen so far... It's basically a mix of what you saw on pages and parts chapters. Now let's define the controller:
+
+.src/main/resources/site/layouts/two-columns/two-columns.ts
+[source,ts]
+----
+include::{sourcedir}code-samples/layouts/two-columns/two-columns.ts[]
+----
+
+the view:
+
+.src/main/resources/site/layouts/two-columns/two-columns.html
+[source,html]
+----
+include::{sourcedir}code-samples/layouts/two-columns/two-columns.html[]
+----
+
+and finally, make sure to add the styling:
+
+.src/main/resources/assets/styles/two-columns.scss
+[source,html]
+----
+include::{sourcedir}code-samples/layouts/two-columns/two-columns.scss[]
+----
+
+So far, the only section of code that is new is the `pageContributions` in the controller. 
+
+Its naming speaks for itself, but just for clarity, that's a way to add specific html on certain places before the server serves the final HTML... those certain places are: on `head` tag begin or end, or on `body` tag begin or end.
+
+In our case we used it to add the `two-columns.css` asset file (processed from `scss` to `css` during build) when this layout is used on a page.
+
+== Using the layout
+
+So far you've understood what a layout is and, if followed along, created the code for a two column layout. Let's see in practice how you can add it to a page and use its regions.
+
+. Go to the root site content and click on btn:[edit]
+. Make sure you have the "Hello Regions!" page added to that content, and insert the two-column layout in its main region:
++
+image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width=1024px]
++
+. Now add some text components to both regions, and write some text:
++
+image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width=1024px]
+
++
+. Finally, select different configurations for the sizing of those columns: 33/66, 50/50 and 66/33 and check the results:
++
+image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width=1024px]
+
+== Summary
+
+Note that in our example we added a text component part in the regions of the layout, which is a standard part that is shipped with Enonic XP, but you are not restricted to that.
+
+As already mentioned, regions accepts all kinds of parts, so by combining layouts with your custom parts, together with their own custom configurations, you can basically achieve any kind of design!
