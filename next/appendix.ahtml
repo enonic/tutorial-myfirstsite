@@ -480,7 +480,10 @@ Once installed, edit your site and add the application to the list of linked app
 <div class="sect2">
 <h3 id="logging"><a class="link" href="#logging">Logging</a></h3>
 <div class="paragraph">
-<p>While developing an app, it can be helpful to see the structure of objects returned by library functions.</p>
+<p>If the JavaScript code you write is going to be executed on the browser, you can simply use the <code>console.log</code> for logging as usual.</p>
+</div>
+<div class="paragraph">
+<p>Now, if your code is going to be processed on the server, which is the case when writing any of the controllers mentioned in this guide, there will be no <code>console.log</code>, so Enonic provides the <code>log.info</code> function to log things to the server.</p>
 </div>
 <div class="paragraph">
 <p>A way to do this is by creating up a small utility script.</p>
@@ -513,7 +516,7 @@ util.log(content);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 23:37:17 UTC
+Last updated 2023-12-18 14:03:04 UTC
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Page Templates</title>
+<title>Mapping content types to views</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,18 +439,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#page_templates">Page Templates</a>
-<ul class="sectlevel2">
+<li><a href="#mapping_content_types_to_views">Mapping content types to views</a></li>
 <li><a href="#toggle_template">Toggle template</a></li>
-</ul>
-</li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="page_templates"><a class="link" href="#page_templates">Page Templates</a></h2>
+<h2 id="mapping_content_types_to_views"><a class="link" href="#mapping_content_types_to_views">Mapping content types to views</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>On the Content types chapter we mentioned that you&#8217;d get to know the <code>Templates</code> child content of the root site later&#8230;&#8203; now&#8217;s the time!</p>
+</div>
 <div class="paragraph">
 <p>With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.</p>
 </div>
@@ -458,32 +459,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s create a page template from the country page you just made:</p>
+<p>Let&#8217;s create a page template for the country content type:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Edit the country page made in the previous step, in the visual editor - select the page and choose "Save as Page template" from the right hand component panel.</p>
-</li>
-<li>
-<p>A new browser tab will open with the new template. Rename it and save.</p>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The <code>Supports</code> field defines which content type(s) the template will apply to.
-</td>
-</tr>
-</table>
-</div>
+<p>Select the <code>Templates</code> content item and then click on btn:[new]</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template.gif" alt="Creating a page template from the country page" width="1024px">
+<img src="media/page-template-1.png" alt="List of content types under the root site content, with the Templates highlighted" width="1024px">
 </div>
 </div>
+</li>
+<li>
+<p>Select the <code>Page template</code> content type</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="1024px">
+</div>
+</div>
+</li>
+<li>
+<p>On supports, select <code>Country</code> content type and click on <code>Apply</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-3.png" alt="List of available content types under the support filter, with the Country content type highlighted" width="1024px">
+</div>
+</div>
+</li>
+<li>
+<p>On the right section, select the <code>Hello Regions!</code> page</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-4.png" alt="List of available pages, with the Hello Regions! page highlighted" width="1024px">
+</div>
+</div>
+</li>
+<li>
+<p>Right click on <code>Drop here</code> region in the added page, then <code>insert</code> and <code>part</code> and select the <code>Country</code> part</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-5.png" alt="List of available parts to be added withing a region, with the Country part highlighted" width="1024px">
+</div>
+</div>
+</li>
+<li>
+<p>Then finally give this page template a name, such as "Country Page Template" and save it.</p>
 </li>
 </ol>
 </div>
@@ -499,8 +520,11 @@ Try clicking the other countries to verify that the template actually works as i
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="toggle_template"><a class="link" href="#toggle_template">Toggle template</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="toggle_template"><a class="link" href="#toggle_template">Toggle template</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.</p>
 </div>
@@ -528,11 +552,21 @@ For each content item, you can select a specific template, or customize the pres
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve just learned about page templates, which is a way to map certain configurations of views to the existing content types of your application.</p>
+</div>
+<div class="paragraph">
+<p>This is a crucial feature of the CMS since its usage guarantees consistency of views throughout same types of contents.</p>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-13 23:37:17 UTC
+Last updated 2023-12-18 14:03:04 UTC
 </div>
 </div>
 </body>
