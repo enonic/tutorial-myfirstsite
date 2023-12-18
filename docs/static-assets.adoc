@@ -43,3 +43,6 @@ For this purpose, you can take full control over asset serving by adding https:/
 
 We will not go into details in this tutorial, but lib-static is pre-bundled with selected app starters like https://market.enonic.com/vendors/enonic/webpack-starter[Webpack Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
 
+== Summary
+
+The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can publish everything you've done so far and finally Go online! 
