@@ -557,7 +557,7 @@ export function get(): Response {
 <div class="listingblock">
 <div class="title">src/main/resources/assets/styles/two-columns.scss</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">.two-columns {
+<pre class="highlight"><code class="language-scss" data-lang="scss">.two-columns {
     display: grid;
     gap: 2rem;
 
@@ -639,7 +639,7 @@ export function get(): Response {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:03:04 UTC
+Last updated 2023-12-18 14:10:26 UTC
 </div>
 </div>
 </body>

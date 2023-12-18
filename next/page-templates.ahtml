@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Mapping content types to views</title>
+<title>Page templates: mapping content types to views</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#mapping_content_types_to_views">Mapping content types to views</a></li>
+<li><a href="#page_templates_mapping_content_types_to_views">Page templates: mapping content types to views</a></li>
 <li><a href="#toggle_template">Toggle template</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -447,7 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="mapping_content_types_to_views"><a class="link" href="#mapping_content_types_to_views">Mapping content types to views</a></h2>
+<h2 id="page_templates_mapping_content_types_to_views"><a class="link" href="#page_templates_mapping_content_types_to_views">Page templates: mapping content types to views</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>On the Content types chapter we mentioned that you&#8217;d get to know the <code>Templates</code> child content of the root site later&#8230;&#8203; now&#8217;s the time!</p>
@@ -566,7 +566,7 @@ For each content item, you can select a specific template, or customize the pres
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:03:04 UTC
+Last updated 2023-12-18 14:10:26 UTC
 </div>
 </div>
 </body>

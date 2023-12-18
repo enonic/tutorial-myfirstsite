@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Parts</title>
+<title>Parts: configurable components</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#parts">Parts</a></li>
+<li><a href="#parts_configurable_components">Parts: configurable components</a></li>
 <li><a href="#configurable_part">Configurable part</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -447,7 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="parts"><a class="link" href="#parts">Parts</a></h2>
+<h2 id="parts_configurable_components"><a class="link" href="#parts_configurable_components">Parts: configurable components</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You&#8217;re now ready to present some more information from the <strong>Country</strong> content type.</p>
@@ -745,7 +745,7 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:03:04 UTC
+Last updated 2023-12-18 14:10:26 UTC
 </div>
 </div>
 </body>
