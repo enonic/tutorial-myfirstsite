@@ -1,23 +1,40 @@
 :imagesdir: media/
 
-== Page Templates
+== Mapping content types to views
+
+On the Content types chapter we mentioned that you'd get to know the `Templates` child content of the root site later... now's the time!
 
 With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.
 
 By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.
 
-Let's create a page template from the country page you just made:
+Let's create a page template for the country content type:
 
-. Edit the country page made in the previous step, in the visual editor - select the page and choose "Save as Page template" from the right hand component panel.
-. A new browser tab will open with the new template. Rename it and save.
+. Select the `Templates` content item and then click on btn:[new]
 +
-TIP: The `Supports` field defines which content type(s) the template will apply to.
+image::page-template-1.png["List of content types under the root site content, with the Templates highlighted", width=1024px]
 +
-image::page-template.gif["Creating a page template from the country page", width=1024px]
+. Select the `Page template` content type
++
+image::page-template-2.png["Modal showing the page template content type", width=1024px]
++
+. On supports, select `Country` content type and click on `Apply`
++
+image::page-template-3.png["List of available content types under the support filter, with the Country content type highlighted", width=1024px]
++
+. On the right section, select the `Hello Regions!` page
++
+image::page-template-4.png["List of available pages, with the Hello Regions! page highlighted", width=1024px]
++
+. Right click on `Drop here` region in the added page, then `insert` and `part` and select the `Country` part
++
+image::page-template-5.png["List of available parts to be added withing a region, with the Country part highlighted", width=1024px]
++
+. Then finally give this page template a name, such as "Country Page Template" and save it.
 
 NOTE: Try clicking the other countries to verify that the template actually works as intended.
 
-=== Toggle template
+== Toggle template
 
 Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.
 
@@ -26,3 +43,9 @@ Your originally edited country still uses the custom page you created - you can 
 
 
 NOTE: For each content item, you can select a specific template, or customize the presentation at any time.
+
+== Summary
+
+You've just learned about page templates, which is a way to map certain configurations of views to the existing content types of your application.
+
+This is a crucial feature of the CMS since its usage guarantees consistency of views throughout same types of contents.

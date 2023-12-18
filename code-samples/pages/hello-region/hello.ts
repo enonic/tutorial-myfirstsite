@@ -21,8 +21,8 @@ export function get(): Response {
 
     // Prepare the response object
     const response: Response = {
-		body: render(VIEW, model)
-	};
+		  body: render(VIEW, model)
+	  };
 
     return response;
 }
