@@ -1,6 +1,6 @@
 :imagesdir: media/
 
-== Mapping content types to views
+== Page templates: mapping content types to views
 
 On the Content types chapter we mentioned that you'd get to know the `Templates` child content of the root site later... now's the time!
 

@@ -1,7 +1,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-== Content
+== Content Items
 
 On the `Dashboard`, a Content Studio widget should now have appeared. It shows that we already have some sample content available.
 

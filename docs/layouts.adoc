@@ -34,7 +34,7 @@ include::{sourcedir}code-samples/layouts/two-columns/two-columns.html[]
 and finally, make sure to add the styling:
 
 .src/main/resources/assets/styles/two-columns.scss
-[source,html]
+[source,scss]
 ----
 include::{sourcedir}code-samples/layouts/two-columns/two-columns.scss[]
 ----

@@ -1,7 +1,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-== Parts
+== Parts: configurable components
 
 You're now ready to present some more information from the *Country* content type.
 

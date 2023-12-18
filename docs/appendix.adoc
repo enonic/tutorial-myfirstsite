@@ -20,7 +20,9 @@ Once installed, edit your site and add the application to the list of linked app
 
 === Logging
 
-While developing an app, it can be helpful to see the structure of objects returned by library functions.
+If the JavaScript code you write is going to be executed on the browser, you can simply use the `console.log` for logging as usual. 
+
+Now, if your code is going to be processed on the server, which is the case when writing any of the controllers mentioned in this guide, there will be no `console.log`, so Enonic provides the `log.info` function to log things to the server.
 
 A way to do this is by creating up a small utility script.
 

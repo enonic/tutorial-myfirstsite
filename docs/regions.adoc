@@ -1,7 +1,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-== Regions
+== Regions: injectable slots
 
 Content Studio's page editor also supports adding more components to a page, using drag'n drop.
 

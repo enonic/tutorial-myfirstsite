@@ -1,13 +1,13 @@
 :imagesdir: media/
 :sourcedir: ../
 
-== Pages
+== Pages: the shell
 
 At the moment, we have some content, but no preview or rendering.
 
 As a headless CMS, Enonic supports use 3rd party front-ends, but Enonic also has an an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework]. 
 
-This can be used to customize the platform, or, like in our case render pages for a website.
+This can be used to customize the platform, or, like in our case, render pages for a website.
 
 Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it.
 
