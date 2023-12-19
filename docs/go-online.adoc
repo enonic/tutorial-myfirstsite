@@ -1,6 +1,7 @@
 :imagesdir: media/
 
 = Go Online
+
 Now that the setup of `Hello World` site is completed, it's time to publish.
 
 . Select the `Hello World` site in the content browse panel

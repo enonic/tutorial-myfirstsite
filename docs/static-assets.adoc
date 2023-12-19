@@ -2,6 +2,7 @@
 :sourcedir: ../
 
 = Static assets
+
 Add static assets like icons, css and JavaScript to your website
 
 == Serving a CSS file

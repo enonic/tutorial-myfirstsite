@@ -2,6 +2,7 @@
 :experimental:
 
 = Page templates
+
 Create page templates to reuse a page across different content items
 
 == Reusable pages

@@ -3,7 +3,8 @@
 :experimental:
 
 = Layouts
-If you have the need to have a customizable part that also accept some regions, then a layout is the feature you're looking for.
+
+Like parts, but adds support for regions
 
 
 == Two column layout

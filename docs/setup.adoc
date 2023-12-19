@@ -1,6 +1,7 @@
 :imagesdir: media/
 
 = Setup
+
 Set up the developer environment, create, build, and deploy and application.
 
 == Install Enonic CLI

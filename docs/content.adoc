@@ -3,6 +3,7 @@
 :sourcedir: ../
 
 = Content
+
 Introduction to Content Studio, content types and content items
 
 == Install Content Studio
