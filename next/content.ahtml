@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Content</title>
+<title>Content Studio and Content Types</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,12 +436,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content</h1>
+<h1>Content Studio and Content Types</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#install_content_studio">Install Content Studio</a></li>
-<li><a href="#content">Content</a></li>
+<li><a href="#content_studio">Content Studio</a></li>
+<li><a href="#content_and_projects">Content and projects</a></li>
 <li><a href="#content_types">Content Types</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -456,7 +456,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="install_content_studio"><a class="link" href="#install_content_studio">Install Content Studio</a></h2>
+<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
@@ -487,7 +487,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="content"><a class="link" href="#content">Content</a></h2>
+<h2 id="content_and_projects"><a class="link" href="#content_and_projects">Content and projects</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Your XP <code>Dashboard</code> should now have a <code>Content Studio widget</code>, indicating that you already have some sample content available.</p>
@@ -614,7 +614,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>

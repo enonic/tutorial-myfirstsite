@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Like parts, but adds support for regions</p>
+<p>Layouts are like parts, but also support regions</p>
 </div>
 </div>
 </div>
@@ -458,7 +458,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="two_column_layout"><a class="link" href="#two_column_layout">Two column layout</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll be making a layout that has two columns, each column using a region to accept injectable content. We&#8217;ll also support configuration of the part, so editors can control the sizes for each of those two columns.</p>
+<p>In this chapter, you&#8217;ll be making a layout with two columns. Each column declares a region to support more components. We&#8217;ll also support configuration of the layout, so editors can control the sizes for each of those two columns.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -494,7 +494,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Now, <strong>add the controller</strong>:</p>
+<p><strong>Add the controller</strong>:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.ts</div>
 <div class="content">
@@ -562,7 +562,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>and finally, <strong>some styling</strong>:</p>
+<p>and finally, the layout needs <strong>some styling</strong>:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/assets/styles/two-columns.scss</div>
 <div class="content">
@@ -588,13 +588,25 @@ export function get(): Response {
 </ol>
 </div>
 <div class="paragraph">
-<p>So far, the only section of code that is new is the <code>pageContributions</code> you see in the controller.</p>
+<p>So far, the only new section is the <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions">pageContributions</a> you see in the controller.</p>
 </div>
 <div class="paragraph">
-<p>Its naming speaks for itself, but just for clarity, is&#8217;s a way to inject HTML on certain places within the markup. Those places are on the <code>head</code> tag begin or end, or on <code>body</code> tag begin or end.</p>
+<p>Its naming speaks for itself, but just for clarity, is&#8217;s a way for components to inject HTML on certain places within the resulting markup. Those places are on the <code>head</code> tag begin or end, or on <code>body</code> tag begin or end - and typically controlled by the page component.</p>
 </div>
 <div class="paragraph">
-<p>In our case we used it to add a reference to the <code>two-columns.css</code> asset file (processed from <code>scss</code> to <code>css</code> during build), when this layout is placed on a page.</p>
+<p>In our case we used it to inject a reference to the <code>two-columns.css</code> asset when this layout is placed on a page.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>scss</code> is automatically converted to <code>css</code> during build
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -602,7 +614,7 @@ export function get(): Response {
 <h2 id="using_the_layout"><a class="link" href="#using_the_layout">Using the layout</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far you&#8217;ve understood what a layout is and, if followed along, created the code for a two column layout. Let&#8217;s see in practice how you can add it to a page and use its regions.</p>
+<p>So far you&#8217;ve understood what a layout is and, created the code for a two column layout. Let&#8217;s see in practice by adding it to a page and using its regions.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -610,7 +622,7 @@ export function get(): Response {
 <p>Go to the root site content and click on <b class="button">edit</b></p>
 </li>
 <li>
-<p>Add the "Hello Regions!" page component, and insert the two-column layout in its main region:</p>
+<p><strong>Setup the "Hello Regions!" page component</strong>, and insert the two-column layout in its main region:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout.png" alt="Two column layout with 50/50 config and no component in its left and right regions" width="1024px">
@@ -618,7 +630,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Now add a text component to each region, and write some text:</p>
+<p><strong>Add a text component to each region</strong>, and write some text:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout-with-texts.png" alt="Two column layout with 50/50 config and texts on its two left and right regions" width="1024px">
@@ -626,17 +638,19 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Finally, select different configurations for the layout - Available options are: 33/66, 50/50 and 66/33 and check the results:</p>
+<p>Finally, <strong>try out the different configuration options</strong> <code>33/66</code>, <code>50/50</code> and <code>66/33</code> and check the results:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout-33-66-with-texts.png" alt="Two column layout with 33/66 config and texts on its two left and right regions" width="1024px">
 </div>
 </div>
+<div class="literalblock">
+<div class="content">
+<pre>and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].</pre>
+</div>
+</div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>Follow these links for more details on  <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions" target="_blank" rel="noopener">contributions</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/layouts" target="_blank" rel="noopener">layouts</a>.</p>
 </div>
 </div>
 </div>
@@ -651,7 +665,7 @@ export function get(): Response {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>

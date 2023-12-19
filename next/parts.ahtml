@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Parts</title>
+<title>Parts - flexible components for your page</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,12 +436,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Parts</h1>
+<h1>Parts - flexible components for your page</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#the_country_part">The country part</a></li>
-<li><a href="#part_configuration">Part configuration</a></li>
+<li><a href="#configurable_part">Configurable part</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>A flexible component type for your pages</p>
+<p>Parts are the visual building blocks that make your pages interesting.</p>
 </div>
 </div>
 </div>
@@ -458,7 +458,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="the_country_part"><a class="link" href="#the_country_part">The country part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s about time we render details from the <strong>Country</strong> content type.</p>
+<p>It&#8217;s about time we show some details from the <strong>Country</strong> content type.</p>
 </div>
 <div class="paragraph">
 <p>Rather than making another page component, let&#8217;s create a <code>part</code>. Parts are components that can be added to regions.</p>
@@ -469,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Create the folder <code>src/main/resources/site/parts/country/</code> in your project.</p>
 </li>
 <li>
-<p>Add the part schema, controller and view files below to the folder:</p>
+<p>Add the part descriptor, controller and view files below to the folder:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.xml</div>
 <div class="content">
@@ -560,7 +560,7 @@ You may also use the form component tree (on the left, or floating above the pag
 </div>
 </div>
 <div class="sect1">
-<h2 id="part_configuration"><a class="link" href="#part_configuration">Part configuration</a></h2>
+<h2 id="configurable_part"><a class="link" href="#configurable_part">Configurable part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Let&#8217;s try something slightly more advanced.</p>
@@ -715,7 +715,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The controller also writes the <code>model object</code> to the log. Check the sandbox log after visiting a country page to see what is happening.
+The controller also prints the <code>model object</code> to the log. Check the sandbox log after visiting a country page to see what is happening.
 </td>
 </tr>
 </table>
@@ -759,7 +759,7 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>

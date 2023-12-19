@@ -458,8 +458,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="component_dropzones"><a class="link" href="#component_dropzones">Component dropzones</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Content Studio supports adding more components to a page.
-To enable this, a page component must define one or more regions.</p>
+<p>Content Studio also supports adding more components to a page. To get going, the page component must define one or more regions.</p>
 </div>
 <div class="paragraph">
 <p>Complete the steps below to add a single region called <code>main</code> to the <code>hello</code> page component.</p>
@@ -550,7 +549,7 @@ export function get(): Response {
 <p>Activate the page editor (from the top right monitor icon), and select the <code>Hello</code> component.</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-regions.gif" alt="Setting up a page with a region" width="1024px">
+<img src="media/hello-regions.gif" alt="Setting up a page with a region" width="1920px">
 </div>
 </div>
 <div class="paragraph">
@@ -558,7 +557,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Try to <strong>add a text component to the region</strong>. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+<p><strong>Add a text component to the region</strong>. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
 </li>
 </ol>
 </div>
@@ -601,7 +600,7 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Pages</title>
+<title>Visualize your content with pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,11 +436,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Pages</h1>
+<h1>Visualize your content with pages</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#page_component">Page component</a></li>
+<li><a href="#component_controller">Component controller</a></li>
+<li><a href="#templating">Templating</a></li>
 <li><a href="#create_page">Create page</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -450,19 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Visualize your content with pages.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Enonic supports use 3rd party front-end frameworks, but also has its own <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>, which we will use throughout this tutorial.
-</td>
-</tr>
-</table>
+<p>For every page, there is always a page component.</p>
 </div>
 </div>
 </div>
@@ -470,16 +460,24 @@ Enonic supports use 3rd party front-end frameworks, but also has its own <a href
 <h2 id="page_component"><a class="link" href="#page_component">Page component</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At the moment, we have some content, but no preview or rendering.</p>
+<p>At the moment, we have some content, but no preview or visual rendering.</p>
 </div>
 <div class="paragraph">
-<p>Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it. Your app includes a pre-defined page component named <code>hello</code>.</p>
+<p>Pages are composed from one or more components.</p>
 </div>
 <div class="paragraph">
-<p>TODO: Descriptor?</p>
+<p>Your app includes a pre-defined page component named <code>hello</code>. It is defined by a descriptor file, placed in a particular location within your app:</p>
 </div>
-<div class="paragraph">
-<p>In addition to the controller, this component also uses an html template - a.k.a the View in the Model View Controller (MVC) pattern. It look like this:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;page&gt;
+  &lt;display-name&gt;Hello Page Controller&lt;/display-name&gt;
+  &lt;form&gt;
+  &lt;/form&gt;
+&lt;/page&gt;</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -488,7 +486,30 @@ Enonic supports use 3rd party front-end frameworks, but also has its own <a href
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The JavaScript controller file must use the same name as the component directory.
+Like content types, you can define a form for the component using the <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas">schema system</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="component_controller"><a class="link" href="#component_controller">Component controller</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enonic supports rendering with 3rd party front-ends, but is also capable of rendering by itself thanks to the <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>, which we will be using throughout this tutorial.</p>
+</div>
+<div class="paragraph">
+<p>When rendering with the Enonic framework, each component may have its very own controller, responsible for rendering it. Here is what it looks like in our case:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The controller file must use the same name as the component directory.
 </td>
 </tr>
 </table>
@@ -525,6 +546,26 @@ export function get(): Response {
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Here we&#8217;re using TypeScript. Each .ts file will automatically be compiled, and a .js file placed in the same folder. XP uses the resulting .js file.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="templating"><a class="link" href="#templating">Templating</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For clean coding, we have also supplied a simple HTML template - a.k.a the View in the Model View Controller (MVC) pattern. It look like this:</p>
+</div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
@@ -546,7 +587,7 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The view is plain HTML, but also uses a specific syntax known as the <a href="https://market.enonic.com/vendors/enonic/thymeleaf-lib" target="_blank" rel="noopener">Thymeleaf</a> templating language. The Enonic runtime also supports many other options, such as <a href="https://market.enonic.com/vendors/enonic/react4xp-lib" target="_blank" rel="noopener">React</a>, <a href="https://market.enonic.com/vendors/enonic/mustache-lib" target="_blank" rel="noopener">Mustache</a> and <a href="https://market.enonic.com/vendors/tineikt/freemarker-xp-library" target="_blank" rel="noopener">Freemarker</a>
+This view is plain HTML, but also uses a specific syntax known as the <a href="https://market.enonic.com/vendors/enonic/thymeleaf-lib" target="_blank" rel="noopener">Thymeleaf</a> templating language. The Enonic runtime also supports many other options, such as <a href="https://market.enonic.com/vendors/enonic/react4xp-lib" target="_blank" rel="noopener">React</a>, <a href="https://market.enonic.com/vendors/enonic/mustache-lib" target="_blank" rel="noopener">Mustache</a> and <a href="https://market.enonic.com/vendors/tineikt/freemarker-xp-library" target="_blank" rel="noopener">Freemarker</a>
 </td>
 </tr>
 </table>
@@ -557,12 +598,12 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 <h2 id="create_page"><a class="link" href="#create_page">Create page</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To actually have the <code>hello</code> page component render something, it must be associated with a content item:</p>
+<p>For the <code>hello</code> page component render something, it must be associated with a content item:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the site content <code>Hello World</code> and click <b class="button">edit</b></p>
+<p>Select the Site content item -  <code>Hello World</code> and click <b class="button">edit</b></p>
 </li>
 <li>
 <p>From the preview panel on the right, select the <code>Hello</code> page component in the list. Your changes will automatically save, and the page preview will render the result.</p>
@@ -605,7 +646,7 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>

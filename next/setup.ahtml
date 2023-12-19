@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Setup</title>
+<title>Setting up the developer environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,7 +436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Setup</h1>
+<h1>Setting up the developer environment</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -444,7 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#create_a_sandbox">Create a sandbox</a></li>
 <li><a href="#create_the_app">Create the app</a></li>
 <li><a href="#project_structure">Project structure</a></li>
-<li><a href="#building">Building</a></li>
+<li><a href="#start_building">Start building</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -649,10 +649,10 @@ src/
 </div>
 </div>
 <div class="sect1">
-<h2 id="building"><a class="link" href="#building">Building</a></h2>
+<h2 id="start_building"><a class="link" href="#start_building">Start building</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Assuming you did not change the default directory name <code>myproject/</code> when creating the app, build it with the following commands:</p>
+<p>Assuming you did not change the default directory name <code>myproject/</code> when creating the app, deploy it to the sandbox with the following commands:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -661,7 +661,7 @@ enonic project dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will build and deploy the application to your sandbox, the <code>dev</code> task is set up to continuously scan for changes in your code and compile them.</p>
+<p>This will build and deploy the application to your sandbox, the <code>dev</code> task will continuously scan for changes in your TypeScript code and compile them.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -713,7 +713,7 @@ Thanks to the sandbox running in --dev mode, any changes to the code wihin your 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:32:09 UTC
+Last updated 2023-12-19 16:01:32 UTC
 </div>
 </div>
 </body>
