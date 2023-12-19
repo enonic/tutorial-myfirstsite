@@ -446,7 +446,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#two_column_layout">Two column layout</a></li>
 <li><a href="#using_the_layout">Using the layout</a></li>
-<li><a href="#text_component">Text component</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -639,17 +638,6 @@ export function get(): Response {
 </div>
 </div>
 <div class="sect1">
-<h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Above, we added Text components into the regions. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
-</div>
-<div class="paragraph">
-<p>Visit the refrence documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -660,7 +648,7 @@ export function get(): Response {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>

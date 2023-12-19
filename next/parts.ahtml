@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="A flexible component type to use for your pages">
 <title>Parts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -438,9 +437,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article toc2 toc-right">
 <div id="header">
 <h1>Parts</h1>
-<div class="details">
-<span id="author" class="author">A flexible component type to use for your pages</span><br>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -451,6 +447,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A flexible component type for your pages</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="the_country_part"><a class="link" href="#the_country_part">The country part</a></h2>
 <div class="sectionbody">
@@ -530,10 +533,13 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>When done, the part can be added to the page by drag&#8217;n dropping a part from the right-hand-side, then select the <code>Country</code> component from the list. By the end, you should see something like this:</p>
+<p><strong>Add the part to the page</strong> by drag&#8217;n dropping a part from the right-hand-side and select the <code>Country</code> component from the list.</p>
+<div class="paragraph">
+<p>The result should look something like this:</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="512px">
+<img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="300px">
 </div>
 </div>
 </li>
@@ -702,23 +708,6 @@ function getCitySlogan(slogan: string, population?: string): string {
 </li>
 <li>
 <p>Finally, configure the part by selecting it and changing the settings in the right hand panel.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The controller is also configured to write the <code>model</code> object to the log. Check the sandbox log after visiting a country page to see what is happening.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/city-list-part-on-columbia.png" alt="Result of adding city list part to page and configure it to show widescreen images" width="1024px">
-</div>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -726,10 +715,18 @@ The controller is also configured to write the <code>model</code> object to the 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The images are scaled and cropped in real-time by the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service" target="_blank" rel="noopener">Image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to the desired image.
+The controller also writes the <code>model object</code> to the log. Check the sandbox log after visiting a country page to see what is happening.
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/city-list-part-on-columbia.png" alt="Result of adding city list part to page and configure it to show widescreen images" width="1227px">
+</div>
+</div>
+<div class="paragraph">
+<p>Images are scaled and cropped in real-time by the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service" target="_blank" rel="noopener">Image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to the desired image.</p>
 </div>
 </li>
 </ol>
@@ -762,7 +759,7 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>

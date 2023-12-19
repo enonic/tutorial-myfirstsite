@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Page</title>
+<title>Pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,7 +436,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Page</h1>
+<h1>Pages</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Visualize your content with pages</p>
+<p>Visualize your content with pages.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Using the headless API, Enonic supports use 3rd party front-end frameworks. Enonic also provides an embedded JavaScript runtime, and a <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>, which we will use for rendring here.
+Enonic supports use 3rd party front-end frameworks, but also has its own <a href="https://developer.enonic.com/docs/xp/stable/framework">JS framework</a>, which we will use throughout this tutorial.
 </td>
 </tr>
 </table>
@@ -474,6 +474,9 @@ Using the headless API, Enonic supports use 3rd party front-end frameworks. Enon
 </div>
 <div class="paragraph">
 <p>Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it. Your app includes a pre-defined page component named <code>hello</code>.</p>
+</div>
+<div class="paragraph">
+<p>TODO: Descriptor?</p>
 </div>
 <div class="paragraph">
 <p>In addition to the controller, this component also uses an html template - a.k.a the View in the Model View Controller (MVC) pattern. It look like this:</p>
@@ -602,7 +605,7 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>

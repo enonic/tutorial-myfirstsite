@@ -585,24 +585,25 @@ Use the default options when prompted.
 build/ <i class="conum" data-value="2"></i><b>(2)</b>
 code-samples/ <i class="conum" data-value="3"></i><b>(3)</b>
 docs/ <i class="conum" data-value="4"></i><b>(4)</b>
+tsup/ <i class="conum" data-value="5"></i><b>(5)</b>
 src/
   main/
     resources/
-      import/ <i class="conum" data-value="5"></i><b>(5)</b>
-      assets/ <i class="conum" data-value="6"></i><b>(6)</b>
+      import/ <i class="conum" data-value="6"></i><b>(6)</b>
+      assets/ <i class="conum" data-value="7"></i><b>(7)</b>
       sites/
-        content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+        content-types/ <i class="conum" data-value="8"></i><b>(8)</b>
           country/
           city/
-        parts/ <i class="conum" data-value="8"></i><b>(8)</b>
-        pages/ <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+        parts/ <i class="conum" data-value="9"></i><b>(9)</b>
+        pages/ <i class="conum" data-value="10"></i><b>(10)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Gradle files are used by the build system</td>
+<td>Core build files</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -618,22 +619,26 @@ src/
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Contains sample content that is imported when the app starts</td>
+<td>TSUP typescript compilation build files</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Location for static assets</td>
+<td>Contains sample content that is imported when the app starts</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Two pre-defined content types, country and city</td>
+<td>Location for static assets</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Part components - leaf components to place on pages</td>
+<td>Two pre-defined content types, country and city</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Part components - leaf components to place on pages</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
 <td>Page components - root component for pages</td>
 </tr>
 </table>
@@ -705,7 +710,7 @@ Thanks to the sandbox running in --dev mode, any changes to the code wihin your 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>

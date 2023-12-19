@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p>Learn the fundameltal principals of pages, components, and rendering with the Enonic JS framework.</p>
+<p>Learn the fundamental principals of pages, components, and rendering with the Enonic JS framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -490,7 +490,7 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>

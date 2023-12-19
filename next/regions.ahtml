@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Support adding more components to your page, including drag&#8217;n drop.">
 <title>Regions</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -438,18 +437,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article toc2 toc-right">
 <div id="header">
 <h1>Regions</h1>
-<div class="details">
-<span id="author" class="author">Support adding more components to your page, including drag&#8217;n drop.</span><br>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#component_dropzones">Component dropzones</a></li>
+<li><a href="#text_component">Text component</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Support adding more components to your page, including drag&#8217;n drop.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="component_dropzones"><a class="link" href="#component_dropzones">Component dropzones</a></h2>
 <div class="sectionbody">
@@ -549,14 +553,14 @@ export function get(): Response {
 <img src="media/hello-regions.gif" alt="Setting up a page with a region" width="1024px">
 </div>
 </div>
-</li>
-</ol>
-</div>
 <div class="paragraph">
 <p>You now have a page with a single region!</p>
 </div>
-<div class="paragraph">
-<p>Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+</li>
+<li>
+<p>Try to <strong>add a text component to the region</strong>. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -569,6 +573,17 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Above, we added a text component into the region. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
+</div>
+<div class="paragraph">
+<p>Visit the refrence documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
 </div>
 </div>
 </div>
@@ -586,7 +601,7 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 10:18:42 UTC
+Last updated 2023-12-19 13:46:27 UTC
 </div>
 </div>
 </body>
