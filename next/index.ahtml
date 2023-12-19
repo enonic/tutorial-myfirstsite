@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p>This tutorial introduces you to building websites with Enonic XP. You will learn the basics of content modelling using pages and components, as well as rendering with the Enonic JS framework.</p>
+<p>Learn the fundameltal principals of pages, components, and rendering with the Enonic JS framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -466,19 +466,16 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>learn about the structure of an Enonic app</p>
-</li>
-<li>
 <p>install and use Content Studio</p>
 </li>
 <li>
-<p>learn about and use content types, pages and parts</p>
+<p>learn about and use content types and page components</p>
 </li>
 <li>
 <p>Try out page templates</p>
 </li>
 <li>
-<p>deploy static assets</p>
+<p>Use static assets</p>
 </li>
 <li>
 <p>and then some&#8230;&#8203;</p>
@@ -493,7 +490,7 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 09:41:11 UTC
+Last updated 2023-12-19 10:15:25 UTC
 </div>
 </div>
 </body>
