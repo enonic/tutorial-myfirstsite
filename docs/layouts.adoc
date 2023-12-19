@@ -4,12 +4,11 @@
 
 = Layouts
 
-Like parts, but adds support for regions
-
+Layouts are like parts, but also support regions
 
 == Two column layout
 
-In this chapter, you'll be making a layout that has two columns, each column using a region to accept injectable content. We'll also support configuration of the part, so editors can control the sizes for each of those two columns.
+In this chapter, you'll be making a layout with two columns. Each column declares a region to support more components. We'll also support configuration of the layout, so editors can control the sizes for each of those two columns.
 
 . Let's start by **adding the descriptor** for the `two-columns` layout:
 +
@@ -21,7 +20,7 @@ include::{sourcedir}code-samples/layouts/two-columns/two-columns.xml[]
 +
 Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
 +
-. Now, **add the controller**:
+. **Add the controller**:
 +
 .src/main/resources/site/layouts/two-columns/two-columns.ts
 [source,ts]
@@ -37,7 +36,7 @@ include::{sourcedir}code-samples/layouts/two-columns/two-columns.ts[]
 include::{sourcedir}code-samples/layouts/two-columns/two-columns.html[]
 ----
 +
-. and finally, **some styling**:
+. and finally, the layout needs **some styling**:
 +
 .src/main/resources/assets/styles/two-columns.scss
 [source,scss]
@@ -45,31 +44,33 @@ include::{sourcedir}code-samples/layouts/two-columns/two-columns.html[]
 include::{sourcedir}code-samples/layouts/two-columns/two-columns.scss[]
 ----
 
-So far, the only section of code that is new is the `pageContributions` you see in the controller. 
+So far, the only new section is the https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions] you see in the controller. 
 
-Its naming speaks for itself, but just for clarity, is's a way to inject HTML on certain places within the markup. Those places are on the `head` tag begin or end, or on `body` tag begin or end.
+Its naming speaks for itself, but just for clarity, is's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `head` tag begin or end, or on `body` tag begin or end - and typically controlled by the page component.
 
-In our case we used it to add a reference to the `two-columns.css` asset file (processed from `scss` to `css` during build), when this layout is placed on a page.
+In our case we used it to inject a reference to the `two-columns.css` asset when this layout is placed on a page.
+
+NOTE: `scss` is automatically converted to `css` during build 
 
 == Using the layout
 
-So far you've understood what a layout is and, if followed along, created the code for a two column layout. Let's see in practice how you can add it to a page and use its regions.
+So far you've understood what a layout is and, created the code for a two column layout. Let's see in practice by adding it to a page and using its regions.
 
 . Go to the root site content and click on btn:[edit]
-. Add the "Hello Regions!" page component, and insert the two-column layout in its main region:
+. *Setup the "Hello Regions!" page component*, and insert the two-column layout in its main region:
 +
 image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width=1024px]
 +
-. Now add a text component to each region, and write some text:
+. *Add a text component to each region*, and write some text:
 +
 image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width=1024px]
 
 +
-. Finally, select different configurations for the layout - Available options are: 33/66, 50/50 and 66/33 and check the results:
+. Finally, *try out the different configuration options* `33/66`, `50/50` and `66/33` and check the results:
 +
 image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width=1024px]
 
-Follow these links for more details on  https://developer.enonic.com/docs/xp/stable/framework/contributions[contributions^] and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
+ and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
 
 
 

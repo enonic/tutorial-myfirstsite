@@ -2,11 +2,11 @@
 :imagesdir: media/
 :sourcedir: ../
 
-= Content
+= Content Studio and Content Types
 
 Introduction to Content Studio, content types and content items
 
-== Install Content Studio
+== Content Studio
 
 https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
 
@@ -21,7 +21,7 @@ image::xp-menu-applications.png["Go to Applications from the XP menu", width="31
 image::install-content-studio.png["Install the Content Studio app", width="760px"]
 
 
-== Content
+== Content and projects
 
 Your XP `Dashboard` should now have a `Content Studio widget`, indicating that you already have some sample content available.
 

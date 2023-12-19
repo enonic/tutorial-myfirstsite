@@ -20,4 +20,4 @@ NOTE: You can see the published site and the master branch on this url: `http://
  🎉 Congratulations on building your first Enonic site - The Enonic team.
 
 
-TIP: To learn more about content modelling, and the GraphQL API, visit our https://developer.enonic.com/docs/developer-101[Developer 101 tutorial].
+TIP: To learn more about structured content modelling, and the GraphQL API, visit our https://developer.enonic.com/docs/developer-101[Developer 101 tutorial].

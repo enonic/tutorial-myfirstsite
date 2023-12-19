@@ -45,4 +45,4 @@ Lib-static is pre-bundled with selected app starters like the https://market.eno
 
 == Summary
 
-The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can <<go-online#, publish everything and go online>>! 
+The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can publish the site and <<go-online#, go online>>! 

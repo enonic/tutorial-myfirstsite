@@ -1,6 +1,6 @@
 :imagesdir: media/
 
-= Setup
+= Setting up the developer environment
 
 Set up the developer environment, create, build, and deploy and application.
 
@@ -84,14 +84,14 @@ src/
 <9> Part components - leaf components to place on pages
 <10> Page components - root component for pages
 
-== Building
+== Start building
 
-Assuming you did not change the default directory name `myproject/` when creating the app, build it with the following commands:
+Assuming you did not change the default directory name `myproject/` when creating the app, deploy it to the sandbox with the following commands:
 
   cd myproject
   enonic project dev
 
-This will build and deploy the application to your sandbox, the `dev` task is set up to continuously scan for changes in your code and compile them.
+This will build and deploy the application to your sandbox, the `dev` task will continuously scan for changes in your TypeScript code and compile them.
 
 [NOTE]
 ====
