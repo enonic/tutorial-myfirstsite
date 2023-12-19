@@ -440,9 +440,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#serving_a_css_file">Serving a CSS file</a>
+<li><a href="#serving_a_css_file">Serving a CSS file</a></li>
+<li><a href="#perfect_cache">Perfect cache</a>
 <ul class="sectlevel2">
-<li><a href="#perfect_cache">Perfect cache</a></li>
 <li><a href="#lib_static">Lib static</a></li>
 </ul>
 </li>
@@ -508,14 +508,19 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 <img src="media/css.png" alt="Countries page in dark mode after adding the css" width="1024px">
 </div>
 </div>
-<div class="sect2">
-<h3 id="perfect_cache"><a class="link" href="#perfect_cache">Perfect cache</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="perfect_cache"><a class="link" href="#perfect_cache">Perfect cache</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.</p>
+<p>When running Enonic XP in production, every asset will include cache headers that let proxies/CDNs and browsers cache it - without ever having to download it again.</p>
 </div>
 <div class="paragraph">
-<p>How does it work?
-The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The <code>portal.assetUrl()</code> function uses this signature when generating the URL, ensuring that clients always get the most recent version.</p>
+<p><strong>How does it work?</strong></p>
+</div>
+<div class="paragraph">
+<p>The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The <code>portal.assetUrl()</code> function uses this signature when generating the URL, ensuring that clients always get the most recent version.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -528,7 +533,6 @@ When running in dev mode (like you do now), cache headers are deactivated
 </td>
 </tr>
 </table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="lib_static"><a class="link" href="#lib_static">Lib static</a></h3>
@@ -552,7 +556,7 @@ When running in dev mode (like you do now), cache headers are deactivated
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:25:38 UTC
+Last updated 2023-12-19 14:32:09 UTC
 </div>
 </div>
 </body>

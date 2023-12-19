@@ -612,14 +612,14 @@ If you want to control the rendering of certain pages without using page templat
 </table>
 </div>
 <div class="paragraph">
-<p>Next up,</p>
+<p>Next up, let&#8217;s see how to <a href="static-assets.ahtml">add and serve static assets</a>, using the built-in asset service.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 14:25:38 UTC
+Last updated 2023-12-19 14:32:09 UTC
 </div>
 </div>
 </body>
