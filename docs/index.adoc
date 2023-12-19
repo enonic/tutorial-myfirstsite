@@ -2,7 +2,7 @@
 
 = My first site
 
-This tutorial introduces you to building websites with Enonic XP. You will learn the basics of content modelling using pages and components, as well as rendering with the Enonic JS framework.
+Learn the fundameltal principals of pages, components, and rendering with the Enonic JS framework.
 
 TIP: If you are primarily interested in our headless API, visit https://developer.enonic.com/docs/intro[our hands on introduction], or the https://developer.enonic.com/docs/developer-101[developer 101 tutorial].
 
@@ -10,11 +10,10 @@ During this exercise you will:
 
 * set up a local Enonic developer environment
 * create an Enonic app
-* learn about the structure of an Enonic app
 * install and use Content Studio
-* learn about and use content types, pages and parts
+* learn about and use content types and page components
 * Try out page templates
-* deploy static assets
+* Use static assets
 * and then some...
 
 image::ready-set-code.svg["Ready...Set...Code!", width=720px]

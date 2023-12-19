@@ -25,21 +25,21 @@ Your XP `Dashboard` should now have a `Content Studio widget`, indicating that y
 
 image::dashboard.png["Install the Content Studio app", width="1024px"]
 
-NOTE: A content project called `My First Site` and the sample content gets imported when your application was started the first time.
+A content project called `My First Site` and the sample content gets imported when your application was started the first time. Let's have a closer look. 
 
-Let's have a closer look. Open Content Studio from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
+**Open Content Studio** from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
 
 image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
 
 You should now see a content structure, with `Hello World` as the root item. From the icon, you can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA and Templates` as child items. 
 
-TIP: ignore "Templates" for now, we'll back to it later). 
+TIP: ignore the `Templates` folder for now, we'll getback to it later. 
 
-Select the hello-world content and click on btn:[edit].
+Select the hello-world content and click btn:[edit].
 
 image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=1024px]
 
-Because the `My firt site` app is attached to the site, you get access all the goodies from your app within it's scope. One of this goodies is enabling you to create new content based on custom content types defined within your app. 
+Because your `My first site` app has been added to the site, you get access all the goodies from the app within the site. One of these goodies is the ability to create new types of content. 
 
 == Content Types
 

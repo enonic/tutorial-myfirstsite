@@ -1,9 +1,8 @@
+= Page
 :experimental:
 :imagesdir: media/
 :sourcedir: ../
-
-= Page
-Using pages to render your content
+Visualize your content with pages
 
 NOTE: Using the headless API, Enonic supports use 3rd party front-end frameworks. Enonic also provides an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework], which we will use for rendring here. 
 
