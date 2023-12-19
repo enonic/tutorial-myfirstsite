@@ -460,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/publish.gif" alt="Demonstrating how to publish all items in the project" width="1024px">
+<img src="media/publish.gif" alt="Demonstrating how to publish all items in the project" width="800px">
 </div>
 </div>
 <div class="paragraph">
@@ -501,7 +501,7 @@ To learn more about content modelling, and the GraphQL API, visit our <a href="h
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:51:00 UTC
+Last updated 2023-12-19 14:25:38 UTC
 </div>
 </div>
 </body>

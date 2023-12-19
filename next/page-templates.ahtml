@@ -441,7 +441,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#reusable_pages">Reusable pages</a></li>
-<li><a href="#toggle_template">Toggle template</a></li>
+<li><a href="#from_scratch">From scratch</a></li>
+<li><a href="#automatic_fixed_or_customized">Automatic, fixed or customized</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -461,21 +462,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Previously, we mentioned that you&#8217;d get to know about the <code>Templates</code> folder a bit later. The time has arrived.</p>
 </div>
 <div class="paragraph">
-<p>With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.</p>
+<p>With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. country - and all countries will be rendered by it.</p>
 </div>
 <div class="paragraph">
-<p>By creating a page template, and mapping it to a specific content type i.e. countries - all countries will be rendered by the page template.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s create a page template for the country content type:</p>
+<p>Let&#8217;s take advantage over the fact that we have already created a page for a city.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the <code>Templates</code> content item and then click on <b class="button">new</b></p>
+<p>Select, and <b class="button">Edit</b> the City with the page</p>
+</li>
+<li>
+<p>Select the page component, and from the context menu click <b class="button">Save as Template</b></p>
+</li>
+<li>
+<p>Give your Template a suitable name i.e. <code>Country template</code></p>
+</li>
+<li>
+<p>In the <code>Supported content types</code> field, choose <code>Country</code>.</p>
+<div class="paragraph">
+<p>Here is a video demonstrating the process.</p>
+</div>
+</li>
+</ol>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template-1.png" alt="List of content types under the root site content, with the Templates highlighted" width="1024px">
+<img src="media/page-template.gif" alt="Creating a page template from a page" width="1920px">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, all of your cities will be rendered by the page template.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="from_scratch"><a class="link" href="#from_scratch">From scratch</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just like any other piece of content, a page template can also be created from scratch.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the <code>Templates</code> content item and then click <b class="button">new</b></p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-1.png" alt="List of content types under the root site content, with the Templates highlighted" width="418px">
 </div>
 </div>
 </li>
@@ -483,7 +516,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Select the <code>Page template</code> content type</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="1024px">
+<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="718px">
 </div>
 </div>
 </li>
@@ -491,7 +524,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>On supports, select <code>Country</code> content type and click on <code>Apply</code></p>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template-3.png" alt="List of available content types under the support filter, with the Country content type highlighted" width="1024px">
+<img src="media/page-template-3.png" alt="List of available content types under the support filter, with the Country content type highlighted" width="336px">
 </div>
 </div>
 </li>
@@ -499,7 +532,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>On the right section, select the <code>Hello Regions!</code> page</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template-4.png" alt="List of available pages, with the Hello Regions! page highlighted" width="1024px">
+<img src="media/page-template-4.png" alt="List of available pages, with the Hello Regions! page highlighted" width="499px">
 </div>
 </div>
 </li>
@@ -507,7 +540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Right click on <code>Drop here</code> region in the added page, then <code>insert</code> and <code>part</code> and select the <code>Country</code> part</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template-5.png" alt="List of available parts to be added withing a region, with the Country part highlighted" width="1024px">
+<img src="media/page-template-5.png" alt="List of available parts to be added withing a region, with the Country part highlighted" width="612px">
 </div>
 </div>
 </li>
@@ -531,10 +564,10 @@ Try clicking the other countries to verify that the template actually works as i
 </div>
 </div>
 <div class="sect1">
-<h2 id="toggle_template"><a class="link" href="#toggle_template">Toggle template</a></h2>
+<h2 id="automatic_fixed_or_customized"><a class="link" href="#automatic_fixed_or_customized">Automatic, fixed or customized</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The country item you edited still uses the custom page you created - you can change this one to use the new page template as well.</p>
+<p>The country item you manually edited still uses the custom page you created - you can make it use the page template as well.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -542,7 +575,7 @@ Try clicking the other countries to verify that the template actually works as i
 <p>Edit the initial country, open the page editor and select the page.</p>
 </li>
 <li>
-<p>From the right hand component view, change the "Template" setting from "Custom" to "Automatic"</p>
+<p>From the right hand component view, change the Template setting from <code>Custom</code> to <code>Automatic</code></p>
 </li>
 </ol>
 </div>
@@ -586,7 +619,7 @@ If you want to control the rendering of certain pages without using page templat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:51:00 UTC
+Last updated 2023-12-19 14:25:38 UTC
 </div>
 </div>
 </body>

@@ -494,7 +494,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/dashboard.png" alt="Install the Content Studio app" width="1024px">
+<img src="media/dashboard.png" alt="Enonic dashboard with Content Studio Widget">
 </div>
 </div>
 <div class="paragraph">
@@ -528,7 +528,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-world-content.png" alt="Root hello world content with the my first site app assigned to it" width="1024px">
+<img src="media/hello-world-content.png" alt="Root hello world content with the my first site app assigned to it" width="920px">
 </div>
 </div>
 <div class="paragraph">
@@ -550,7 +550,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/city-form.png" alt="Form for the city content type" width="1024px">
+<img src="media/city-form.png" alt="Form for the city content type" width="920px">
 </div>
 </div>
 <div class="paragraph">
@@ -614,7 +614,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:51:00 UTC
+Last updated 2023-12-19 14:25:38 UTC
 </div>
 </div>
 </body>

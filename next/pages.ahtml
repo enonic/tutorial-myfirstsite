@@ -571,7 +571,7 @@ The view is plain HTML, but also uses a specific syntax known as the <a href="ht
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-world.gif" alt="Demonstrating the process of setting up a page" width="1024px">
+<img src="media/hello-world.gif" alt="Demonstrating the process of setting up a page" width="1920px">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -605,7 +605,7 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:51:00 UTC
+Last updated 2023-12-19 14:25:38 UTC
 </div>
 </div>
 </body>
