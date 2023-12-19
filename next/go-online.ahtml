@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Now that the setup of `Hello World` site is completed, it&#8217;s time to publish.">
 <title>Go Online</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -438,11 +437,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article">
 <div id="header">
 <h1>Go Online</h1>
-<div class="details">
-<span id="author" class="author">Now that the setup of `Hello World` site is completed, it&#8217;s time to publish.</span><br>
-</div>
 </div>
 <div id="content">
+<div class="paragraph">
+<p>Now that the setup of <code>Hello World</code> site is completed, it&#8217;s time to publish.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -502,7 +501,7 @@ To learn more about content modelling, and the GraphQL API, visit our <a href="h
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:46:27 UTC
+Last updated 2023-12-19 13:51:00 UTC
 </div>
 </div>
 </body>

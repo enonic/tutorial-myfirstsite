@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Add static assets like icons, css and JavaScript to your website">
 <title>Static assets</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -438,9 +437,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article toc2 toc-right">
 <div id="header">
 <h1>Static assets</h1>
-<div class="details">
-<span id="author" class="author">Add static assets like icons, css and JavaScript to your website</span><br>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -455,6 +451,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add static assets like icons, css and JavaScript to your website</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="serving_a_css_file"><a class="link" href="#serving_a_css_file">Serving a CSS file</a></h2>
 <div class="sectionbody">
@@ -549,7 +552,7 @@ When running in dev mode (like you do now), cache headers are deactivated
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 13:46:27 UTC
+Last updated 2023-12-19 13:51:00 UTC
 </div>
 </div>
 </body>
