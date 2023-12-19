@@ -25,7 +25,7 @@ image::install-content-studio.png["Install the Content Studio app", width="760px
 
 Your XP `Dashboard` should now have a `Content Studio widget`, indicating that you already have some sample content available.
 
-image::dashboard.png["Install the Content Studio app", width="1024px"]
+image::dashboard.png["Enonic dashboard with Content Studio Widget"]
 
 A content project called `My First Site` and the sample content gets imported when your application was started the first time. Let's have a closer look. 
 
@@ -39,7 +39,7 @@ TIP: ignore the `Templates` folder for now, we'll getback to it later.
 
 Select the hello-world content and click btn:[edit].
 
-image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=1024px]
+image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=920px]
 
 Because your `My first site` app has been added to the site, you get access all the goodies from the app within the site. One of these goodies is the ability to create new types of content. 
 
@@ -51,7 +51,7 @@ Enonic XP ships with a limited set of standard content types such as `Shortcut`,
 
 Let's explore the `City` content type. In Content Studio it should look something like this:
 
-image::city-form.png["Form for the city content type", width=1024px]
+image::city-form.png["Form for the city content type", width=920px]
 
 The content type is defined in a descriptor file, looking like this:
 

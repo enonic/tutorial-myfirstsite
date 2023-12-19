@@ -9,7 +9,7 @@ Now that the setup of `Hello World` site is completed, it's time to publish.
 . Several `In progress` items are blocking publishing - click `Mark as ready` to fix this.
 . click *Publish*!
 
-image::publish.gif["Demonstrating how to publish all items in the project", width=1024px]
+image::publish.gif["Demonstrating how to publish all items in the project", width=800px]
 
 What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from *draft* to the *master* branch
 

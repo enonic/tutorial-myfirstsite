@@ -44,7 +44,7 @@ To actually have the `hello` page component render something, it must be associa
 . Select the site content `Hello World` and click btn:[edit]
 . From the preview panel on the right, select the `Hello` page component in the list. Your changes will automatically save, and the page preview will render the result.
 
-image::hello-world.gif["Demonstrating the process of setting up a page", width=1024px]
+image::hello-world.gif["Demonstrating the process of setting up a page", width=1920px]
 
 TIP: To learn more about pages, visit the https://developer.enonic.com/docs/xp/stable/cms/pages[pages] documentation.
 
