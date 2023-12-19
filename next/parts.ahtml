@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Parts: configurable components</title>
+<meta name="author" content="A flexible component type to use for your pages">
+<title>Parts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,24 +437,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Parts</h1>
+<div class="details">
+<span id="author" class="author">A flexible component type to use for your pages</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#parts_configurable_components">Parts: configurable components</a></li>
-<li><a href="#configurable_part">Configurable part</a></li>
+<li><a href="#the_country_part">The country part</a></li>
+<li><a href="#part_configuration">Part configuration</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="parts_configurable_components"><a class="link" href="#parts_configurable_components">Parts: configurable components</a></h2>
+<h2 id="the_country_part"><a class="link" href="#the_country_part">The country part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;re now ready to present some more information from the <strong>Country</strong> content type.</p>
+<p>It&#8217;s about time we render details from the <strong>Country</strong> content type.</p>
 </div>
 <div class="paragraph">
-<p>Rather than making another page component, let&#8217;s create a <code>part</code>. Parts are essentially components that can be added to regions.</p>
+<p>Rather than making another page component, let&#8217;s create a <code>part</code>. Parts are components that can be added to regions.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -525,7 +530,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>When done, the part can be added to the page by drag&#8217;n dropping a part component from the right-hand-side, then select the <code>Country</code> component from the list. By the end, you should have something like this:</p>
+<p>When done, the part can be added to the page by drag&#8217;n dropping a part from the right-hand-side, then select the <code>Country</code> component from the list. By the end, you should see something like this:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="512px">
@@ -534,10 +539,22 @@ export function get(): Response {
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may also use the form component tree (on the left, or floating above the page editor) to add components to your page.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="configurable_part"><a class="link" href="#configurable_part">Configurable part</a></h2>
+<h2 id="part_configuration"><a class="link" href="#part_configuration">Part configuration</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Let&#8217;s try something slightly more advanced.</p>
@@ -692,7 +709,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The controller is also configured to log model passed to the view, check sandbox log after visiting a country page to see what is happening.
+The controller is also configured to write the <code>model</code> object to the log. Check the sandbox log after visiting a country page to see what is happening.
 </td>
 </tr>
 </table>
@@ -735,17 +752,17 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your application.</p>
+<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your pages.</p>
 </div>
 <div class="paragraph">
-<p>Next you&#8217;ll learn about layouts, which are basically parts that also accepts regions.</p>
+<p>In the next chapter you&#8217;ll <a href="layouts.ahtml">learn about layouts</a>. Layouts are essentially parts that also support regions.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

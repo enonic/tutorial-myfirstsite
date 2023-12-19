@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p>This is a step-by-step introduction to building websites with the Enonic JS framework.</p>
+<p>This tutorial introduces you to building websites with Enonic XP. You will learn the basics of content modelling using pages and components, as well as rendering with the Enonic JS framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you are primarily looking to use Enonic&#8217;s headless API, visit <a href="https://developer.enonic.com/docs/intro">the intro tutorial</a> instead.
+If you are primarily interested in our headless API, visit <a href="https://developer.enonic.com/docs/intro">our hands on introduction</a>, or the <a href="https://developer.enonic.com/docs/developer-101">developer 101 tutorial</a>.
 </td>
 </tr>
 </table>
@@ -466,22 +466,19 @@ If you are primarily looking to use Enonic&#8217;s headless API, visit <a href="
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>install and use Content Studio</p>
-</li>
-<li>
 <p>learn about the structure of an Enonic app</p>
 </li>
 <li>
-<p>learn about content types</p>
+<p>install and use Content Studio</p>
 </li>
 <li>
-<p>set up pages and parts</p>
+<p>learn about and use content types, pages and parts</p>
 </li>
 <li>
-<p>use page templates</p>
+<p>Try out page templates</p>
 </li>
 <li>
-<p>manage static assets</p>
+<p>deploy static assets</p>
 </li>
 <li>
 <p>and then some&#8230;&#8203;</p>
@@ -496,7 +493,7 @@ If you are primarily looking to use Enonic&#8217;s headless API, visit <a href="
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

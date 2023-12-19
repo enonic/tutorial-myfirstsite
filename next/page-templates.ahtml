@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Page templates: mapping content types to views</title>
+<meta name="author" content="Create page templates to reuse a page across different content items">
+<title>Page templates</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,10 +437,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Page templates</h1>
+<div class="details">
+<span id="author" class="author">Create page templates to reuse a page across different content items</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#page_templates_mapping_content_types_to_views">Page templates: mapping content types to views</a></li>
+<li><a href="#reusable_pages">Reusable pages</a></li>
 <li><a href="#toggle_template">Toggle template</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -447,16 +452,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="page_templates_mapping_content_types_to_views"><a class="link" href="#page_templates_mapping_content_types_to_views">Page templates: mapping content types to views</a></h2>
+<h2 id="reusable_pages"><a class="link" href="#reusable_pages">Reusable pages</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On the Content types chapter we mentioned that you&#8217;d get to know the <code>Templates</code> child content of the root site later&#8230;&#8203; now&#8217;s the time!</p>
+<p>Previously, we mentioned that you&#8217;d get to know about the <code>Templates</code> folder a bit later. The time has arrived.</p>
 </div>
 <div class="paragraph">
 <p>With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.</p>
 </div>
 <div class="paragraph">
-<p>By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.</p>
+<p>By creating a page template, and mapping it to a specific content type i.e. countries - all countries will be rendered by the page template.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s create a page template for the country content type:</p>
@@ -464,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the <code>Templates</code> content item and then click on btn:[new]</p>
+<p>Select the <code>Templates</code> content item and then click on <b class="button">new</b></p>
 <div class="imageblock">
 <div class="content">
 <img src="media/page-template-1.png" alt="List of content types under the root site content, with the Templates highlighted" width="1024px">
@@ -526,7 +531,7 @@ Try clicking the other countries to verify that the template actually works as i
 <h2 id="toggle_template"><a class="link" href="#toggle_template">Toggle template</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.</p>
+<p>The country item you edited still uses the custom page you created - you can change this one to use the new page template as well.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -545,7 +550,7 @@ Try clicking the other countries to verify that the template actually works as i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For each content item, you can select a specific template, or customize the presentation at any time.
+For every single content item, you can use <code>Automatic</code> (default), select a <code>specific template</code>, or <code>customize</code> the page.
 </td>
 </tr>
 </table>
@@ -556,17 +561,29 @@ For each content item, you can select a specific template, or customize the pres
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve just learned about page templates, which is a way to map certain configurations of views to the existing content types of your application.</p>
+<p>You&#8217;ve just learned about page templates, which is a way to reuse a page across specific content types within your site. This is a powerful feature of the CMS, as it enables editors to manage and publish page templates, just like any other content.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to control the rendering of certain pages without using page templates, check out <a href="https://developer.enonic.com/docs/xp/stable/framework/mappings" target="_blank" rel="noopener">controller mappings</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>This is a crucial feature of the CMS since its usage guarantees consistency of views throughout same types of contents.</p>
+<p>Next up,</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Add static assets like icons, css and JavaScript to your website">
 <title>Static assets</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -436,10 +437,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Static assets</h1>
+<div class="details">
+<span id="author" class="author">Add static assets like icons, css and JavaScript to your website</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#static_assets">Static assets</a>
+<li><a href="#serving_a_css_file">Serving a CSS file</a>
 <ul class="sectlevel2">
 <li><a href="#perfect_cache">Perfect cache</a></li>
 <li><a href="#lib_static">Lib static</a></li>
@@ -451,19 +456,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="static_assets"><a class="link" href="#static_assets">Static assets</a></h2>
+<h2 id="serving_a_css_file"><a class="link" href="#serving_a_css_file">Serving a CSS file</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, the site is made up of dynamic HTML and images.
-Let&#8217;s have a look at how to handle static assets like graphics, CCS and JavaScript files.</p>
+<p>So far, the site is primarily made up of dynamic HTML and images.
+Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll use a CSS file.</p>
 </div>
 <div class="paragraph">
-<p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service">Asset service</a>.
-By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
+<p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service">Asset service</a>. By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
 </div>
 <div class="paragraph">
-<p>Your application already includes the sample asset <code>assets/mvp.css</code>.
-Let&#8217;s put it to work by adding the CSS to the page component:</p>
+<p>Your application already includes the sample asset <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by injecting it to the page component:</p>
 </div>
 <div class="paragraph">
 <p><strong>Update your page component view</strong> with the following content:</p>
@@ -509,8 +512,7 @@ Let&#8217;s put it to work by adding the CSS to the page component:</p>
 </div>
 <div class="paragraph">
 <p>How does it work?
-The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app.
-The <code>portal.assetUrl()</code> function uses this signature when generating the URL, ensuring that clients always get the most recent version.</p>
+The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The <code>portal.assetUrl()</code> function uses this signature when generating the URL, ensuring that clients always get the most recent version.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -528,13 +530,10 @@ When running in dev mode (like you do now), cache headers are deactivated
 <div class="sect2">
 <h3 id="lib_static"><a class="link" href="#lib_static">Lib static</a></h3>
 <div class="paragraph">
-<p>If you&#8217;re using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal.</p>
+<p>If you&#8217;re using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Lib static</a> to your app.</p>
 </div>
 <div class="paragraph">
-<p>For this purpose, you can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Lib static</a> to your app.</p>
-</div>
-<div class="paragraph">
-<p>We will not go into details in this tutorial, but lib-static is pre-bundled with selected app starters like <a href="https://market.enonic.com/vendors/enonic/webpack-starter" target="_blank" rel="noopener">Webpack Starter</a> and <a href="https://market.enonic.com/vendors/enonic/react4xp-starter" target="_blank" rel="noopener">React4XP starter</a>.</p>
+<p>Lib-static is pre-bundled with selected app starters like the <a href="https://market.enonic.com/vendors/enonic/tsup-starter" target="_blank" rel="noopener">Tsup Starter</a> and <a href="https://market.enonic.com/vendors/enonic/react4xp-starter" target="_blank" rel="noopener">React4XP starter</a>.</p>
 </div>
 </div>
 </div>
@@ -543,14 +542,14 @@ When running in dev mode (like you do now), cache headers are deactivated
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The journey on this docs so far provided you a starting ground to build your first website. Let&#8217;s now take a look on how you can publish everything you&#8217;ve done so far and finally Go online!</p>
+<p>The journey on this docs so far provided you a starting ground to build your first website. Let&#8217;s now take a look on how you can <a href="go-online.ahtml">publish everything and go online</a>!</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

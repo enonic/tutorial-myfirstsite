@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Layouts: parts with regions</title>
+<meta name="author" content="If you have the need to have a customizable part that also accept some regions, then a layout is the feature you&#8217;re looking for.">
+<title>Layouts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,28 +437,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Layouts</h1>
+<div class="details">
+<span id="author" class="author">If you have the need to have a customizable part that also accept some regions, then a layout is the feature you&#8217;re looking for.</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#layouts_parts_with_regions">Layouts: parts with regions</a></li>
+<li><a href="#two_column_layout">Two column layout</a></li>
 <li><a href="#using_the_layout">Using the layout</a></li>
+<li><a href="#text_component">Text component</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="layouts_parts_with_regions"><a class="link" href="#layouts_parts_with_regions">Layouts: parts with regions</a></h2>
+<h2 id="two_column_layout"><a class="link" href="#two_column_layout">Two column layout</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have the need to have a customizable part that also accept some regions, then a layout is the feature you&#8217;re looking for.</p>
+<p>In this chapter, you&#8217;ll be making a layout that has two columns, each column using a region to accept injectable content. We&#8217;ll also support configuration of the part, so editors can control the sizes for each of those two columns.</p>
 </div>
-<div class="paragraph">
-<p>Our goal from now on will be to come up with a layout with a custom config for two columns, each column using a region to accept injectable content. The custom config will be responsible to set the sizes for each of those two columns.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s start by defining the descriptor for the <code>two-columns</code> layout:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Let&#8217;s start by <strong>adding the descriptor</strong> for the <code>two-columns</code> layout:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.xml</div>
 <div class="content">
@@ -484,8 +488,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>note that it doesn&#8217;t change much from what you&#8217;ve seen so far&#8230;&#8203; It&#8217;s basically a mix of what you saw on pages and parts chapters. Now let&#8217;s define the controller:</p>
+<p>Notice that it doesn&#8217;t change much from what you&#8217;ve seen so far. It&#8217;s basically a mix of pages and parts.</p>
 </div>
+</li>
+<li>
+<p>Now, <strong>add the controller</strong>:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.ts</div>
 <div class="content">
@@ -531,9 +538,9 @@ export function get(): Response {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>the view:</p>
-</div>
+</li>
+<li>
+<p><strong>the view</strong>:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.html</div>
 <div class="content">
@@ -551,9 +558,9 @@ export function get(): Response {
 &lt;/section&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>and finally, make sure to add the styling:</p>
-</div>
+</li>
+<li>
+<p>and finally, <strong>some styling</strong>:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/assets/styles/two-columns.scss</div>
 <div class="content">
@@ -575,14 +582,17 @@ export function get(): Response {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>So far, the only section of code that is new is the <code>pageContributions</code> in the controller.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Its naming speaks for itself, but just for clarity, that&#8217;s a way to add specific html on certain places before the server serves the final HTML&#8230;&#8203; those certain places are: on <code>head</code> tag begin or end, or on <code>body</code> tag begin or end.</p>
+<p>So far, the only section of code that is new is the <code>pageContributions</code> you see in the controller.</p>
 </div>
 <div class="paragraph">
-<p>In our case we used it to add the <code>two-columns.css</code> asset file (processed from <code>scss</code> to <code>css</code> during build) when this layout is used on a page.</p>
+<p>Its naming speaks for itself, but just for clarity, is&#8217;s a way to inject HTML on certain places within the markup. Those places are on the <code>head</code> tag begin or end, or on <code>body</code> tag begin or end.</p>
+</div>
+<div class="paragraph">
+<p>In our case we used it to add a reference to the <code>two-columns.css</code> asset file (processed from <code>scss</code> to <code>css</code> during build), when this layout is placed on a page.</p>
 </div>
 </div>
 </div>
@@ -595,10 +605,10 @@ export function get(): Response {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to the root site content and click on btn:[edit]</p>
+<p>Go to the root site content and click on <b class="button">edit</b></p>
 </li>
 <li>
-<p>Make sure you have the "Hello Regions!" page added to that content, and insert the two-column layout in its main region:</p>
+<p>Add the "Hello Regions!" page component, and insert the two-column layout in its main region:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout.png" alt="Two column layout with 50/50 config and no component in its left and right regions" width="1024px">
@@ -606,7 +616,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Now add some text components to both regions, and write some text:</p>
+<p>Now add a text component to each region, and write some text:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout-with-texts.png" alt="Two column layout with 50/50 config and texts on its two left and right regions" width="1024px">
@@ -614,7 +624,7 @@ export function get(): Response {
 </div>
 </li>
 <li>
-<p>Finally, select different configurations for the sizing of those columns: 33/66, 50/50 and 66/33 and check the results:</p>
+<p>Finally, select different configurations for the layout - Available options are: 33/66, 50/50 and 66/33 and check the results:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout-33-66-with-texts.png" alt="Two column layout with 33/66 config and texts on its two left and right regions" width="1024px">
@@ -623,14 +633,25 @@ export function get(): Response {
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Follow these links for more details on  <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions" target="_blank" rel="noopener">contributions</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/layouts" target="_blank" rel="noopener">layouts</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Above, we added Text components into the regions. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
+</div>
+<div class="paragraph">
+<p>Visit the refrence documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Note that in our example we added a text component part in the regions of the layout, which is a standard part that is shipped with Enonic XP, but you are not restricted to that.</p>
-</div>
 <div class="paragraph">
 <p>As already mentioned, regions accepts all kinds of parts, so by combining layouts with your custom parts, together with their own custom configurations, you can basically achieve any kind of design!</p>
 </div>
@@ -639,7 +660,7 @@ export function get(): Response {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

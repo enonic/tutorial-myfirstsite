@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Install Enonic CLI</title>
+<meta name="author" content="Set up the developer environment, create, build, and deploy and application.">
+<title>Setup</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,6 +437,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Setup</h1>
+<div class="details">
+<span id="author" class="author">Set up the developer environment, create, build, and deploy and application.</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -450,7 +455,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#dev_mode">Dev mode</a></li>
 </ul>
 </li>
-<li><a href="#install_content_studio">Install Content Studio</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -497,28 +501,23 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a sandbox</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A sandbox is a local developer instance of our platform - Enonic XP.</p>
+<p>A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run our platform in different versions.</p>
 </div>
-<div class="paragraph">
-<p>Each sandbox is isolated from the other ones and can run our platform in different versions.</p>
-</div>
-<div class="paragraph">
-<p>Create a sandbox by running this command in your terminal:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a sandbox</strong> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
 <pre>enonic sandbox create</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Give it a name, i.e. <code>MySandbox</code>, and agree to continue with the most recent version of Enonic XP.</p>
+<p>Give it a name, i.e. <code>MySandbox</code>, and agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
 </div>
-<div class="paragraph">
-<p>The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
-</div>
-<div class="paragraph">
-<p>After the download is finished, start the sandbox with this command:</p>
-</div>
+</li>
+<li>
+<p><strong>Start the sandbox</strong> with this command:</p>
 <div class="literalblock">
 <div class="content">
 <pre>enonic sandbox start --dev</pre>
@@ -526,6 +525,9 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 <div class="paragraph">
 <p>Select the <code>MySandbox</code> sandbox from the list, and it will boot up in development mode.</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -721,37 +723,6 @@ For further details on the dev command, check the <a href="https://developer.eno
 </div>
 </div>
 <div class="sect1">
-<h2 id="install_content_studio"><a class="link" href="#install_content_studio">Install Content Studio</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Open the sandbox admin</strong>: <a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin</a> and click <code>Login without a user</code>. This will bring you to the Dashboard.</p>
-</li>
-<li>
-<p><strong>Open the Applications app</strong> from the top right <code>XP menu &#8594; Applications</code>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/xp-menu-applications.png" alt="Go to Applications from the XP menu" width="319px">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Install Content Studio</strong>: click <code>Install</code> button in the menu bar, scroll down to <code>Content Studio</code> (or use search) in the list of apps that appears and click <code>Install</code> next to it.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/install-content-studio.png" alt="Install the Content Studio app" width="760px">
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -768,7 +739,7 @@ For further details on the dev command, check the <a href="https://developer.eno
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

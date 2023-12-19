@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Content Items</title>
+<meta name="author" content="Introduction to Content Studio, content types and content items">
+<title>Content</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,10 +437,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
+<h1>Content</h1>
+<div class="details">
+<span id="author" class="author">Introduction to Content Studio, content types and content items</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#content_items">Content Items</a></li>
+<li><a href="#install_content_studio">Install Content Studio</a></li>
+<li><a href="#content">Content</a></li>
 <li><a href="#content_types">Content Types</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -447,21 +453,61 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="content_items"><a class="link" href="#content_items">Content Items</a></h2>
+<h2 id="install_content_studio"><a class="link" href="#install_content_studio">Install Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On the <code>Dashboard</code>, a Content Studio widget should now have appeared. It shows that we already have some sample content available.</p>
+<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the sandbox admin</strong>: <a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin</a> and click <code>Login without a user</code>. This will bring you to the Dashboard.</p>
+</li>
+<li>
+<p><strong>Open the Applications app</strong> from the top right <code>XP menu &#8594; Applications</code>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-menu-applications.png" alt="Go to Applications from the XP menu" width="319px">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Install Content Studio</strong>: click <code>Install</code> button in the menu bar, scroll down to <code>Content Studio</code> (or use search) in the list of apps that appears and click <code>Install</code> next to it.</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/install-content-studio.png" alt="Install the Content Studio app" width="760px">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="content"><a class="link" href="#content">Content</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your XP <code>Dashboard</code> should now have a <code>Content Studio widget</code>, indicating that you already have some sample content available.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="media/dashboard.png" alt="Install the Content Studio app" width="1024px">
 </div>
 </div>
-<div class="paragraph">
-<p>A content project called <code>My First Site</code> and the sample content gets imported when your application was started the first time.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A content project called <code>My First Site</code> and the sample content gets imported when your application was started the first time.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s have a closer look&#8230;&#8203; start by opening Content Studio, which is now available in <code>XP menu &#8594; Content Studio</code>. You should now see some imported content.</p>
+<p>Let&#8217;s have a closer look. Open Content Studio from the right hand <code>XP menu &#8594; Content Studio</code>. You should now see some of the imported content.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -469,7 +515,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>As can be seen, Columbia, Norway, USA and Templates are all child content of the root hello-world content (ignore "Templates" for now, you&#8217;ll get to know about it later). Select the hello-world content and click on btn:[edit].</p>
+<p>You should now see a content structure, with <code>Hello World</code> as the root item. From the icon, you can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA and Templates</code> as child items.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+ignore "Templates" for now, we&#8217;ll back to it later).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Select the hello-world content and click on <b class="button">edit</b>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -477,10 +538,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Note that under "Applications" your "My firt site" app is attached to that hello world root content. For now it is sufficient to understand that this assignment is responsible to enhance the root content with all the goodies from your app. One of this goodies is enabling you to create new content based on new types, a.k.a content types, defined by your app.</p>
-</div>
-<div class="paragraph">
-<p>Currently, the my first site starter comes with two content types: <code>Country</code> and <code>City</code>, which are defined under <code>src/main/resources/site/content-types</code>.</p>
+<p>Because the <code>My firt site</code> app is attached to the site, you get access all the goodies from your app within it&#8217;s scope. One of this goodies is enabling you to create new content based on custom content types defined within your app.</p>
 </div>
 </div>
 </div>
@@ -488,16 +546,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="content_types"><a class="link" href="#content_types">Content Types</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Every content item has a specific a content type.</p>
+<p>Every content item has a specific a content type. You app contains two content types: <code>Country</code> and <code>City</code>. They are defined under <code>src/main/resources/site/content-types</code>.</p>
 </div>
 <div class="paragraph">
-<p>Enonic XP ships with a set of standard content types such as <code>Shortcut</code>, <code>Folder</code>, <code>Site</code> and a range of <code>Media Types</code> that handle different kind of files.</p>
+<p>Enonic XP ships with a limited set of standard content types such as <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a range of <code>Media Types</code> that handle different kind of files. Additionally, an application may define its own custom content types.</p>
 </div>
 <div class="paragraph">
-<p>Additionally, an application may define its own custom content types. As mentioned, your application already have two content types defined. Let&#8217;s explore a bit the <code>City</code> content type.</p>
-</div>
-<div class="paragraph">
-<p>In Content Studio, the <code>City</code> content type looks something like this:</p>
+<p>Let&#8217;s explore the <code>City</code> content type. In Content Studio it should look something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -505,7 +560,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>The content type is defined in a file, looking like this:</p>
+<p>The content type is defined in a descriptor file, looking like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/content-types/city/city.xml</div>
@@ -535,7 +590,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Now that you understand the basics of content and content types, use Content Studio to create a new content of type <code>Country</code> with a child content of type <code>City</code>.</p>
+<p>Now that you understand the basics of content and content types, use Content Studio to create a new <code>Country</code>. Then, add a <code>City</code> (or more) within it.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -544,7 +599,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Visit these links for more information about <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types">standard content types</a> and about <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas">custom content types</a>
+For more details visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas">schemas in general</a>.
 </td>
 </tr>
 </table>
@@ -555,17 +610,17 @@ Visit these links for more information about <a href="https://developer.enonic.c
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve got introduced to content items and content types, and if followed along, even created some content based on the existing content types from your application.</p>
+<p>You&#8217;ve been introduced to content items and content types, and even created some content based on the content types from your application.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s now move forward to previewing or rendering the existing content. To do that, we&#8217;ll start with the concept of <code>Pages</code>.</p>
+<p>Let&#8217;s now move forward to previewing or rendering the existing content. To do that, we&#8217;ll start with <a href="pages.ahtml">the concept of Pages</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>

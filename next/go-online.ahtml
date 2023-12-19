@@ -434,19 +434,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article toc2 toc-right">
+<body class="article">
 <div id="header">
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#go_online">Go Online</a></li>
-</ul>
-</div>
+<h1>Go Online</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="go_online"><a class="link" href="#go_online">Go Online</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Now that the setup of <code>Hello World</code> site is completed, it&#8217;s time to publish.</p>
 </div>
@@ -494,12 +486,22 @@ You can see the published site and the master branch on this url: <code><a href=
 <pre>🎉 Congratulations on building your first Enonic site - The Enonic team.</pre>
 </div>
 </div>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about content modelling, and the GraphQL API, visit our <a href="https://developer.enonic.com/docs/developer-101">Developer 101 tutorial</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-18 14:10:26 UTC
+Last updated 2023-12-19 09:41:11 UTC
 </div>
 </div>
 </body>
