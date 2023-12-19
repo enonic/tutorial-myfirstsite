@@ -1,16 +1,17 @@
 :imagesdir: media/
 :sourcedir: ../
+= Static assets
+Add static assets like icons, css and JavaScript to your website
 
-== Static assets
 
-So far, the site is made up of dynamic HTML and images.
-Let's have a look at how to handle static assets like graphics, CCS and JavaScript files.
+== Serving a CSS file
 
-Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service].
-By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
+So far, the site is primarily made up of dynamic HTML and images.
+Let's have a look at how to handle static assets. In our case, we'll use a CSS file.
 
-Your application already includes the sample asset `assets/mvp.css`.
-Let's put it to work by adding the CSS to the page component:
+Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service]. By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
+
+Your application already includes the sample asset `src/main/resources/assets/mvp.css`. Let's put it to work by injecting it to the page component:
 
 **Update your page component view** with the following content:
 
@@ -30,19 +31,16 @@ image::css.png["Countries page in dark mode after adding the css", width=1024px]
 In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.
 
 How does it work?
-The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app.
-The `portal.assetUrl()` function uses this signature when generating the URL, ensuring that clients always get the most recent version.
+The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The `portal.assetUrl()` function uses this signature when generating the URL, ensuring that clients always get the most recent version.
 
 NOTE: When running in dev mode (like you do now), cache headers are deactivated
 
 === Lib static
 
-If you're using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal.
+If you're using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
 
-For this purpose, you can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
-
-We will not go into details in this tutorial, but lib-static is pre-bundled with selected app starters like https://market.enonic.com/vendors/enonic/webpack-starter[Webpack Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
+Lib-static is pre-bundled with selected app starters like the https://market.enonic.com/vendors/enonic/tsup-starter[Tsup Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
 
 == Summary
 
-The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can publish everything you've done so far and finally Go online! 
+The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can <<go-online#, publish everything and go online>>! 

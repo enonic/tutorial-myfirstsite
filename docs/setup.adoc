@@ -1,4 +1,6 @@
 :imagesdir: media/
+= Setup
+Set up the developer environment, create, build, and deploy and application.
 
 == Install Enonic CLI
 
@@ -18,22 +20,18 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 == Create a sandbox
 
-A sandbox is a local developer instance of our platform - Enonic XP. 
+A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run our platform in different versions.
 
-Each sandbox is isolated from the other ones and can run our platform in different versions.
-
-Create a sandbox by running this command in your terminal:
-
+. **Create a sandbox** by running this command in your terminal:
++
   enonic sandbox create
-
-Give it a name, i.e. `MySandbox`, and agree to continue with the most recent version of Enonic XP.
-
-The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.
-
-After the download is finished, start the sandbox with this command:
-
++
+Give it a name, i.e. `MySandbox`, and agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.
++
+. **Start the sandbox** with this command:
++
   enonic sandbox start --dev
-
++
 Select the `MySandbox` sandbox from the list, and it will boot up in development mode.
 
 TIP: Dev mode will automatically load changes in your code when developing.
@@ -117,19 +115,6 @@ From now on you'll be constantly updating the app, so to avoid the need to re-bu
 
 TIP: For further details on the dev command, check the https://developer.enonic.com/docs/enonic-cli/stable/dev#dev[CLI's dev command documentation]
 
-== Install Content Studio
-
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
-
-. **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
-+
-. **Open the Applications app** from the top right `XP menu -> Applications`.
-+
-image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
-+
-. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
-+
-image::install-content-studio.png["Install the Content Studio app", width="760px"]
 
 == Summary
 

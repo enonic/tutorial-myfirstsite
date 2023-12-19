@@ -1,6 +1,6 @@
 :imagesdir: media/
 
-== Go Online
+= Go Online
 
 Now that the setup of `Hello World` site is completed, it's time to publish.
 
@@ -18,3 +18,6 @@ NOTE: You can see the published site and the master branch on this url: `http://
 *Well done!*
 
  🎉 Congratulations on building your first Enonic site - The Enonic team.
+
+
+TIP: To learn more about content modelling, and the GraphQL API, visit our https://developer.enonic.com/docs/developer-101[Developer 101 tutorial].

@@ -1,12 +1,14 @@
 :imagesdir: media/
+:experimental:
+= Page templates
+Create page templates to reuse a page across different content items
 
-== Page templates: mapping content types to views
-
-On the Content types chapter we mentioned that you'd get to know the `Templates` child content of the root site later... now's the time!
+== Reusable pages
+Previously, we mentioned that you'd get to know about the `Templates` folder a bit later. The time has arrived.
 
 With our current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates.
 
-By creating a page template, and map it to a specific content types, all items of this type - i.e. countries - will be rendered by the page template.
+By creating a page template, and mapping it to a specific content type i.e. countries - all countries will be rendered by the page template.
 
 Let's create a page template for the country content type:
 
@@ -36,16 +38,17 @@ NOTE: Try clicking the other countries to verify that the template actually work
 
 == Toggle template
 
-Your originally edited country still uses the custom page you created - you can change it to use the new page template as well.
+The country item you edited still uses the custom page you created - you can change this one to use the new page template as well.
 
 . Edit the initial country, open the page editor and select the page.
 . From the right hand component view, change the "Template" setting from "Custom" to "Automatic"
 
-
-NOTE: For each content item, you can select a specific template, or customize the presentation at any time.
+NOTE: For every single content item, you can use `Automatic` (default), select a `specific template`, or `customize` the page.
 
 == Summary
 
-You've just learned about page templates, which is a way to map certain configurations of views to the existing content types of your application.
+You've just learned about page templates, which is a way to reuse a page across specific content types within your site. This is a powerful feature of the CMS, as it enables editors to manage and publish page templates, just like any other content.
 
-This is a crucial feature of the CMS since its usage guarantees consistency of views throughout same types of contents.
+TIP: If you want to control the rendering of certain pages without using page templates, check out https://developer.enonic.com/docs/xp/stable/framework/mappings[controller mappings^].
+
+Next up, 
