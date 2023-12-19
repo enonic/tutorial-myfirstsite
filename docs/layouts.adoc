@@ -1,6 +1,7 @@
 :imagesdir: media/
 :sourcedir: ../
 :experimental:
+
 = Layouts
 If you have the need to have a customizable part that also accept some regions, then a layout is the feature you're looking for.
 
@@ -70,11 +71,6 @@ image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 conf
 Follow these links for more details on  https://developer.enonic.com/docs/xp/stable/framework/contributions[contributions^] and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
 
 
-== Text component
-
-Above, we added Text components into the regions. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
-
-Visit the refrence documentation for https://developer.enonic.com/docs/xp/stable/cms/pages/text[more details on the Text Component^].
 
 
 == Summary

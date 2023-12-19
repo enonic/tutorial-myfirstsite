@@ -1,6 +1,7 @@
 :experimental:
 :imagesdir: media/
 :sourcedir: ../
+
 = Content
 Introduction to Content Studio, content types and content items
 

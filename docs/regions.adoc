@@ -1,6 +1,8 @@
 :imagesdir: media/
 :sourcedir: ../
+
 = Regions
+
 Support adding more components to your page, including drag'n drop.
 
 == Component dropzones
@@ -38,12 +40,20 @@ Your sandbox should automatially pickup the changes, as we are running in dev mo
 . Activate the page editor (from the top right monitor icon), and select the `Hello` component.
 +
 image::hello-regions.gif["Setting up a page with a region", width=1024px]
-
++
 You now have a page with a single region! 
-
-Try adding a text component to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
++
+. Try to *add a text component to the region*. It is available from the right hand side as drag-n-drop, or by using the right click menu.
 
 TIP: To learn more about regions, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/regions[regions] documentation.
+
+
+== Text component
+
+Above, we added a text component into the region. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+
+Visit the refrence documentation for https://developer.enonic.com/docs/xp/stable/cms/pages/text[more details on the Text Component^].
+
 
 == Summary
 

@@ -1,17 +1,22 @@
-= Page
 :experimental:
 :imagesdir: media/
 :sourcedir: ../
 
-Visualize your content with pages
+= Pages
 
-NOTE: Using the headless API, Enonic supports use 3rd party front-end frameworks. Enonic also provides an embedded JavaScript runtime, and a https://developer.enonic.com/docs/xp/stable/framework[JS framework], which we will use for rendring here. 
+Visualize your content with pages.
 
+NOTE: Enonic supports use 3rd party front-end frameworks, but also has its own https://developer.enonic.com/docs/xp/stable/framework[JS framework], which we will use throughout this tutorial.
 
 == Page component
 At the moment, we have some content, but no preview or rendering.
 
 Pages are essentially composed from one or more components. Using the Enonic framework, each component will have a JavaScript controller which is responsible for rendering it. Your app includes a pre-defined page component named `hello`.
+
+
+TODO: Descriptor?
+
+
 
 In addition to the controller, this component also uses an html template - a.k.a the View in the Model View Controller (MVC) pattern. It look like this:
 

@@ -1,7 +1,9 @@
 :imagesdir: media/
 :sourcedir: ../
+
 = Parts
-A flexible component type to use for your pages
+
+A flexible component type for your pages
 
 == The country part
 
@@ -30,9 +32,11 @@ include::{sourcedir}code-samples/parts/country/country.ts[]
 include::{sourcedir}code-samples/parts/country/country.html[]
 ----
 +
-. When done, the part can be added to the page by drag'n dropping a part from the right-hand-side, then select the `Country` component from the list. By the end, you should see something like this:
+. *Add the part to the page* by drag'n dropping a part from the right-hand-side and select the `Country` component from the list. 
 +
-image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=512px]
+The result should look something like this:
++
+image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=300px]
 
 NOTE: You may also use the form component tree (on the left, or floating above the page editor) to add components to your page.
 
@@ -72,11 +76,11 @@ include::{sourcedir}code-samples/parts/city-list/city-list.html[]
 . Add the new part to the page you created earlier.
 . Finally, configure the part by selecting it and changing the settings in the right hand panel.
 +
-NOTE: The controller is also configured to write the `model` object to the log. Check the sandbox log after visiting a country page to see what is happening.
+TIP: The controller also writes the `model object` to the log. Check the sandbox log after visiting a country page to see what is happening.
 +
-image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1024px]
+image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1227px]
 +
-TIP: The images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image.
+Images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image.
 
 TIP: To learn more about parts, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/parts[parts] documentation.
 

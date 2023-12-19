@@ -2,7 +2,7 @@
 
 = My first site
 
-Learn the fundameltal principals of pages, components, and rendering with the Enonic JS framework.
+Learn the fundamental principals of pages, components, and rendering with the Enonic JS framework.
 
 TIP: If you are primarily interested in our headless API, visit https://developer.enonic.com/docs/intro[our hands on introduction], or the https://developer.enonic.com/docs/developer-101[developer 101 tutorial].
 

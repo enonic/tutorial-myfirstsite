@@ -1,4 +1,5 @@
 :imagesdir: media/
+
 = Setup
 Set up the developer environment, create, build, and deploy and application.
 
@@ -57,28 +58,30 @@ build.gradle //<1>
 build/ //<2>
 code-samples/ //<3>
 docs/ //<4>
+tsup/ //<5>
 src/
   main/
     resources/
-      import/ //<5>
-      assets/ //<6>
+      import/ //<6>
+      assets/ //<7>
       sites/
-        content-types/ //<7>
+        content-types/ //<8>
           country/
           city/
-        parts/ //<8>
-        pages/ //<9>
+        parts/ //<9>
+        pages/ //<10>
 ----
 
-<1> Gradle files are used by the build system
+<1> Core build files
 <2> Contains output files produced by the build
 <3> Code samples that will be used in this tutorial
 <4> Contains the documentation you are reading now
-<5> Contains sample content that is imported when the app starts
-<6> Location for static assets
-<7> Two pre-defined content types, country and city
-<8> Part components - leaf components to place on pages
-<9> Page components - root component for pages
+<5> TSUP typescript compilation build files
+<6> Contains sample content that is imported when the app starts
+<7> Location for static assets
+<8> Two pre-defined content types, country and city
+<9> Part components - leaf components to place on pages
+<10> Page components - root component for pages
 
 == Building
 
