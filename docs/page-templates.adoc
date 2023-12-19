@@ -66,4 +66,4 @@ You've just learned about page templates, which is a way to reuse a page across 
 
 TIP: If you want to control the rendering of certain pages without using page templates, check out https://developer.enonic.com/docs/xp/stable/framework/mappings[controller mappings^].
 
-Next up, 
+Next up, let's see how to <<static-assets#, add and serve static assets>>, using the built-in asset service.

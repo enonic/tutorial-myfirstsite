@@ -28,10 +28,11 @@ If you're using `dark mode`, the result will look something like this:
 
 image::css.png["Countries page in dark mode after adding the css", width=1024px]
 
-=== Perfect cache
-In production, every asset will include cache headers that allow CDNs and browsers to cache it - and never need to download it again.
+== Perfect cache
+When running Enonic XP in production, every asset will include cache headers that let proxies/CDNs and browsers cache it - without ever having to download it again.
 
-How does it work?
+*How does it work?*
+
 The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The `portal.assetUrl()` function uses this signature when generating the URL, ensuring that clients always get the most recent version.
 
 NOTE: When running in dev mode (like you do now), cache headers are deactivated
