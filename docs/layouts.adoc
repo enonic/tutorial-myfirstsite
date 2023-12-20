@@ -15,7 +15,7 @@ Like for the parts and pages, layout consists of a descriptor, the controller an
 .layouts/two-columns/two-columns.xml
 [source,xml]
 ----
-include::{sourcedir}/layouts/two-columns/two-columns.xml[]
+include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
 ----
 
 Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
@@ -23,13 +23,13 @@ Notice that it doesn't change much from what you've seen so far. It's basically 
 .layouts/two-columns/two-columns.ts
 [source,ts]
 ----
-include::{sourcedir}/layouts/two-columns/two-columns.ts[]
+include::{sourcedir}/site/layouts/two-columns/two-columns.ts[]
 ----
 
 .layouts/two-columns/two-columns.html
 [source,html]
 ----
-include::{sourcedir}/layouts/two-columns/two-columns.html[]
+include::{sourcedir}/site/layouts/two-columns/two-columns.html[]
 ----
 
 == Page contribution
@@ -68,11 +68,13 @@ image::two-column-layout-with-texts.png["Two column layout with 50/50 config and
 +
 image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width="1226px"]
 
- and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
-
 
 == Summary
 
 By combining content types, layouts, parts, pages and page templates, the sky's the limit for what you can build.
+
+Dig deeper into layouts in the https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layout documentation^].
+
+
 
 The journey so far has provided you a starting ground to build your first website. Let's now take a look on how to <<go-online#, go online>>! 
