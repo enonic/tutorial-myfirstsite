@@ -57,16 +57,16 @@ So far you've understood what a layout is and, created the code for a two column
 . Back in content studio btn:[edit] the site content (root item) once more.
 . *Insert the two-column layout* in the main region:
 +
-image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width=1024px]
+image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width="1226px"]
 +
 . *Add a text component to each region*, and write some text:
 +
-image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width=1024px]
+image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width="1226px"]
 
 +
 . Finally, *try out the different configuration options* `33/66`, `50/50` and `66/33` and check the results:
 +
-image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width=1024px]
+image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width="1226px"]
 
  and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
 

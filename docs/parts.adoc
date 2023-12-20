@@ -16,7 +16,7 @@ A descriptor, controller and view have already been added to the `src/main/resou
 .parts/country/country.xml
 [source,xml]
 ----
-include::{sourcedir}/parts/country/country.xml[]
+include::{sourcedir}/country/country.xml[]
 ----
 
 .parts/country/country.ts
