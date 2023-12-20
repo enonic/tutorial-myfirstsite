@@ -8,7 +8,7 @@ Introduction to Content Studio, content types and content items
 
 == Content Studio
 
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but can easily be installed from https://market.enonic.com[Enonic Market^].
 
 . **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
 +
@@ -20,28 +20,31 @@ image::xp-menu-applications.png["Go to Applications from the XP menu", width="31
 +
 image::install-content-studio.png["Install the Content Studio app", width="760px"]
 
+Your XP `Dashboard` should now have a `Content Studio widget`, and `Content Studio` available from the right-hand-side XP menu.
+
+image::dashboard.png["Enonic dashboard with Content Studio Widget", width="1440px"]
+
 
 == Content and projects
 
-Your XP `Dashboard` should now have a `Content Studio widget`, indicating that you already have some sample content available.
-
-image::dashboard.png["Enonic dashboard with Content Studio Widget"]
-
-A content project called `My First Site` and the sample content gets imported when your application was started the first time. Let's have a closer look. 
+A content project called `My First Site` and some sample content gets created when your application starts the first time. Let's have a closer look. 
 
 **Open Content Studio** from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
 
 image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
 
-You should now see a content structure, with `Hello World` as the root item. From the icon, you can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA and Templates` as child items. 
+A content structure, with `Hello World` as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA` and `Templates` as child items. 
 
 TIP: ignore the `Templates` folder for now, we'll getback to it later. 
+
+
+== Editing
 
 Select the hello-world content and click btn:[edit].
 
 image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=920px]
 
-Because your `My first site` app has been added to the site, you get access all the goodies from the app within the site. One of these goodies is the ability to create new types of content. 
+From the left hand from, you can see that your app `My first site`, has been added to the site. This gives Content Studio access to any goodies the app might contain. One such goodie is additional content types.
 
 == Content Types
 
@@ -61,13 +64,14 @@ The content type is defined in a descriptor file, looking like this:
 include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
 ----
 
-Now that you understand the basics of content and content types, use Content Studio to create a new `Country`. Then, add a `City` (or more) within it.
+Now that you understand the basics of content and content types, use Content Studio to create a new `Country` of your choosing. Then, add a `City` (or more) within it.
 
-TIP: For more details visit the reference documentation for https://developer.enonic.com/docs/xp/stable/cms/content-types[content types] and https://developer.enonic.com/docs/xp/stable/cms/schemas[schemas in general].
 
 == Summary
 
 You've been introduced to content items and content types, and even created some content based on the content types from your application.
+
+TIP: For more details visit the reference documentation for https://developer.enonic.com/docs/xp/stable/cms/content-types[content types^] and https://developer.enonic.com/docs/xp/stable/cms/schemas[the schema system^].
 
 Let's now move forward to previewing or rendering the existing content. To do that, we'll start with <<pages#, the concept of Pages>>.
 
