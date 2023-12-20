@@ -500,25 +500,25 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Create a sandbox</strong> by running this command in your terminal:</p>
+<p><strong>Create a sandbox</strong> called <code>tutorial</code> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create</pre>
+<pre>enonic sandbox create mfstutorial</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Give it a name, i.e. <code>Tutorial</code>, and agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
+<p>Agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
 </div>
 </li>
 <li>
 <p><strong>Start the sandbox</strong> with this command:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox start --dev</pre>
+<pre>enonic sandbox start mfstutorial --dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Select the <code>Tutorial</code> sandbox from the list, and it will boot up in development mode.</p>
+<p>This will start the <code>mfstutorial</code> sandbox.</p>
 </div>
 </li>
 </ol>
@@ -543,32 +543,20 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="paragraph">
 <p>From a <strong>new terminal window</strong>, run the following command to create the application.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Use the default options when prompted.
-</td>
-</tr>
-</table>
-</div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic project create -r tutorial-myfirstsite</pre>
+<pre>enonic project create -d mfs -r tutorial-myfirstsite -sb mfstutorial my.first.site</pre>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The command uses the <a href="https://github.com/enonic/tutorial-myfirstsite" target="_blank" rel="noopener">My first site</a> Github repo  as a starter (template) for the app.</p>
+<p>This command creates an app named <code>my.first.site</code> in the folder <code>mfs/</code>. It uses the <a href="https://github.com/enonic/tutorial-myfirstsite" target="_blank" rel="noopener">My first site</a> Github repo  as a starter (template), and links it to the <code>mfstutorial</code> sandbox.</p>
 </div>
 </td>
 </tr>
@@ -652,16 +640,16 @@ src/
 <h2 id="start_building"><a class="link" href="#start_building">Start building</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Assuming you did not change the default directory name <code>myproject/</code> when creating the app, deploy it to the sandbox with the following commands:</p>
+<p>Assuming you did not change any of the values when creating the app, run the following commmands:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>cd myproject
-enonic project dev</pre>
+<pre>cd mfs
+enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will build and deploy the application to your sandbox, the <code>dev</code> task will continuously scan for changes in your TypeScript code and compile them.</p>
+<p>This will build and deploy the application to your sandbox. Until you abort, the build system will continuously scan for changes in your TypeScript code and compile them.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -675,7 +663,7 @@ enonic project dev</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2019-04-09 13:40:40,765 INFO ... Application [company.starter.myfirstsite] installed successfully</pre>
+<pre>2019-04-09 13:40:40,765 INFO ... Application [my.first.site] installed successfully</pre>
 </div>
 </div>
 </td>
@@ -689,7 +677,7 @@ enonic project dev</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Thanks to the sandbox running in --dev mode, any changes to the code wihin your app will instantly be picked up.
+Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.
 </td>
 </tr>
 </table>
@@ -700,20 +688,20 @@ Thanks to the sandbox running in --dev mode, any changes to the code wihin your 
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters, executed CLI commands to <code>build</code> your app , <code>deploy</code> it to your sandbox, and run the app in <code>dev</code> mode, and finally, installed Content Studio app.</p>
+<p>You have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters and deployed the app in <code>dev</code> mode.</p>
 </div>
 <div class="paragraph">
 <p>That&#8217;s a good start!</p>
 </div>
 <div class="paragraph">
-<p>Next, let&#8217;s <a href="content.ahtml">have a look at Content Studio</a> and some sample content.</p>
+<p>Next, let&#8217;s <a href="content.ahtml">have a look at Content Studio</a> and the sample content.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 16:01:32 UTC
+Last updated 2023-12-20 07:38:42 UTC
 </div>
 </div>
 </body>
