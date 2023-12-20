@@ -44,15 +44,15 @@ Select the hello-world content and click btn:[edit].
 
 image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=920px]
 
-From the left hand from, you can see that your app `My first site`, has been added to the site. This gives Content Studio access to any goodies the app might contain. One such goodie is additional content types.
+From the left hand form you can see that your app `My first site`, has been added to the site. This gives Content Studio access to any goodies the app might contain - for instance additional content types.
 
 == Content Types
 
-Every content item has a specific a content type. You app contains two content types: `Country` and `City`. They are defined under `src/main/resources/site/content-types`.
+Every content item has a specific a content type. 
 
-Enonic XP ships with a limited set of standard content types such as `Shortcut`, `Folder`, `Site`, and a range of `Media Types` that handle different kind of files. Additionally, an application may define its own custom content types. 
+Enonic XP has some standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types` to handle different kind of files. 
 
-Let's explore the `City` content type. In Content Studio it should look something like this:
+Additionally, applications may define their own custom content types. Your app contains two: `Country` and `City`. They are defined under `src/main/resources/site/content-types/`. Let's explore the `City` content type. In Content Studio it should look something like this:
 
 image::city-form.png["Form for the city content type", width=920px]
 

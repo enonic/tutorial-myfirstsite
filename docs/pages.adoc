@@ -10,9 +10,9 @@ For every page, there is always a page component.
 
 At the moment, we have some content, but no preview or visual rendering. Pages to the rescue. Page are composed from one or more components, always with a page component as its root.
 
-Your app includes a pre-defined page component named `hello`. It is defined by a descriptor file, placed in a particular location within your app: `src/main/resources/site/pages`
+Your app includes a pre-defined page component named `hello`. It is defined by a descriptor file, placed in a particular location within your app: `src/main/resources/site/pages/`
 
-.pages/hello/hello.xml
+.src/main/resources/site/pages/hello/hello.xml
 [source,js]
 ----
 include::{sourcedir}/hello/hello.xml[]
@@ -28,7 +28,7 @@ Each component may have its very own controller, responsible for its rendering. 
 
 NOTE: The controller file must be placed in and use the same name as the component directory.
 
-.pages/hello/hello.ts
+.src/main/resources/site/pages/hello/hello.ts
 [source,js]
 ----
 include::{sourcedir}/hello/hello.ts[]
@@ -40,7 +40,7 @@ NOTE: Here we're using TypeScript. Each .ts file will automatically be compiled 
 
 For clean coding, we have also supplied a simple HTML template - a.k.a the View of the Model View Controller (MVC) pattern. It looks like this:
 
-.pages/hello/hello.html
+.src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
 include::{sourcedir}/hello/hello.html[]
@@ -64,4 +64,4 @@ At this point we were able to attach a hello page component to the hello-world s
 
 TIP: To learn more about pages, visit the https://developer.enonic.com/docs/xp/stable/cms/pages[pages documentation^].
 
-Next you'll be introduced to the <<concept of regions>>, that will enable you to add more components to your pages.
+Next you'll be introduced to the <<regions#, concept of regions>>, that will enable you to add more components to your pages.

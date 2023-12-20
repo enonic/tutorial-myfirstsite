@@ -12,11 +12,11 @@ Let's have a look at how to handle static assets. In our case, we'll use a CSS f
 
 Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service^]. By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
 
-Your application already includes a sample CSS file located in `src/main/resources/assets/mvp.css`. Let's put it to work by referencing it from the page component:
+Your application already includes a sample CSS file: `src/main/resources/assets/mvp.css`. Let's put it to work by referencing it from the page component:
 
 **Update your page component view** with the following content:
 
-.pages/hello/hello.html
+.src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
 include::{sourcedir}code-samples/pages/hello-static/hello.html[]

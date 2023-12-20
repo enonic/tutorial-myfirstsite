@@ -13,19 +13,19 @@ Rather than making another page component, lets use parts. Like the Text compone
 
 A descriptor, controller and view have already been added to the `src/main/resources/site/parts/` folder:
 
-.parts/country/country.xml
+.src/main/resources/site/parts/country/country.xml
 [source,xml]
 ----
 include::{sourcedir}/country/country.xml[]
 ----
 
-.parts/country/country.ts
+.src/main/resources/site/parts/country/country.ts
 [source,ts]
 ----
 include::{sourcedir}/country/country.ts[]
 ----
 
-.parts/country/country.html
+.src/main/resources/site/parts/country/country.html
 [source,HTML]
 ----
 include::{sourcedir}/country/country.html[]
@@ -49,19 +49,19 @@ Let's try something slightly more advanced. The `City list` part will:
 
 The part already exists in your app via the following files:
 
-.parts/city-list/city-list.xml
+.src/main/resources/site/parts/city-list/city-list.xml
 [source,xml]
 ----
 include::{sourcedir}/city-list/city-list.xml[]
 ----
 
-.parts/city-list/city-list.ts
+.src/main/resources/site/parts/city-list/city-list.ts
 [source,ts]
 ----
 include::{sourcedir}/city-list/city-list.ts[]
 ----
 
-.parts/city-list/city-list.html
+.src/main/resources/site/parts/city-list/city-list.html
 [source,HTML]
 ----
 include::{sourcedir}/city-list/city-list.html[]

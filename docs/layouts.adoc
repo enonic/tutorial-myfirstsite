@@ -10,9 +10,9 @@ Layouts are like parts, but also support regions
 
 Unlike parts, layouts may contain regions. Here, we'll define two regions, each working as columns in the final result. We'll also throw in some configuration options so editors can control the sizes for each of those two columns.
 
-Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special `src/main/resources/site/layouts` folder:
+Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special `src/main/resources/site/layouts/` folder:
 
-.layouts/two-columns/two-columns.xml
+.src/main/resources/site/layouts/two-columns/two-columns.xml
 [source,xml]
 ----
 include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
@@ -20,13 +20,13 @@ include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
 
 Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
 
-.layouts/two-columns/two-columns.ts
+.src/main/resources/site/layouts/two-columns/two-columns.ts
 [source,ts]
 ----
 include::{sourcedir}/site/layouts/two-columns/two-columns.ts[]
 ----
 
-.layouts/two-columns/two-columns.html
+.src/main/resources/site/layouts/two-columns/two-columns.html
 [source,html]
 ----
 include::{sourcedir}/site/layouts/two-columns/two-columns.html[]
@@ -73,7 +73,7 @@ image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 conf
 
 By combining content types, layouts, parts, pages and page templates, the sky's the limit for what you can build.
 
-Dig deeper into layouts in the https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layout documentation^].
+TIP: For more details, dig deeper into layouts in the https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layout documentation^].
 
 
 

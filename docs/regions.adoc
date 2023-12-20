@@ -3,7 +3,7 @@
 
 = Regions
 
-Support adding more components to your page, including drag'n drop.
+Create component hierarchies with the power of regions.
 
 == Component dropzones
 
@@ -11,9 +11,9 @@ Content Studio also supports adding more components to a page. To get going, the
 
 Complete the steps below to add a single region called `main` to the `hello` page component.
 
-. Start off by **updating the page component descriptor**. The new descriptor (below) statically declares the region:
+. Start off by **updating your page component descriptor**. The new descriptor (below) statically declares the region:
 +
-.pages/hello/hello.xml
+.src/main/resources/site/pages/hello/hello.xml
 [source,XML]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
@@ -21,13 +21,13 @@ include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
 +
 . **Update your controller and view** with the code below to support the region:
 +
-.pages/hello/hello.ts
+.src/main/resources/site/pages/hello/hello.ts
 [source,ts]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.ts[]
 ----
 +
-.pages/hello/hello.html:
+.src/main/resources/site/pages/hello/hello.html:
 [source,HTML]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.html[]
