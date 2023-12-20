@@ -442,7 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#content_studio">Content Studio</a></li>
 <li><a href="#content_and_projects">Content and projects</a></li>
-<li><a href="#editing">Editing</a></li>
+<li><a href="#sites_apps_true">Sites + Apps = true</a></li>
 <li><a href="#content_types">Content Types</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it later.
+ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it later.
 </td>
 </tr>
 </table>
@@ -527,7 +527,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </div>
 </div>
 <div class="sect1">
-<h2 id="editing"><a class="link" href="#editing">Editing</a></h2>
+<h2 id="sites_apps_true"><a class="link" href="#sites_apps_true">Sites + Apps = true</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Select the hello-world content and click <b class="button">edit</b>.</p>
@@ -620,7 +620,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:23:13 UTC
+Last updated 2023-12-20 17:28:00 UTC
 </div>
 </div>
 </body>
