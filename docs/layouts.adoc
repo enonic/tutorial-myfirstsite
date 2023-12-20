@@ -10,9 +10,9 @@ Layouts are like parts, but also support regions
 
 Unlike parts, layouts may contain regions. Here, we'll define two regions, each working as columns in the final result. We'll also throw in some configuration options so editors can control the sizes for each of those two columns.
 
-Like for parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup:
+Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special `src/main/resources/site/layouts` folder:
 
-.src/main/resources/site/layouts/two-columns/two-columns.xml
+.layouts/two-columns/two-columns.xml
 [source,xml]
 ----
 include::{sourcedir}/layouts/two-columns/two-columns.xml[]
@@ -20,13 +20,13 @@ include::{sourcedir}/layouts/two-columns/two-columns.xml[]
 
 Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
 
-.src/main/resources/site/layouts/two-columns/two-columns.ts
+.layouts/two-columns/two-columns.ts
 [source,ts]
 ----
 include::{sourcedir}/layouts/two-columns/two-columns.ts[]
 ----
 
-.src/main/resources/site/layouts/two-columns/two-columns.html
+.layouts/two-columns/two-columns.html
 [source,html]
 ----
 include::{sourcedir}/layouts/two-columns/two-columns.html[]
