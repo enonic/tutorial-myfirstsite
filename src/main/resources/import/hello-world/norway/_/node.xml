@@ -1,29 +1,11 @@
 <node>
-    <id>8dabe49c-953e-4602-8976-20ced2c35877</id>
+    <id>d56184f7-0522-4c9f-b889-9df3cc44397f</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2023-12-12T20:54:33.517Z</timestamp>
+    <timestamp>2019-04-16T16:06:45.059Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.admin">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -47,6 +29,30 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:cms.admin">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.editor">
             <allow type="array">
                 <value>READ</value>
@@ -59,24 +65,18 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.author">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
                 <value>MODIFY</value>
                 <value>DELETE</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
-            <allow type="array">
-                <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -87,20 +87,18 @@
         <string name="type">company.starter.myfirstsite:country</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2023-12-12T20:54:30.697Z</dateTime>
+        <dateTime name="modifiedTime">2019-04-16T16:06:45.058Z</dateTime>
         <string name="modifier">user:system:su</string>
         <string name="creator">user:system:su</string>
-        <dateTime name="createdTime">2023-12-12T20:22:11.472Z</dateTime>
+        <dateTime name="createdTime">2019-04-16T15:25:09.783Z</dateTime>
         <property-set name="publish">
-            <dateTime name="first">2023-12-12T20:54:33.371Z</dateTime>
-            <dateTime name="from">2023-12-12T20:54:33.371Z</dateTime>
-        </property-set>
-        <property-set name="workflow">
-            <string name="state">READY</string>
-            <property-set name="checks"/>
+            <dateTime isNull="true" name="first"/>
+            <dateTime isNull="true" name="from"/>
+            <dateTime isNull="true" name="to"/>
         </property-set>
         <property-set name="data">
             <string name="description">Home of the midnight sun</string>
+            <string name="population">5258000</string>
             <string name="wikipedia">https://en.wikipedia.org/wiki/Norway</string>
         </property-set>
         <property-set name="attachment">
@@ -108,8 +106,7 @@
             <string isNull="true" name="label"/>
             <binaryReference name="binary">_thumbnail</binaryReference>
             <string name="mimeType">image/svg+xml</string>
-            <long name="size">310</long>
-            <string name="sha512">f37ffa8df16c09df744745a7ef2f8f558de4c91f47ec116993069aebf8dd3d0d4d5cb661b9a6b5801e742b2b7f96c33f94967362b1ff2a582c921c546343819f</string>
+            <long name="size">321</long>
             <string name="text">&lt;svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-no" viewBox="0 0 640 480"&gt; &lt;path fill="#ed2939" d="M0 0h640v480H0z"/&gt; &lt;path fill="#fff" d="M180 0h120v480H180z"/&gt; &lt;path fill="#fff" d="M0 180h640v120H0z"/&gt; &lt;path fill="#002664" d="M210 0h60v480h-60z"/&gt; &lt;path fill="#002664" d="M0 210h640v60H0z"/&gt; &lt;/svg&gt; </string>
         </property-set>
     </data>

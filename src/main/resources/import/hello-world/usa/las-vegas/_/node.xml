@@ -1,29 +1,11 @@
 <node>
-    <id>e041d130-7474-41fc-a07b-016e19e7adc0</id>
+    <id>32873656-6298-4520-982c-010cbaac39f5</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2023-12-12T20:54:33.417Z</timestamp>
+    <timestamp>2023-05-12T13:22:58.071Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.admin">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -47,6 +29,30 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:cms.admin">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.editor">
             <allow type="array">
                 <value>READ</value>
@@ -59,6 +65,12 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.author">
             <allow type="array">
                 <value>READ</value>
@@ -68,41 +80,31 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
     </permissions>
     <data>
         <boolean name="valid">true</boolean>
-        <string name="displayName">Las vegas</string>
+        <string name="displayName">Las Vegas</string>
         <string name="type">company.starter.myfirstsite:city</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2023-12-12T20:54:30.510Z</dateTime>
+        <dateTime name="modifiedTime">2023-05-12T13:22:58.071Z</dateTime>
         <string name="modifier">user:system:su</string>
         <string name="creator">user:system:su</string>
-        <dateTime name="createdTime">2023-12-12T20:33:49.883Z</dateTime>
+        <dateTime name="createdTime">2019-04-16T15:37:56.101Z</dateTime>
         <property-set name="publish">
-            <dateTime name="first">2023-12-12T20:54:33.371Z</dateTime>
-            <dateTime name="from">2023-12-12T20:54:33.371Z</dateTime>
+            <dateTime isNull="true" name="first"/>
+            <dateTime isNull="true" name="from"/>
+            <dateTime isNull="true" name="to"/>
         </property-set>
         <property-set name="workflow">
             <string name="state">READY</string>
             <property-set name="checks"/>
         </property-set>
         <property-set name="data">
-            <reference name="photo">8cb0be49-f599-444d-aaad-c760557d8163</reference>
-            <string name="slogan">What happens here, only happens here</string>
+            <geoPoint name="location">36.1215,-115.1738</geoPoint>
             <long name="population">603488</long>
+            <reference name="photo">5d0a91e3-6b2d-446d-8790-01f3c5fb5f75</reference>
+            <string name="slogan">What happens here, only happens here</string>
         </property-set>
     </data>
     <indexConfigs>

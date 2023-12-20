@@ -2,28 +2,10 @@
     <id>9038a78a-210d-4199-b17a-31554f1e8c13</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2023-12-12T20:18:52.723Z</timestamp>
+    <timestamp>2019-04-16T15:27:32.482Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.admin">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -47,6 +29,30 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:cms.admin">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.myfirstsite.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.editor">
             <allow type="array">
                 <value>READ</value>
@@ -59,24 +65,18 @@
             </allow>
             <deny type="array"/>
         </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
         <principal key="role:cms.project.myfirstsite.author">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
                 <value>MODIFY</value>
                 <value>DELETE</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
-            <allow type="array">
-                <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -92,8 +92,9 @@
         <string name="creator">user:system:su</string>
         <dateTime name="createdTime">2019-04-12T13:12:32.748Z</dateTime>
         <property-set name="publish">
-            <dateTime name="first">2023-12-12T20:18:52.704Z</dateTime>
-            <dateTime name="from">2023-12-12T20:18:52.704Z</dateTime>
+            <dateTime isNull="true" name="first"/>
+            <dateTime isNull="true" name="from"/>
+            <dateTime isNull="true" name="to"/>
         </property-set>
         <property-set name="data">
             <string isNull="true" name="description"/>
