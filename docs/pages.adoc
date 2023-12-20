@@ -49,7 +49,7 @@ include::{sourcedir}/hello/hello.html[]
 NOTE: This view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^]
 
 
-== Page one
+== Your first page
 
 For the `hello` page component to actually render something, it must be used by a content item:
 

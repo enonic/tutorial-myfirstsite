@@ -22,7 +22,7 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.
 
-. *Create a sandbox* called `tutorial` by running this command in your terminal:
+. *Create a sandbox* called `mfstutorial` by running this command in your terminal:
 +
   enonic sandbox create mfstutorial
 +
