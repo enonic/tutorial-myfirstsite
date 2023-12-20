@@ -35,10 +35,10 @@ image::imported-content.png["Tree structure showing countries and cities in Cont
 
 A content structure, with `Hello World` as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA` and `Templates` as child items. 
 
-TIP: ignore the `Templates` folder for now, we'll getback to it later. 
+TIP: ignore the `Templates` folder for now, we'll get back to it later. 
 
 
-== Editing
+== Sites + Apps = true
 
 Select the hello-world content and click btn:[edit].
 
