@@ -466,9 +466,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Start off by <strong>adding a component descriptor</strong>. The descriptor statically declares the region:</p>
+<p>Start off by <strong>updating the page component descriptor</strong>. The new descriptor (below) statically declares the region:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
+<div class="title">pages/hello/hello.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-XML" data-lang="XML">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Hello Regions!&lt;/display-name&gt;
@@ -482,9 +482,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><strong>Update your controller and view</strong> with the code below to support the new region:</p>
+<p><strong>Update your controller and view</strong> with the code below to support the region:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
+<div class="title">pages/hello/hello.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import type { Response } from '/index.d';
 
@@ -517,7 +517,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html:</div>
+<div class="title">pages/hello/hello.html:</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -553,25 +553,10 @@ export function get(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>You now have a page with a single region!</p>
+<p>Sweet. You now have a page with a single region!</p>
 </div>
-</li>
-<li>
-<p><strong>Add a text component to the region</strong>. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
 </li>
 </ol>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To learn more about regions, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/regions">regions</a> documentation.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -579,10 +564,20 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 <h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Above, we added a text component into the region. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
+<p>To make use of your new and shiny region, lets fill it with some content</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Add a text component</strong> to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Visit the refrence documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
+<p>The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
+</div>
+<div class="paragraph">
+<p>Visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
 </div>
 </div>
 </div>
@@ -592,6 +587,18 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 <div class="paragraph">
 <p>You&#8217;ve been introduced to regions, a concept that can be used on a page, as you just saw, but also on layouts, a new component type you&#8217;ll be introduced to soon.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about regions, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/regions" target="_blank" rel="noopener">regions documentation</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>In the next chapter you&#8217;ll <a href="parts.ahtml">learn about parts</a>. A highly customizable component type that can be inserted into regions.</p>
 </div>
@@ -600,7 +607,7 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 07:38:42 UTC
+Last updated 2023-12-20 17:23:13 UTC
 </div>
 </div>
 </body>

@@ -466,16 +466,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll use a CSS file.</p>
 </div>
 <div class="paragraph">
-<p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service">Asset service</a>. By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
+<p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service" target="_blank" rel="noopener">Asset service</a>. By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
 </div>
 <div class="paragraph">
-<p>Your application already includes the sample asset <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by injecting it to the page component:</p>
+<p>Your application already includes a sample CSS file located in <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by referencing it from the page component:</p>
 </div>
 <div class="paragraph">
 <p><strong>Update your page component view</strong> with the following content:</p>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html</div>
+<div class="title">pages/hello/hello.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
 &lt;html color-mode="user"&gt;
@@ -537,7 +537,7 @@ When running in dev mode (like you do now), cache headers are deactivated
 <div class="sect2">
 <h3 id="lib_static"><a class="link" href="#lib_static">Lib static</a></h3>
 <div class="paragraph">
-<p>If you&#8217;re using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Lib static</a> to your app.</p>
+<p>If you&#8217;re using advanced build-tools assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Lib static</a> to your app.</p>
 </div>
 <div class="paragraph">
 <p>Lib-static is pre-bundled with selected app starters like the <a href="https://market.enonic.com/vendors/enonic/tsup-starter" target="_blank" rel="noopener">Tsup Starter</a> and <a href="https://market.enonic.com/vendors/enonic/react4xp-starter" target="_blank" rel="noopener">React4XP starter</a>.</p>
@@ -549,14 +549,17 @@ When running in dev mode (like you do now), cache headers are deactivated
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The journey on this docs so far provided you a starting ground to build your first website. Let&#8217;s now take a look on how you can publish the site and <a href="go-online.ahtml">go online</a>!</p>
+<p>You now know how to serve static assets.</p>
+</div>
+<div class="paragraph">
+<p>In the next chapter you&#8217;ll <a href="layouts.ahtml">learn about layouts</a>. Layouts are essentially parts that also support regions.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 07:38:42 UTC
+Last updated 2023-12-20 17:23:13 UTC
 </div>
 </div>
 </body>

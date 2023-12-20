@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Parts - flexible components for your page</title>
+<title>Parts - flexible components for your pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,12 +436,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Parts - flexible components for your page</h1>
+<h1>Parts - flexible components for your pages</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#the_country_part">The country part</a></li>
 <li><a href="#configurable_part">Configurable part</a></li>
+<li><a href="#image_service">Image service</a></li>
+<li><a href="#logging">Logging</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -450,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Parts are the visual building blocks that make your pages interesting.</p>
+<p>Parts are the visual building blocks to make pages more interesting.</p>
 </div>
 </div>
 </div>
@@ -461,28 +463,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>It&#8217;s about time we show some details from the <strong>Country</strong> content type.</p>
 </div>
 <div class="paragraph">
-<p>Rather than making another page component, let&#8217;s create a <code>part</code>. Parts are components that can be added to regions.</p>
+<p>Rather than making another page component, lets use parts. Like the Text component, parts can be added to regions.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create the folder <code>src/main/resources/site/parts/country/</code> in your project.</p>
-</li>
-<li>
-<p>Add the part descriptor, controller and view files below to the folder:</p>
+<div class="paragraph">
+<p>A descriptor, controller and view have already been added to the <code>src/main/resources/site/parts/</code> folder:</p>
+</div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.xml</div>
+<div class="title">parts/country/country.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Country&lt;/display-name&gt;
   &lt;description&gt;Show simple details of the country&lt;/description&gt;
-  &lt;form&gt;
-  &lt;/form&gt;
+  &lt;form/&gt;
 &lt;/part&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.ts</div>
+<div class="title">parts/country/country.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import { Content } from '@enonic-types/core';
 import type { Response } from '/index.d';
@@ -519,7 +516,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.html</div>
+<div class="title">parts/country/country.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div&gt;
     &lt;ul&gt;
@@ -531,19 +528,16 @@ export function get(): Response {
 &lt;/div&gt;</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p><strong>Add the part to the page</strong> by drag&#8217;n dropping a part from the right-hand-side and select the <code>Country</code> component from the list.</p>
 <div class="paragraph">
-<p>The result should look something like this:</p>
+<p><strong>Add the part to the country page</strong> by drag&#8217;n dropping <code>Part</code> from the right-hand-side. Then select the <code>Country</code> component from the list.</p>
+</div>
+<div class="paragraph">
+<p>The resulting page should look something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="300px">
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -552,7 +546,7 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You may also use the form component tree (on the left, or floating above the page editor) to add components to your page.
+You may also use the page form input (visible on the left hand , or floating above the page editor) to manage the components on your page.
 </td>
 </tr>
 </table>
@@ -563,10 +557,7 @@ You may also use the form component tree (on the left, or floating above the pag
 <h2 id="configurable_part"><a class="link" href="#configurable_part">Configurable part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s try something slightly more advanced.</p>
-</div>
-<div class="paragraph">
-<p>In this task, you&#8217;ll add a new part that does the following:</p>
+<p>Let&#8217;s try something slightly more advanced. The <code>City list</code> part will:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -574,22 +565,18 @@ You may also use the form component tree (on the left, or floating above the pag
 <p>Lists cities within a country.</p>
 </li>
 <li>
-<p>Supports configuation for image cropping format</p>
+<p>Show an image of each city</p>
 </li>
 <li>
-<p>Includes a real-time cropped image of each city</p>
+<p>Let you choose the image cropping format</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Complete the steps below to try it out:</p>
+<p>The part already exists in your app via the following files:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create the <code>City list</code> part by adding the schema, controller and view files:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
+<div class="title">parts/city-list/city-list.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;City list&lt;/display-name&gt;
@@ -609,7 +596,7 @@ You may also use the form component tree (on the left, or floating above the pag
 </div>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.ts</div>
+<div class="title">parts/city-list/city-list.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import { Content, PartComponent } from '@enonic-types/core';
 import type { Response } from '/index.d';
@@ -686,7 +673,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.html</div>
+<div class="title">parts/city-list/city-list.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div class="cities" style="min-height:100px;"&gt;
     &lt;h2&gt;Cities&lt;/h2&gt;
@@ -702,46 +689,36 @@ function getCitySlogan(slogan: string, population?: string): string {
 &lt;/div&gt;</code></pre>
 </div>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Add the city list part</strong> to the same page as before, and verify that it is working.</p>
 </li>
 <li>
-<p>Add the new part to the page you created earlier.</p>
+<p><strong>Configure the part</strong> by changing the settings in the right hand panel. i.e. by choosing <code>widescreen</code>. Click apply to see the result.</p>
 </li>
-<li>
-<p>Finally, configure the part by selecting it and changing the settings in the right hand panel.</p>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The controller also prints the <code>model object</code> to the log. Check the sandbox log after visiting a country page to see what is happening.
-</td>
-</tr>
-</table>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="media/city-list-part-on-columbia.png" alt="Result of adding city list part to page and configure it to show widescreen images" width="1227px">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="image_service"><a class="link" href="#image_service">Image service</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Images are scaled and cropped in real-time by the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service" target="_blank" rel="noopener">Image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to the desired image.</p>
+<p>Images are scaled and cropped in real-time by the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service" target="_blank" rel="noopener">Image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to the desired image, with desired sizes and cropping.</p>
 </div>
-</li>
-</ol>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To learn more about parts, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/parts">parts</a> documentation.
-</td>
-</tr>
-</table>
+</div>
+<div class="sect1">
+<h2 id="logging"><a class="link" href="#logging">Logging</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The controller above also prints the <code>model object</code> to the log. Check your sandbox log after visiting a country page to see what is going on</p>
 </div>
 </div>
 </div>
@@ -751,15 +728,27 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 <div class="paragraph">
 <p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your pages.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about parts, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/parts" target="_blank" rel="noopener">parts</a> documentation.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>In the next chapter you&#8217;ll <a href="layouts.ahtml">learn about layouts</a>. Layouts are essentially parts that also support regions.</p>
+<p>In the next chapter you&#8217;ll how to re-use pages through <a href="page-templates.ahtml">page templates</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 07:38:42 UTC
+Last updated 2023-12-20 17:23:13 UTC
 </div>
 </div>
 </body>

@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p>Learn the fundamental principals of pages, components, and rendering with the Enonic JS framework.</p>
+<p>Learn the basic principals of pages, components, and rendering with the Enonic JS framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -459,9 +459,6 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p>set up a local Enonic developer environment</p>
-</li>
 <li>
 <p>create an Enonic app</p>
 </li>
@@ -482,6 +479,9 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Start the show by <a href="setup.ahtml">setting up your developer environment</a>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="media/ready-set-code.svg" alt="Ready&#8230;&#8203;Set&#8230;&#8203;Code!" width="720px">
@@ -490,7 +490,7 @@ If you are primarily interested in our headless API, visit <a href="https://deve
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 07:38:42 UTC
+Last updated 2023-12-20 17:23:13 UTC
 </div>
 </div>
 </body>

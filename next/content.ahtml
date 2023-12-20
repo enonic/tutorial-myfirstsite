@@ -442,6 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#content_studio">Content Studio</a></li>
 <li><a href="#content_and_projects">Content and projects</a></li>
+<li><a href="#editing">Editing</a></li>
 <li><a href="#content_types">Content Types</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -459,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
+<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -484,21 +485,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Your XP <code>Dashboard</code> should now have a <code>Content Studio widget</code>, and <code>Content Studio</code> available from the right-hand-side XP menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/dashboard.png" alt="Enonic dashboard with Content Studio Widget" width="1440px">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="content_and_projects"><a class="link" href="#content_and_projects">Content and projects</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Your XP <code>Dashboard</code> should now have a <code>Content Studio widget</code>, indicating that you already have some sample content available.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/dashboard.png" alt="Enonic dashboard with Content Studio Widget">
-</div>
-</div>
-<div class="paragraph">
-<p>A content project called <code>My First Site</code> and the sample content gets imported when your application was started the first time. Let&#8217;s have a closer look.</p>
+<p>A content project called <code>My First Site</code> and some sample content gets created when your application starts the first time. Let&#8217;s have a closer look.</p>
 </div>
 <div class="paragraph">
 <p><strong>Open Content Studio</strong> from the right hand <code>XP menu &#8594; Content Studio</code>. You should now see some of the imported content.</p>
@@ -509,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>You should now see a content structure, with <code>Hello World</code> as the root item. From the icon, you can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA and Templates</code> as child items.</p>
+<p>A content structure, with <code>Hello World</code> as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA</code> and <code>Templates</code> as child items.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -523,6 +524,11 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="editing"><a class="link" href="#editing">Editing</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Select the hello-world content and click <b class="button">edit</b>.</p>
 </div>
@@ -532,7 +538,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </div>
 </div>
 <div class="paragraph">
-<p>Because your <code>My first site</code> app has been added to the site, you get access all the goodies from the app within the site. One of these goodies is the ability to create new types of content.</p>
+<p>From the left hand from, you can see that your app <code>My first site</code>, has been added to the site. This gives Content Studio access to any goodies the app might contain. One such goodie is additional content types.</p>
 </div>
 </div>
 </div>
@@ -584,19 +590,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll getback to it late
 </div>
 </div>
 <div class="paragraph">
-<p>Now that you understand the basics of content and content types, use Content Studio to create a new <code>Country</code>. Then, add a <code>City</code> (or more) within it.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-For more details visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas">schemas in general</a>.
-</td>
-</tr>
-</table>
+<p>Now that you understand the basics of content and content types, use Content Studio to create a new <code>Country</code> of your choosing. Then, add a <code>City</code> (or more) within it.</p>
 </div>
 </div>
 </div>
@@ -606,6 +600,18 @@ For more details visit the reference documentation for <a href="https://develope
 <div class="paragraph">
 <p>You&#8217;ve been introduced to content items and content types, and even created some content based on the content types from your application.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas" target="_blank" rel="noopener">the schema system</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Let&#8217;s now move forward to previewing or rendering the existing content. To do that, we&#8217;ll start with <a href="pages.ahtml">the concept of Pages</a>.</p>
 </div>
@@ -614,7 +620,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 07:38:42 UTC
+Last updated 2023-12-20 17:23:13 UTC
 </div>
 </div>
 </body>
