@@ -10,13 +10,13 @@ Add static assets like icons, css and JavaScript to your website
 So far, the site is primarily made up of dynamic HTML and images.
 Let's have a look at how to handle static assets. In our case, we'll use a CSS file.
 
-Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service]. By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
+Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service^]. By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
 
-Your application already includes the sample asset `src/main/resources/assets/mvp.css`. Let's put it to work by injecting it to the page component:
+Your application already includes a sample CSS file located in `src/main/resources/assets/mvp.css`. Let's put it to work by referencing it from the page component:
 
 **Update your page component view** with the following content:
 
-.src/main/resources/site/pages/hello/hello.html
+.pages/hello/hello.html
 [source,HTML]
 ----
 include::{sourcedir}code-samples/pages/hello-static/hello.html[]
@@ -39,10 +39,14 @@ NOTE: When running in dev mode (like you do now), cache headers are deactivated
 
 === Lib static
 
-If you're using advanced build-tools like Webpack, assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
+If you're using advanced build-tools assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
 
 Lib-static is pre-bundled with selected app starters like the https://market.enonic.com/vendors/enonic/tsup-starter[Tsup Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
 
 == Summary
 
-The journey on this docs so far provided you a starting ground to build your first website. Let's now take a look on how you can publish the site and <<go-online#, go online>>! 
+You now know how to serve static assets.
+
+In the next chapter you'll <<layouts#, learn about layouts>>. Layouts are essentially parts that also support regions.
+
+

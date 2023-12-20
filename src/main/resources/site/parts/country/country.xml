@@ -1,6 +1,5 @@
 <part xmlns="urn:enonic:xp:model:1.0">
   <display-name>Country</display-name>
   <description>Show simple details of the country</description>
-  <form>
-  </form>
+  <form/>
 </part>

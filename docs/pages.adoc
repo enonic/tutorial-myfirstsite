@@ -1,70 +1,67 @@
 :experimental:
 :imagesdir: media/
-:sourcedir: ../
+:sourcedir: ../src/main/resources/site/pages
 
 = Visualize your content with pages
 
 For every page, there is always a page component. 
 
 == Page component
-At the moment, we have some content, but no preview or visual rendering.
 
-Pages are composed from one or more components.
+At the moment, we have some content, but no preview or visual rendering. Pages to the rescue. Page are composed from one or more components, always with a page component as its root.
 
-Your app includes a pre-defined page component named `hello`. It is defined by a descriptor file, placed in a particular location within your app:
+Your app includes a pre-defined page component named `hello`. It is defined by a descriptor file, placed in a particular location within your app: `src/main/resources/site/pages`
 
-.src/main/resources/site/pages/hello/hello.xml
+.pages/hello/hello.xml
 [source,js]
 ----
-include::{sourcedir}src/main/resources/site/pages/hello/hello.xml[]
+include::{sourcedir}/hello/hello.xml[]
 ----
 
-TIP: Like content types, you can define a form for the component using the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system].
+TIP: Like content types, you can also define a form for the component using the https://developer.enonic.com/docs/xp/stable/cms/schemas[schema system^]. We'll get back to this later.
 
 == Component controller
 
-Enonic supports rendering with 3rd party front-ends, but is also capable of rendering by itself thanks to the https://developer.enonic.com/docs/xp/stable/framework[JS framework], which we will be using throughout this tutorial.
+Enonic XP supports rendering with 3rd party front-ends, but is also capable of rendering by itself thanks to the https://developer.enonic.com/docs/xp/stable/framework[JS framework]. We will be using this throughout the rest of this tutorial.
 
-When rendering with the Enonic framework, each component may have its very own controller, responsible for rendering it. Here is what it looks like in our case: 
+Each component may have its very own controller, responsible for its rendering. Here is what it looks like in our case: 
 
-NOTE: The controller file must use the same name as the component directory.
+NOTE: The controller file must be placed in and use the same name as the component directory.
 
-.src/main/resources/site/pages/hello/hello.ts
+.pages/hello/hello.ts
 [source,js]
 ----
-include::{sourcedir}src/main/resources/site/pages/hello/hello.ts[]
+include::{sourcedir}/hello/hello.ts[]
 ----
 
-NOTE: Here we're using TypeScript. Each .ts file will automatically be compiled, and a .js file placed in the same folder. XP uses the resulting .js file.
+NOTE: Here we're using TypeScript. Each .ts file will automatically be compiled by the build system, and the generated .js file placed in the same location. XP picks up and invokes the resulting .js file.
 
 == Templating
 
-For clean coding, we have also supplied a simple HTML template - a.k.a the View in the Model View Controller (MVC) pattern. It look like this:
+For clean coding, we have also supplied a simple HTML template - a.k.a the View of the Model View Controller (MVC) pattern. It looks like this:
 
-.src/main/resources/site/pages/hello/hello.html
+.pages/hello/hello.html
 [source,HTML]
 ----
-include::{sourcedir}src/main/resources/site/pages/hello/hello.html[]
+include::{sourcedir}/hello/hello.html[]
 ----
 
 NOTE: This view is plain HTML, but also uses a specific syntax known as the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf^] templating language. The Enonic runtime also supports many other options, such as https://market.enonic.com/vendors/enonic/react4xp-lib[React^], https://market.enonic.com/vendors/enonic/mustache-lib[Mustache^] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker^]
 
 
-== Create page
+== Page one
 
-For the `hello` page component render something, it must be associated with a content item:
+For the `hello` page component to actually render something, it must be used by a content item:
 
-. Select the Site content item -  `Hello World` and click btn:[edit]
+. *Select the Site content item* -  `Hello World` and click btn:[edit]
 . From the preview panel on the right, select the `Hello` page component in the list. Your changes will automatically save, and the page preview will render the result.
 
-image::hello-world.gif["Demonstrating the process of setting up a page", width=1920px]
-
-TIP: To learn more about pages, visit the https://developer.enonic.com/docs/xp/stable/cms/pages[pages] documentation.
+image::hello-world.gif["Setting up the page", width=1920px]
 
 == Summary
 
-At this point we were able to attach a hello page component to the hello-world site content, which is great!
+At this point we were able to attach a hello page component to the hello-world site content, which is great! A good observer will notice that the page is not entirely static, it will ouput the content `displayName` followed by a hardcoded text ` - we made it!`.
 
-A good reader will note the page is not static, i.e, it will ouput a `displayName` followed by a hardcoded text ` - we made it!`... but that's it.
+TIP: To learn more about pages, visit the https://developer.enonic.com/docs/xp/stable/cms/pages[pages documentation^].
 
 Next you'll be introduced to the <<concept of regions>>, that will enable you to add more components to your pages.

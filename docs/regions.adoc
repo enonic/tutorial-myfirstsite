@@ -11,23 +11,23 @@ Content Studio also supports adding more components to a page. To get going, the
 
 Complete the steps below to add a single region called `main` to the `hello` page component.
 
-. Start off by **adding a component descriptor**. The descriptor statically declares the region:
+. Start off by **updating the page component descriptor**. The new descriptor (below) statically declares the region:
 +
-.src/main/resources/site/pages/hello/hello.xml
+.pages/hello/hello.xml
 [source,XML]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
 ----
 +
-. **Update your controller and view** with the code below to support the new region:
+. **Update your controller and view** with the code below to support the region:
 +
-.src/main/resources/site/pages/hello/hello.ts
+.pages/hello/hello.ts
 [source,ts]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.ts[]
 ----
 +
-.src/main/resources/site/pages/hello/hello.html:
+.pages/hello/hello.html:
 [source,HTML]
 ----
 include::{sourcedir}code-samples/pages/hello-region/hello.html[]
@@ -40,22 +40,23 @@ Your sandbox should automatially pickup the changes, as we are running in dev mo
 +
 image::hello-regions.gif["Setting up a page with a region", width=1920px]
 +
-You now have a page with a single region! 
-+
-. *Add a text component to the region*. It is available from the right hand side as drag-n-drop, or by using the right click menu.
-
-TIP: To learn more about regions, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/regions[regions] documentation.
-
+Sweet. You now have a page with a single region! 
 
 == Text component
 
-Above, we added a text component into the region. The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+To make use of your new and shiny region, lets fill it with some content
 
-Visit the refrence documentation for https://developer.enonic.com/docs/xp/stable/cms/pages/text[more details on the Text Component^].
+. *Add a text component* to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
+
+The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+
+Visit the reference documentation for https://developer.enonic.com/docs/xp/stable/cms/pages/text[more details on the Text Component^].
 
 
 == Summary
 
 You've been introduced to regions, a concept that can be used on a page, as you just saw, but also on layouts, a new component type you'll be introduced to soon.
+
+TIP: To learn more about regions, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/regions[regions documentation^].
 
 In the next chapter you'll <<parts#, learn about parts>>. A highly customizable component type that can be inserted into regions.

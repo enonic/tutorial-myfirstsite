@@ -1,63 +1,61 @@
 :imagesdir: media/
-:sourcedir: ../
+:sourcedir: ../src/main/resources
 :experimental:
 
-= Layouts
+= Bonus: Layout components
 
 Layouts are like parts, but also support regions
 
 == Two column layout
 
-In this chapter, you'll be making a layout with two columns. Each column declares a region to support more components. We'll also support configuration of the layout, so editors can control the sizes for each of those two columns.
+Unlike parts, layouts may contain regions. Here, we'll define two regions, each working as columns in the final result. We'll also throw in some configuration options so editors can control the sizes for each of those two columns.
 
-. Let's start by **adding the descriptor** for the `two-columns` layout:
-+
+Like for parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup:
+
 .src/main/resources/site/layouts/two-columns/two-columns.xml
 [source,xml]
 ----
-include::{sourcedir}code-samples/layouts/two-columns/two-columns.xml[]
+include::{sourcedir}/layouts/two-columns/two-columns.xml[]
 ----
-+
+
 Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
-+
-. **Add the controller**:
-+
+
 .src/main/resources/site/layouts/two-columns/two-columns.ts
 [source,ts]
 ----
-include::{sourcedir}code-samples/layouts/two-columns/two-columns.ts[]
+include::{sourcedir}/layouts/two-columns/two-columns.ts[]
 ----
-+
-. **the view**:
-+
+
 .src/main/resources/site/layouts/two-columns/two-columns.html
 [source,html]
 ----
-include::{sourcedir}code-samples/layouts/two-columns/two-columns.html[]
+include::{sourcedir}/layouts/two-columns/two-columns.html[]
 ----
-+
-. and finally, the layout needs **some styling**:
-+
+
+== Page contribution
+
+To spice up the tutorial, we include some css which will only be available on pages where this layout exists. The following file has been placed in the assets folder:
+
 .src/main/resources/assets/styles/two-columns.scss
 [source,scss]
 ----
-include::{sourcedir}code-samples/layouts/two-columns/two-columns.scss[]
+include::{sourcedir}/assets/styles/two-columns.scss[]
 ----
 
-So far, the only new section is the https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions] you see in the controller. 
+NOTE: The `scss` file is automatically converted to `css` by the build system 
 
-Its naming speaks for itself, but just for clarity, is's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `head` tag begin or end, or on `body` tag begin or end - and typically controlled by the page component.
+To inject the css dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions].
 
-In our case we used it to inject a reference to the `two-columns.css` asset when this layout is placed on a page.
+Its naming speaks for itself, but just for clarity, it's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `<head>` begin or end, or on `<body>` begin or end.
 
-NOTE: `scss` is automatically converted to `css` during build 
+Study the TypeScript controller response above to see how the pageContribution is passed along with the response.
 
 == Using the layout
 
 So far you've understood what a layout is and, created the code for a two column layout. Let's see in practice by adding it to a page and using its regions.
 
-. Go to the root site content and click on btn:[edit]
-. *Setup the "Hello Regions!" page component*, and insert the two-column layout in its main region:
+. Back in content studio btn:[edit] the site content (root item) once more.
+. *Insert the two-column layout* in the main region:
 +
 image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width=1024px]
 +
@@ -73,9 +71,8 @@ image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 conf
  and https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layouts^].
 
 
-
-
 == Summary
 
+By combining content types, layouts, parts, pages and page templates, the sky's the limit for what you can build.
 
-As already mentioned, regions accepts all kinds of parts, so by combining layouts with your custom parts, together with their own custom configurations, you can basically achieve any kind of design!
+The journey so far has provided you a starting ground to build your first website. Let's now take a look on how to <<go-online#, go online>>! 
