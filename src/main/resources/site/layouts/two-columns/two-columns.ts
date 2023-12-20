@@ -31,10 +31,11 @@ export function get(): Response {
     pageContributions: {
       
       headEnd: [
-        `<link rel="stylesheet" href="${assetUrl({ path: 'styles/two-column.css' })}" type="text/css" />`
+        `<link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}" type="text/css" />`
       ]
     }
   };
 
+  
   return response;
 }
