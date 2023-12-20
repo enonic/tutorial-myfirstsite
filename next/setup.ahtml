@@ -500,7 +500,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Create a sandbox</strong> called <code>tutorial</code> by running this command in your terminal:</p>
+<p><strong>Create a sandbox</strong> called <code>mfstutorial</code> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
 <pre>enonic sandbox create mfstutorial</pre>
@@ -701,7 +701,7 @@ Because the sandbox is running in --dev mode, any changes to the code wihin your
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 22:12:42 UTC
+Last updated 2023-12-20 22:47:25 UTC
 </div>
 </div>
 </body>

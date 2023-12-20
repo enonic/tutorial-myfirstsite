@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#page_component">Page component</a></li>
 <li><a href="#component_controller">Component controller</a></li>
 <li><a href="#templating">Templating</a></li>
-<li><a href="#page_one">Page one</a></li>
+<li><a href="#your_first_page">Your first page</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -591,7 +591,7 @@ This view is plain HTML, but also uses a specific syntax known as the <a href="h
 </div>
 </div>
 <div class="sect1">
-<h2 id="page_one"><a class="link" href="#page_one">Page one</a></h2>
+<h2 id="your_first_page"><a class="link" href="#your_first_page">Your first page</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For the <code>hello</code> page component to actually render something, it must be used by a content item:</p>
@@ -639,7 +639,7 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 22:12:42 UTC
+Last updated 2023-12-20 22:47:25 UTC
 </div>
 </div>
 </body>
