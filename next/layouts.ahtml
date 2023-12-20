@@ -528,11 +528,12 @@ export function get(): Response {
     pageContributions: {
       
       headEnd: [
-        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-column.css' })}" type="text/css" /&gt;`
+        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}" type="text/css" /&gt;`
       ]
     }
   };
 
+  
   return response;
 }</code></pre>
 </div>
@@ -671,7 +672,7 @@ For more details, dig deeper into layouts in the <a href="https://developer.enon
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 22:47:25 UTC
+Last updated 2023-12-20 23:24:51 UTC
 </div>
 </div>
 </body>
