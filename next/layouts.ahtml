@@ -462,10 +462,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Unlike parts, layouts may contain regions. Here, we&#8217;ll define two regions, each working as columns in the final result. We&#8217;ll also throw in some configuration options so editors can control the sizes for each of those two columns.</p>
 </div>
 <div class="paragraph">
-<p>Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special <code>src/main/resources/site/layouts</code> folder:</p>
+<p>Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special <code>src/main/resources/site/layouts/</code> folder:</p>
 </div>
 <div class="listingblock">
-<div class="title">layouts/two-columns/two-columns.xml</div>
+<div class="title">src/main/resources/site/layouts/two-columns/two-columns.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;layout xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Two columns&lt;/display-name&gt;
@@ -493,7 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Notice that it doesn&#8217;t change much from what you&#8217;ve seen so far. It&#8217;s basically a mix of pages and parts.</p>
 </div>
 <div class="listingblock">
-<div class="title">layouts/two-columns/two-columns.ts</div>
+<div class="title">src/main/resources/site/layouts/two-columns/two-columns.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import { LayoutComponent, LayoutRegion } from '@enonic-types/core';
 import type { Response } from '/index.d';
@@ -538,7 +538,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">layouts/two-columns/two-columns.html</div>
+<div class="title">src/main/resources/site/layouts/two-columns/two-columns.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-th-class="'two-columns two-columns--' + ${sizes}"&gt;
     &lt;div data-portal-region="left"&gt;
@@ -651,8 +651,17 @@ The <code>scss</code> file is automatically converted to <code>css</code> by the
 <div class="paragraph">
 <p>By combining content types, layouts, parts, pages and page templates, the sky&#8217;s the limit for what you can build.</p>
 </div>
-<div class="paragraph">
-<p>Dig deeper into layouts in the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/layouts" target="_blank" rel="noopener">layout documentation</a>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details, dig deeper into layouts in the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/layouts" target="_blank" rel="noopener">layout documentation</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The journey so far has provided you a starting ground to build your first website. Let&#8217;s now take a look on how to <a href="go-online.ahtml">go online</a>!</p>
@@ -662,7 +671,7 @@ The <code>scss</code> file is automatically converted to <code>css</code> by the
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:28:00 UTC
+Last updated 2023-12-20 22:12:42 UTC
 </div>
 </div>
 </body>

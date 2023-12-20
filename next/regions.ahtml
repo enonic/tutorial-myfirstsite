@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Support adding more components to your page, including drag&#8217;n drop.</p>
+<p>Create component hierarchies with the power of regions.</p>
 </div>
 </div>
 </div>
@@ -466,9 +466,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Start off by <strong>updating the page component descriptor</strong>. The new descriptor (below) statically declares the region:</p>
+<p>Start off by <strong>updating your page component descriptor</strong>. The new descriptor (below) statically declares the region:</p>
 <div class="listingblock">
-<div class="title">pages/hello/hello.xml</div>
+<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-XML" data-lang="XML">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Hello Regions!&lt;/display-name&gt;
@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p><strong>Update your controller and view</strong> with the code below to support the region:</p>
 <div class="listingblock">
-<div class="title">pages/hello/hello.ts</div>
+<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import type { Response } from '/index.d';
 
@@ -517,7 +517,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">pages/hello/hello.html:</div>
+<div class="title">src/main/resources/site/pages/hello/hello.html:</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -607,7 +607,7 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:28:00 UTC
+Last updated 2023-12-20 22:12:42 UTC
 </div>
 </div>
 </body>

@@ -469,13 +469,13 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 <p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service" target="_blank" rel="noopener">Asset service</a>. By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
 </div>
 <div class="paragraph">
-<p>Your application already includes a sample CSS file located in <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by referencing it from the page component:</p>
+<p>Your application already includes a sample CSS file: <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by referencing it from the page component:</p>
 </div>
 <div class="paragraph">
 <p><strong>Update your page component view</strong> with the following content:</p>
 </div>
 <div class="listingblock">
-<div class="title">pages/hello/hello.html</div>
+<div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
 &lt;html color-mode="user"&gt;
@@ -559,7 +559,7 @@ When running in dev mode (like you do now), cache headers are deactivated
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:28:00 UTC
+Last updated 2023-12-20 22:12:42 UTC
 </div>
 </div>
 </body>

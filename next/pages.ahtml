@@ -463,10 +463,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>At the moment, we have some content, but no preview or visual rendering. Pages to the rescue. Page are composed from one or more components, always with a page component as its root.</p>
 </div>
 <div class="paragraph">
-<p>Your app includes a pre-defined page component named <code>hello</code>. It is defined by a descriptor file, placed in a particular location within your app: <code>src/main/resources/site/pages</code></p>
+<p>Your app includes a pre-defined page component named <code>hello</code>. It is defined by a descriptor file, placed in a particular location within your app: <code>src/main/resources/site/pages/</code></p>
 </div>
 <div class="listingblock">
-<div class="title">pages/hello/hello.xml</div>
+<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-js" data-lang="js">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
 &lt;page&gt;
@@ -511,7 +511,7 @@ The controller file must be placed in and use the same name as the component dir
 </table>
 </div>
 <div class="listingblock">
-<div class="title">pages/hello/hello.ts</div>
+<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-js" data-lang="js">import type { Response } from '/index.d';
 
@@ -563,7 +563,7 @@ Here we&#8217;re using TypeScript. Each .ts file will automatically be compiled 
 <p>For clean coding, we have also supplied a simple HTML template - a.k.a the View of the Model View Controller (MVC) pattern. It looks like this:</p>
 </div>
 <div class="listingblock">
-<div class="title">pages/hello/hello.html</div>
+<div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -632,14 +632,14 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </table>
 </div>
 <div class="paragraph">
-<p>Next you&#8217;ll be introduced to the <a href="#concept of regions">[concept of regions]</a>, that will enable you to add more components to your pages.</p>
+<p>Next you&#8217;ll be introduced to the <a href="regions.ahtml">concept of regions</a>, that will enable you to add more components to your pages.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:28:00 UTC
+Last updated 2023-12-20 22:12:42 UTC
 </div>
 </div>
 </body>

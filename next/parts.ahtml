@@ -469,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>A descriptor, controller and view have already been added to the <code>src/main/resources/site/parts/</code> folder:</p>
 </div>
 <div class="listingblock">
-<div class="title">parts/country/country.xml</div>
+<div class="title">src/main/resources/site/parts/country/country.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Country&lt;/display-name&gt;
@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="listingblock">
-<div class="title">parts/country/country.ts</div>
+<div class="title">src/main/resources/site/parts/country/country.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import { Content } from '@enonic-types/core';
 import type { Response } from '/index.d';
@@ -516,7 +516,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">parts/country/country.html</div>
+<div class="title">src/main/resources/site/parts/country/country.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div&gt;
     &lt;ul&gt;
@@ -576,7 +576,7 @@ You may also use the page form input (visible on the left hand , or floating abo
 <p>The part already exists in your app via the following files:</p>
 </div>
 <div class="listingblock">
-<div class="title">parts/city-list/city-list.xml</div>
+<div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;City list&lt;/display-name&gt;
@@ -596,7 +596,7 @@ You may also use the page form input (visible on the left hand , or floating abo
 </div>
 </div>
 <div class="listingblock">
-<div class="title">parts/city-list/city-list.ts</div>
+<div class="title">src/main/resources/site/parts/city-list/city-list.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-ts" data-lang="ts">import { Content, PartComponent } from '@enonic-types/core';
 import type { Response } from '/index.d';
@@ -673,7 +673,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">parts/city-list/city-list.html</div>
+<div class="title">src/main/resources/site/parts/city-list/city-list.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div class="cities" style="min-height:100px;"&gt;
     &lt;h2&gt;Cities&lt;/h2&gt;
@@ -748,7 +748,7 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-20 17:28:00 UTC
+Last updated 2023-12-20 22:12:42 UTC
 </div>
 </div>
 </body>
