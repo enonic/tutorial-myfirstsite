@@ -1,0 +1,20 @@
+<layout xmlns="urn:enonic:xp:model:1.0">
+  <display-name>Two columns</display-name>
+  <description>A layout with configurable two columns</description>
+  <form>
+    <input type="ComboBox" name="sizes">
+        <label>Column sizes</label> 
+        <occurrences minimum="1" maximum="1"/>
+        <config>
+            <option value="33_66">33/66</option>
+            <option value="50_50">50/50</option>
+            <option value="66_33">66/33</option>
+        </config>
+        <default>50_50</default>
+    </input>
+  </form>
+  <regions>
+    <region name="left"/>
+    <region name="right"/>
+  </regions>
+</layout>

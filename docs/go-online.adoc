@@ -1,0 +1,23 @@
+:imagesdir: media/
+
+= Go Online
+
+Now that the setup of `Hello World` site is completed, it's time to publish.
+
+. Select the `Hello World` site in the content browse panel
+. Select *Publish Tree* from the top right action menu. The *Publishing Wizard* will now appear
+. Several `In progress` items are blocking publishing - click `Mark as ready` to fix this.
+. click *Publish*!
+
+image::publish.gif["Demonstrating how to publish all items in the project", width=800px]
+
+What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from *draft* to the *master* branch
+
+NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/myfirstsite/master/hello-world`.
+
+*Well done!*
+
+ 🎉 Congratulations on building your first Enonic site - The Enonic team.
+
+
+TIP: To learn more about structured content modelling, and the GraphQL API, visit our https://developer.enonic.com/docs/developer-101[Developer 101 tutorial].

@@ -1,0 +1,93 @@
+:imagesdir: media/
+:sourcedir: ../src/main/resources/site/parts
+
+= Parts - flexible components for your pages
+
+Parts are the visual building blocks to make pages more interesting.
+
+== The country part
+
+It's about time we show some details from the *Country* content type.
+
+Rather than making another page component, lets use parts. Like the Text component, parts can be added to regions.
+
+A descriptor, controller and view have already been added to the `src/main/resources/site/parts/` folder:
+
+.src/main/resources/site/parts/country/country.xml
+[source,xml]
+----
+include::{sourcedir}/country/country.xml[]
+----
+
+.src/main/resources/site/parts/country/country.ts
+[source,ts]
+----
+include::{sourcedir}/country/country.ts[]
+----
+
+.src/main/resources/site/parts/country/country.html
+[source,HTML]
+----
+include::{sourcedir}/country/country.html[]
+----
+
+*Add the part to the country page* by drag'n dropping `Part` from the right-hand-side. Then select the `Country` component from the list. 
+
+The resulting page should look something like this:
+
+image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=300px]
+
+NOTE: You may also use the page form input (visible on the left hand , or floating above the page editor) to manage the components on your page.
+
+== Configurable part
+
+Let's try something slightly more advanced. The `City list` part will:
+
+* Lists cities within a country.
+* Show an image of each city
+* Let you choose the image cropping format
+
+The part already exists in your app via the following files:
+
+.src/main/resources/site/parts/city-list/city-list.xml
+[source,xml]
+----
+include::{sourcedir}/city-list/city-list.xml[]
+----
+
+.src/main/resources/site/parts/city-list/city-list.ts
+[source,ts]
+----
+include::{sourcedir}/city-list/city-list.ts[]
+----
+
+.src/main/resources/site/parts/city-list/city-list.html
+[source,HTML]
+----
+include::{sourcedir}/city-list/city-list.html[]
+----
+
+
+. *Add the city list part* to the same page as before, and verify that it is working.
+. *Configure the part* by changing the settings in the right hand panel. i.e. by choosing `widescreen`. Click apply to see the result.
+
+
+image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1227px]
+
+== Image service
+
+Images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image, with desired sizes and cropping.
+
+== Logging
+
+The controller above also prints the `model object` to the log. Check your sandbox log after visiting a country page to see what is going on
+
+== Summary
+
+You've been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your pages.
+
+TIP: To learn more about parts, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/parts[parts^] documentation.
+
+
+
+In the next chapter you'll how to re-use pages through <<page-templates#, page templates>>.

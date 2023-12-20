@@ -1,0 +1,69 @@
+:imagesdir: media/
+:experimental:
+
+= Page templates
+
+Create page templates to reuse a page across different content items
+
+== Reusable pages
+Previously, we mentioned that you'd get to know about the `Templates` folder a bit later. The time has arrived.
+
+With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. country - and all countries will be rendered by it.
+
+Let's take advantage over the fact that we have already created a page for a city. 
+
+. Select, and btn:[Edit] the City with the page
+. Select the page component, and from the context menu click btn:[Save as Template]
+. Give your Template a suitable name i.e. `Country template`
+. In the `Supported content types` field, choose `Country`.
++
+Here is a video demonstrating the process.
+
+image::page-template.gif["Creating a page template from a page", width=1920px]
+
+Now, all of your cities will be rendered by the page template.
+
+== From scratch
+Just like any other piece of content, a page template can also be created from scratch.
+
+. Select the `Templates` content item and then click btn:[new]
++
+image::page-template-1.png["List of content types under the root site content, with the Templates highlighted", width=418px]
++
+. Select the `Page template` content type
++
+image::page-template-2.png["Modal showing the page template content type", width=718px]
++
+. On supports, select `Country` content type and click on `Apply`
++
+image::page-template-3.png["List of available content types under the support filter, with the Country content type highlighted", width=336px]
++
+. On the right section, select the `Hello Regions!` page
++
+image::page-template-4.png["List of available pages, with the Hello Regions! page highlighted", width=499px]
++
+. Right click on `Drop here` region in the added page, then `insert` and `part` and select the `Country` part
++
+image::page-template-5.png["List of available parts to be added withing a region, with the Country part highlighted", width=612px]
++
+. Then finally give this page template a name, such as "Country Page Template" and save it.
+
+NOTE: Try clicking the other countries to verify that the template actually works as intended.
+
+
+== Automatic, fixed or customized
+
+The country item you manually edited still uses the custom page you created - you can make it use the page template as well.
+
+. Edit the initial country, open the page editor and select the page.
+. From the right hand component view, change the Template setting from `Custom` to `Automatic`
+
+NOTE: For every single content item, you can use `Automatic` (default), select a `specific template`, or `customize` the page.
+
+== Summary
+
+You've just learned about page templates, which is a way to reuse a page across specific content types within your site. This is a powerful feature of the CMS, as it enables editors to manage and publish page templates, just like any other content.
+
+TIP: If you want to control the rendering of certain pages without using page templates, check out https://developer.enonic.com/docs/xp/stable/framework/mappings[controller mappings^].
+
+Next up, let's see how to <<static-assets#, add and serve static assets>>, using the built-in asset service.
