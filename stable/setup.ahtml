@@ -445,6 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#create_the_app">Create the app</a></li>
 <li><a href="#project_structure">Project structure</a></li>
 <li><a href="#start_building">Start building</a></li>
+<li><a href="#xp_admin">XP Admin</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -503,11 +504,11 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <p><strong>Create a sandbox</strong> called <code>mfstutorial</code> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create mfstutorial</pre>
+<pre>enonic sandbox create mfstutorial -t essentials -f</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.</p>
+<p>This will create a sandbox contaiing <code>essential</code> applications, and use the latest versjon of Enonic XP.</p>
 </div>
 </li>
 <li>
@@ -670,14 +671,59 @@ enonic dev</pre>
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
+<div class="paragraph">
+<p>Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="xp_admin"><a class="link" href="#xp_admin">XP Admin</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s have a look at the Sandbox' web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
+</div>
+<div class="paragraph">
+<p>You should now see the XP boot page:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-boot.png" alt="The XP boot page" width="1085w">
+</div>
+</div>
+<div class="paragraph">
+<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.
+<code>My first site</code> should be in the list, together with other applications that were automatically installed when you created the sandbox.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-dashboard.png" alt="The XP admin dashboard" width="1727w">
+</div>
+</div>
+<div class="paragraph">
+<p>You are now on the admin dashboard. The right hand menu (aka <code>XP menu</code>) enables navigation between admin tools. Admin tools may be injected as extensions via applications.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If things don&#8217;t look exactly the same, don&#8217;t worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
 </td>
 </tr>
 </table>
@@ -701,7 +747,7 @@ Because the sandbox is running in --dev mode, any changes to the code wihin your
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 07:49:39 UTC
+Last updated 2024-01-23 08:41:18 UTC
 </div>
 </div>
 </body>

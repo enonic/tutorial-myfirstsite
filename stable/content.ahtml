@@ -441,8 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#content_and_projects">Content and projects</a></li>
-<li><a href="#sites_apps_true">Sites + Apps = true</a></li>
+<li><a href="#sites_and_apps">Sites and apps</a></li>
 <li><a href="#content_types">Content Types</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
@@ -460,46 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It is not a part of the core platform, but can easily be installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a>.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Open the sandbox admin</strong>: <a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin</a> and click <code>Login without a user</code>. This will bring you to the Dashboard.</p>
-</li>
-<li>
-<p><strong>Open the Applications app</strong> from the top right <code>XP menu &#8594; Applications</code>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/xp-menu-applications.png" alt="Go to Applications from the XP menu" width="319px">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Install Content Studio</strong>: click <code>Install</code> button in the menu bar, scroll down to <code>Content Studio</code> (or use search) in the list of apps that appears and click <code>Install</code> next to it.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/install-content-studio.png" alt="Install the Content Studio app" width="760px">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Your XP <code>Dashboard</code> should now have a <code>Content Studio widget</code>, and <code>Content Studio</code> available from the right-hand-side XP menu.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/dashboard.png" alt="Enonic dashboard with Content Studio Widget" width="1440px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="content_and_projects"><a class="link" href="#content_and_projects">Content and projects</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A content project called <code>My First Site</code> and some sample content gets created when your application starts the first time. Let&#8217;s have a closer look.</p>
+<p>Your application creates a content project called <code>My First Site</code> the first time it starts. Let&#8217;s have a closer look.</p>
 </div>
 <div class="paragraph">
 <p><strong>Open Content Studio</strong> from the right hand <code>XP menu &#8594; Content Studio</code>. You should now see some of the imported content.</p>
@@ -527,7 +487,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 </div>
 </div>
 <div class="sect1">
-<h2 id="sites_apps_true"><a class="link" href="#sites_apps_true">Sites + Apps = true</a></h2>
+<h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Select the hello-world content and click <b class="button">edit</b>.</p>
@@ -549,7 +509,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 <p>Every content item has a specific a content type.</p>
 </div>
 <div class="paragraph">
-<p>Enonic XP has some standard content types:  <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of <code>Media Types</code> to handle different kind of files.</p>
+<p>Enonic XP ships with a set of standard content types:  <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of <code>Media Types</code>. Media types handle different kind of files.</p>
 </div>
 <div class="paragraph">
 <p>Additionally, applications may define their own custom content types. Your app contains two: <code>Country</code> and <code>City</code>. They are defined under <code>src/main/resources/site/content-types/</code>. Let&#8217;s explore the <code>City</code> content type. In Content Studio it should look something like this:</p>
@@ -620,7 +580,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 07:49:39 UTC
+Last updated 2024-01-23 08:41:18 UTC
 </div>
 </div>
 </body>
