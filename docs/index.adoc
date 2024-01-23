@@ -2,19 +2,19 @@
 
 = My first site
 
-Learn the basic principals of pages, components, and rendering with the Enonic JS framework.
+Learn the basic principals of pages, components, and rendering with the Enonic framework.
 
-TIP: If you are primarily interested in our headless API, visit https://developer.enonic.com/docs/intro[our hands on introduction], or the https://developer.enonic.com/docs/developer-101[developer 101 tutorial].
+TIP: Enonic also support rendering with https://developer.enonic.com/docs/frameworks[other frameworks].
 
 During this exercise you will:
 
 * create an Enonic app
 * install and use Content Studio
-* learn about and use content types and page components
+* get familiar with page components
 * Try out page templates
 * Use static assets
 * and then some...
 
-Start the show by <<setup#, setting up your developer environment>>.
+image::nerd2code.svg["Ready...Set...Code!", width=720px]
 
-image::ready-set-code.svg["Ready...Set...Code!", width=720px]
+Start the show by <<setup#, setting up the developer environment>>.
