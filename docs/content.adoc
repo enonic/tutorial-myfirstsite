@@ -8,28 +8,9 @@ Introduction to Content Studio, content types and content items
 
 == Content Studio
 
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but can easily be installed from https://market.enonic.com[Enonic Market^].
+Your application creates a content project called `My First Site` the first time it starts. Let's have a closer look. 
 
-. **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
-+
-. **Open the Applications app** from the top right `XP menu -> Applications`.
-+
-image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
-+
-. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
-+
-image::install-content-studio.png["Install the Content Studio app", width="760px"]
-
-Your XP `Dashboard` should now have a `Content Studio widget`, and `Content Studio` available from the right-hand-side XP menu.
-
-image::dashboard.png["Enonic dashboard with Content Studio Widget", width="1440px"]
-
-
-== Content and projects
-
-A content project called `My First Site` and some sample content gets created when your application starts the first time. Let's have a closer look. 
-
-**Open Content Studio** from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
+*Open Content Studio* from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
 
 image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
 
@@ -38,7 +19,7 @@ A content structure, with `Hello World` as the root item show now appear. From t
 TIP: ignore the `Templates` folder for now, we'll get back to it later. 
 
 
-== Sites + Apps = true
+== Sites and apps
 
 Select the hello-world content and click btn:[edit].
 
@@ -50,7 +31,7 @@ From the left hand form you can see that your app `My first site`, has been adde
 
 Every content item has a specific a content type. 
 
-Enonic XP has some standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types` to handle different kind of files. 
+Enonic XP ships with a set of standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types`. Media types handle different kind of files. 
 
 Additionally, applications may define their own custom content types. Your app contains two: `Country` and `City`. They are defined under `src/main/resources/site/content-types/`. Let's explore the `City` content type. In Content Studio it should look something like this:
 

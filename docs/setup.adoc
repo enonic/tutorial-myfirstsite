@@ -24,9 +24,9 @@ A sandbox is a local developer instance of our platform - Enonic XP. Each sandbo
 
 . *Create a sandbox* called `mfstutorial` by running this command in your terminal:
 +
-  enonic sandbox create mfstutorial
+  enonic sandbox create mfstutorial -t essentials -f
 +
-Agree to continue with the most recent version of Enonic XP. The CLI will proceed to download and setup your local developer instance, i.e, your sandbox.
+This will create a sandbox contaiing `essential` applications, and use the latest versjon of Enonic XP.
 +
 . **Start the sandbox** with this command:
 +
@@ -98,7 +98,30 @@ Look for a line like this in the sandbox log to verify that the app has started:
   2019-04-09 13:40:40,765 INFO ... Application [my.first.site] installed successfully
 ====
 
-TIP: Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.
+Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.
+
+
+== XP Admin
+
+Let's have a look at the Sandbox' web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+
+You should now see the XP boot page:
+
+image::xp-boot.png[The XP boot page, 1085w]
+
+The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
+
+NOTE: `My first site` should be in the list, together with other applications that were automatically installed when you created the sandbox.
+
+Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:
+
+image::xp-dashboard.png[The XP admin dashboard, 1727w]
+
+You are now on the admin dashboard. The right hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
+
+NOTE: If things don't look exactly the same, don't worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
+
+
 
 
 == Summary
