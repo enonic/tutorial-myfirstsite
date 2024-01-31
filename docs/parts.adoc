@@ -69,7 +69,7 @@ include::{sourcedir}/city-list/city-list.html[]
 
 
 . *Add the city list part* to the same page as before, and verify that it is working.
-. *Configure the part* by changing the settings in the right hand panel. i.e. by choosing `widescreen`. Click apply to see the result.
+. *Configure the part* by changing the settings in the right hand panel, e.g. choose `widescreen` in the "Image crop" dropdown. Click Apply button to see the result.
 
 
 image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1227px]
@@ -80,14 +80,14 @@ Images are scaled and cropped in real-time by the https://developer.enonic.com/d
 
 == Logging
 
-The controller above also prints the `model object` to the log. Check your sandbox log after visiting a country page to see what is going on
+The controller above also outputs the `model object` to the log. Check your sandbox log after visiting a country page to see what is going on.
 
 == Summary
 
-You've been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your pages.
+You've been introduced to parts, a powerful concept that will enable you to build customizable visual blocks for your pages.
 
 TIP: To learn more about parts, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/parts[parts^] documentation.
 
 
 
-In the next chapter you'll how to re-use pages through <<page-templates#, page templates>>.
+In the next chapter you'll learn how to reuse pages through <<page-templates#, page templates>>.
