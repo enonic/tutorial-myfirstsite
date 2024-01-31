@@ -1,9 +1,5 @@
 import type { ContentSecurityPolicy } from '/index.d';
 
-
-import { includes as arrayIncludes } from '@enonic/js-utils/array/includes';
-
-
 export const ABOUT = 'about:';
 export const BLOB = 'blob:';
 export const DATA = 'data:';
@@ -40,33 +36,6 @@ export const CSP_PERMISSIVE: ContentSecurityPolicy = {
 		WSS,
 	]
 };
-
-export function nonce(s: string) {
-	return `'nonce-${s}'`;
-}
-
-export function pushUniqueValue(stringArray: string[], string: string): number {
-	if (!arrayIncludes(stringArray, string)) {
-		return stringArray.push(string);
-	}
-	return -1; // stringArray.length;
-}
-
-export function q(s: string) {
-	return `'${s}'`;
-}
-
-export function sha256(s: string) {
-	return `'sha256-${s}'`;
-}
-
-export function sha384(s: string) {
-	return `'sha384-${s}'`;
-}
-
-export function sha512(s: string) {
-	return `'sha512-${s}'`;
-}
 
 export function contentSecurityPolicy(csp: ContentSecurityPolicy) {
 	return Object.keys(csp).map(k => {

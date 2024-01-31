@@ -1,12 +1,9 @@
 import type { Options } from '.';
 
-import GlobalsPlugin from 'esbuild-plugin-globals';
 import TsupPluginManifest from '@enonic/tsup-plugin-manifest';
 import { sassPlugin } from 'esbuild-sass-plugin';
-import CopyWithHashPlugin from '@enonic/esbuild-plugin-copy-with-hash';
 
 import { globSync } from 'glob';
-// import { print } from 'q-i';
 import {
 	DIR_DST,
 	DIR_SRC_STATIC
@@ -27,7 +24,6 @@ export default function buildStaticConfig(): Options {
 			.replace(/\.[^.]+$/, '') // Remove extension
 		] = element;
 	}
-	// print({entry}, { maxItems: Infinity });
 
 	return {
 		bundle: true, // Needed to bundle @enonic/js-utils and dayjs
@@ -35,17 +31,6 @@ export default function buildStaticConfig(): Options {
 		entry,
 
 		esbuildPlugins: [
-			CopyWithHashPlugin({
-				context: 'node_modules',
-				manifest: `node_modules-manifest.json`,
-				patterns: [
-					'react/{cjs,umd}/*.js',
-					'react-dom/{cjs,umd}/*.js',
-				]
-			}),
-			GlobalsPlugin({
-				react: 'React',
-			}),
 			TsupPluginManifest({
 				generate: (entries) => {// Executed once per format
 					const newEntries = {};
@@ -63,30 +48,22 @@ export default function buildStaticConfig(): Options {
 			sassPlugin(),
 		],
 
-		// By default tsup bundles all imported modules, but dependencies
-		// and peerDependencies in your packages.json are always excluded
-		external: [ // Must be loaded into global scope instead
-			// 'react' // ERROR: For GlobalsPlugin to work react must NOT be listed here
-		],
-
 		format: [
 			'cjs', // Legacy browser support, also css in manifest.cjs.json
 			'esm', // cjs needed because css files are not reported in manifest.esm.json
 		],
-		minify: process.env.NODE_ENV === 'development' ? false : true,
+		minify: process.env.NODE_ENV !== 'development',
 
 		// TIP: Command to check if there are any bad requires left behind
 		// grep -r 'require("' build/resources/main | grep -v 'require("/'|grep -v chunk
 		noExternal: [
 			/^@enonic\/js-utils/,
-			'dayjs', // Not loaded into global scope
-			'react', // WARNING: For GlobalsPlugin to work react MUST be listed here (if react under dependencies or peerDependencies)
 		],
 
 		platform: 'browser',
 		silent: ['QUIET', 'WARN'].includes(process.env.LOG_LEVEL_FROM_GRADLE||''),
 		splitting: true,
-		sourcemap: process.env.NODE_ENV === 'development' ? false : true,
+		sourcemap: process.env.NODE_ENV !== 'development',
 		tsconfig: `${DIR_SRC_STATIC}/tsconfig.json`,
 	};
 }

@@ -1,7 +1,7 @@
-import * as projectLib from '/lib/xp/project';
-import * as contextLib from '/lib/xp/context';
-import * as clusterLib from '/lib/xp/cluster';
-import * as exportLib from '/lib/xp/export';
+import { create as createProject, get as getProject } from '/lib/xp/project';
+import { run } from '/lib/xp/context';
+import { isMaster } from '/lib/xp/cluster';
+import { importNodes } from '/lib/xp/export';
 import {DEBUG_MODE} from '/constants'; // Using relative, so it will be inlined (and tree-shaken).
 
 const projectData = {
@@ -16,7 +16,7 @@ const projectData = {
 function runInContext(callback) {
     let result;
     try {
-        result = contextLib.run({
+        result = run({
             principals: ["role:system.admin"],
             repository: 'com.enonic.cms.' + projectData.id,
         }, callback);
@@ -27,20 +27,20 @@ function runInContext(callback) {
     return result;
 }
 
-function createProject() {
-    return projectLib.create(projectData);
+function doCreateProject() {
+    return createProject(projectData);
 }
 
-function getProject() {
-    return projectLib.get({ id: projectData.id });
+function doGetProject() {
+    return getProject({ id: projectData.id });
 }
 
 function initializeProject() {
-    let project = runInContext(getProject);
+    let project = runInContext(doGetProject);
 
     if (!project) {
         DEBUG_MODE && log.info('Project "' + projectData.id + '" not found. Creating...');
-        project = runInContext(createProject);
+        project = runInContext(doCreateProject);
 
         if (project) {
             DEBUG_MODE && log.info('Project "' + projectData.id + '" successfully created');
@@ -54,7 +54,7 @@ function initializeProject() {
 }
 
 function createContent() {
-    const importNodes = exportLib.importNodes({
+    const nodes = importNodes({
         source: resolve('/import'),
 		targetNodePath: '/content',
 		xslt: resolve('/import/replace_app.xsl'),
@@ -64,13 +64,13 @@ function createContent() {
         nodeResolved: () => {}
     });
 
-    if (importNodes.importErrors.length > 0) {
+    if (nodes.importErrors.length > 0) {
         DEBUG_MODE && log.warning('Errors:');
-        importNodes.importErrors.forEach(element => DEBUG_MODE && log.warning(element.message));
+		nodes.importErrors.forEach(element => DEBUG_MODE && log.warning(element.message));
     }
 }
 
-if (clusterLib.isMaster()) {
+if (isMaster()) {
     initializeProject();
 }
 

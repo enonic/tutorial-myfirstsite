@@ -11,17 +11,17 @@ const VIEW = resolve('./hello.html');
 export function get(): Response {
 
     // Get the content that is using the page
-    const content = getContent();
+	const content = getContent();
 
-    // Prepare the model that will be passed to the view
-    const model = {
-      displayName: content.displayName
-    }
+	// Prepare the model that will be passed to the view
+	const model = {
+		displayName: content.displayName
+	}
 
-    // Prepare the response object
-    const response: Response = {
+	// Prepare the response object
+	const response: Response = {
 		body: render(VIEW, model)
 	};
 
-    return response;
+	return response;
 }
