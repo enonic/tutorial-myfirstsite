@@ -8,20 +8,20 @@ Introduction to Content Studio, content types and content items
 
 == Content Studio
 
-Your application creates a content project called `My First Site` the first time it starts. Let's have a closer look. 
+Your application creates a content project called `My First Site` the first time it starts. Let's have a closer look.
 
 *Open Content Studio* from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
 
 image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
 
-A content structure, with `Hello World` as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA` and `Templates` as child items. 
+A content structure, with `Hello World` as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA` and `Templates` as child items.
 
-TIP: ignore the `Templates` folder for now, we'll get back to it later. 
+TIP: ignore the `Templates` folder for now, we'll get back to it later.
 
 
 == Sites and apps
 
-Select the hello-world content and click btn:[edit].
+Select the "Hello World" content and click btn:[edit].
 
 image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=920px]
 
@@ -29,9 +29,9 @@ From the left hand form you can see that your app `My first site`, has been adde
 
 == Content Types
 
-Every content item has a specific a content type. 
+Every content item has a specific a content type.
 
-Enonic XP ships with a set of standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types`. Media types handle different kind of files. 
+Enonic XP ships with a set of standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types`. Media types handle different kind of files.
 
 Additionally, applications may define their own custom content types. Your app contains two: `Country` and `City`. They are defined under `src/main/resources/site/content-types/`. Let's explore the `City` content type. In Content Studio it should look something like this:
 

@@ -3,11 +3,9 @@ import type {
 	Response,
 } from '/index.d';
 
-
 // @ts-expect-error TS2307: Cannot find module '/lib/enonic/static' or its corresponding type declarations.
 import {buildGetter} from '/lib/enonic/static';
 import { GETTER_ROOT } from '/constants';
-
 
 const staticGetter = buildGetter({
 	etag: false, // default is true in production and false in development

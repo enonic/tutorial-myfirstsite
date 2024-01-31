@@ -4,10 +4,7 @@
     "url": "https://github.com/enonic/starter-tsup/issues"
   },
   "dependencies": {
-    "@enonic/js-utils": "^1",
-    "dayjs": "^1",
-    "react": "^18",
-    "react-dom": "^18"
+    "@enonic/js-utils": "^1"
   },
   "description": "My first Enonic site",
   "devDependencies": {
@@ -18,11 +15,7 @@
     "@enonic-types/lib-export": "^7",
     "@enonic-types/lib-portal": "^7",
     "@enonic-types/lib-project": "^7",
-    "@enonic/esbuild-plugin-copy-with-hash": "^0.2.0",
-    "@enonic/mock-xp": "^0.10.0",
     "@enonic/tsup-plugin-manifest": "^0.0.1",
-    "@jest/globals": "^29.6.4",
-    "@types/react": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "browser-sync": "^3",
     "concurrently": "^8",
@@ -30,14 +23,10 @@
     "esbuild-sass-plugin": "^2.16.1",
     "eslint": "^8",
     "eslint-plugin-jsx-a11y": "^6",
-    "eslint-plugin-react": "^7",
-    "eslint-plugin-react-hooks": "^4",
     "glob": "^10.3.10",
     "jest": "^29.7.0",
-    "q-i": "^2",
     "rimraf": "^5",
     "sass": "^1.70.0",
-    "ts-jest": "^29.1.2",
     "tsup": "^8"
   },
   "homepage": "https://developer.enonic.com/docs/tsup-starter",
@@ -50,17 +39,20 @@
   "scripts": {
     "clean": "rimraf build",
     "build": "concurrently -c auto -g --timings npm:build:*",
-    "minify": "concurrently -c auto -g --timings 'npm:build:sass -- --style compressed' npm:build:sass 'npm:build:server -- --minify'",
+    "minify": "concurrently -c auto -g --timings 'npm:build:sass -- --style compressed' 'npm:build:server -- --minify' 'npm:build:static -- --minify'",
     "build:sass": "npx sass src/main/resources/assets/styles:build/resources/main/assets/styles",
     "build:server": "npx tsup -d build/resources/main",
+    "build:static": "npx tsup -d build/resources/main/static",
     "check": "concurrently -c auto -g --timings npm:lint npm:check:types",
     "check:types": "concurrently -g -r --timings npm:check:types:*",
     "check:types:server": "npx tsc --noEmit",
+    "check:types:static": "npx tsc --noEmit -p src/main/resources/static/tsconfig.json",
     "lint": "eslint --cache src/main/resources/**/*.ts",
     "watch": "concurrently -c auto npm:watch:*",
     "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --no-snippet --watch",
     "watch:sass": "npm run build:sass -- --watch",
-    "watch:server": "npm run build:server -- --watch"
+    "watch:server": "npm run build:server -- --watch",
+    "watchChanges:static": "npm run build:static -- --watch"
   },
   "version": "1.0.0"
 }

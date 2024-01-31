@@ -3,8 +3,6 @@ import type {
 	Response,
 } from '/index.d';
 
-
-// import { toStr } from '@enonic/js-utils/value/toStr';
 import lcKeys from '@enonic/js-utils/object/lcKeys';
 import {
 	getBrowserSyncScript,
@@ -18,9 +16,6 @@ import {
 
 
 export function responseProcessor(request: Request, res: Response) {
-	// log.info('req:%s', toStr(req));
-	// log.info('res:%s', toStr(res));
-
 	const {
 		mode,
 	} = request;

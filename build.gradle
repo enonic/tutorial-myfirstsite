@@ -73,8 +73,8 @@ tasks.register('npmCheck', NpmTask) {
 	]
 }
 
-// If you ALWAYS want to SKIP `test` and `check` tasks on development build, wrap this inside an 'if...'
-// if (!(project.hasProperty('dev') || project.hasProperty('development'))) {
+// If you ALWAYS want to SKIP `test` and `check` tasks on development build, uncomment the 'if...' below
+// if (!isProd()) {
 check.dependsOn npmCheck
 // }
 
@@ -84,15 +84,12 @@ tasks.register('npmBuild', NpmTask) {
 		//'--silent',
 		isProd() ? 'minify' : 'build'
 	]
-	println(isProd())
 	dependsOn npmInstall
 	environment = [
 		'FORCE_COLOR': 'true',
 		'LOG_LEVEL_FROM_GRADLE': gradle.startParameter.logLevel.toString(),
 		'NODE_ENV': nodeEnvironment()
 	]
-	inputs.dir 'node_modules/react'
-	inputs.dir 'node_modules/react-dom'
 	inputs.dir 'src/main/resources'
 	outputs.dir 'build/resources/main'
 }
