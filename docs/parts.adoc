@@ -31,7 +31,7 @@ include::{sourcedir}/country/country.ts[]
 include::{sourcedir}/country/country.html[]
 ----
 
-*Add the part to the country page* by drag'n dropping `Part` from the right-hand-side. Then select the `Country` component from the list. 
+*Add the part to the country page* by drag'n'dropping `Part` from the right-hand-side. Then select the `Country` component from the list.
 
 The resulting page should look something like this:
 
@@ -43,9 +43,9 @@ NOTE: You may also use the page form input (visible on the left hand , or floati
 
 Let's try something slightly more advanced. The `City list` part will:
 
-* Lists cities within a country.
-* Show an image of each city
-* Let you choose the image cropping format
+* list cities within a country,
+* show an image of each city,
+* let you choose the image cropping format.
 
 The part already exists in your app via the following files:
 
