@@ -3,25 +3,25 @@
 
 = Page templates
 
-Create page templates to reuse a page across different content items
+Create page templates to reuse a page across different content items.
 
 == Reusable pages
 Previously, we mentioned that you'd get to know about the `Templates` folder a bit later. The time has arrived.
 
 With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. country - and all countries will be rendered by it.
 
-Let's take advantage over the fact that we have already created a page for a city. 
+Let's take advantage over the fact that we have already created a page for a city.
 
 . Select, and btn:[Edit] the City with the page
 . Select the page component, and from the context menu click btn:[Save as Template]
 . Give your Template a suitable name i.e. `Country template`
-. In the `Supported content types` field, choose `Country`.
+. Choose `Country` in the `Supports` dropdown.
 +
 Here is a video demonstrating the process.
 
 image::page-template.gif["Creating a page template from a page", width=1920px]
 
-Now, all of your cities will be rendered by the page template.
+Now, when you select city content elements in the Content grid you'll notice that each of them is rendered by the page template.
 
 == From scratch
 Just like any other piece of content, a page template can also be created from scratch.
@@ -34,11 +34,11 @@ image::page-template-1.png["List of content types under the root site content, w
 +
 image::page-template-2.png["Modal showing the page template content type", width=718px]
 +
-. On supports, select `Country` content type and click on `Apply`
+. Select `Country` content type from the "Supports" dropdown.
 +
 image::page-template-3.png["List of available content types under the support filter, with the Country content type highlighted", width=336px]
 +
-. On the right section, select the `Hello Regions!` page
+. In the panel on the right select the `Hello Regions!` page
 +
 image::page-template-4.png["List of available pages, with the Hello Regions! page highlighted", width=499px]
 +
