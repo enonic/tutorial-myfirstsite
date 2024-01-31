@@ -36,19 +36,21 @@ include::{sourcedir}code-samples/pages/hello-region/hello.html[]
 Your sandbox should automatially pickup the changes, as we are running in dev mode.
 +
 . Back in Content Studio, select, and **edit one of the country content items**.
-. Activate the page editor (from the top right monitor icon), and select the `Hello` component.
+. Activate the page editor (from the top right monitor icon), and select the `Hello Regions!` controller.
 +
 image::hello-regions.gif["Setting up a page with a region", width=1920px]
 +
-Sweet. You now have a page with a single region! 
+Sweet. You now have a page with a single region!
 
 == Text component
 
-To make use of your new and shiny region, lets fill it with some content
+To make use of your new and shiny region, lets fill it with some content.
 
-. *Add a text component* to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.
+*Add a text component* to the region. It can be found inside the "Components" widget on the right hand side, and can be added to the page with drag-n-drop or by using the right click menu: Insert -> Text.
 
-The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+TIP: The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+
+Fill in some text, for example "Hello Regions!", then save the content.
 
 Visit the reference documentation for https://developer.enonic.com/docs/xp/stable/cms/pages/text[more details on the Text Component^].
 
