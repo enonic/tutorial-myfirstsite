@@ -104,4 +104,5 @@ processResources {
 	exclude '**/*.scss'
 	exclude '**/*.ts'
 	exclude '**/*.tsx'
+	exclude 'static/images/**/*.*'
 }
