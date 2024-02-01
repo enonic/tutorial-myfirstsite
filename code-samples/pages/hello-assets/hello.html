@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html color-mode="user">
   <head>
-	<title data-th-text="${displayName}">Sample title</title>
-	<link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/>
-	<link rel="stylesheet" data-th-href="${staticCssUrl}" href="static/index.css" type="text/css" media="all"/>
+    <title data-th-text="${displayName}">Sample title</title>
+    <link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/>
   </head>
   <body>
     <header>
-      <h1 class="enonic-logo" data-th-text="${displayName} + ' - with regions'">Sample header</h1>
+      <h1 data-th-text="${displayName} + ' - with regions'">Sample header</h1>
     </header>
     <main data-portal-region="main">
         <div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag">

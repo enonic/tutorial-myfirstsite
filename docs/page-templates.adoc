@@ -8,7 +8,7 @@ Create page templates to reuse a page across different content items.
 == Reusable pages
 Previously, we mentioned that you'd get to know about the `Templates` folder a bit later. The time has arrived.
 
-With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. country - and all countries will be rendered by it.
+With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. "Country" - and all content items of type "Country" will be rendered by it.
 
 Let's take advantage over the fact that we have already created a page for a city.
 
@@ -42,13 +42,13 @@ image::page-template-3.png["List of available content types under the support fi
 +
 image::page-template-4.png["List of available pages, with the Hello Regions! page highlighted", width=499px]
 +
-. Right click on `Drop here` region in the added page, then `insert` and `part` and select the `Country` part
+. Right click on `Drop here` region in the added page, then `Insert` and `Part` and select the `City list` part.
 +
 image::page-template-5.png["List of available parts to be added withing a region, with the Country part highlighted", width=612px]
 +
-. Then finally give this page template a name, such as "Country Page Template" and save it.
+. Then finally give this page template a name, such as "New Country Template" and save it.
 
-NOTE: Try clicking the other countries to verify that the template actually works as intended.
+NOTE: Try clicking other countries to verify that the template actually works as intended.
 
 
 == Automatic, fixed or customized
@@ -58,7 +58,9 @@ The country item you manually edited still uses the custom page you created - yo
 . Edit the initial country, open the page editor and select the page.
 . From the right hand component view, change the Template setting from `Custom` to `Automatic`
 
-NOTE: For every single content item, you can use `Automatic` (default), select a `specific template`, or `customize` the page.
+NOTE: For every single content item, you can use `Automatic` (default), select a specific template or `customize` the page, "unlinking" it from its page template.
+
+IMPORTANT: You now have two page templates, both of which support "Country" content type. In this case "Automatic" mode will pick up the newest template, which is "New Country Template". If you want to use the old template, you need to select it explicitly.
 
 == Summary
 

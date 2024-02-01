@@ -3,14 +3,14 @@
 
 = Static assets
 
-Add static assets like icons, css and JavaScript to your website
+Add static assets like images, CSS and JavaScript to your website.
 
 == Serving a CSS file
 
 So far, the site is primarily made up of dynamic HTML and images.
 Let's have a look at how to handle static assets. In our case, we'll use a CSS file.
 
-Enonic supports an "out-of-the-box" solution for this through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service^]. By simply placing files in the `src/resources/assets` folder - they are instantly available on a specific URL.
+Enonic supports an "out-of-the-box" solution for serving static assets through the https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service[Asset service^]. Simply by  placing files in the `src/resources/assets` folder you make them instantly available at a specific URL.
 
 Your application already includes a sample CSS file: `src/main/resources/assets/mvp.css`. Let's put it to work by referencing it from the page component:
 
@@ -19,10 +19,10 @@ Your application already includes a sample CSS file: `src/main/resources/assets/
 .src/main/resources/site/pages/hello/hello.html
 [source,HTML]
 ----
-include::{sourcedir}code-samples/pages/hello-static/hello.html[]
+include::{sourcedir}code-samples/pages/hello-assets/hello.html[]
 ----
 
-There are only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.
+There are only two changes in this file: one line that includes the CSS file, and a small attribute on the html element to activate dark mode support (if it's switched on in your system).
 
 If you're using `dark mode`, the result will look something like this:
 
@@ -37,11 +37,33 @@ The generated asset URL will contain a prefix based on a signature of the files 
 
 NOTE: When running in dev mode (like you do now), cache headers are deactivated
 
-=== Lib static
+=== Static Assets library
 
-If you're using advanced build-tools assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Lib static^] to your app.
+If you're using advanced build-tools assets may be chunked and served incrementally. Changing the URL to **all** assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding https://market.enonic.com/vendors/enonic/static-asset-lib[Static Assets library^] (or `lib-static`) to your app.
 
-Lib-static is pre-bundled with selected app starters like the https://market.enonic.com/vendors/enonic/tsup-starter[Tsup Starter^] and https://market.enonic.com/vendors/enonic/react4xp-starter[React4XP starter^].
+The library is pre-bundled with this application and processes static assets located in the `src/main/resources/static` folder. In order to enable immutable urls, a content hash is added to the file names at compile time. The content hash is generated from the file content (and location) and changes only if the content (or location) of the file has changed. This means that the browser can cache the asset "forever", and every time it encounters the url it can simply load the asset from the cache.
+
+Let's add one of the static assets (the Enonic logo) to the page:
+
+**Update your page component controller** with the following code:
+[source,Typescript]
+----
+include::{sourcedir}code-samples/pages/hello-static/hello.ts[]
+----
+
+The main change in the controller is the addition of the `staticCssUrl` property that is passed to the template. Value for this property is generated via helper `getAssetUrl` function which accepts original file name of an asset as an argument and generates full url (with the hash) to the asset.
+
+Now **update your page component template** with the following code:
+
+.src/main/resources/site/pages/hello/hello.html
+[source,HTML]
+----
+include::{sourcedir}code-samples/pages/hello-static/hello.html[]
+----
+
+There are two changes in this template. First is addition of the <link> tag which references the static CSS file. Second is addition of the `class="enonic-logo"` on the `<h1>` tag which injects Enonic logo via provided CSS.
+
+image::static-assets.png["Page template with static CSS", width=499px]
 
 == Summary
 
