@@ -4,13 +4,13 @@
 
 = Bonus: Layout components
 
-Layouts are like parts, but also support regions
+Layouts are containers of other components that also support regions.
 
 == Two column layout
 
 Unlike parts, layouts may contain regions. Here, we'll define two regions, each working as columns in the final result. We'll also throw in some configuration options so editors can control the sizes for each of those two columns.
 
-Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special `src/main/resources/site/layouts/` folder:
+Like for the parts and pages, layout consists of a descriptor, a controller and a view - which have already been set up in the special `src/main/resources/site/layouts/` folder:
 
 .src/main/resources/site/layouts/two-columns/two-columns.xml
 [source,xml]
@@ -18,7 +18,7 @@ Like for the parts and pages, layout consists of a descriptor, the controller an
 include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
 ----
 
-Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts. 
+Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts.
 
 .src/main/resources/site/layouts/two-columns/two-columns.ts
 [source,ts]
@@ -42,17 +42,17 @@ To spice up the tutorial, we include some css which will only be available on pa
 include::{sourcedir}/assets/styles/two-columns.scss[]
 ----
 
-NOTE: The `scss` file is automatically converted to `css` by the build system 
+NOTE: The `scss` file will be automatically built to `css` by the build system.
 
-To inject the css dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions].
+To inject the CSS dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions].
 
-Its naming speaks for itself, but just for clarity, it's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `<head>` begin or end, or on `<body>` begin or end.
+Its naming speaks for itself but, just for clarity, it's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `<head>` begin or end, or on `<body>` begin or end.
 
 Study the TypeScript controller response above to see how the pageContribution is passed along with the response.
 
 == Using the layout
 
-So far you've understood what a layout is and, created the code for a two column layout. Let's see in practice by adding it to a page and using its regions.
+So far you've understood what a layout is and created the code for a two column layout. Let's see it in practice by adding it to a page and using its regions.
 
 . Back in content studio btn:[edit] the site content (root item) once more.
 . *Insert the two-column layout* in the main region:
@@ -64,17 +64,17 @@ image::two-column-layout.png["Two column layout with 50/50 config and no compone
 image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width="1226px"]
 
 +
-. Finally, *try out the different configuration options* `33/66`, `50/50` and `66/33` and check the results:
+. Finally, *try switching between different configuration options* `33/66`, `50/50` and `66/33` (in the Inspect panel on the right) and check the results:
 +
 image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width="1226px"]
 
 
 == Summary
 
-By combining content types, layouts, parts, pages and page templates, the sky's the limit for what you can build.
+By combining content types, layouts, parts, pages and page templates, the sky is the limit for what you can build.
 
 TIP: For more details, dig deeper into layouts in the https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layout documentation^].
 
 
 
-The journey so far has provided you a starting ground to build your first website. Let's now take a look on how to <<go-online#, go online>>! 
+The journey so far has provided you a starting ground to build your first website. Let's now take a look on how to <<go-online#, go online>>!
