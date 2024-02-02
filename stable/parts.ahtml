@@ -529,7 +529,7 @@ export function get(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Add the part to the country page</strong> by drag&#8217;n dropping <code>Part</code> from the right-hand-side. Then select the <code>Country</code> component from the list.</p>
+<p><strong>Add the part to the country page</strong> by drag&#8217;n&#8217;dropping <code>Part</code> from the right-hand-side. Then select the <code>Country</code> component from the list.</p>
 </div>
 <div class="paragraph">
 <p>The resulting page should look something like this:</p>
@@ -562,13 +562,13 @@ You may also use the page form input (visible on the left hand , or floating abo
 <div class="ulist">
 <ul>
 <li>
-<p>Lists cities within a country.</p>
+<p>list cities within a country,</p>
 </li>
 <li>
-<p>Show an image of each city</p>
+<p>show an image of each city,</p>
 </li>
 <li>
-<p>Let you choose the image cropping format</p>
+<p>let you choose the image cropping format.</p>
 </li>
 </ul>
 </div>
@@ -695,7 +695,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <p><strong>Add the city list part</strong> to the same page as before, and verify that it is working.</p>
 </li>
 <li>
-<p><strong>Configure the part</strong> by changing the settings in the right hand panel. i.e. by choosing <code>widescreen</code>. Click apply to see the result.</p>
+<p><strong>Configure the part</strong> by changing the settings in the right hand panel, e.g. choose <code>widescreen</code> in the "Image crop" dropdown. Click Apply button to see the result.</p>
 </li>
 </ol>
 </div>
@@ -718,7 +718,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <h2 id="logging"><a class="link" href="#logging">Logging</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The controller above also prints the <code>model object</code> to the log. Check your sandbox log after visiting a country page to see what is going on</p>
+<p>The controller above also outputs the <code>model object</code> to the log. Check your sandbox log after visiting a country page to see what is going on.</p>
 </div>
 </div>
 </div>
@@ -726,7 +726,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable dynamic ui blocks for your pages.</p>
+<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable visual blocks for your pages.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -741,14 +741,14 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </table>
 </div>
 <div class="paragraph">
-<p>In the next chapter you&#8217;ll how to re-use pages through <a href="page-templates.ahtml">page templates</a>.</p>
+<p>In the next chapter you&#8217;ll learn how to reuse pages through <a href="page-templates.ahtml">page templates</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

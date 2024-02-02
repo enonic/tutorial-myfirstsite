@@ -490,7 +490,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 <h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Select the hello-world content and click <b class="button">edit</b>.</p>
+<p>Select the "Hello World" content and click <b class="button">edit</b>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -580,7 +580,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

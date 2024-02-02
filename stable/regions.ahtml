@@ -546,7 +546,7 @@ export function get(): Response {
 <p>Back in Content Studio, select, and <strong>edit one of the country content items</strong>.</p>
 </li>
 <li>
-<p>Activate the page editor (from the top right monitor icon), and select the <code>Hello</code> component.</p>
+<p>Activate the page editor (from the top right monitor icon), and select the <code>Hello Regions!</code> controller.</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/hello-regions.gif" alt="Setting up a page with a region" width="1920px">
@@ -564,17 +564,25 @@ export function get(): Response {
 <h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To make use of your new and shiny region, lets fill it with some content</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Add a text component</strong> to the region. It is available from the right hand side as drag-n-drop, or by using the right click menu.</p>
-</li>
-</ol>
+<p>To make use of your new and shiny region, lets fill it with some content.</p>
 </div>
 <div class="paragraph">
-<p>The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.</p>
+<p><strong>Add a text component</strong> to the region. It can be found inside the "Components" widget on the right hand side, and can be added to the page with drag-n-drop or by using the right click menu: Insert &#8594; Text.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Fill in some text, for example "Hello Regions!", then save the content.</p>
 </div>
 <div class="paragraph">
 <p>Visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
@@ -607,7 +615,7 @@ To learn more about regions, visit the <a href="https://developer.enonic.com/doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

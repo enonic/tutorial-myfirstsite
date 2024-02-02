@@ -451,7 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Layouts are like parts, but also support regions</p>
+<p>Layouts are containers of other components that also support regions.</p>
 </div>
 </div>
 </div>
@@ -462,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Unlike parts, layouts may contain regions. Here, we&#8217;ll define two regions, each working as columns in the final result. We&#8217;ll also throw in some configuration options so editors can control the sizes for each of those two columns.</p>
 </div>
 <div class="paragraph">
-<p>Like for the parts and pages, layout consists of a descriptor, the controller and a view - which have already been setup in a special <code>src/main/resources/site/layouts/</code> folder:</p>
+<p>Like for the parts and pages, layout consists of a descriptor, a controller and a view - which have already been set up in the special <code>src/main/resources/site/layouts/</code> folder:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.xml</div>
@@ -591,16 +591,16 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>scss</code> file is automatically converted to <code>css</code> by the build system
+The <code>scss</code> file will be automatically built to <code>css</code> by the build system.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To inject the css dynamically, we use a trick called <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions">pageContributions</a>.</p>
+<p>To inject the CSS dynamically, we use a trick called <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions">pageContributions</a>.</p>
 </div>
 <div class="paragraph">
-<p>Its naming speaks for itself, but just for clarity, it&#8217;s a way for components to inject HTML on certain places within the resulting markup. Those places are on the <code>&lt;head&gt;</code> begin or end, or on <code>&lt;body&gt;</code> begin or end.</p>
+<p>Its naming speaks for itself but, just for clarity, it&#8217;s a way for components to inject HTML on certain places within the resulting markup. Those places are on the <code>&lt;head&gt;</code> begin or end, or on <code>&lt;body&gt;</code> begin or end.</p>
 </div>
 <div class="paragraph">
 <p>Study the TypeScript controller response above to see how the pageContribution is passed along with the response.</p>
@@ -611,7 +611,7 @@ The <code>scss</code> file is automatically converted to <code>css</code> by the
 <h2 id="using_the_layout"><a class="link" href="#using_the_layout">Using the layout</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far you&#8217;ve understood what a layout is and, created the code for a two column layout. Let&#8217;s see in practice by adding it to a page and using its regions.</p>
+<p>So far you&#8217;ve understood what a layout is and created the code for a two column layout. Let&#8217;s see it in practice by adding it to a page and using its regions.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -635,7 +635,7 @@ The <code>scss</code> file is automatically converted to <code>css</code> by the
 </div>
 </li>
 <li>
-<p>Finally, <strong>try out the different configuration options</strong> <code>33/66</code>, <code>50/50</code> and <code>66/33</code> and check the results:</p>
+<p>Finally, <strong>try switching between different configuration options</strong> <code>33/66</code>, <code>50/50</code> and <code>66/33</code> (in the Inspect panel on the right) and check the results:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/two-column-layout-33-66-with-texts.png" alt="Two column layout with 33/66 config and texts on its two left and right regions" width="1226px">
@@ -650,7 +650,7 @@ The <code>scss</code> file is automatically converted to <code>css</code> by the
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By combining content types, layouts, parts, pages and page templates, the sky&#8217;s the limit for what you can build.</p>
+<p>By combining content types, layouts, parts, pages and page templates, the sky is the limit for what you can build.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -672,7 +672,7 @@ For more details, dig deeper into layouts in the <a href="https://developer.enon
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

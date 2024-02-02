@@ -451,7 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create page templates to reuse a page across different content items</p>
+<p>Create page templates to reuse a page across different content items.</p>
 </div>
 </div>
 </div>
@@ -462,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Previously, we mentioned that you&#8217;d get to know about the <code>Templates</code> folder a bit later. The time has arrived.</p>
 </div>
 <div class="paragraph">
-<p>With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. country - and all countries will be rendered by it.</p>
+<p>With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. "Country" - and all content items of type "Country" will be rendered by it.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s take advantage over the fact that we have already created a page for a city.</p>
@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Give your Template a suitable name i.e. <code>Country template</code></p>
 </li>
 <li>
-<p>In the <code>Supported content types</code> field, choose <code>Country</code>.</p>
+<p>Choose <code>Country</code> in the <code>Supports</code> dropdown.</p>
 <div class="paragraph">
 <p>Here is a video demonstrating the process.</p>
 </div>
@@ -492,7 +492,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Now, all of your cities will be rendered by the page template.</p>
+<p>Now, when you select city content elements in the Content grid you&#8217;ll notice that each of them is rendered by the page template.</p>
 </div>
 </div>
 </div>
@@ -521,7 +521,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>On supports, select <code>Country</code> content type and click on <code>Apply</code></p>
+<p>Select <code>Country</code> content type from the "Supports" dropdown.</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/page-template-3.png" alt="List of available content types under the support filter, with the Country content type highlighted" width="336px">
@@ -529,7 +529,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>On the right section, select the <code>Hello Regions!</code> page</p>
+<p>In the panel on the right select the <code>Hello Regions!</code> page</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/page-template-4.png" alt="List of available pages, with the Hello Regions! page highlighted" width="499px">
@@ -537,7 +537,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Right click on <code>Drop here</code> region in the added page, then <code>insert</code> and <code>part</code> and select the <code>Country</code> part</p>
+<p>Right click on <code>Drop here</code> region in the added page, then <code>Insert</code> and <code>Part</code> and select the <code>City list</code> part.</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/page-template-5.png" alt="List of available parts to be added withing a region, with the Country part highlighted" width="612px">
@@ -545,7 +545,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Then finally give this page template a name, such as "Country Page Template" and save it.</p>
+<p>Then finally give this page template a name, such as "New Country Template" and save it.</p>
 </li>
 </ol>
 </div>
@@ -556,7 +556,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Try clicking the other countries to verify that the template actually works as intended.
+Try clicking other countries to verify that the template actually works as intended.
 </td>
 </tr>
 </table>
@@ -586,7 +586,19 @@ Try clicking the other countries to verify that the template actually works as i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For every single content item, you can use <code>Automatic</code> (default), select a <code>specific template</code>, or <code>customize</code> the page.
+For every single content item, you can use <code>Automatic</code> (default), select a specific template or <code>customize</code> the page, "unlinking" it from its page template.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You now have two page templates, both of which support "Country" content type. In this case "Automatic" mode will pick up the newest template, which is "New Country Template". If you want to use the old template, you need to select it explicitly.
 </td>
 </tr>
 </table>
@@ -619,7 +631,7 @@ If you want to control the rendering of certain pages without using page templat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

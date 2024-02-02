@@ -526,19 +526,19 @@ const VIEW = resolve('./hello.html');
 export function get(): Response {
 
     // Get the content that is using the page
-    const content = getContent();
+	const content = getContent();
 
-    // Prepare the model that will be passed to the view
-    const model = {
-      displayName: content.displayName
-    }
+	// Prepare the model that will be passed to the view
+	const model = {
+		displayName: content.displayName
+	}
 
-    // Prepare the response object
-    const response: Response = {
+	// Prepare the response object
+	const response: Response = {
 		body: render(VIEW, model)
 	};
 
-    return response;
+	return response;
 }</code></pre>
 </div>
 </div>
@@ -617,7 +617,7 @@ This view is plain HTML, but also uses a specific syntax known as the <a href="h
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At this point we were able to attach a hello page component to the hello-world site content, which is great! A good observer will notice that the page is not entirely static, it will ouput the content <code>displayName</code> followed by a hardcoded text ` - we made it!`.</p>
+<p>At this point we were able to attach a hello page component to the hello-world site content, which is great! A good observer will notice that the page is not entirely static, it will ouput the content <code>displayName</code> followed by a hardcoded text <code>- we made it!</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -639,7 +639,7 @@ To learn more about pages, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>

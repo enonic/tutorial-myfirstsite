@@ -443,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#serving_a_css_file">Serving a CSS file</a></li>
 <li><a href="#perfect_cache">Perfect cache</a>
 <ul class="sectlevel2">
-<li><a href="#lib_static">Lib static</a></li>
+<li><a href="#static_assets_library">Static Assets library</a></li>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
@@ -454,7 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Add static assets like icons, css and JavaScript to your website</p>
+<p>Add static assets like images, CSS and JavaScript to your website.</p>
 </div>
 </div>
 </div>
@@ -466,7 +466,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll use a CSS file.</p>
 </div>
 <div class="paragraph">
-<p>Enonic supports an "out-of-the-box" solution for this through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service" target="_blank" rel="noopener">Asset service</a>. By simply placing files in the <code>src/resources/assets</code> folder - they are instantly available on a specific URL.</p>
+<p>Enonic supports an "out-of-the-box" solution for serving static assets through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service" target="_blank" rel="noopener">Asset service</a>. Simply by  placing files in the <code>src/resources/assets</code> folder you make them instantly available at a specific URL.</p>
 </div>
 <div class="paragraph">
 <p>Your application already includes a sample CSS file: <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by referencing it from the page component:</p>
@@ -481,7 +481,7 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 &lt;html color-mode="user"&gt;
   &lt;head&gt;
     &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
-    &lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;    
+    &lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;header&gt;
@@ -492,13 +492,13 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
             &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
         &lt;/div&gt;
     &lt;/main&gt;
-    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;  
+    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>There are only two changes in this file, one line that includes the css file, and a small attribute on the html element to activate dark mode support.</p>
+<p>There are only two changes in this file: one line that includes the CSS file, and a small attribute on the html element to activate dark mode support (if it&#8217;s switched on in your system).</p>
 </div>
 <div class="paragraph">
 <p>If you&#8217;re using <code>dark mode</code>, the result will look something like this:</p>
@@ -535,12 +535,90 @@ When running in dev mode (like you do now), cache headers are deactivated
 </table>
 </div>
 <div class="sect2">
-<h3 id="lib_static"><a class="link" href="#lib_static">Lib static</a></h3>
+<h3 id="static_assets_library"><a class="link" href="#static_assets_library">Static Assets library</a></h3>
 <div class="paragraph">
-<p>If you&#8217;re using advanced build-tools assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Lib static</a> to your app.</p>
+<p>If you&#8217;re using advanced build-tools assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Static Assets library</a> (or <code>lib-static</code>) to your app.</p>
 </div>
 <div class="paragraph">
-<p>Lib-static is pre-bundled with selected app starters like the <a href="https://market.enonic.com/vendors/enonic/tsup-starter" target="_blank" rel="noopener">Tsup Starter</a> and <a href="https://market.enonic.com/vendors/enonic/react4xp-starter" target="_blank" rel="noopener">React4XP starter</a>.</p>
+<p>The library is pre-bundled with this application and processes static assets located in the <code>src/main/resources/static</code> folder. In order to enable immutable urls, a content hash is added to the file names at compile time. The content hash is generated from the file content (and location) and changes only if the content (or location) of the file has changed. This means that the browser can cache the asset "forever", and every time it encounters the url it can simply load the asset from the cache.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add one of the static assets (the Enonic logo) to the page:</p>
+</div>
+<div class="paragraph">
+<p><strong>Update your page component controller</strong> with the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-Typescript" data-lang="Typescript">import type { Response } from '/index.d';
+
+// @ts-expect-error no-types
+import { render } from '/lib/thymeleaf';
+import { getContent } from '/lib/xp/portal';
+import { getStaticAssetUrl } from '../../static';
+
+// Specify the view file to use
+const VIEW = resolve('./hello.html');
+
+// Handle the GET request
+export function get(): Response {
+
+	// Get the content that is using the page
+	const content = getContent();
+
+	// Prepare the model that will be passed to the view
+	const model = {
+		displayName: content.displayName,
+		mainRegion: content.page.regions.main,
+		staticCssUrl: getStaticAssetUrl('index.css'),
+	}
+
+	// Prepare the response object
+	const response: Response = {
+		body: render(VIEW, model)
+	};
+
+	return response;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main change in the controller is the addition of the <code>staticCssUrl</code> property that is passed to the template. Value for this property is generated via helper <code>getAssetUrl</code> function which accepts original file name of an asset as an argument and generates full url (with the hash) to the asset.</p>
+</div>
+<div class="paragraph">
+<p>Now <strong>update your page component template</strong> with the following code:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/main/resources/site/pages/hello/hello.html</div>
+<div class="content">
+<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+&lt;html color-mode="user"&gt;
+  &lt;head&gt;
+	&lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
+	&lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;
+	&lt;link rel="stylesheet" data-th-href="${staticCssUrl}" href="static/index.css" type="text/css" media="all"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1 class="enonic-logo" data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main data-portal-region="main"&gt;
+        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
+            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two changes in this template. First is addition of the &lt;link&gt; tag which references the static CSS file. Second is addition of the <code>class="enonic-logo"</code> on the <code>&lt;h1&gt;</code> tag which injects Enonic logo via provided CSS.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/static-assets.png" alt="Page template with static CSS" width="499px">
+</div>
 </div>
 </div>
 </div>
@@ -559,7 +637,7 @@ When running in dev mode (like you do now), cache headers are deactivated
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 08:41:18 UTC
+Last updated 2024-02-02 12:17:04 UTC
 </div>
 </div>
 </body>
