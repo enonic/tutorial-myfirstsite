@@ -45,7 +45,7 @@ gradle-app.setting
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
 # VSCode
-bin/
+/bin/
 /settings.gradle
 /.vscode
 
