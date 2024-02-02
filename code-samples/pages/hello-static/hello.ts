@@ -3,7 +3,7 @@ import type { Response } from '/index.d';
 // @ts-expect-error no-types
 import { render } from '/lib/thymeleaf';
 import { getContent } from '/lib/xp/portal';
-import { getAssetUrl } from '../../static';
+import { getStaticAssetUrl } from '../../static';
 
 // Specify the view file to use
 const VIEW = resolve('./hello.html');
@@ -18,7 +18,7 @@ export function get(): Response {
 	const model = {
 		displayName: content.displayName,
 		mainRegion: content.page.regions.main,
-		staticCssUrl: getAssetUrl('index.css'),
+		staticCssUrl: getStaticAssetUrl('index.css'),
 	}
 
 	// Prepare the response object

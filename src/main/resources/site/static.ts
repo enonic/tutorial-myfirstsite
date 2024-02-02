@@ -42,7 +42,7 @@ const getImmutableUrl = ({
 	return `${urlPrefix}/${GETTER_ROOT}/${manifests[manifestPath][path]}`;
 }
 
-export const getAssetUrl = (path: string) => {
+export const getStaticAssetUrl = (path: string) => {
 	const sitePath = getSite()._path;
 	let urlPrefix = getPageUrl({
 		path: sitePath
