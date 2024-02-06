@@ -5,13 +5,12 @@ import { sassPlugin } from 'esbuild-sass-plugin';
 
 import { globSync } from 'glob';
 import {
-	DIR_DST,
-	DIR_SRC_STATIC
+	DIR_SRC_STATIC,
+	DIR_DST_STATIC
 } from './constants';
 
 
 export default function buildStaticConfig(): Options {
-	const DIR_DST_STATIC = `${DIR_DST}/static`;
 	const GLOB_EXTENSIONS_STATIC = '{tsx,ts,jsx,js}';
 	const FILES_STATIC = globSync(`${DIR_SRC_STATIC}/**/*.${GLOB_EXTENSIONS_STATIC}`);
 	// print(FILES_STATIC, { maxItems: Infinity });
@@ -63,7 +62,7 @@ export default function buildStaticConfig(): Options {
 		platform: 'browser',
 		silent: ['QUIET', 'WARN'].includes(process.env.LOG_LEVEL_FROM_GRADLE||''),
 		splitting: true,
-		sourcemap: process.env.NODE_ENV !== 'development',
+		sourcemap: process.env.NODE_ENV === 'development',
 		tsconfig: `${DIR_SRC_STATIC}/tsconfig.json`,
 	};
 }

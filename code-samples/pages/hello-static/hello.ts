@@ -18,7 +18,7 @@ export function get(): Response {
 	const model = {
 		displayName: content.displayName,
 		mainRegion: content.page.regions.main,
-		staticCssUrl: getStaticAssetUrl('index.css'),
+		staticCssUrl: getStaticAssetUrl('styles.css'),
 	}
 
 	// Prepare the response object
