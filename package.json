@@ -17,7 +17,7 @@
     "@enonic-types/lib-portal": "^7",
     "@enonic-types/lib-project": "^7",
     "@enonic/tsup-plugin-manifest": "^0.0.1",
-    "@typescript-eslint/eslint-plugin": "^6",
+    "@typescript-eslint/eslint-plugin": "^7",
     "browser-sync": "^3",
     "concurrently": "^8",
     "esbuild-plugin-globals": "^0.2.0",
