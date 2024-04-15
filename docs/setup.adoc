@@ -28,7 +28,7 @@ A sandbox is a local developer instance of our platform - Enonic XP. Each sandbo
 +
 This will create a sandbox called `mfstutorial` using the latest versjon of Enonic XP, automatically install the `essential` apps, and then start the sandbox.
 
-TIP: To start the sandbox manually `enonic sandbox start mfstutorial`
+TIP: To start the sandbox manually: `enonic sandbox start mfstutorial`
 
 == Create the app
 
