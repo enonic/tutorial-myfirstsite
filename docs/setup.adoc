@@ -22,10 +22,10 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.
 
-. *Create a sandbox* called `mfstutorial` by running this command in your terminal:
-+
+*Create a sandbox* called `mfstutorial` by running this command in your terminal:
+
   enonic sandbox create mfstutorial -t essentials -f
-+
+
 This will create a sandbox called `mfstutorial` using the latest versjon of Enonic XP, automatically install the `essential` apps, and then start the sandbox.
 
 TIP: To start the sandbox manually: `enonic sandbox start mfstutorial`
@@ -36,10 +36,7 @@ From a **new terminal window**, run the following command to create the applicat
 
   enonic project create my.first.site -d mfs -r tutorial-myfirstsite -s mfstutorial -f
 
-[NOTE]
-====
-This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site^] Github repo  as a starter (template), and links the app to the `mfstutorial` sandbox. 
-====
+This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site Github repo^]  as a starter (template), and then links the app to the `mfstutorial` sandbox. 
 
 == Project structure
 
