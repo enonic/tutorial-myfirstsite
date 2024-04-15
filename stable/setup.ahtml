@@ -499,10 +499,9 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="paragraph">
 <p>A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p><strong>Create a sandbox</strong> called <code>mfstutorial</code> by running this command in your terminal:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>enonic sandbox create mfstutorial -t essentials -f</pre>
@@ -510,9 +509,6 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 <div class="paragraph">
 <p>This will create a sandbox called <code>mfstutorial</code> using the latest versjon of Enonic XP, automatically install the <code>essential</code> apps, and then start the sandbox.</p>
-</div>
-</li>
-</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -539,19 +535,8 @@ To start the sandbox manually: <code>enonic sandbox start mfstutorial</code>
 <pre>enonic project create my.first.site -d mfs -r tutorial-myfirstsite -s mfstutorial -f</pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>This command creates an app named <code>my.first.site</code> in the folder <code>mfs/</code>. It uses the <a href="https://github.com/enonic/tutorial-myfirstsite" target="_blank" rel="noopener">My first site</a> Github repo  as a starter (template), and links the app to the <code>mfstutorial</code> sandbox.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>This command creates an app named <code>my.first.site</code> in the folder <code>mfs/</code>. It uses the <a href="https://github.com/enonic/tutorial-myfirstsite" target="_blank" rel="noopener">My first site Github repo</a>  as a starter (template), and then links the app to the <code>mfstutorial</code> sandbox.</p>
 </div>
 </div>
 </div>
@@ -737,7 +722,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-15 14:22:42 UTC
+Last updated 2024-04-15 14:33:25 UTC
 </div>
 </div>
 </body>
