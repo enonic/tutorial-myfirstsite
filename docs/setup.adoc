@@ -26,25 +26,19 @@ A sandbox is a local developer instance of our platform - Enonic XP. Each sandbo
 +
   enonic sandbox create mfstutorial -t essentials -f
 +
-This will create a sandbox contaiing `essential` applications, and use the latest versjon of Enonic XP.
-+
-. **Start the sandbox** with this command:
-+
-  enonic sandbox start mfstutorial --dev
-+
-This will start the `mfstutorial` sandbox.
+This will create a sandbox called `mfstutorial` using the latest versjon of Enonic XP, automatically install the `essential` apps, and then start the sandbox.
 
-TIP: --dev starts the sandbox in https://developer.enonic.com/docs/xp/stable/dev/build#dev_mode[developer mode].
+TIP: To start the sandbox manually `enonic sandbox start mfstutorial`
 
 == Create the app
 
 From a **new terminal window**, run the following command to create the application. 
 
-  enonic project create -d mfs -r tutorial-myfirstsite -sb mfstutorial my.first.site
+  enonic project create my.first.site -d mfs -r tutorial-myfirstsite -s mfstutorial -f
 
 [NOTE]
 ====
-This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site^] Github repo  as a starter (template), and links it to the `mfstutorial` sandbox. 
+This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site^] Github repo  as a starter (template), and links the app to the `mfstutorial` sandbox. 
 ====
 
 == Project structure
@@ -123,10 +117,9 @@ NOTE: If things don't look exactly the same, don't worry. In every new version o
 
 
 
-
 == Summary
 
-You have installed the Enonic CLI, created your first sandbox using the latest XP version, deployed an app to that sandbox based on one of our starters and deployed the app in `dev` mode.
+You have installed the Enonic CLI, created your first sandbox using the latest XP version, based on a starter - built and deployed an app to that sandbox.
 
 That's a good start! 
 
