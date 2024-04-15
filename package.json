@@ -50,7 +50,7 @@
     "check:types:static": "npx tsc --noEmit -p src/main/resources/static/tsconfig.json",
     "lint": "eslint --cache src/main/resources/**/*.ts",
     "watch": "concurrently -c auto npm:watch:*",
-    "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --no-snippet --watch",
+    "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --port 3100 --no-snippet --watch",
     "watch:sass": "npm run build:sass -- --watch",
     "watch:server": "npm run build:server -- --watch",
     "watchChanges:static": "npm run build:static -- --watch"
