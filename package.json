@@ -20,7 +20,7 @@
     "@enonic/tsup-plugin-manifest": "^0.0.1",
     "@typescript-eslint/eslint-plugin": "^7",
     "browser-sync": "^3",
-    "concurrently": "^8",
+    "concurrently": "^9",
     "esbuild-plugin-globals": "^0.2.0",
     "esbuild-sass-plugin": "^2.16.1",
     "eslint": "^8",
