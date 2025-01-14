@@ -10,9 +10,9 @@ Previously, we mentioned that you'd get to know about the `Templates` folder a b
 
 With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. "Country" - and all content items of type "Country" will be rendered by it.
 
-Let's take advantage over the fact that we have already created a page for a city.
+Let's take advantage over the fact that we have already created a page for a country.
 
-. Select, and btn:[Edit] the City with the page
+. Select, and btn:[Edit] the country with the page.
 . Select the page component, and from the context menu click btn:[Save as Template]
 . Give your Template a suitable name i.e. `Country template`
 . Choose `Country` in the `Supports` dropdown.
