@@ -18,7 +18,7 @@
     "@enonic-types/lib-portal": "^7",
     "@enonic-types/lib-project": "^7",
     "@enonic/tsup-plugin-manifest": "^0.0.1",
-    "@swc/core": "^1.10.16",
+    "@swc/core": "^1.10.18",
     "browser-sync": "^3",
     "concurrently": "^9",
     "esbuild-plugin-globals": "^0.2.0",
