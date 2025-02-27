@@ -84,7 +84,7 @@ This will build and deploy the application to your sandbox. Until you abort, the
 
 [NOTE]
 ====
-Look for a line like this in the sandbox log to verify that the app has started:
+Look for a line like this in the *sandbox* log to verify that the app has started:
 
   2019-04-09 13:40:40,765 INFO ... Application [my.first.site] installed successfully
 ====
