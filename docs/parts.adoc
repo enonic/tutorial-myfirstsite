@@ -68,6 +68,8 @@ include::{sourcedir}/city-list/city-list.ts[]
 include::{sourcedir}/city-list/city-list.html[]
 ----
 
+NOTE: The th:if and th:unless attributes: If no cities are found the template will display "No cities found", otherwise it will loop through the list of cities and output details for each city.
+
 
 . *Add the city list part* to the same page as before, and verify that it is working.
 . *Configure the part* by changing the settings in the right hand panel, e.g. choose `widescreen` in the "Image crop" dropdown. Click Apply button to see the result.
