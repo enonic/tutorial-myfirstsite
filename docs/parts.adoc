@@ -37,8 +37,9 @@ The resulting page should look something like this:
 
 image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=300px]
 
-NOTE: You may also use the page form input (visible on the left hand , or floating above the page editor) to manage the components on your page.
+NOTE: You may also use the page component input (visible on the left hand , or floating above the page editor) to manage the components on your page.
 
+image::page-component-input.png["Page component input,tree structure to manage components on the page",width=500px]
 == Configurable part
 
 Let's try something slightly more advanced. The `City list` part will:
