@@ -21,7 +21,7 @@ Here is a video demonstrating the process.
 
 image::page-template.gif["Creating a page template from a page", width=1920px]
 
-Now, when you select city content elements in the Content grid you'll notice that each of them is rendered by the page template.
+Now, when you select country content elements in the Content grid you'll notice that each of them is rendered by the page template.
 
 == From scratch
 Just like any other piece of content, a page template can also be created from scratch.

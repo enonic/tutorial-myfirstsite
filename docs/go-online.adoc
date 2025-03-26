@@ -13,7 +13,7 @@ image::publish.gif["Demonstrating how to publish all items in the project", widt
 
 What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from *draft* to the *master* branch
 
-NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/myfirstsite/master/hello-world`.
+NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/myfirstsite/master/hello-world[http://localhost:8080/site/myfirstsite/master/hello-world^]`.
 
 *Well done!*
 
