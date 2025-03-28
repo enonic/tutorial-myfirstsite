@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduction to Content Studio, content types and content items</p>
+<p>Introduction to Content Studio, content types, and content items</p>
 </div>
 </div>
 </div>
@@ -471,7 +471,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>A content structure, with <code>Hello World</code> as the root item show now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA</code> and <code>Templates</code> as child items.</p>
+<p>A content structure with <code>Hello World</code> as the root item will now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA</code> and <code>Templates</code> as child items.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -480,7 +480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it later.
+Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it later.
 </td>
 </tr>
 </table>
@@ -499,7 +499,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 </div>
 </div>
 <div class="paragraph">
-<p>From the left hand form you can see that your app <code>My first site</code>, has been added to the site. This gives Content Studio access to any goodies the app might contain - for instance additional content types.</p>
+<p>From the left-hand form, you can see that your app <code>My first site</code> has been added to the site. This gives Content Studio access to any goodies the app might contain, for instance, additional content types.</p>
 </div>
 </div>
 </div>
@@ -507,13 +507,13 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 <h2 id="content_types"><a class="link" href="#content_types">Content Types</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Every content item has a specific a content type.</p>
+<p>Every content item has a specific content type.</p>
 </div>
 <div class="paragraph">
-<p>Enonic XP ships with a set of standard content types:  <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of <code>Media Types</code>. Media types handle different kind of files.</p>
+<p>Enonic XP ships with a set of standard content types:  <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of <code>Media Types</code>. Media types handle different kinds of files.</p>
 </div>
 <div class="paragraph">
-<p>Additionally, applications may define their own custom content types. Your app contains two: <code>Country</code> and <code>City</code>. They are defined under <code>src/main/resources/site/content-types/</code>. Let&#8217;s explore the <code>City</code> content type. In Content Studio it should look something like this:</p>
+<p>Additionally, applications may define their own custom content types. Your app contains two: <code>Country</code> and <code>City</code>. They are defined under <code>src/main/resources/site/content-types/</code>. Let&#8217;s explore the <code>City</code> content type. In Content Studio, it should look something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -559,7 +559,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to content items and content types, and even created some content based on the content types from your application.</p>
+<p>You&#8217;ve been introduced to content items and content types and even created some content based on the content types from your application.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -568,7 +568,7 @@ ignore the <code>Templates</code> folder for now, we&#8217;ll get back to it lat
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas" target="_blank" rel="noopener">the schema system</a>.
+For more details, visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas" target="_blank" rel="noopener">the schema system</a>.
 </td>
 </tr>
 </table>
@@ -581,7 +581,7 @@ For more details visit the reference documentation for <a href="https://develope
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-14 11:10:26 UTC
+Last updated 2025-03-28 17:00:23 UTC
 </div>
 </div>
 </body>
