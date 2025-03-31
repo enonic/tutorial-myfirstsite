@@ -558,7 +558,7 @@ src/
     resources/
       import/ <i class="conum" data-value="6"></i><b>(6)</b>
       assets/ <i class="conum" data-value="7"></i><b>(7)</b>
-      sites/
+      site/
         content-types/ <i class="conum" data-value="8"></i><b>(8)</b>
           country/
           city/
@@ -722,7 +722,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-03-28 17:00:23 UTC
+Last updated 2025-03-31 11:52:30 UTC
 </div>
 </div>
 </body>
