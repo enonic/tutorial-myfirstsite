@@ -54,7 +54,7 @@ src/
     resources/
       import/ //<6>
       assets/ //<7>
-      sites/
+      site/
         content-types/ //<8>
           country/
           city/
