@@ -2,7 +2,7 @@
 
 = Setting up the developer environment
 
-Set up the developer environment, create, build, and deploy and application.
+Set up the developer environment, create, build, and deploy an application.
 
 == Install Enonic CLI
 
@@ -16,17 +16,17 @@ If not, here are some https://developer.enonic.com/start[alternative ways to ins
 
 To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI. To see all available options, simply run `enonic`.
 
-TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
+TIP: To upgrade, use `enonic latest`. If there are new versions, you will see instructions on how to upgrade.
 
 == Create a sandbox
 
-A sandbox is a local developer instance of our platform - Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.
+A sandbox is a local developer instance of our platform, Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.
 
 *Create a sandbox* called `mfstutorial` by running this command in your terminal:
 
   enonic sandbox create mfstutorial -t essentials -f
 
-This will create a sandbox called `mfstutorial` using the latest versjon of Enonic XP, automatically install the `essential` apps, and then start the sandbox.
+This will create a sandbox called `mfstutorial` using the latest version of Enonic XP, automatically install the `essential` apps, and then start the sandbox.
 
 TIP: To start the sandbox manually: `enonic sandbox start mfstutorial`
 
@@ -75,7 +75,7 @@ src/
 
 == Start building
 
-Assuming you did not change any of the values when creating the app, run the following commmands:
+Assuming you did not change any of the values when creating the app, run the following commands:
 
   cd mfs
   enonic dev
@@ -86,21 +86,22 @@ This will build and deploy the application to your sandbox. Until you abort, the
 ====
 Look for a line like this in the sandbox log to verify that the app has started:
 
-  2019-04-09 13:40:40,765 INFO ... Application [my.first.site] installed successfully
+  2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Project "myfirstsite" successfully created
+  2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Importing "myfirstsite" data
 ====
 
-Because the sandbox is running in --dev mode, any changes to the code wihin your app will instantly be picked up. No need for manual deployments.
+Because the sandbox is running in --dev mode, any changes to the code within your app will instantly be picked up. There is no need for manual deployments.
 
 
 == XP Admin
 
-Let's have a look at the Sandbox' web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+Let's have a look at the Sandbox's web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
 
 You should now see the XP boot page:
 
 image::xp-boot.png[The XP boot page, 1085w]
 
-The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
+The boot page provides an overview of the sandbox, including installed applications, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
 
 NOTE: `My first site` should be in the list, together with other applications that were automatically installed when you created the sandbox.
 
@@ -108,15 +109,15 @@ Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see s
 
 image::xp-dashboard.png[The XP admin dashboard, 1727w]
 
-You are now on the admin dashboard. The right hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
+You are now on the admin dashboard. The right-hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
 
-NOTE: If things don't look exactly the same, don't worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
+NOTE: If things don't look exactly the same, don't worry. In every new version of XP, the background picture gets updated. Also, the admin dashboard is automatically localized based on your browser's preferred language.
 
 
 
 == Summary
 
-You have installed the Enonic CLI, created your first sandbox using the latest XP version, based on a starter - built and deployed an app to that sandbox.
+You have installed the Enonic CLI, created your first sandbox using the latest XP version, based on a starter, and built and deployed an app to that sandbox.
 
 That's a good start! 
 
