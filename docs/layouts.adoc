@@ -44,7 +44,7 @@ include::{sourcedir}/assets/styles/two-columns.scss[]
 
 NOTE: The `scss` file will be automatically built to `css` by the build system.
 
-To inject the CSS dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions].
+To inject the CSS dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions^].
 
 Its naming speaks for itself but, just for clarity, it's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `<head>` begin or end, or on `<body>` begin or end.
 

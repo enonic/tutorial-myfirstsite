@@ -32,11 +32,11 @@ TIP: To start the sandbox manually: `enonic sandbox start mfstutorial`
 
 == Create the app
 
-From a **new terminal window**, run the following command to create the application. 
+From a **new terminal window**, run the following command to create the application.
 
   enonic project create my.first.site -d mfs -r tutorial-myfirstsite -s mfstutorial -f
 
-This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site Github repo^]  as a starter (template), and then links the app to the `mfstutorial` sandbox. 
+This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-myfirstsite[My first site Github repo^]  as a starter (template), and then links the app to the `mfstutorial` sandbox.
 
 == Project structure
 
@@ -84,7 +84,7 @@ This will build and deploy the application to your sandbox. Until you abort, the
 
 [NOTE]
 ====
-Look for a line like this in the sandbox log to verify that the app has started:
+Look for a line like this in the *sandbox* log to verify that the app has started:
 
   2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Project "myfirstsite" successfully created
   2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Importing "myfirstsite" data
@@ -119,6 +119,6 @@ NOTE: If things don't look exactly the same, don't worry. In every new version o
 
 You have installed the Enonic CLI, created your first sandbox using the latest XP version, based on a starter, and built and deployed an app to that sandbox.
 
-That's a good start! 
+That's a good start!
 
 Next, let's <<content#, have a look at Content Studio>> and the sample content.
