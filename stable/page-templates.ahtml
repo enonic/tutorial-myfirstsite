@@ -493,7 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Now, when you select city content elements in the Content grid you&#8217;ll notice that each of them is rendered by the page template.</p>
+<p>Now, when you select country content elements in the Content grid you&#8217;ll notice that each of them is rendered by the page template.</p>
 </div>
 </div>
 </div>
@@ -632,7 +632,7 @@ If you want to control the rendering of certain pages without using page templat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-09 20:17:16 UTC
+Last updated 2025-06-04 09:18:42 UTC
 </div>
 </div>
 </body>

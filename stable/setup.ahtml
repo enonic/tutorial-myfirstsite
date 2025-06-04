@@ -635,7 +635,7 @@ enonic dev</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Look for a line like this in the sandbox log to verify that the app has started:</p>
+<p>Look for a line like this in the <strong>sandbox</strong> log to verify that the app has started:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -723,7 +723,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-09 20:17:16 UTC
+Last updated 2025-06-04 09:18:42 UTC
 </div>
 </div>
 </body>

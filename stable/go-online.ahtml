@@ -474,7 +474,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can see the published site and the master branch on this url: <code><a href="http://localhost:8080/site/myfirstsite/master/hello-world" class="bare">http://localhost:8080/site/myfirstsite/master/hello-world</a></code>.
+You can see the published site and the master branch on this url: <code><a href="http://localhost:8080/site/myfirstsite/master/hello-world" target="_blank" rel="noopener">http://localhost:8080/site/myfirstsite/master/hello-world</a></code>.
 </td>
 </tr>
 </table>
@@ -502,7 +502,7 @@ To learn more about structured content modelling, and the GraphQL API, visit our
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-09 20:17:16 UTC
+Last updated 2025-06-04 09:18:42 UTC
 </div>
 </div>
 </body>

@@ -598,7 +598,7 @@ The <code>scss</code> file will be automatically built to <code>css</code> by th
 </table>
 </div>
 <div class="paragraph">
-<p>To inject the CSS dynamically, we use a trick called <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions">pageContributions</a>.</p>
+<p>To inject the CSS dynamically, we use a trick called <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions" target="_blank" rel="noopener">pageContributions</a>.</p>
 </div>
 <div class="paragraph">
 <p>Its naming speaks for itself but, just for clarity, it&#8217;s a way for components to inject HTML on certain places within the resulting markup. Those places are on the <code>&lt;head&gt;</code> begin or end, or on <code>&lt;body&gt;</code> begin or end.</p>
@@ -673,7 +673,7 @@ For more details, dig deeper into layouts in the <a href="https://developer.enon
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-09 20:17:16 UTC
+Last updated 2025-06-04 09:18:42 UTC
 </div>
 </div>
 </body>

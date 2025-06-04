@@ -547,10 +547,15 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You may also use the page form input (visible on the left hand , or floating above the page editor) to manage the components on your page.
+You may also use the page component input (visible on the left hand , or floating above the page editor) to manage the components on your page.
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-component-input.png" alt="Page component input,tree structure to manage components on the page" width="500px">
+</div>
 </div>
 </div>
 </div>
@@ -690,6 +695,18 @@ function getCitySlogan(slogan: string, population?: string): string {
 &lt;/div&gt;</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The th:if and th:unless attributes: If no cities are found the template will display "No cities found", otherwise it will loop through the list of cities and output details for each city.
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -749,7 +766,7 @@ To learn more about parts, visit the <a href="https://developer.enonic.com/docs/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-09 20:17:16 UTC
+Last updated 2025-06-04 09:18:42 UTC
 </div>
 </div>
 </body>
