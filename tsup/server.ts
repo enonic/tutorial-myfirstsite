@@ -1,5 +1,6 @@
 import type { Options } from '.';
 import { globSync } from 'glob';
+import { sassPlugin } from 'esbuild-sass-plugin';
 import {
 	DIR_SRC,
 	DIR_SRC_ASSETS,
@@ -56,7 +57,10 @@ export default function buildServerConfig(): Options {
 		shims: false, // https://tsup.egoist.dev/#inject-cjs-and-esm-shims
 		splitting: true,
 		sourcemap: false,
-		target: 'es5'
+		target: 'es5',
+		esbuildPlugins: [
+			sassPlugin(),
+		],
 	};
 }
 

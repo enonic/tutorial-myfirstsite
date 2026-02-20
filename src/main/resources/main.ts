@@ -21,7 +21,7 @@ function runInContext(callback) {
             repository: 'com.enonic.cms.' + projectData.id,
         }, callback);
     } catch (e) {
-        DEBUG_MODE && log.info('Error: ' + e.message);
+        if (DEBUG_MODE) log.info('Error: ' + e.message);
     }
 
     return result;
@@ -39,16 +39,16 @@ function initializeProject() {
     let project = runInContext(doGetProject);
 
     if (!project) {
-        DEBUG_MODE && log.info('Project "' + projectData.id + '" not found. Creating...');
+        if (DEBUG_MODE) log.info('Project "' + projectData.id + '" not found. Creating...');
         project = runInContext(doCreateProject);
 
         if (project) {
-            DEBUG_MODE && log.info('Project "' + projectData.id + '" successfully created');
-            DEBUG_MODE && log.info('Importing "' + projectData.id + '" data');
+            if (DEBUG_MODE) log.info('Project "' + projectData.id + '" successfully created');
+            if (DEBUG_MODE) log.info('Importing "' + projectData.id + '" data');
 
             runInContext(createContent);
         } else {
-            DEBUG_MODE && log.error('Project "' + projectData.id + '" failed to import');
+            if (DEBUG_MODE) log.error('Project "' + projectData.id + '" failed to import');
         }
     }
 }
@@ -65,7 +65,7 @@ function createContent() {
     });
 
     if (nodes.importErrors.length > 0) {
-        DEBUG_MODE && log.warning('Errors:');
+        if (DEBUG_MODE) log.warning('Errors:');
 		nodes.importErrors.forEach(element => DEBUG_MODE && log.warning(element.message));
     }
 }
