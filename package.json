@@ -4,7 +4,7 @@
     "url": "https://github.com/enonic/tutorial-myfirstsite/issues"
   },
   "dependencies": {
-    "@enonic/js-utils": "^1"
+    "@enonic/js-utils": "^2"
   },
   "description": "My first Enonic site",
   "devDependencies": {
