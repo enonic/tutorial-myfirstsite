@@ -23,7 +23,7 @@ dependencies {
 	include "com.enonic.xp:lib-portal:${xpVersion}"
     include "com.enonic.xp:lib-project:${xpVersion}"
 	include 'com.enonic.lib:lib-cache:3.0.0'
-	include 'com.enonic.lib:lib-http-client:3.2.2'
+	include 'com.enonic.lib:lib-http-client:4.0.0'
 	include "com.enonic.lib:lib-thymeleaf:3.0.0"
 	include "com.enonic.lib:lib-mustache:3.0.0"
 	include 'com.enonic.lib:lib-static:3.0.0'
