@@ -16,7 +16,7 @@
     "@enonic-types/lib-export": "^8",
     "@enonic-types/lib-io": "^8",
     "@enonic-types/lib-portal": "^8",
-    "@enonic-types/lib-project": "^7",
+    "@enonic-types/lib-project": "^8",
     "@enonic/tsup-plugin-manifest": "^0.0.1",
     "@swc/core": "^1.15.43",
     "browser-sync": "^3",
