@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Content Studio and Content Types</title>
+<meta name="application-name" content="siteframework">
+<title>Content Studio and content types</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,13 +438,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and Content Types</h1>
+<h1>Content Studio and content types</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#sites_and_apps">Sites and apps</a></li>
-<li><a href="#content_types">Content Types</a></li>
+<li><a href="#content_studio">Content Studio</a>
+<ul class="sectlevel2">
+<li><a href="#task_explore_the_sample_content">Task: Explore the sample content</a></li>
+</ul>
+</li>
+<li><a href="#sites_and_apps">Sites and apps</a>
+<ul class="sectlevel2">
+<li><a href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></li>
+</ul>
+</li>
+<li><a href="#content_types">Content types</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_your_own_content">Task: Create your own content</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -452,7 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduction to Content Studio, content types, and content items</p>
+<p>In this chapter, you&#8217;ll open Content Studio, explore the sample content your app imported, and create content of your own from the app&#8217;s content types.</p>
 </div>
 </div>
 </div>
@@ -460,18 +473,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Your application creates a content project called <code>My First Site</code> the first time it starts. Let&#8217;s have a closer look.</p>
+<p>Content Studio is the editorial interface of Enonic XP. The first time your app starts, it creates a content project called <code>My First Site</code> and imports sample content into it.</p>
 </div>
-<div class="paragraph">
-<p><strong>Open Content Studio</strong> from the right hand <code>XP menu &#8594; Content Studio</code>. You should now see some of the imported content.</p>
-</div>
+<div class="sect2">
+<h3 id="task_explore_the_sample_content"><a class="link" href="#task_explore_the_sample_content">Task: Explore the sample content</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open Content Studio</strong> - Open the XP menu on the right-hand side, and select <code>Content Studio</code>.
+You should see some of the imported content:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/imported-content.png" alt="Tree structure showing countries and cities in Content Studio" width="1024px">
+<img src="media/imported-content.png" alt="Tree structure showing countries and cities in Content Studio" width="1024">
 </div>
 </div>
-<div class="paragraph">
-<p>A content structure with <code>Hello World</code> as the root item will now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal <code>Columbia, Norway, USA</code> and <code>Templates</code> as child items.</p>
+</li>
+<li>
+<p><strong>Expand the content tree</strong> - The root item of the tree is <code>Hello World</code>. Its icon shows that it is a site.
+Expand it to reveal <code>Columbia</code>, <code>Norway</code>, <code>USA</code>, and <code>Templates</code> as child items.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -480,10 +501,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it later.
+Ignore the <code>Templates</code> folder for now. You&#8217;ll get back to it in the <a href="page-templates.ahtml">page templates chapter</a>.
 </td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -491,37 +513,40 @@ Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it la
 <h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Select the "Hello World" content and click <b class="button">edit</b>.</p>
+<p>A site is a content item with one or more apps assigned to it. Assigning an app gives the site, and Content Studio, access to what the app contains, such as content types and components.</p>
 </div>
+<div class="sect2">
+<h3 id="task_find_the_app_on_the_site"><a class="link" href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the site</strong> - Select the <code>Hello World</code> content and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Verify the assigned app</strong> - In the form on the left-hand side, your app <code>My First Site</code> is listed under <code>Applications</code>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-world-content.png" alt="Root hello world content with the my first site app assigned to it" width="920px">
+<img src="media/hello-world-content.png" alt="The Hello World site content, with the My First Site app assigned to it" width="920">
 </div>
 </div>
-<div class="paragraph">
-<p>From the left-hand form, you can see that your app <code>My first site</code> has been added to the site. This gives Content Studio access to any goodies the app might contain, for instance, additional content types.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_types"><a class="link" href="#content_types">Content Types</a></h2>
+<h2 id="content_types"><a class="link" href="#content_types">Content types</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Every content item has a specific content type.</p>
+<p>Every content item has a content type.</p>
 </div>
 <div class="paragraph">
-<p>Enonic XP ships with a set of standard content types:  <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of <code>Media Types</code>. Media types handle different kinds of files.</p>
+<p>XP ships with a set of standard content types: <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of media types that handle different kinds of files.</p>
 </div>
 <div class="paragraph">
-<p>Additionally, applications may define their own custom content types. Your app contains two: <code>Country</code> and <code>City</code>. They are defined under <code>src/main/resources/site/content-types/</code>. Let&#8217;s explore the <code>City</code> content type. In Content Studio, it should look something like this:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/city-form.png" alt="Form for the city content type" width="920px">
-</div>
-</div>
-<div class="paragraph">
-<p>The content type is defined in a descriptor file, looking like this:</p>
+<p>Apps can define their own content types. Your app contains two, <code>Country</code> and <code>City</code>, defined under <code>src/main/resources/site/content-types/</code>.
+A content type is defined in a descriptor file. This is the descriptor of <code>City</code>:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/content-types/city/city.xml</div>
@@ -551,7 +576,30 @@ Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it la
 </div>
 </div>
 <div class="paragraph">
-<p>Now that you understand the basics of content and content types, use Content Studio to create a new <code>Country</code> of your choosing. Then, add a <code>City</code> (or more) within it.</p>
+<p>Content Studio turns the descriptor into an editing form:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/city-form.png" alt="Form for the city content type" width="920">
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_create_your_own_content"><a class="link" href="#task_create_your_own_content">Task: Create your own content</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a country</strong> - Select the <code>Hello World</code> site, click <b class="button">New</b>, and select the <code>Country</code> content type.
+Fill in the form with a country of your choosing, and save it.</p>
+</li>
+<li>
+<p><strong>Add a city</strong> - Select your new country, click <b class="button">New</b>, and select the <code>City</code> content type.
+Fill in the form, and save it. Add more cities if you like.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Your country is listed in the content tree below <code>Hello World</code>, with its cities as child items.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -559,7 +607,7 @@ Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it la
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to content items and content types and even created some content based on the content types from your application.</p>
+<p>You&#8217;ve explored the sample content, seen how an app is assigned to a site, and created content from the two content types in your app.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -568,20 +616,20 @@ Ignore the <code>Templates</code> folder for now.  We&#8217;ll get back to it la
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details, visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">content types</a> and <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas" target="_blank" rel="noopener">the schema system</a>.
+For more details, visit the reference documentation for <a href="https://developer.enonic.com/docs/platform/7.x/cms/content-types">content types</a> and <a href="https://developer.enonic.com/docs/platform/7.x/cms/schemas">the schema system</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s now move forward to previewing or rendering the existing content. To do that, we&#8217;ll start with <a href="pages.ahtml">the concept of Pages</a>.</p>
+<p>Next, you&#8217;ll <a href="pages.ahtml">render the content with a page component</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:12 UTC
+Last updated 2026-11-23 22:02:39 UTC
 </div>
 </div>
 </body>

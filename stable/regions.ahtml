@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Regions</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,8 +442,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#component_dropzones">Component dropzones</a></li>
-<li><a href="#text_component">Text component</a></li>
+<li><a href="#component_dropzones">Component dropzones</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_a_region_to_the_page">Task: Add a region to the page</a></li>
+</ul>
+</li>
+<li><a href="#text_component">Text component</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_text_to_the_region">Task: Add text to the region</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -451,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create component hierarchies with the power of regions.</p>
+<p>In this chapter, you&#8217;ll add a region to the page component, so pages can be composed from several components in Content Studio.</p>
 </div>
 </div>
 </div>
@@ -459,19 +468,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="component_dropzones"><a class="link" href="#component_dropzones">Component dropzones</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Content Studio also supports adding more components to a page. To get going, the page component must define one or more regions.</p>
+<p>A region is a named area of a page where editors can add components. For Content Studio to offer this, the page component must declare one or more regions.</p>
 </div>
+<div class="sect2">
+<h3 id="task_add_a_region_to_the_page"><a class="link" href="#task_add_a_region_to_the_page">Task: Add a region to the page</a></h3>
 <div class="paragraph">
-<p>Complete the steps below to add a single region called <code>main</code> to the <code>hello</code> page component.</p>
+<p>Add a single region called <code>main</code> to the <code>hello</code> page component, using the code samples that came with the starter.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Start off by <strong>updating your page component descriptor</strong>. The new descriptor (below) statically declares the region:</p>
+<p><strong>Update the descriptor</strong> - Replace the content of the page component descriptor with the following, which declares the region:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
   &lt;display-name&gt;Hello Regions!&lt;/display-name&gt;
   &lt;description&gt;Drag'n drop enabled&lt;/description&gt;
   &lt;form/&gt;
@@ -483,11 +494,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><strong>Update your controller and view</strong> with the code below to support the region:</p>
+<p><strong>Update the controller</strong> - Replace the content of the controller with this version, which passes the region to the view:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import {render} from '/lib/thymeleaf';
@@ -517,10 +528,13 @@ export function get(): Response {
 }</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p><strong>Update the view</strong> - Replace the content of the view with this version, which renders the region:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html:</div>
+<div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
@@ -540,24 +554,25 @@ export function get(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>Your sandbox should automatially pickup the changes, as we are running in dev mode.</p>
+<p>Your sandbox picks up the changes automatically, since <code>enonic dev</code> is running.</p>
 </div>
 </li>
 <li>
-<p>Back in Content Studio, select, and <strong>edit one of the country content items</strong>.</p>
+<p><strong>Open a country</strong> - In Content Studio, select one of the country content items and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p>Activate the page editor (from the top right monitor icon), and select the <code>Hello Regions!</code> page component.</p>
+<p><strong>Select the page component</strong> - Activate the page editor with the monitor icon in the top right corner, and select the <code>Hello Regions!</code> page component.</p>
+</li>
+<li>
+<p><strong>Verify the region</strong> - The page now contains an empty region, marked <code>Drop here</code>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-regions.gif" alt="Setting up a page with a region" width="1920px">
+<img src="media/hello-regions.gif" alt="Setting up a page with a region" width="960">
 </div>
-</div>
-<div class="paragraph">
-<p>Sweet. You now have a page with a single region!</p>
 </div>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>
@@ -565,28 +580,27 @@ export function get(): Response {
 <h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To make use of your new and shiny region, lets fill it with some content.</p>
+<p>The Text component is a standard component included in XP. It comes with a default rendering, which you can customize if needed.</p>
+</div>
+<div class="sect2">
+<h3 id="task_add_text_to_the_region"><a class="link" href="#task_add_text_to_the_region">Task: Add text to the region</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Insert a text component</strong> - Drag <code>Text</code> from the <code>Components</code> widget on the right-hand side into the region.
+You can also right-click the region and select <code>Insert</code> &#8594; <code>Text</code>.</p>
+</li>
+<li>
+<p><strong>Write some text</strong> - Type a text, for example "Hello Regions!", and save the content.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The text is rendered inside the region, below the page heading.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p><strong>Add a text component</strong> to the region. It can be found inside the "Components" widget on the right hand side, and can be added to the page with drag-n-drop or by using the right click menu: Insert &#8594; Text.</p>
+<p>For more details, visit the reference documentation for the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/text">Text component</a>.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The Text component is a standard component included in Enonic XP, it has standard rendering, but can be customized if needed.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Fill in some text, for example "Hello Regions!", then save the content.</p>
-</div>
-<div class="paragraph">
-<p>Visit the reference documentation for <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/text" target="_blank" rel="noopener">more details on the Text Component</a>.</p>
 </div>
 </div>
 </div>
@@ -594,7 +608,8 @@ The Text component is a standard component included in Enonic XP, it has standar
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to regions, a concept that can be used on a page, as you just saw, but also on layouts, a new component type you&#8217;ll be introduced to soon.</p>
+<p>You&#8217;ve declared a region in the page component, and filled it with a text component from Content Studio.
+Regions aren&#8217;t limited to pages. They are also used in layouts, a component type you&#8217;ll meet in the <a href="layouts.ahtml">layouts chapter</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -603,20 +618,20 @@ The Text component is a standard component included in Enonic XP, it has standar
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To learn more about regions, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/regions" target="_blank" rel="noopener">regions documentation</a>.
+To learn more about regions, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/regions">regions documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>In the next chapter you&#8217;ll <a href="parts.ahtml">learn about parts</a>. A highly customizable component type that can be inserted into regions.</p>
+<p>Next, you&#8217;ll <a href="parts.ahtml">add parts to the region</a>. Parts are components you write the rendering for yourself.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:35 UTC
+Last updated 2026-11-23 22:02:58 UTC
 </div>
 </div>
 </body>

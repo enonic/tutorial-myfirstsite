@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Bonus: Layout components</title>
+<meta name="application-name" content="siteframework">
+<title>Layout components</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,13 +438,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Bonus: Layout components</h1>
+<h1>Layout components</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#two_column_layout">Two column layout</a></li>
-<li><a href="#page_contribution">Page contribution</a></li>
-<li><a href="#using_the_layout">Using the layout</a></li>
+<li><a href="#two_column_layout">Two-column layout</a></li>
+<li><a href="#page_contributions">Page contributions</a></li>
+<li><a href="#task_add_the_layout_to_a_page">Task: Add the layout to a page</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -452,18 +453,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Layouts are containers of other components that also support regions.</p>
+<p>In this chapter, you&#8217;ll use a layout to arrange components in two columns, and see how a component can contribute CSS to the page it is placed on.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="two_column_layout"><a class="link" href="#two_column_layout">Two column layout</a></h2>
+<h2 id="two_column_layout"><a class="link" href="#two_column_layout">Two-column layout</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unlike parts, layouts may contain regions. Here, we&#8217;ll define two regions, each working as columns in the final result. We&#8217;ll also throw in some configuration options so editors can control the sizes for each of those two columns.</p>
+<p>Layouts are components that contain regions, which makes them containers for other components. Your app includes a layout with two regions that work as columns, and a configuration option that lets editors control the width of each column.</p>
 </div>
 <div class="paragraph">
-<p>Like for the parts and pages, layout consists of a descriptor, a controller and a view - which have already been set up in the special <code>src/main/resources/site/layouts/</code> folder:</p>
+<p>Like pages and parts, a layout consists of a descriptor, a controller, and a view. Layouts are placed in the <code>src/main/resources/site/layouts/</code> folder:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.xml</div>
@@ -491,12 +492,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Notice that it doesn&#8217;t change much from what you&#8217;ve seen so far. It&#8217;s basically a mix of pages and parts.</p>
+<p>The descriptor combines what you&#8217;ve seen in pages and parts: it declares regions, and it has a form.</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/layouts/two-columns/two-columns.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import { LayoutComponent, LayoutRegion } from '@enonic-types/core';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { LayoutComponent, LayoutRegion } from '@enonic-types/core';
 import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
@@ -559,10 +560,10 @@ export function get(): Response {
 </div>
 </div>
 <div class="sect1">
-<h2 id="page_contribution"><a class="link" href="#page_contribution">Page contribution</a></h2>
+<h2 id="page_contributions"><a class="link" href="#page_contributions">Page contributions</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To spice up the tutorial, we include some css which will only be available on pages where this layout exists. The following file has been placed in the assets folder:</p>
+<p>The layout comes with CSS that is only loaded on pages where the layout is used. The stylesheet is placed in the assets folder:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/assets/styles/two-columns.scss</div>
@@ -592,54 +593,51 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>scss</code> file will be automatically built to <code>css</code> by the build system.
+The build system compiles the <code>scss</code> file to <code>css</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To inject the CSS dynamically, we use a trick called <a href="https://developer.enonic.com/docs/xp/stable/framework/contributions" target="_blank" rel="noopener">pageContributions</a>.</p>
+<p>To add the CSS to the page, the controller uses <a href="https://developer.enonic.com/docs/platform/7.x/framework/contributions">page contributions</a>. A page contribution lets a component inject HTML at specific places in the resulting markup: at the beginning or end of <code>&lt;head&gt;</code>, or at the beginning or end of <code>&lt;body&gt;</code>.</p>
 </div>
 <div class="paragraph">
-<p>Its naming speaks for itself but, just for clarity, it&#8217;s a way for components to inject HTML on certain places within the resulting markup. Those places are on the <code>&lt;head&gt;</code> begin or end, or on <code>&lt;body&gt;</code> begin or end.</p>
-</div>
-<div class="paragraph">
-<p>Study the TypeScript controller response above to see how the pageContribution is passed along with the response.</p>
+<p>The controller above returns the page contribution together with the rest of its response.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="using_the_layout"><a class="link" href="#using_the_layout">Using the layout</a></h2>
+<h2 id="task_add_the_layout_to_a_page"><a class="link" href="#task_add_the_layout_to_a_page">Task: Add the layout to a page</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>So far you&#8217;ve understood what a layout is and created the code for a two column layout. Let&#8217;s see it in practice by adding it to a page and using its regions.</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Back in content studio <b class="button">edit</b> the site content (root item) once more.</p>
+<p><strong>Open the site</strong> - In Content Studio, select the <code>Hello World</code> site and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p><strong>Insert the two-column layout</strong> in the main region:</p>
+<p><strong>Insert the layout</strong> - Insert a layout in the <code>main</code> region, and select <code>Two columns</code> in the list:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/two-column-layout.png" alt="Two column layout with 50/50 config and no component in its left and right regions" width="1226px">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Add a text component to each region</strong>, and write some text:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/two-column-layout-with-texts.png" alt="Two column layout with 50/50 config and texts on its two left and right regions" width="1226px">
+<img src="media/two-column-layout.png" alt="Two-column layout with the 50/50 setting and empty left and right regions" width="1226">
 </div>
 </div>
 </li>
 <li>
-<p>Finally, <strong>try switching between different configuration options</strong> <code>33/66</code>, <code>50/50</code> and <code>66/33</code> (in the Inspect panel on the right) and check the results:</p>
+<p><strong>Add text to the columns</strong> - Add a text component to each of the two regions, and write some text:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/two-column-layout-33-66-with-texts.png" alt="Two column layout with 33/66 config and texts on its two left and right regions" width="1226px">
+<img src="media/two-column-layout-with-texts.png" alt="Two-column layout with the 50/50 setting and a text in each region" width="1226">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Change the column sizes</strong> - With the layout selected, switch between <code>33/66</code>, <code>50/50</code>, and <code>66/33</code> in the <code>Column sizes</code> dropdown in the panel on the right-hand side.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The width of the columns follows the setting you select:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/two-column-layout-33-66-with-texts.png" alt="Two-column layout with the 33/66 setting and a text in each region" width="1226">
 </div>
 </div>
 </li>
@@ -651,7 +649,8 @@ The <code>scss</code> file will be automatically built to <code>css</code> by th
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By combining content types, layouts, parts, pages and page templates, the sky is the limit for what you can build.</p>
+<p>You&#8217;ve added a layout with two regions to a page, filled its columns, and changed its configuration.
+By combining content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -660,20 +659,20 @@ The <code>scss</code> file will be automatically built to <code>css</code> by th
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details, dig deeper into layouts in the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/layouts" target="_blank" rel="noopener">layout documentation</a>.
+For more details, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/layouts">layouts documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The journey so far has provided you a starting ground to build your first website. Let&#8217;s now take a look on how to <a href="go-online.ahtml">go online</a>!</p>
+<p>Next, you&#8217;ll <a href="go-online.ahtml">publish the site</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:35 UTC
+Last updated 2026-11-23 22:02:58 UTC
 </div>
 </div>
 </body>

@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Go Online</title>
+<meta name="application-name" content="siteframework">
+<title>Go online</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -435,74 +436,89 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-right">
 <div id="header">
-<h1>Go Online</h1>
+<h1>Go online</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#publishing">Publishing</a>
+<ul class="sectlevel2">
+<li><a href="#task_publish_the_site">Task: Publish the site</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Now that the setup of <code>Hello World</code> site is completed, it&#8217;s time to publish.</p>
+<p>In this chapter, you&#8217;ll publish the <code>Hello World</code> site, making it available outside Content Studio.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publishing"><a class="link" href="#publishing">Publishing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Content Studio, you work in the <code>draft</code> branch. Publishing merges the selected items from <code>draft</code> to the <code>master</code> branch, which is the one visitors see.</p>
+</div>
+<div class="sect2">
+<h3 id="task_publish_the_site"><a class="link" href="#task_publish_the_site">Task: Publish the site</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the <code>Hello World</code> site in the content browse panel</p>
+<p><strong>Select the site</strong> - Select the <code>Hello World</code> site in the content grid.</p>
 </li>
 <li>
-<p>Select <strong>Publish Tree</strong> from the top right action menu. The <strong>Publishing Wizard</strong> will now appear</p>
+<p><strong>Open the Publishing Wizard</strong> - Select <b class="button">Publish Tree</b> in the action menu in the top right corner. The Publishing Wizard opens.</p>
 </li>
 <li>
-<p>Several <code>In progress</code> items are blocking publishing - click <code>Mark as ready</code> to fix this.</p>
+<p><strong>Mark the content as ready</strong> - Items that are <code>In progress</code> block publishing. Click <b class="button">Mark as ready</b> to fix this.</p>
 </li>
 <li>
-<p>click <strong>Publish</strong>!</p>
+<p><strong>Publish</strong> - Click <b class="button">Publish</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/publish.gif" alt="Publishing all items in the project" width="800">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Verify the published site</strong> - Open <a href="http://localhost:8080/site/myfirstsite/master/hello-world">http://localhost:8080/site/myfirstsite/master/hello-world</a> in your browser. It shows the site as served from the <code>master</code> branch.</p>
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/publish.gif" alt="Demonstrating how to publish all items in the project" width="800px">
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You did it! 🎉 You&#8217;ve built a site with the Enonic Site Framework: pages, parts, and layouts that render structured content, composed and published from Content Studio.</p>
 </div>
 <div class="paragraph">
-<p>What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from <strong>draft</strong> to the <strong>master</strong> branch</p>
+<p>That completes the tutorial. If you want to keep going, these are good places to continue:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can see the published site and the master branch on this url: <code><a href="http://localhost:8080/site/myfirstsite/master/hello-world" target="_blank" rel="noopener">http://localhost:8080/site/myfirstsite/master/hello-world</a></code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>Well done!</strong></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>🎉 Congratulations on building your first Enonic site - The Enonic team.</pre>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://developer.enonic.com/learn/content-modeling/7.x">content modeling tutorial</a> goes deeper into structured content and the GraphQL API.</p>
+</li>
+<li>
+<p>The <a href="https://developer.enonic.com/docs/frameworks">front-end frameworks overview</a> presents the other ways to build a front-end for Enonic.</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To learn more about structured content modelling, and the GraphQL API, visit the <a href="https://developer.enonic.com/learn/content-modeling/7.x">content modeling tutorial</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:35 UTC
+Last updated 2026-11-23 22:02:58 UTC
 </div>
 </div>
 </body>

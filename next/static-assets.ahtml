@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Static assets</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,10 +442,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#serving_a_css_file">Serving a CSS file</a></li>
-<li><a href="#perfect_cache">Perfect cache</a>
+<li><a href="#asset_service">Asset service</a>
 <ul class="sectlevel2">
-<li><a href="#static_assets_library">Static Assets library</a></li>
+<li><a href="#task_serve_a_css_file">Task: Serve a CSS file</a></li>
+</ul>
+</li>
+<li><a href="#perfect_cache">Perfect cache</a></li>
+<li><a href="#static_assets_library">Static Assets library</a>
+<ul class="sectlevel2">
+<li><a href="#task_serve_an_asset_with_an_immutable_url">Task: Serve an asset with an immutable URL</a></li>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
@@ -455,30 +461,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Add static assets like images, CSS and JavaScript to your website.</p>
+<p>In this chapter, you&#8217;ll style the site by serving a CSS file through the asset service, and then serve a second stylesheet with an immutable URL using the Static Assets library.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="serving_a_css_file"><a class="link" href="#serving_a_css_file">Serving a CSS file</a></h2>
+<h2 id="asset_service"><a class="link" href="#asset_service">Asset service</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, the site is primarily made up of dynamic HTML and images.
-Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll use a CSS file.</p>
+<p>So far, the site is made up of dynamic HTML and images. Static assets, such as CSS and JavaScript files, are served by the <a href="https://developer.enonic.com/docs/platform/7.x/runtime/engines/asset-service">asset service</a>. Every file you place in the <code>src/main/resources/assets</code> folder is available at a URL.</p>
 </div>
 <div class="paragraph">
-<p>Enonic supports an "out-of-the-box" solution for serving static assets through the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/asset-service" target="_blank" rel="noopener">Asset service</a>. Simply by  placing files in the <code>src/resources/assets</code> folder you make them instantly available at a specific URL.</p>
+<p>Your app already includes a sample CSS file: <code>src/main/resources/assets/mvp.css</code>.</p>
 </div>
-<div class="paragraph">
-<p>Your application already includes a sample CSS file: <code>src/main/resources/assets/mvp.css</code>. Let&#8217;s put it to work by referencing it from the page component:</p>
-</div>
-<div class="paragraph">
-<p><strong>Update your page component view</strong> with the following content:</p>
-</div>
+<div class="sect2">
+<h3 id="task_serve_a_css_file"><a class="link" href="#task_serve_a_css_file">Task: Serve a CSS file</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Update the view</strong> - Replace the content of the page component view with the following:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html color-mode="user"&gt;
   &lt;head&gt;
     &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
@@ -499,14 +504,18 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 </div>
 </div>
 <div class="paragraph">
-<p>There are only two changes in this file: one line that includes the CSS file, and a small attribute on the html element to activate dark mode support (if it&#8217;s switched on in your system).</p>
+<p>Two things have changed: one line includes the CSS file, and an attribute on the <code>html</code> element activates dark mode support, if dark mode is switched on in your system.</p>
 </div>
-<div class="paragraph">
-<p>If you&#8217;re using <code>dark mode</code>, the result will look something like this:</p>
-</div>
+</li>
+<li>
+<p><strong>Verify the styling</strong> - Open a country page. With dark mode switched on, the result looks something like this:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/css.png" alt="Countries page in dark mode after adding the css" width="1024px">
+<img src="media/css.jpg" alt="A country page in dark mode after adding the CSS" width="1024">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -515,13 +524,10 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 <h2 id="perfect_cache"><a class="link" href="#perfect_cache">Perfect cache</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When running Enonic XP in production, every asset will include cache headers that let proxies/CDNs and browsers cache it - without ever having to download it again.</p>
+<p>In production, XP serves every asset with cache headers that let browsers, proxies, and CDNs cache it, without ever having to download it again.</p>
 </div>
 <div class="paragraph">
-<p><strong>How does it work?</strong></p>
-</div>
-<div class="paragraph">
-<p>The generated asset URL will contain a prefix based on a signature of the files in the app. The signature will change with every new version of the app. The <code>portal.assetUrl()</code> function uses this signature when generating the URL, ensuring that clients always get the most recent version.</p>
+<p>The generated asset URL contains a prefix based on a signature of the files in the app. The signature changes with every new version of the app. The <code>assetUrl()</code> function uses this signature when generating the URL, so clients always get the most recent version.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -530,28 +536,35 @@ Let&#8217;s have a look at how to handle static assets. In our case, we&#8217;ll
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When running in dev mode (like you do now), cache headers are deactivated
+In development mode, which you are using now, cache headers are deactivated.
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="static_assets_library"><a class="link" href="#static_assets_library">Static Assets library</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With advanced build tools, assets may be split into chunks and served incrementally. Changing the URL of every asset on each deployment is then no longer optimal. The <a href="https://market.enonic.com/vendors/enonic/lib-static">Static Assets library</a> (<code>lib-static</code>) gives you full control over how assets are served.</p>
+</div>
+<div class="paragraph">
+<p>The library is bundled with your app, and serves the files in the <code>src/main/resources/static</code> folder. To make the URLs immutable, a content hash is added to each file name at build time. The hash is generated from the content and location of the file, and only changes when they do. The browser can then cache the asset indefinitely, and load it from the cache every time it meets the URL.</p>
+</div>
 <div class="sect2">
-<h3 id="static_assets_library"><a class="link" href="#static_assets_library">Static Assets library</a></h3>
+<h3 id="task_serve_an_asset_with_an_immutable_url"><a class="link" href="#task_serve_an_asset_with_an_immutable_url">Task: Serve an asset with an immutable URL</a></h3>
 <div class="paragraph">
-<p>If you&#8217;re using advanced build-tools assets may be chunked and served incrementally. Changing the URL to <strong>all</strong> assets for every re-deploy is no longer optimal. You can take full control over asset serving by adding <a href="https://market.enonic.com/vendors/enonic/static-asset-lib" target="_blank" rel="noopener">Static Assets library</a> (or <code>lib-static</code>) to your app.</p>
+<p>Add the Enonic logo to the page, through a stylesheet in the <code>static</code> folder.</p>
 </div>
-<div class="paragraph">
-<p>The library is pre-bundled with this application and processes static assets located in the <code>src/main/resources/static</code> folder. In order to enable immutable urls, a content hash is added to the file names at compile time. The content hash is generated from the file content (and location) and changes only if the content (or location) of the file has changed. This means that the browser can cache the asset "forever", and every time it encounters the url it can simply load the asset from the cache.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s add one of the static assets (the Enonic logo) to the page:</p>
-</div>
-<div class="paragraph">
-<p><strong>Update your page component controller</strong> with the following code:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Update the controller</strong> - Replace the content of the page component controller with the following:</p>
 <div class="listingblock">
+<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-Typescript" data-lang="Typescript">import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import { render } from '/lib/thymeleaf';
@@ -584,15 +597,15 @@ export function get(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>The main change in the controller is the addition of the <code>staticCssUrl</code> property that is passed to the template. Value for this property is generated via helper <code>getAssetUrl</code> function which accepts original file name of an asset as an argument and generates full url (with the hash) to the asset.</p>
+<p>The controller now passes a <code>staticCssUrl</code> property to the view. The value is generated by the <code>getStaticAssetUrl</code> helper function, which takes the original file name of an asset and returns its full URL, including the hash.</p>
 </div>
-<div class="paragraph">
-<p>Now <strong>update your page component template</strong> with the following code:</p>
-</div>
+</li>
+<li>
+<p><strong>Update the view</strong> - Replace the content of the page component view with the following:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html color-mode="user"&gt;
   &lt;head&gt;
 	&lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
@@ -614,12 +627,18 @@ export function get(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>There are two changes in this template. First is addition of the &lt;link&gt; tag which references the static CSS file. Second is addition of the <code>class="enonic-logo"</code> on the <code>&lt;h1&gt;</code> tag which injects Enonic logo via provided CSS.</p>
+<p>Two things have changed: a <code>&lt;link&gt;</code> tag references the static CSS file, and the <code>&lt;h1&gt;</code> tag has <code>class="enonic-logo"</code>, which adds the Enonic logo through the CSS.</p>
 </div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Open a country page. The Enonic logo is shown next to the heading:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/static-assets.png" alt="Page template with static CSS" width="499px">
+<img src="media/static-assets.png" alt="A country page with the Enonic logo, added through the static stylesheet" width="499">
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -628,17 +647,17 @@ export function get(): Response {
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You now know how to serve static assets.</p>
+<p>You&#8217;ve served a CSS file through the asset service, and a second one with an immutable URL through the Static Assets library.</p>
 </div>
 <div class="paragraph">
-<p>In the next chapter you&#8217;ll <a href="layouts.ahtml">learn about layouts</a>. Layouts are essentially parts that also support regions.</p>
+<p>Next, you&#8217;ll <a href="layouts.ahtml">arrange components in columns with a layout</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:12 UTC
+Last updated 2026-11-23 22:02:39 UTC
 </div>
 </div>
 </body>

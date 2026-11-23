@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Visualize your content with pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -442,9 +443,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#page_component">Page component</a></li>
-<li><a href="#component_controller">Component controller</a></li>
-<li><a href="#templating">Templating</a></li>
-<li><a href="#your_first_page">Your first page</a></li>
+<li><a href="#controller">Controller</a></li>
+<li><a href="#view">View</a></li>
+<li><a href="#task_create_your_first_page">Task: Create your first page</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -453,7 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>For every page, there is always a page component.</p>
+<p>In this chapter, you&#8217;ll get to know the page component that ships with your app - its descriptor, controller, and view - and use it to render the site.</p>
 </div>
 </div>
 </div>
@@ -461,15 +462,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="page_component"><a class="link" href="#page_component">Page component</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At the moment, we have some content, but no preview or visual rendering. Pages to the rescue. Page are composed from one or more components, always with a page component as its root.</p>
+<p>At this point, you have content, but nothing renders it. With the <a href="https://developer.enonic.com/docs/platform/7.x/framework">Enonic Site Framework</a>, XP renders the content itself.
+A page is composed of one or more components, always with a page component as its root.</p>
 </div>
 <div class="paragraph">
-<p>Your app includes a pre-defined page component named <code>hello</code>. It is defined by a descriptor file, placed in a particular location within your app: <code>src/main/resources/site/pages/</code></p>
+<p>Your app includes a page component named <code>hello</code>. A component is defined by a descriptor file, placed in a particular location within your app. For page components, that is <code>src/main/resources/site/pages/</code>:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-js" data-lang="js">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
 &lt;page&gt;
   &lt;display-name&gt;Hello Page Controller&lt;/display-name&gt;
   &lt;form/&gt;
@@ -483,7 +485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Like content types, you can also define a form for the component using the <a href="https://developer.enonic.com/docs/xp/stable/cms/schemas" target="_blank" rel="noopener">schema system</a>. We&#8217;ll get back to this later.
+Like content types, components can define a form using the <a href="https://developer.enonic.com/docs/platform/7.x/cms/schemas">schema system</a>. You&#8217;ll see an example in the <a href="parts.ahtml">parts chapter</a>.
 </td>
 </tr>
 </table>
@@ -491,30 +493,15 @@ Like content types, you can also define a form for the component using the <a hr
 </div>
 </div>
 <div class="sect1">
-<h2 id="component_controller"><a class="link" href="#component_controller">Component controller</a></h2>
+<h2 id="controller"><a class="link" href="#controller">Controller</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Enonic XP supports rendering with 3rd party front-ends, but is also capable of rendering by itself thanks to the <a href="https://developer.enonic.com/docs/xp/7.x/framework">Enonic Site Framework</a>. We will be using this throughout the rest of this tutorial.</p>
-</div>
-<div class="paragraph">
-<p>Each component may have its very own controller, responsible for its rendering. Here is what it looks like in our case:</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The controller file must be placed in and use the same name as the component directory.
-</td>
-</tr>
-</table>
+<p>Each component can have its own controller, which is responsible for rendering it. This is the controller of the <code>hello</code> page component:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-js" data-lang="js">import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
 import {render} from '/lib/thymeleaf';
@@ -550,23 +537,26 @@ export function get(): Response {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Here we&#8217;re using TypeScript. Each .ts file will automatically be compiled by the build system, and the generated .js file placed in the same location. XP picks up and invokes the resulting .js file.
+The controller file must be placed in the component directory and use the same name as the directory.
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The controller is written in TypeScript. The build system compiles each <code>.ts</code> file and places the generated <code>.js</code> file in the same location. XP picks up and invokes the resulting <code>.js</code> file.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="templating"><a class="link" href="#templating">Templating</a></h2>
+<h2 id="view"><a class="link" href="#view">View</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For clean coding, we have also supplied a simple HTML template - a.k.a the View of the Model View Controller (MVC) pattern. It looks like this:</p>
+<p>The controller passes its model to an HTML template - the view in the Model View Controller (MVC) pattern:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;!DOCTYPE html&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
@@ -577,40 +567,36 @@ Here we&#8217;re using TypeScript. Each .ts file will automatically be compiled 
 &lt;/html&gt;</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This view is plain HTML, but also uses a specific syntax known as the <a href="https://market.enonic.com/vendors/enonic/thymeleaf-lib" target="_blank" rel="noopener">Thymeleaf</a> templating language. The Enonic runtime also supports many other options, such as <a href="https://market.enonic.com/vendors/enonic/mustache-lib" target="_blank" rel="noopener">Mustache</a> and <a href="https://market.enonic.com/vendors/tineikt/freemarker-xp-library" target="_blank" rel="noopener">Freemarker</a>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The view is plain HTML, extended with attributes from the <a href="https://market.enonic.com/vendors/enonic/thymeleaf-lib">Thymeleaf</a> templating language.
+Other template engines are available as libraries, such as <a href="https://market.enonic.com/vendors/enonic/mustache-lib">Mustache</a> and <a href="https://market.enonic.com/vendors/tineikt/freemarker-xp-library">Freemarker</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="your_first_page"><a class="link" href="#your_first_page">Your first page</a></h2>
+<h2 id="task_create_your_first_page"><a class="link" href="#task_create_your_first_page">Task: Create your first page</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the <code>hello</code> page component to actually render something, it must be used by a content item:</p>
+<p>For the <code>hello</code> page component to render something, a content item must use it.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Select the Site content item</strong> -  <code>Hello World</code> and click <b class="button">edit</b></p>
+<p><strong>Open the site</strong> - In Content Studio, select the <code>Hello World</code> site and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p>From the preview panel on the right, select the <code>Hello</code> page component in the list. Your changes will automatically save, and the page preview will render the result.</p>
+<p><strong>Select the page component</strong> - In the preview panel on the right-hand side, select <code>Hello Page Controller</code> in the list.
+Your changes are saved automatically.</p>
 </li>
-</ol>
-</div>
+<li>
+<p><strong>Verify the rendering</strong> - The preview shows the display name of the site, followed by the text <code>- we made it!</code>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-world.gif" alt="Setting up the page" width="1920px">
+<img src="media/hello-world.gif" alt="Setting up the page" width="960">
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -618,7 +604,8 @@ This view is plain HTML, but also uses a specific syntax known as the <a href="h
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At this point we were able to attach a hello page component to the hello-world site content, which is great! A good observer will notice that the page is not entirely static, it will ouput the content <code>displayName</code> followed by a hardcoded text <code>- we made it!</code>.</p>
+<p>You&#8217;ve seen how a page component consists of a descriptor, a controller, and a view, and used it to render the <code>Hello World</code> site.
+The page isn&#8217;t entirely static: the controller reads the display name of the content and passes it to the view, which adds a hardcoded text.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -627,20 +614,20 @@ This view is plain HTML, but also uses a specific syntax known as the <a href="h
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To learn more about pages, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages" target="_blank" rel="noopener">pages documentation</a>.
+To learn more about pages, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages">pages documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Next you&#8217;ll be introduced to the <a href="regions.ahtml">concept of regions</a>, that will enable you to add more components to your pages.</p>
+<p>Next, you&#8217;ll <a href="regions.ahtml">add a region to the page</a>, so more components can be placed on it.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:12 UTC
+Last updated 2026-11-23 22:02:39 UTC
 </div>
 </div>
 </body>

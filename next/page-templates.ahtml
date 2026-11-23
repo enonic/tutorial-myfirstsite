@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Page templates</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,9 +442,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#reusable_pages">Reusable pages</a></li>
-<li><a href="#from_scratch">From scratch</a></li>
-<li><a href="#automatic_fixed_or_customized">Automatic, fixed or customized</a></li>
+<li><a href="#reusable_pages">Reusable pages</a>
+<ul class="sectlevel2">
+<li><a href="#task_save_a_page_as_a_template">Task: Save a page as a template</a></li>
+<li><a href="#task_create_a_template_from_scratch">Task: Create a template from scratch</a></li>
+</ul>
+</li>
+<li><a href="#automatic_fixed_or_customized">Automatic, fixed, or customized</a>
+<ul class="sectlevel2">
+<li><a href="#task_switch_a_page_to_automatic">Task: Switch a page to automatic</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -452,7 +461,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create page templates to reuse a page across different content items.</p>
+<p>In this chapter, you&#8217;ll create page templates, so every country is rendered the same way without setting up each page by hand.</p>
 </div>
 </div>
 </div>
@@ -460,137 +469,126 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="reusable_pages"><a class="link" href="#reusable_pages">Reusable pages</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Previously, we mentioned that you&#8217;d get to know about the <code>Templates</code> folder a bit later. The time has arrived.</p>
+<p>With the current approach, you&#8217;d have to set up a page for every country. Page templates are more efficient.
+A page template is a content item that holds a page and supports one or more content types, for example <code>Country</code>. All content items of those types are then rendered by the template.</p>
 </div>
 <div class="paragraph">
-<p>With the current approach, you would have to configure a new page for every country in the list. A slightly more efficient approach is to use page templates. Page templates can be mapped to a specific content type i.e. "Country" - and all content items of type "Country" will be rendered by it.</p>
+<p>Page templates live in the <code>Templates</code> folder you saw in the <a href="content.ahtml">content chapter</a>.</p>
 </div>
+<div class="sect2">
+<h3 id="task_save_a_page_as_a_template"><a class="link" href="#task_save_a_page_as_a_template">Task: Save a page as a template</a></h3>
 <div class="paragraph">
-<p>Let&#8217;s take advantage over the fact that we have already created a page for a country.</p>
+<p>Take advantage of the page you&#8217;ve already built for a country.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select, and <b class="button">Edit</b> the country with the page.</p>
+<p><strong>Open the country</strong> - Select the country with the page, and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p>Select the page component, and from the context menu click <b class="button">Save as Template</b></p>
+<p><strong>Save the page as a template</strong> - Select the page component, and click <b class="button">Save as Template</b> in its context menu.</p>
 </li>
 <li>
-<p>Give your Template a suitable name i.e. <code>Country template</code></p>
+<p><strong>Name the template</strong> - Give the template a suitable name, for example <code>Country template</code>.</p>
 </li>
 <li>
-<p>Choose <code>Country</code> in the <code>Supports</code> dropdown.</p>
+<p><strong>Select the supported content type</strong> - Select <code>Country</code> in the <code>Supports</code> dropdown.</p>
 <div class="paragraph">
-<p>Here is a video demonstrating the process.</p>
-</div>
-</li>
-</ol>
+<p>This video shows the process:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-template.gif" alt="Creating a page template from a page" width="1920px">
+<img src="media/page-template.gif" alt="Creating a page template from a page" width="960">
 </div>
 </div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Select other countries in the content grid. Each of them is now rendered by the page template.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_create_a_template_from_scratch"><a class="link" href="#task_create_a_template_from_scratch">Task: Create a template from scratch</a></h3>
 <div class="paragraph">
-<p>Now, when you select country content elements in the Content grid you&#8217;ll notice that each of them is rendered by the page template.</p>
+<p>Like any other content, a page template can also be created from scratch.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create new content</strong> - Select the <code>Templates</code> content item and click <b class="button">New</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-1.png" alt="The content grid with the Templates item selected, and the pointer on the New button" width="418">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the content type</strong> - Select the <code>Page template</code> content type:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="718">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the supported content type</strong> - Select <code>Country</code> in the <code>Supports</code> dropdown:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-3.png" alt="The Supports dropdown listing content types, with Country highlighted" width="336">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the page component</strong> - In the panel on the right-hand side, select the <code>Hello Regions!</code> page component:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-4.png" alt="List of available page components, with Hello Regions! highlighted" width="499">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Add a part</strong> - Right-click the <code>Drop here</code> region, select <code>Insert</code> &#8594; <code>Part</code>, and then select the <code>City list</code> part:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-5.png" alt="List of available parts to add to the region" width="612">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Name and save the template</strong> - Give the page template a name, such as <code>New Country Template</code>, and save it.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Select different countries in the content grid to check that they are rendered by the new template.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="from_scratch"><a class="link" href="#from_scratch">From scratch</a></h2>
+<h2 id="automatic_fixed_or_customized"><a class="link" href="#automatic_fixed_or_customized">Automatic, fixed, or customized</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Just like any other piece of content, a page template can also be created from scratch.</p>
+<p>Each content item can use its page in one of three ways: <code>Automatic</code>, which is the default and lets XP select a supporting template, a specific template that you select, or a customized page that is no longer linked to a template.</p>
 </div>
+<div class="paragraph">
+<p>The country you set up by hand still uses its own custom page.</p>
+</div>
+<div class="sect2">
+<h3 id="task_switch_a_page_to_automatic"><a class="link" href="#task_switch_a_page_to_automatic">Task: Switch a page to automatic</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the <code>Templates</code> content item and then click <b class="button">new</b></p>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-template-1.png" alt="List of content types under the root site content, with the Templates highlighted" width="418px">
-</div>
-</div>
+<p><strong>Open the page</strong> - Edit the country you built the page on, open the page editor, and select the page.</p>
 </li>
 <li>
-<p>Select the <code>Page template</code> content type</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="718px">
-</div>
-</div>
+<p><strong>Change the template setting</strong> - In the component view on the right-hand side, change the <code>Template</code> setting from <code>Custom</code> to <code>Automatic</code>.</p>
 </li>
 <li>
-<p>Select <code>Country</code> content type from the "Supports" dropdown.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-template-3.png" alt="List of available content types under the support filter, with the Country content type highlighted" width="336px">
-</div>
-</div>
-</li>
-<li>
-<p>In the panel on the right select the <code>Hello Regions!</code> page component</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-template-4.png" alt="List of available pages, with the Hello Regions! page highlighted" width="499px">
-</div>
-</div>
-</li>
-<li>
-<p>Right click on <code>Drop here</code> region in the added page, then <code>Insert</code> and <code>Part</code> and select the <code>City list</code> part.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-template-5.png" alt="List of available parts to be added withing a region, with the Country part highlighted" width="612px">
-</div>
-</div>
-</li>
-<li>
-<p>Then finally give this page template a name, such as "New Country Template" and save it.</p>
+<p><strong>Verify the result</strong> - The country is now rendered by a page template, like the other countries.</p>
 </li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Try clicking other countries to verify that the template actually works as intended.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="automatic_fixed_or_customized"><a class="link" href="#automatic_fixed_or_customized">Automatic, fixed or customized</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The country item you manually edited still uses the custom page you created - you can make it use the page template as well.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Edit the initial country, open the page editor and select the page.</p>
-</li>
-<li>
-<p>From the right hand component view, change the Template setting from <code>Custom</code> to <code>Automatic</code></p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For every single content item, you can use <code>Automatic</code> (default), select a specific template or <code>customize</code> the page, "unlinking" it from its page template.
-</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -599,10 +597,11 @@ For every single content item, you can use <code>Automatic</code> (default), sel
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You now have two page templates, both of which support "Country" content type. In this case "Automatic" mode will pick up the newest template, which is "New Country Template". If you want to use the old template, you need to select it explicitly.
+You now have two page templates that support the <code>Country</code> content type. In <code>Automatic</code> mode, the newest template is used, in this case <code>New Country Template</code>. To use the other template, select it explicitly.
 </td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -610,7 +609,8 @@ You now have two page templates, both of which support "Country" content type. I
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve just learned about page templates, which is a way to reuse a page across specific content types within your site. This is a powerful feature of the CMS, as it enables editors to manage and publish page templates, just like any other content.</p>
+<p>You&#8217;ve created two page templates, one from an existing page and one from scratch, and rendered all countries with them.
+Page templates are content, so editors can manage and publish them like any other content.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -619,20 +619,20 @@ You now have two page templates, both of which support "Country" content type. I
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you want to control the rendering of certain pages without using page templates, check out <a href="https://developer.enonic.com/docs/xp/stable/framework/mappings" target="_blank" rel="noopener">controller mappings</a>.
+To control the rendering of certain pages without using page templates, check out <a href="https://developer.enonic.com/docs/platform/7.x/framework/mappings">controller mappings</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Next up, let&#8217;s see how to <a href="static-assets.ahtml">add and serve static assets</a>, using the built-in asset service.</p>
+<p>Next, you&#8217;ll <a href="static-assets.ahtml">add and serve static assets</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:12 UTC
+Last updated 2026-11-23 22:02:39 UTC
 </div>
 </div>
 </body>

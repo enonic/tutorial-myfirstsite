@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Parts - flexible components for your pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,8 +442,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#the_country_part">The country part</a></li>
-<li><a href="#configurable_part">Configurable part</a></li>
+<li><a href="#the_country_part">The country part</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_the_country_part">Task: Add the country part</a></li>
+</ul>
+</li>
+<li><a href="#configurable_part">Configurable part</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_and_configure_the_city_list">Task: Add and configure the city list</a></li>
+</ul>
+</li>
 <li><a href="#image_service">Image service</a></li>
 <li><a href="#logging">Logging</a></li>
 <li><a href="#summary">Summary</a></li>
@@ -453,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Parts are the visual building blocks to make pages more interesting.</p>
+<p>In this chapter, you&#8217;ll place two parts on a page: one that shows the details of a country, and one that lists its cities and can be configured by the editor.</p>
 </div>
 </div>
 </div>
@@ -461,13 +470,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="the_country_part"><a class="link" href="#the_country_part">The country part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s about time we show some details from the <strong>Country</strong> content type.</p>
+<p>Parts are the visual building blocks of a page. Like the Text component, parts are added to regions, but you write their rendering yourself.</p>
 </div>
 <div class="paragraph">
-<p>Rather than making another page component, lets use parts. Like the Text component, parts can be added to regions.</p>
-</div>
-<div class="paragraph">
-<p>A descriptor, controller and view have already been added to the <code>src/main/resources/site/parts/</code> folder:</p>
+<p>Your app has a part that shows details from the <code>Country</code> content type. Like a page component, it consists of a descriptor, a controller, and a view. Parts are placed in the <code>src/main/resources/site/parts/</code> folder:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.xml</div>
@@ -482,7 +488,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import { Content } from '@enonic-types/core';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { Content } from '@enonic-types/core';
 import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
@@ -519,7 +525,7 @@ export function get(): Response {
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/country/country.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div&gt;
     &lt;ul&gt;
         &lt;li data-th-if="${description}" data-th-text="${description}"&gt;Nice city indeed&lt;/li&gt;
         &lt;li data-th-if="${wikipedia}"&gt;
@@ -529,32 +535,42 @@ export function get(): Response {
 &lt;/div&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p><strong>Add the part to the country page</strong> by drag&#8217;n&#8217;dropping <code>Part</code> from the right-hand-side. Then select the <code>Country</code> component from the list.</p>
-</div>
-<div class="paragraph">
-<p>The resulting page should look something like this:</p>
-</div>
+<div class="sect2">
+<h3 id="task_add_the_country_part"><a class="link" href="#task_add_the_country_part">Task: Add the country part</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the country page</strong> - In Content Studio, edit the country you added the region to in the <a href="regions.ahtml">previous chapter</a>.</p>
+</li>
+<li>
+<p><strong>Insert the part</strong> - Drag <code>Part</code> from the <code>Components</code> widget on the right-hand side into the region, and select <code>Country</code> in the list.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The page should look something like this:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/country-part-on-columbia.png" alt="Result of inserting the country part on the columbia country content item" width="300px">
+<img src="media/country-part-on-columbia.png" alt="The country part on the Columbia page, showing facts about the country" width="600">
 </div>
 </div>
-<div class="admonitionblock note">
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You may also use the page component input (visible on the left hand , or floating above the page editor) to manage the components on your page.
+You can also manage the components on a page from the page component view. It shows the components as a tree, on the left-hand side or floating above the page editor.
 </td>
 </tr>
 </table>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/page-component-input.png" alt="Page component input,tree structure to manage components on the page" width="500px">
+<img src="media/page-component-input.png" alt="The page component view, a tree structure for managing the components on a page" width="500">
+</div>
 </div>
 </div>
 </div>
@@ -563,23 +579,23 @@ You may also use the page component input (visible on the left hand , or floatin
 <h2 id="configurable_part"><a class="link" href="#configurable_part">Configurable part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s try something slightly more advanced. The <code>City list</code> part will:</p>
+<p>The <code>City list</code> part is slightly more advanced. It:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>list cities within a country,</p>
+<p>lists the cities within a country</p>
 </li>
 <li>
-<p>show an image of each city,</p>
+<p>shows an image of each city</p>
 </li>
 <li>
-<p>let you choose the image cropping format.</p>
+<p>lets the editor choose the image cropping format</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The part already exists in your app via the following files:</p>
+<p>The part is also included in your app:</p>
 </div>
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
@@ -604,7 +620,7 @@ You may also use the page component input (visible on the left hand , or floatin
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-ts" data-lang="ts">import { Content, PartComponent } from '@enonic-types/core';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { Content, PartComponent } from '@enonic-types/core';
 import type { Response } from '/index.d';
 
 // @ts-expect-error no-types
@@ -681,7 +697,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <div class="listingblock">
 <div class="title">src/main/resources/site/parts/city-list/city-list.html</div>
 <div class="content">
-<pre class="highlight"><code class="language-HTML" data-lang="HTML">&lt;div class="cities" style="min-height:100px;"&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="cities" style="min-height:100px;"&gt;
     &lt;h2&gt;Cities&lt;/h2&gt;
     &lt;p data-th-if="${#lists.isEmpty(cities)}"&gt;No cities found&lt;/p&gt;
     &lt;div data-th-unless="${#lists.isEmpty(cities)}" class="city" data-th-each="city : ${cities}"&gt;
@@ -695,31 +711,28 @@ function getCitySlogan(slogan: string, population?: string): string {
 &lt;/div&gt;</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The th:if and th:unless attributes: If no cities are found the template will display "No cities found", otherwise it will loop through the list of cities and output details for each city.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>In the view, the <code>th:if</code> and <code>th:unless</code> attributes handle an empty list. If no cities are found, the template displays "No cities found". Otherwise, it loops through the cities and outputs the details of each one.</p>
 </div>
+<div class="sect2">
+<h3 id="task_add_and_configure_the_city_list"><a class="link" href="#task_add_and_configure_the_city_list">Task: Add and configure the city list</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Add the city list part</strong> to the same page as before, and verify that it is working.</p>
+<p><strong>Insert the part</strong> - Add a new part to the same region as before, and select <code>City list</code> in the list.</p>
 </li>
 <li>
-<p><strong>Configure the part</strong> by changing the settings in the right hand panel, e.g. choose <code>widescreen</code> in the "Image crop" dropdown. Click Apply button to see the result.</p>
+<p><strong>Configure the part</strong> - With the part selected, change its settings in the panel on the right-hand side. For example, select <code>Widescreen</code> in the <code>Image crop</code> dropdown, and click <b class="button">Apply</b>.</p>
 </li>
-</ol>
-</div>
+<li>
+<p><strong>Verify the result</strong> - The page lists the cities of the country, with images in the format you chose:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/city-list-part-on-columbia.png" alt="Result of adding city list part to page and configure it to show widescreen images" width="1227px">
+<img src="media/city-list-part-on-columbia.jpg" alt="The city list part on the Columbia page, configured to show widescreen images" width="1227">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -728,7 +741,7 @@ The th:if and th:unless attributes: If no cities are found the template will dis
 <h2 id="image_service"><a class="link" href="#image_service">Image service</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Images are scaled and cropped in real-time by the <a href="https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service" target="_blank" rel="noopener">Image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to the desired image, with desired sizes and cropping.</p>
+<p>Images are scaled and cropped in real time by the <a href="https://developer.enonic.com/docs/platform/7.x/runtime/engines/site-engine/image-service">image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to each image, with the desired size and cropping.</p>
 </div>
 </div>
 </div>
@@ -736,7 +749,7 @@ The th:if and th:unless attributes: If no cities are found the template will dis
 <h2 id="logging"><a class="link" href="#logging">Logging</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The controller above also outputs the <code>model object</code> to the log. Check your sandbox log after visiting a country page to see what is going on.</p>
+<p>The <code>City list</code> controller also writes its model object to the log. Open a country page, then check the terminal where the sandbox is running to see what the controller passes to the view.</p>
 </div>
 </div>
 </div>
@@ -744,7 +757,7 @@ The th:if and th:unless attributes: If no cities are found the template will dis
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve been introduced to parts, a powerful concept that will enable you to build customizable visual blocks for your pages.</p>
+<p>You&#8217;ve placed two parts on a page, and configured one of them from Content Studio. With parts, you build visual blocks that editors can combine and configure on their own.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -753,20 +766,20 @@ The th:if and th:unless attributes: If no cities are found the template will dis
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To learn more about parts, visit the <a href="https://developer.enonic.com/docs/xp/stable/cms/pages/parts" target="_blank" rel="noopener">parts</a> documentation.
+To learn more about parts, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/parts">parts documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>In the next chapter you&#8217;ll learn how to reuse pages through <a href="page-templates.ahtml">page templates</a>.</p>
+<p>Next, you&#8217;ll <a href="page-templates.ahtml">reuse the page across all countries with page templates</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:12 UTC
+Last updated 2026-11-23 22:02:39 UTC
 </div>
 </div>
 </body>

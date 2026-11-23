@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="application-name" content="siteframework">
 <title>Build a website with the Enonic Site Framework</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,6 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#intro">Intro</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tested_versions">Tested versions</a></li>
 </ul>
@@ -450,7 +452,60 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Learn the basic principles of pages, components, and rendering with the Enonic Site Framework.</p>
+<p>This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. You&#8217;ll render content with pages, parts, and layouts, and compose and publish the result in Content Studio.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="intro"><a class="link" href="#intro">Intro</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side JavaScript controllers and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.</p>
+</div>
+<div class="paragraph">
+<p>When you are done, a country page on your site will look something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/static-assets.png" alt="A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image" width="560">
+</div>
+</div>
+<div class="paragraph">
+<p>You will complete the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="setup.ahtml">Set up</a> the CLI, a local sandbox, and your own app</p>
+</li>
+<li>
+<p>Explore the sample content and its content types in <a href="content.ahtml">Content Studio</a></p>
+</li>
+<li>
+<p>Render content with a <a href="pages.ahtml">page component</a></p>
+</li>
+<li>
+<p>Open the page to editors with <a href="regions.ahtml">regions</a></p>
+</li>
+<li>
+<p>Add <a href="parts.ahtml">parts</a> that render and list content</p>
+</li>
+<li>
+<p>Reuse a page across content items with <a href="page-templates.ahtml">page templates</a></p>
+</li>
+<li>
+<p>Serve CSS and images as <a href="static-assets.ahtml">static assets</a></p>
+</li>
+<li>
+<p>Arrange components in columns with <a href="layouts.ahtml">layouts</a></p>
+</li>
+<li>
+<p><a href="go-online.ahtml">Publish</a> the site</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The controllers and views are specific to the Site Framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -459,43 +514,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Enonic also support rendering with <a href="https://developer.enonic.com/docs/frameworks">other frameworks</a>.
+Enonic also supports <a href="https://developer.enonic.com/docs/frameworks">other front-end frameworks</a>. Next.js renders outside XP and fetches content through the API. React4XP runs inside XP like the Site Framework, but replaces its page rendering with one based on React.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>During this exercise you will:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>create an Enonic app</p>
-</li>
-<li>
-<p>install and use Content Studio</p>
-</li>
-<li>
-<p>get familiar with page components</p>
-</li>
-<li>
-<p>Try out page templates</p>
-</li>
-<li>
-<p>Use static assets</p>
-</li>
-<li>
-<p>and then some&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>When you are done, a country page on your site will look something like this:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/static-assets.png" alt="A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image" width="560px">
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -545,24 +579,28 @@ Enonic also support rendering with <a href="https://developer.enonic.com/docs/fr
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enonic CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.1.4</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enonic XP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.16.11</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Content Studio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.4.17</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Start the show by <a href="setup.ahtml">setting up the developer environment</a>.</p>
+<p>Get started by <a href="setup.ahtml">setting up your developer environment</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 17:25:35 UTC
+Last updated 2026-11-23 22:02:58 UTC
 </div>
 </div>
 </body>
