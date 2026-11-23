@@ -52,6 +52,32 @@ A push to either branch that touches `docs/` republishes the tutorial immediatel
 - Reference links for the XP 7 code use `{xp-docs}/{xp-docs-version}/...`, which points at the 7.x documentation.
   `/docs/xp/stable/...` URLs redirect to XP 8 documentation.
 
+## Plan for the XP 8 rewrite on `master`
+
+The sections below this one describe the current XP 7 code, which `master` still holds. The rewrite replaces it as follows.
+None of it is backported to `7.x`.
+
+- **Pure XP 8.** The tutorial targets XP 8 only, with GraalJS and the GraphQL client library.
+- **Starts from `starter-ts`.** The reader scaffolds `starter-ts` in chapter 1 and writes the code during the tutorial,
+  as in the other tutorials. They no longer scaffold this repository.
+- **This repository holds the final result**, so it can be deployed as a demo without following the tutorial.
+- **The reader adds all schemas.** The `country` and `city` content types are created by the reader, not supplied.
+- **Start content comes from a separate fixture app**, in the repository `enonic/tutorial-site-framework-fixture` with
+  the application ID `com.enonic.tutorial.siteframework.fixture`. It creates the content project and imports the site,
+  countries, cities and images. The reader installs it with `enonic app install --url`; it is published as a jar to the Enonic
+  repository and not listed on Market. It holds content only, and references the content types as
+  `com.example.tutorial.siteframework:country` and `:city`, so the application ID in chapter 1 is not optional. The site
+  has no application assigned; the reader adds theirs in Content Studio.
+- **This repository bundles the complete content:** the fixture content plus everything the reader adds during the
+  tutorial (page setup, page template, components, layout). `main.ts` imports it on first start and rewrites the
+  application ID to `app.name`, so a demo runs under any ID with this one app. The import code and the `import/` folder
+  are the only parts of the repository the reader does not write; say so in the README.
+- **Both apps create the project only if it does not exist**, so installing one after the other never imports twice.
+- **No BrowserSync.** It proved problematic and is not carried over.
+
+Not decided or verified yet: the fixture app's display name, the export format on XP 8, and
+`enonic app install --url` against an XP 8 sandbox.
+
 ## Code and documentation are coupled
 
 - Chapters pull code in with `include::` from `src/main/resources/` and `code-samples/`. Editing those files changes the
