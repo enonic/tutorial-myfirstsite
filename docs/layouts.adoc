@@ -1,16 +1,16 @@
-:imagesdir: media/
+= Layout components
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
 :sourcedir: ../src/main/resources
-:experimental:
 
-= Bonus: Layout components
+In this chapter, you'll use a layout to arrange components in two columns, and see how a component can contribute CSS to the page it is placed on.
 
-Layouts are containers of other components that also support regions.
+== Two-column layout
 
-== Two column layout
+Layouts are components that contain regions, which makes them containers for other components. Your app includes a layout with two regions that work as columns, and a configuration option that lets editors control the width of each column.
 
-Unlike parts, layouts may contain regions. Here, we'll define two regions, each working as columns in the final result. We'll also throw in some configuration options so editors can control the sizes for each of those two columns.
-
-Like for the parts and pages, layout consists of a descriptor, a controller and a view - which have already been set up in the special `src/main/resources/site/layouts/` folder:
+Like pages and parts, a layout consists of a descriptor, a controller, and a view. Layouts are placed in the `src/main/resources/site/layouts/` folder:
 
 .src/main/resources/site/layouts/two-columns/two-columns.xml
 [source,xml]
@@ -18,10 +18,10 @@ Like for the parts and pages, layout consists of a descriptor, a controller and 
 include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
 ----
 
-Notice that it doesn't change much from what you've seen so far. It's basically a mix of pages and parts.
+The descriptor combines what you've seen in pages and parts: it declares regions, and it has a form.
 
 .src/main/resources/site/layouts/two-columns/two-columns.ts
-[source,ts]
+[source,typescript]
 ----
 include::{sourcedir}/site/layouts/two-columns/two-columns.ts[]
 ----
@@ -32,9 +32,9 @@ include::{sourcedir}/site/layouts/two-columns/two-columns.ts[]
 include::{sourcedir}/site/layouts/two-columns/two-columns.html[]
 ----
 
-== Page contribution
+== Page contributions
 
-To spice up the tutorial, we include some css which will only be available on pages where this layout exists. The following file has been placed in the assets folder:
+The layout comes with CSS that is only loaded on pages where the layout is used. The stylesheet is placed in the assets folder:
 
 .src/main/resources/assets/styles/two-columns.scss
 [source,scss]
@@ -42,39 +42,35 @@ To spice up the tutorial, we include some css which will only be available on pa
 include::{sourcedir}/assets/styles/two-columns.scss[]
 ----
 
-NOTE: The `scss` file will be automatically built to `css` by the build system.
+NOTE: The build system compiles the `scss` file to `css`.
 
-To inject the CSS dynamically, we use a trick called https://developer.enonic.com/docs/xp/stable/framework/contributions[pageContributions^].
+To add the CSS to the page, the controller uses {xp-docs}/{xp-docs-version}/framework/contributions[page contributions]. A page contribution lets a component inject HTML at specific places in the resulting markup: at the beginning or end of `<head>`, or at the beginning or end of `<body>`.
 
-Its naming speaks for itself but, just for clarity, it's a way for components to inject HTML on certain places within the resulting markup. Those places are on the `<head>` begin or end, or on `<body>` begin or end.
+The controller above returns the page contribution together with the rest of its response.
 
-Study the TypeScript controller response above to see how the pageContribution is passed along with the response.
+== Task: Add the layout to a page
 
-== Using the layout
+. *Open the site* - In Content Studio, select the `Hello World` site and click btn:[Edit].
 
-So far you've understood what a layout is and created the code for a two column layout. Let's see it in practice by adding it to a page and using its regions.
-
-. Back in content studio btn:[edit] the site content (root item) once more.
-. *Insert the two-column layout* in the main region:
+. *Insert the layout* - Insert a layout in the `main` region, and select `Two columns` in the list:
 +
-image::two-column-layout.png["Two column layout with 50/50 config and no component in its left and right regions", width="1226px"]
-+
-. *Add a text component to each region*, and write some text:
-+
-image::two-column-layout-with-texts.png["Two column layout with 50/50 config and texts on its two left and right regions", width="1226px"]
+image::two-column-layout.png["Two-column layout with the 50/50 setting and empty left and right regions", width=1226]
 
+. *Add text to the columns* - Add a text component to each of the two regions, and write some text:
 +
-. Finally, *try switching between different configuration options* `33/66`, `50/50` and `66/33` (in the Inspect panel on the right) and check the results:
-+
-image::two-column-layout-33-66-with-texts.png["Two column layout with 33/66 config and texts on its two left and right regions", width="1226px"]
+image::two-column-layout-with-texts.png["Two-column layout with the 50/50 setting and a text in each region", width=1226]
 
+. *Change the column sizes* - With the layout selected, switch between `33/66`, `50/50`, and `66/33` in the `Column sizes` dropdown in the panel on the right-hand side.
+
+. *Verify the result* - The width of the columns follows the setting you select:
++
+image::two-column-layout-33-66-with-texts.png["Two-column layout with the 33/66 setting and a text in each region", width=1226]
 
 == Summary
 
-By combining content types, layouts, parts, pages and page templates, the sky is the limit for what you can build.
+You've added a layout with two regions to a page, filled its columns, and changed its configuration.
+By combining content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.
 
-TIP: For more details, dig deeper into layouts in the https://developer.enonic.com/docs/xp/stable/cms/pages/layouts[layout documentation^].
+TIP: For more details, visit the {xp-docs}/{xp-docs-version}/cms/pages/layouts[layouts documentation].
 
-
-
-The journey so far has provided you a starting ground to build your first website. Let's now take a look on how to <<go-online#, go online>>!
+Next, you'll <<go-online#,publish the site>>.

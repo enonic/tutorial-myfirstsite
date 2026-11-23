@@ -1,23 +1,33 @@
-:imagesdir: media/
+= Go online
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
 
-= Go Online
+In this chapter, you'll publish the `Hello World` site, making it available outside Content Studio.
 
-Now that the setup of `Hello World` site is completed, it's time to publish.
+== Publishing
 
-. Select the `Hello World` site in the content browse panel
-. Select *Publish Tree* from the top right action menu. The *Publishing Wizard* will now appear
-. Several `In progress` items are blocking publishing - click `Mark as ready` to fix this.
-. click *Publish*!
+In Content Studio, you work in the `draft` branch. Publishing merges the selected items from `draft` to the `master` branch, which is the one visitors see.
 
-image::publish.gif["Demonstrating how to publish all items in the project", width=800px]
+=== Task: Publish the site
 
-What just happened? In Content Studio, you work in the draft branch. When publishing, the selected items are merged from *draft* to the *master* branch
+. *Select the site* - Select the `Hello World` site in the content grid.
 
-NOTE: You can see the published site and the master branch on this url: `http://localhost:8080/site/myfirstsite/master/hello-world[http://localhost:8080/site/myfirstsite/master/hello-world^]`.
+. *Open the Publishing Wizard* - Select btn:[Publish Tree] in the action menu in the top right corner. The Publishing Wizard opens.
 
-*Well done!*
+. *Mark the content as ready* - Items that are `In progress` block publishing. Click btn:[Mark as ready] to fix this.
 
- 🎉 Congratulations on building your first Enonic site - The Enonic team.
+. *Publish* - Click btn:[Publish]:
++
+image::publish.gif["Publishing all items in the project", width=800]
 
+. *Verify the published site* - Open {xp-url}/site/{cms-project-id}/master/hello-world[{xp-url}/site/{cms-project-id}/master/hello-world] in your browser. It shows the site as served from the `master` branch.
 
-TIP: To learn more about structured content modelling, and the GraphQL API, visit the https://developer.enonic.com/learn/content-modeling/7.x[content modeling tutorial].
+== Summary
+
+You did it! 🎉 You've built a site with the Enonic Site Framework: pages, parts, and layouts that render structured content, composed and published from Content Studio.
+
+That completes the tutorial. If you want to keep going, these are good places to continue:
+
+* The {modeling-tutorial}[content modeling tutorial] goes deeper into structured content and the GraphQL API.
+* The {frameworks-docs}[front-end frameworks overview] presents the other ways to build a front-end for Enonic.

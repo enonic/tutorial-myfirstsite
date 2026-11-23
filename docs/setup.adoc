@@ -1,124 +1,143 @@
-:imagesdir: media/
-
 = Setting up the developer environment
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
 
-Set up the developer environment, create, build, and deploy an application.
+In this chapter, you'll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you'll work on for the rest of the tutorial.
 
-== Install Enonic CLI
+== Enonic CLI
 
-The Enonic CLI (Command Line Interface) is an essential tool for developing with Enonic.
+The Enonic CLI (Command Line Interface) manages local XP instances, creates projects from starters, and builds and deploys your apps.
 
-If you have `npm` on your device, run this command:
+=== Task: Install the CLI
 
-  npm install -g @enonic/cli
-
-If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
-
-To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI. To see all available options, simply run `enonic`.
-
-TIP: To upgrade, use `enonic latest`. If there are new versions, you will see instructions on how to upgrade.
-
-== Create a sandbox
-
-A sandbox is a local developer instance of our platform, Enonic XP. Each sandbox is isolated from the other ones and can run different versions of the platform.
-
-*Create a sandbox* called `mfstutorial` by running this command in your terminal:
-
-  enonic sandbox create mfstutorial -t essentials -v 7.17.0 -f
-
-This will create a sandbox called `mfstutorial` using Enonic XP 7.17.0, automatically install the `essentials` apps, and then start the sandbox.
-
-TIP: To start the sandbox manually: `enonic sandbox start mfstutorial`
-
-== Create the app
-
-From a **new terminal window**, run the following command to create the application.
-
-  enonic project create my.first.site -d mfs -r tutorial-site-framework -s mfstutorial -f
-
-This command creates an app named `my.first.site` in the folder `mfs/`. It uses the https://github.com/enonic/tutorial-site-framework[Enonic Site Framework tutorial Github repo^]  as a starter (template), and then links the app to the `mfstutorial` sandbox.
-
-== Project structure
-
-The project folder created should now contain a basic app structure, looking something like this:
-
-[source,files]
+. *Install the command-line tool* - If you have `npm` on your machine, run:
++
+[source,shell]
 ----
-build.gradle //<1>
-build/ //<2>
-code-samples/ //<3>
-docs/ //<4>
-tsup/ //<5>
+npm install -g @enonic/cli
+----
++
+If not, there are https://developer.enonic.com/start[alternative ways to install the Enonic CLI].
+
+. *Verify the installation* - Run `enonic -v`.
+The command prints the version of the installed CLI.
+
+TIP: Run `enonic` without arguments to list the available commands, and `enonic latest` to check for a newer version of the CLI.
+
+== Sandbox
+
+A _sandbox_ is a local developer instance of Enonic XP. Each sandbox is isolated from the others, with its own data and configuration, and can run a different version of XP.
+
+=== Task: Create a sandbox
+
+. *Create and start the sandbox* - Run this command in your terminal:
++
+[source,shell,{subs}]
+----
+enonic sandbox create {sandbox-name} -t essentials -v {xp-version} -f
+----
++
+This creates a sandbox called `{sandbox-name}` running Enonic XP {xp-version}, installs the applications in the `essentials` template, including Content Studio, and starts the sandbox.
+
+. *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}] in your browser.
+You should see the XP boot page, with the title "Welcome to the Enonic SDK".
+
+TIP: To stop the sandbox, press kbd:[Ctrl+C] in its terminal. To start it again, run `enonic sandbox start {sandbox-name}`. Sandboxes share the same ports, so stop this one before starting the sandbox of another tutorial.
+
+== App
+
+Almost everything you build on XP is packaged as an application. Instead of starting from an empty folder, you'll create your app from a starter that contains the components, content types, and sample content used in this tutorial.
+
+=== Task: Create the app
+
+Use a dedicated workspace folder for Enonic tutorials, such as `enonic-tutorials/`, so each tutorial's source folder stays separate.
+
+. *Create the app from the starter* - Open a new terminal window in your tutorials workspace folder, leaving the sandbox running in the first one, and run:
++
+[source,shell,{subs}]
+----
+enonic project create {app-name-full} -r {starter-repo} -b {starter-branch} -s {sandbox-name} -d {app-dir} -f
+----
++
+This creates an app named `{app-name-full}` in the folder `{app-dir}`, using the https://github.com/enonic/{starter-repo}[{starter-repo}] repository as a starter, and links the app to the `{sandbox-name}` sandbox.
+
+. *Inspect the project structure* - The project folder contains a basic app structure. These are the parts you'll meet in this tutorial:
++
+[source,text]
+----
+build.gradle           # <1>
+code-samples/          # <2>
+docs/                  # <3>
+tsup/                  # <4>
 src/
   main/
     resources/
-      import/ //<6>
-      assets/ //<7>
+      import/          # <5>
+      assets/          # <6>
       site/
-        content-types/ //<8>
+        content-types/ # <7>
           country/
           city/
-        parts/ //<9>
-        pages/ //<10>
+        parts/         # <8>
+        pages/         # <9>
+----
+<1> Core build files
+<2> Code samples that you'll copy into the app in later chapters
+<3> The documentation you are reading now
+<4> Build files for the TypeScript compilation
+<5> Sample content that is imported when the app starts
+<6> Location for static assets
+<7> Two pre-defined content types, country and city
+<8> Part components - leaf components to place on pages
+<9> Page components - the root component of a page
+
+=== Task: Build and deploy the app
+
+. *Start the development watcher* - Change to the project folder and start development mode:
++
+[source,shell,{subs}]
+----
+cd {app-dir}
+enonic dev
+----
++
+This builds the app, deploys it to the `{sandbox-name}` sandbox, and then keeps watching the folder.
+When you save a file, your TypeScript code is compiled and the sandbox picks up the change. There is no need for manual deployments.
++
+Keep this command running in its own terminal while you follow the tutorial. Press kbd:[Ctrl+C] to stop watching, and run `enonic dev` from `{app-dir}` to resume later.
+
+. *Verify that the app has started* - The first build downloads a few things, so give it a moment. Then look for lines like these in the terminal where the sandbox is running:
++
+[source,text,{subs}]
+----
+INFO  {app-name-full} - (/main.js) Project "{cms-project-id}" successfully created
+INFO  {app-name-full} - (/main.js) Importing "{cms-project-id}" data
 ----
 
-<1> Core build files
-<2> Contains output files produced by the build
-<3> Code samples that will be used in this tutorial
-<4> Contains the documentation you are reading now
-<5> TSUP typescript compilation build files
-<6> Contains sample content that is imported when the app starts
-<7> Location for static assets
-<8> Two pre-defined content types, country and city
-<9> Part components - leaf components to place on pages
-<10> Page components - root component for pages
+== XP admin
 
-== Start building
+The sandbox has a web interface for administration, where each admin tool is its own application.
 
-Assuming you did not change any of the values when creating the app, run the following commands:
+=== Task: Log in to XP admin
 
-  cd mfs
-  enonic dev
+. *Open the boot page* - Open {xp-url}[{xp-url}] in your browser, or reload it if it is already open:
++
+image::xp-boot.png["The XP boot page, with a Log In as Guest button and a list of installed applications", width=1085]
++
+The boot page gives an overview of the sandbox, including the installed applications and the {xp-docs}/{xp-docs-version}/deployment/config[standard configuration files].
+Your app, `{app-displayname}`, is in the list, together with the applications that were installed when you created the sandbox.
 
-This will build and deploy the application to your sandbox. Until you abort, the build system will continuously scan for changes in your TypeScript code and compile them.
+. *Log in* - Click btn:[Log In as Guest] to open the XP admin dashboard:
++
+image::xp-dashboard.jpg["The XP admin dashboard, with the XP menu on the right-hand side", width=1727]
++
+The menu on the right-hand side, the _XP menu_, lets you move between admin tools. Applications can add their own admin tools to it.
 
-[NOTE]
-====
-Look for a line like this in the *sandbox* log to verify that the app has started:
-
-  2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Project "myfirstsite" successfully created
-  2025-04-09 12:00:53,280 INFO  my.first.site - (/main.js) Importing "myfirstsite" data
-====
-
-Because the sandbox is running in --dev mode, any changes to the code within your app will instantly be picked up. There is no need for manual deployments.
-
-
-== XP Admin
-
-Let's have a look at the Sandbox's web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
-
-You should now see the XP boot page:
-
-image::xp-boot.png[The XP boot page, 1085w]
-
-The boot page provides an overview of the sandbox, including installed applications, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
-
-NOTE: `My first site` should be in the list, together with other applications that were automatically installed when you created the sandbox.
-
-Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:
-
-image::xp-dashboard.png[The XP admin dashboard, 1727w]
-
-You are now on the admin dashboard. The right-hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
-
-NOTE: If things don't look exactly the same, don't worry. In every new version of XP, the background picture gets updated. Also, the admin dashboard is automatically localized based on your browser's preferred language.
-
-
+NOTE: If things don't look exactly the same, don't worry. The background picture changes between versions of XP, and the dashboard is localized to your browser's preferred language.
 
 == Summary
 
-You have installed the Enonic CLI, created your first sandbox using XP 7, and built and deployed an app based on a starter to that sandbox.
+You've installed the Enonic CLI, created a sandbox running XP 7, and created, built, and deployed an app from a starter to that sandbox.
 
-That's a good start!
-
-Next, let's <<content#, have a look at Content Studio>> and the sample content.
+Next, you'll <<content#,explore the sample content in Content Studio>>.

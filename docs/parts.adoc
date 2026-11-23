@@ -1,17 +1,16 @@
-:imagesdir: media/
+= Parts - flexible components for your pages
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
 :sourcedir: ../src/main/resources/site/parts
 
-= Parts - flexible components for your pages
-
-Parts are the visual building blocks to make pages more interesting.
+In this chapter, you'll place two parts on a page: one that shows the details of a country, and one that lists its cities and can be configured by the editor.
 
 == The country part
 
-It's about time we show some details from the *Country* content type.
+Parts are the visual building blocks of a page. Like the Text component, parts are added to regions, but you write their rendering yourself.
 
-Rather than making another page component, lets use parts. Like the Text component, parts can be added to regions.
-
-A descriptor, controller and view have already been added to the `src/main/resources/site/parts/` folder:
+Your app has a part that shows details from the `Country` content type. Like a page component, it consists of a descriptor, a controller, and a view. Parts are placed in the `src/main/resources/site/parts/` folder:
 
 .src/main/resources/site/parts/country/country.xml
 [source,xml]
@@ -20,35 +19,40 @@ include::{sourcedir}/country/country.xml[]
 ----
 
 .src/main/resources/site/parts/country/country.ts
-[source,ts]
+[source,typescript]
 ----
 include::{sourcedir}/country/country.ts[]
 ----
 
 .src/main/resources/site/parts/country/country.html
-[source,HTML]
+[source,html]
 ----
 include::{sourcedir}/country/country.html[]
 ----
 
-*Add the part to the country page* by drag'n'dropping `Part` from the right-hand-side. Then select the `Country` component from the list.
+=== Task: Add the country part
 
-The resulting page should look something like this:
+. *Open the country page* - In Content Studio, edit the country you added the region to in the <<regions#,previous chapter>>.
 
-image::country-part-on-columbia.png["Result of inserting the country part on the columbia country content item",width=300px]
+. *Insert the part* - Drag `Part` from the `Components` widget on the right-hand side into the region, and select `Country` in the list.
 
-NOTE: You may also use the page component input (visible on the left hand , or floating above the page editor) to manage the components on your page.
+. *Verify the result* - The page should look something like this:
++
+image::country-part-on-columbia.png["The country part on the Columbia page, showing facts about the country", width=600]
 
-image::page-component-input.png["Page component input,tree structure to manage components on the page",width=500px]
+TIP: You can also manage the components on a page from the page component view. It shows the components as a tree, on the left-hand side or floating above the page editor.
+
+image::page-component-input.png["The page component view, a tree structure for managing the components on a page", width=500]
+
 == Configurable part
 
-Let's try something slightly more advanced. The `City list` part will:
+The `City list` part is slightly more advanced. It:
 
-* list cities within a country,
-* show an image of each city,
-* let you choose the image cropping format.
+* lists the cities within a country
+* shows an image of each city
+* lets the editor choose the image cropping format
 
-The part already exists in your app via the following files:
+The part is also included in your app:
 
 .src/main/resources/site/parts/city-list/city-list.xml
 [source,xml]
@@ -57,40 +61,41 @@ include::{sourcedir}/city-list/city-list.xml[]
 ----
 
 .src/main/resources/site/parts/city-list/city-list.ts
-[source,ts]
+[source,typescript]
 ----
 include::{sourcedir}/city-list/city-list.ts[]
 ----
 
 .src/main/resources/site/parts/city-list/city-list.html
-[source,HTML]
+[source,html]
 ----
 include::{sourcedir}/city-list/city-list.html[]
 ----
 
-NOTE: The th:if and th:unless attributes: If no cities are found the template will display "No cities found", otherwise it will loop through the list of cities and output details for each city.
+In the view, the `th:if` and `th:unless` attributes handle an empty list. If no cities are found, the template displays "No cities found". Otherwise, it loops through the cities and outputs the details of each one.
 
+=== Task: Add and configure the city list
 
-. *Add the city list part* to the same page as before, and verify that it is working.
-. *Configure the part* by changing the settings in the right hand panel, e.g. choose `widescreen` in the "Image crop" dropdown. Click Apply button to see the result.
+. *Insert the part* - Add a new part to the same region as before, and select `City list` in the list.
 
+. *Configure the part* - With the part selected, change its settings in the panel on the right-hand side. For example, select `Widescreen` in the `Image crop` dropdown, and click btn:[Apply].
 
-image::city-list-part-on-columbia.png["Result of adding city list part to page and configure it to show widescreen images", width=1227px]
+. *Verify the result* - The page lists the cities of the country, with images in the format you chose:
++
+image::city-list-part-on-columbia.jpg["The city list part on the Columbia page, configured to show widescreen images", width=1227]
 
 == Image service
 
-Images are scaled and cropped in real-time by the https://developer.enonic.com/docs/xp/stable/runtime/engines/site-engine/image-service[Image service^]. The part controller uses the `imageUrl()` function to create a link to the desired image, with desired sizes and cropping.
+Images are scaled and cropped in real time by the {xp-docs}/{xp-docs-version}/runtime/engines/site-engine/image-service[image service]. The part controller uses the `imageUrl()` function to create a link to each image, with the desired size and cropping.
 
 == Logging
 
-The controller above also outputs the `model object` to the log. Check your sandbox log after visiting a country page to see what is going on.
+The `City list` controller also writes its model object to the log. Open a country page, then check the terminal where the sandbox is running to see what the controller passes to the view.
 
 == Summary
 
-You've been introduced to parts, a powerful concept that will enable you to build customizable visual blocks for your pages.
+You've placed two parts on a page, and configured one of them from Content Studio. With parts, you build visual blocks that editors can combine and configure on their own.
 
-TIP: To learn more about parts, visit the https://developer.enonic.com/docs/xp/stable/cms/pages/parts[parts^] documentation.
+TIP: To learn more about parts, visit the {xp-docs}/{xp-docs-version}/cms/pages/parts[parts documentation].
 
-
-
-In the next chapter you'll learn how to reuse pages through <<page-templates#, page templates>>.
+Next, you'll <<page-templates#,reuse the page across all countries with page templates>>.
