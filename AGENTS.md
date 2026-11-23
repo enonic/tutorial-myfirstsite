@@ -68,11 +68,18 @@ documentation, which chapters link to instead of repeating.
 
 ## Versioning
 
-A single version is published: `stable`, built from `master`. There are no version branches. A push to `master` that
-touches `docs/` republishes the tutorial immediately.
+Two versions are published, as listed in `docs/versions.json` on `master`:
 
-The code targets XP 7 (`xpVersion` in `gradle.properties`). `docs/index.adoc` states the prerequisites and the tested
-versions; keep that table in step with the code. Reference links written as `/docs/xp/stable/...` now redirect to the XP 8
+| Branch | Label | Shown as | Content |
+|--------|-------|----------|---------|
+| `7.x` | `stable` (latest) | 7.x | The XP 7 tutorial. Only fixes go here. |
+| `master` | `next` | next | The rewrite for XP 8. Not indexed by search engines. |
+
+A push to either branch that touches `docs/` republishes the tutorial immediately. `docs/versions.json` is read from
+`master` only. When the rewrite ships, point `stable` at `master` and give `7.x` its own label.
+
+On `7.x` the code targets XP 7 (`xpVersion` in `gradle.properties`). `docs/index.adoc` states the prerequisites and the
+tested versions; keep that table in step with the code on each branch. Reference links written as `/docs/xp/stable/...` now redirect to the XP 8
 documentation; use `/docs/xp/7.x/...` for links that must match the XP 7 code.
 
 ## Tutorial identifiers
