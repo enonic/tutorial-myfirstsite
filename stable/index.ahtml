@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
-<title>My first site</title>
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>Build a website with the Enonic Site Framework</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -219,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -435,13 +435,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-right">
 <div id="header">
-<h1>My first site</h1>
+<h1>Build a website with the Enonic Site Framework</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#tested_versions">Tested versions</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Learn the basic principals of pages, components, and rendering with the Enonic framework.</p>
+<p>Learn the basic principles of pages, components, and rendering with the Enonic Site Framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -480,18 +489,80 @@ Enonic also support rendering with <a href="https://developer.enonic.com/docs/fr
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>When you are done, a country page on your site will look something like this:</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="media/nerd2code.svg" alt="Ready&#8230;&#8203;Set&#8230;&#8203;Code!" width="720px">
+<img src="media/static-assets.png" alt="A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image" width="560px">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="link" href="#prerequisites">Prerequisites</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No prior Enonic experience is required. Basic familiarity with HTML and JavaScript or TypeScript is helpful.</p>
+</div>
+<div class="paragraph">
+<p>To follow this tutorial you will need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A terminal</p>
+</li>
+<li>
+<p>Your favorite text or code editor</p>
+</li>
+<li>
+<p><a href="https://nodejs.org/">Node.js</a> with <code>npm</code> if you want to install the Enonic CLI via <code>npm</code> (other installers are also available)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You will install the Enonic CLI in the first chapter.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tested_versions"><a class="link" href="#tested_versions">Tested versions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This version of the tutorial was produced and tested with the following stack:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enonic XP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Content Studio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Start the show by <a href="setup.ahtml">setting up the developer environment</a>.</p>
 </div>
 </div>
+</div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-06-04 09:18:42 UTC
+Last updated 2026-11-23 17:21:17 UTC
 </div>
 </div>
 </body>

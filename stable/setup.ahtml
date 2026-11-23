@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Setting up the developer environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -219,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -504,11 +504,11 @@ To upgrade, use <code>enonic latest</code>. If there are new versions, you will 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create mfstutorial -t essentials -f</pre>
+<pre>enonic sandbox create mfstutorial -t essentials -v 7.17.0 -f</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will create a sandbox called <code>mfstutorial</code> using the latest version of Enonic XP, automatically install the <code>essential</code> apps, and then start the sandbox.</p>
+<p>This will create a sandbox called <code>mfstutorial</code> using Enonic XP 7.17.0, automatically install the <code>essentials</code> apps, and then start the sandbox.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -532,11 +532,11 @@ To start the sandbox manually: <code>enonic sandbox start mfstutorial</code>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic project create my.first.site -d mfs -r tutorial-myfirstsite -s mfstutorial -f</pre>
+<pre>enonic project create my.first.site -d mfs -r tutorial-site-framework -s mfstutorial -f</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command creates an app named <code>my.first.site</code> in the folder <code>mfs/</code>. It uses the <a href="https://github.com/enonic/tutorial-myfirstsite" target="_blank" rel="noopener">My first site Github repo</a>  as a starter (template), and then links the app to the <code>mfstutorial</code> sandbox.</p>
+<p>This command creates an app named <code>my.first.site</code> in the folder <code>mfs/</code>. It uses the <a href="https://github.com/enonic/tutorial-site-framework" target="_blank" rel="noopener">Enonic Site Framework tutorial Github repo</a>  as a starter (template), and then links the app to the <code>mfstutorial</code> sandbox.</p>
 </div>
 </div>
 </div>
@@ -710,7 +710,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You have installed the Enonic CLI, created your first sandbox using the latest XP version, based on a starter, and built and deployed an app to that sandbox.</p>
+<p>You have installed the Enonic CLI, created your first sandbox using XP 7, and built and deployed an app based on a starter to that sandbox.</p>
 </div>
 <div class="paragraph">
 <p>That&#8217;s a good start!</p>
@@ -723,7 +723,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-06-04 09:18:42 UTC
+Last updated 2026-11-23 17:21:17 UTC
 </div>
 </div>
 </body>
