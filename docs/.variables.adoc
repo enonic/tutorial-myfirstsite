@@ -1,0 +1,21 @@
+// Shared attributes. Dot-prefixed so asciidoctor does not compile it as a page.
+:experimental:
+:xp-version: 7.16.11
+:cli-version: 4.1.4
+:cs-version: 5.4.17
+:sandbox-name: tutorial_siteframework
+:app-name: siteframework
+:app-name-full: com.example.tutorial.{app-name}
+:app-dir: tutorial-{app-name}-enonic
+:app-displayname: My First Site
+:starter-repo: tutorial-site-framework
+:starter-branch: master
+:cms-project-id: myfirstsite
+:cms-project-displayname: My First Site
+:app-root: src/main/resources
+:xp-url: http://localhost:8080
+:xp-docs: https://developer.enonic.com/docs/platform
+:xp-docs-version: 7.x
+:frameworks-docs: https://developer.enonic.com/docs/frameworks
+:modeling-tutorial: https://developer.enonic.com/learn/content-modeling/7.x
+:subs: subs="attributes+"

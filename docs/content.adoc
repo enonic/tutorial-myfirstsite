@@ -1,43 +1,47 @@
-:experimental:
-:imagesdir: media/
+= Content Studio and content types
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
 :sourcedir: ../
 
-= Content Studio and Content Types
-
-Introduction to Content Studio, content types, and content items
+In this chapter, you'll open Content Studio, explore the sample content your app imported, and create content of your own from the app's content types.
 
 == Content Studio
 
-Your application creates a content project called `My First Site` the first time it starts. Let's have a closer look.
+Content Studio is the editorial interface of Enonic XP. The first time your app starts, it creates a content project called `{cms-project-displayname}` and imports sample content into it.
 
-*Open Content Studio* from the right hand `XP menu -> Content Studio`. You should now see some of the imported content.
+=== Task: Explore the sample content
 
-image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024px]
+. *Open Content Studio* - Open the XP menu on the right-hand side, and select `Content Studio`.
+You should see some of the imported content:
++
+image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024]
 
-A content structure with `Hello World` as the root item will now appear. From the content icon, one can recognize that this is a site. Expanding the site will reveal `Columbia, Norway, USA` and `Templates` as child items.
+. *Expand the content tree* - The root item of the tree is `Hello World`. Its icon shows that it is a site.
+Expand it to reveal `Columbia`, `Norway`, `USA`, and `Templates` as child items.
 
-TIP: Ignore the `Templates` folder for now.  We'll get back to it later.
-
+TIP: Ignore the `Templates` folder for now. You'll get back to it in the <<page-templates#,page templates chapter>>.
 
 == Sites and apps
 
-Select the "Hello World" content and click btn:[edit].
+A site is a content item with one or more apps assigned to it. Assigning an app gives the site, and Content Studio, access to what the app contains, such as content types and components.
 
-image::hello-world-content.png["Root hello world content with the my first site app assigned to it", width=920px]
+=== Task: Find the app on the site
 
-From the left-hand form, you can see that your app `My first site` has been added to the site. This gives Content Studio access to any goodies the app might contain, for instance, additional content types.
+. *Open the site* - Select the `Hello World` content and click btn:[Edit].
 
-== Content Types
+. *Verify the assigned app* - In the form on the left-hand side, your app `{app-displayname}` is listed under `Applications`:
++
+image::hello-world-content.png["The Hello World site content, with the My First Site app assigned to it", width=920]
 
-Every content item has a specific content type.
+== Content types
 
-Enonic XP ships with a set of standard content types:  `Shortcut`, `Folder`, `Site`, and a selection of `Media Types`. Media types handle different kinds of files.
+Every content item has a content type.
 
-Additionally, applications may define their own custom content types. Your app contains two: `Country` and `City`. They are defined under `src/main/resources/site/content-types/`. Let's explore the `City` content type. In Content Studio, it should look something like this:
+XP ships with a set of standard content types: `Shortcut`, `Folder`, `Site`, and a selection of media types that handle different kinds of files.
 
-image::city-form.png["Form for the city content type", width=920px]
-
-The content type is defined in a descriptor file, looking like this:
+Apps can define their own content types. Your app contains two, `Country` and `City`, defined under `src/main/resources/site/content-types/`.
+A content type is defined in a descriptor file. This is the descriptor of `City`:
 
 .src/main/resources/site/content-types/city/city.xml
 [source,xml]
@@ -45,14 +49,24 @@ The content type is defined in a descriptor file, looking like this:
 include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
 ----
 
-Now that you understand the basics of content and content types, use Content Studio to create a new `Country` of your choosing. Then, add a `City` (or more) within it.
+Content Studio turns the descriptor into an editing form:
 
+image::city-form.png["Form for the city content type", width=920]
+
+=== Task: Create your own content
+
+. *Create a country* - Select the `Hello World` site, click btn:[New], and select the `Country` content type.
+Fill in the form with a country of your choosing, and save it.
+
+. *Add a city* - Select your new country, click btn:[New], and select the `City` content type.
+Fill in the form, and save it. Add more cities if you like.
+
+. *Verify the result* - Your country is listed in the content tree below `Hello World`, with its cities as child items.
 
 == Summary
 
-You've been introduced to content items and content types and even created some content based on the content types from your application.
+You've explored the sample content, seen how an app is assigned to a site, and created content from the two content types in your app.
 
-TIP: For more details, visit the reference documentation for https://developer.enonic.com/docs/xp/stable/cms/content-types[content types^] and https://developer.enonic.com/docs/xp/stable/cms/schemas[the schema system^].
+TIP: For more details, visit the reference documentation for {xp-docs}/{xp-docs-version}/cms/content-types[content types] and {xp-docs}/{xp-docs-version}/cms/schemas[the schema system].
 
-Let's now move forward to previewing or rendering the existing content. To do that, we'll start with <<pages#, the concept of Pages>>.
-
+Next, you'll <<pages#,render the content with a page component>>.
