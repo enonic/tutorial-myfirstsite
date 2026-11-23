@@ -36,7 +36,7 @@ include::{sourcedir}code-samples/pages/hello-region/hello.html[]
 Your sandbox should automatially pickup the changes, as we are running in dev mode.
 +
 . Back in Content Studio, select, and **edit one of the country content items**.
-. Activate the page editor (from the top right monitor icon), and select the `Hello Regions!` controller.
+. Activate the page editor (from the top right monitor icon), and select the `Hello Regions!` page component.
 +
 image::hello-regions.gif["Setting up a page with a region", width=1920px]
 +

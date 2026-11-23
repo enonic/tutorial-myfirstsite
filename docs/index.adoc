@@ -1,8 +1,8 @@
 :imagesdir: media/
 
-= My first site
+= Build a website with the Enonic Site Framework
 
-Learn the basic principals of pages, components, and rendering with the Enonic framework.
+Learn the basic principles of pages, components, and rendering with the Enonic Site Framework.
 
 TIP: Enonic also support rendering with https://developer.enonic.com/docs/frameworks[other frameworks].
 
@@ -15,6 +15,32 @@ During this exercise you will:
 * Use static assets
 * and then some...
 
-image::nerd2code.svg["Ready...Set...Code!", width=720px]
+When you are done, a country page on your site will look something like this:
+
+image::static-assets.png["A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image", width=560px]
+
+[#prerequisites]
+== Prerequisites
+
+No prior Enonic experience is required. Basic familiarity with HTML and JavaScript or TypeScript is helpful.
+
+To follow this tutorial you will need:
+
+* A terminal
+* Your favorite text or code editor
+* https://nodejs.org/[Node.js] with `npm` if you want to install the Enonic CLI via `npm` (other installers are also available)
+
+You will install the Enonic CLI in the first chapter.
+
+== Tested versions
+
+This version of the tutorial was produced and tested with the following stack:
+
+[%header,cols="2,1"]
+|===
+|Component |Version
+|Enonic XP |7
+|Content Studio |5
+|===
 
 Start the show by <<setup#, setting up the developer environment>>.

@@ -1,4 +1,4 @@
-# Tsup Starter for Enonic XP
+# Enonic Site Framework tutorial
 
 ## Usage XP 7
 
@@ -10,7 +10,7 @@ https://developer.enonic.com/start
 Then run the following commands to build and deploy it:
 
 ```bash
-~ $ enonic project create -r starter-tsup
+~ $ enonic project create -r tutorial-site-framework
 
 ... Answer Wizard questions
 
@@ -22,6 +22,6 @@ Then run the following commands to build and deploy it:
 
 | Version | Min XP version |
 |---------|----------------|
-| 1.0.0   | 7.13.0         |
+| 1.0.0   | 7.14.0         |
 
 

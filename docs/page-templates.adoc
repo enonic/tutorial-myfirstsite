@@ -38,7 +38,7 @@ image::page-template-2.png["Modal showing the page template content type", width
 +
 image::page-template-3.png["List of available content types under the support filter, with the Country content type highlighted", width=336px]
 +
-. In the panel on the right select the `Hello Regions!` page
+. In the panel on the right select the `Hello Regions!` page component
 +
 image::page-template-4.png["List of available pages, with the Hello Regions! page highlighted", width=499px]
 +
