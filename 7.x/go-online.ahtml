@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Enonic Site Framework tutorial</title>
+<title>Go online</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,13 +438,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Enonic Site Framework tutorial</h1>
+<h1>Go online</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#intro">Intro</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#tested_versions">Tested versions</a></li>
+<li><a href="#publishing">Publishing</a>
+<ul class="sectlevel2">
+<li><a href="#task_publish_the_site">Task: Publish the site</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -452,158 +455,70 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. Starting from an empty app, you&#8217;ll create content types, render content with pages, parts, and layouts, and compose and publish the result in Content Studio.</p>
+<p>In this chapter, you&#8217;ll publish the <code>Hello World</code> site, making it available outside Content Studio.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="intro"><a class="link" href="#intro">Intro</a></h2>
+<h2 id="publishing"><a class="link" href="#publishing">Publishing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side TypeScript and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.</p>
+<p>In Content Studio, you work in the <code>draft</code> branch. Publishing merges the selected items from <code>draft</code> to the <code>master</code> branch, which is the one visitors see.</p>
 </div>
-<div class="paragraph">
-<p>When you are done, a country page on your site will look something like this:</p>
-</div>
+<div class="sect2">
+<h3 id="task_publish_the_site"><a class="link" href="#task_publish_the_site">Task: Publish the site</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Select the site</strong> - Select the <code>Hello World</code> site in the content grid.</p>
+</li>
+<li>
+<p><strong>Open the Publishing Wizard</strong> - Select <b class="button">Publish Tree</b> in the action menu in the top right corner. The Publishing Wizard opens.</p>
+</li>
+<li>
+<p><strong>Mark the content as ready</strong> - Items that are <code>In progress</code> block publishing. Click <b class="button">Mark as ready</b> to fix this.</p>
+</li>
+<li>
+<p><strong>Publish</strong> - Click <b class="button">Publish</b>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/result.png" alt="A published country page with a description and Wikipedia link in the left column and a list of cities in the right column" width="1280">
+<img src="media/publish.gif" alt="Publishing all items in the project" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>You will complete the following steps:</p>
+</li>
+<li>
+<p><strong>Verify the published site</strong> - Open <a href="http://localhost:8080/site/myfirstsite/master/hello-world">http://localhost:8080/site/myfirstsite/master/hello-world</a> in your browser. It shows the site as served from the <code>master</code> branch.</p>
+</li>
+</ol>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup.ahtml">Set up</a> the CLI, a local sandbox, and your own app</p>
-</li>
-<li>
-<p>Create content types and add sample <a href="content.ahtml">content</a></p>
-</li>
-<li>
-<p>Render content with a <a href="pages.ahtml">page component</a></p>
-</li>
-<li>
-<p>Open the page to editors with <a href="regions.ahtml">regions</a></p>
-</li>
-<li>
-<p>Add <a href="parts.ahtml">parts</a> that render and list content</p>
-</li>
-<li>
-<p>Reuse a page across content items with <a href="page-templates.ahtml">page templates</a></p>
-</li>
-<li>
-<p>Serve CSS as <a href="static-assets.ahtml">static assets</a></p>
-</li>
-<li>
-<p>Arrange components in columns with <a href="layouts.ahtml">layouts</a></p>
-</li>
-<li>
-<p><a href="go-online.ahtml">Publish</a> the site</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Enonic works with any <a href="https://developer.enonic.com/docs/frameworks">front-end framework</a>. Next.js, for example, renders outside XP and fetches content over HTTP. The Site Framework is an alternative to using a third-party front-end framework. So is React4XP, which runs inside XP like the Site Framework, but replaces the built-in page and component rendering with rendering based on React.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If you only want to see the result, the <a href="demo.ahtml">demo page</a> shows how to run the finished site without following the chapters.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="link" href="#prerequisites">Prerequisites</a></h2>
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No prior Enonic experience is required. Basic familiarity with HTML and TypeScript or JavaScript is helpful.</p>
+<p>You did it! 🎉 You&#8217;ve built a site with the Enonic Site Framework: pages, parts, and layouts that render structured content, composed and published from Content Studio.</p>
 </div>
 <div class="paragraph">
-<p>To follow this tutorial you will need:</p>
+<p>That completes the tutorial. If you want to keep going, these are good places to continue:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A terminal</p>
+<p>The <a href="https://developer.enonic.com/learn/content-modeling/7.x">content modeling tutorial</a> goes deeper into structured content and the GraphQL API.</p>
 </li>
 <li>
-<p>Your favorite text or code editor</p>
-</li>
-<li>
-<p><a href="https://nodejs.org/">Node.js</a> with <code>npm</code> if you want to install the Enonic CLI via <code>npm</code> (other installers are also available)</p>
+<p>The <a href="https://developer.enonic.com/docs/frameworks">front-end frameworks overview</a> presents the other ways to build a front-end for Enonic.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>You will install the Enonic CLI in the first chapter.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="tested_versions"><a class="link" href="#tested_versions">Tested versions</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This version of the tutorial was produced and tested with the following stack:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 66.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Component</th>
-<th class="tableblock halign-left valign-top">Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enonic CLI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.1.4</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enonic XP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8.1.3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Content Studio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.1</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Get started by <a href="setup.ahtml">setting up your developer environment</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:23:56 UTC
+Last updated 2026-11-24 22:24:50 UTC
 </div>
 </div>
 </body>

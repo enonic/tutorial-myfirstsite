@@ -463,31 +463,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="publishing"><a class="link" href="#publishing">Publishing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Content Studio, you work in the <code>draft</code> branch. Publishing merges the selected items from <code>draft</code> to the <code>master</code> branch, which is the one visitors see.</p>
+<p>In Content Studio, you work in the <code>draft</code> branch. Publishing copies the selected items from <code>draft</code> to the <code>master</code> branch, which is the one visitors see.</p>
 </div>
 <div class="sect2">
 <h3 id="task_publish_the_site"><a class="link" href="#task_publish_the_site">Task: Publish the site</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Select the site</strong> - Select the <code>Hello World</code> site in the content grid.</p>
+<p><strong>Select the site</strong> - Select the <code>Hello World</code> site in the content list.</p>
 </li>
 <li>
-<p><strong>Open the Publishing Wizard</strong> - Select <b class="button">Publish Tree</b> in the action menu in the top right corner. The Publishing Wizard opens.</p>
+<p><strong>Open the Publishing Wizard</strong> - Click the arrow next to the <b class="button">Mark as ready</b> button in the top right corner, and select <code>Publish tree</code>. The Publishing Wizard opens, listing the site and everything below it.</p>
 </li>
 <li>
-<p><strong>Mark the content as ready</strong> - Items that are <code>In progress</code> block publishing. Click <b class="button">Mark as ready</b> to fix this.</p>
+<p><strong>Mark the content as ready</strong> - Items that are <code>In progress</code> block publishing. If the wizard lists any, click <b class="button">Mark as ready</b>.</p>
 </li>
 <li>
-<p><strong>Publish</strong> - Click <b class="button">Publish</b>:</p>
+<p><strong>Publish</strong> - Click <b class="button">Publish now</b>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/publish.gif" alt="Publishing all items in the project" width="800">
+<img src="media/publish.png" alt="The Publishing Wizard listing the Hello World site and its child items" width="1440">
 </div>
 </div>
 </li>
 <li>
-<p><strong>Verify the published site</strong> - Open <a href="http://localhost:8080/site/myfirstsite/master/hello-world">http://localhost:8080/site/myfirstsite/master/hello-world</a> in your browser. It shows the site as served from the <code>master</code> branch.</p>
+<p><strong>Verify the published site</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway">http://localhost:8080/site/siteframework/master/hello-world/norway</a> in a private browser window, where you are not logged in. It shows the page as served from the <code>master</code> branch:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/result.png" alt="The published page for Norway, with the description in the left column and the cities in the right column" width="1280">
+</div>
+</div>
 </li>
 </ol>
 </div>
@@ -498,7 +503,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You did it! 🎉 You&#8217;ve built a site with the Enonic Site Framework: pages, parts, and layouts that render structured content, composed and published from Content Studio.</p>
+<p>You did it! 🎉 You&#8217;ve built a site with the Enonic Site Framework: content types, a page, parts, and a layout that render structured content, composed and published from Content Studio.</p>
 </div>
 <div class="paragraph">
 <p>That completes the tutorial. If you want to keep going, these are good places to continue:</p>
@@ -506,7 +511,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://developer.enonic.com/learn/content-modeling/7.x">content modeling tutorial</a> goes deeper into structured content and the GraphQL API.</p>
+<p>The <a href="demo.ahtml">demo</a> shows how to run the finished site from the tutorial&#8217;s own repository, and compare it with yours.</p>
+</li>
+<li>
+<p>The <a href="https://developer.enonic.com/learn/content-modeling">content modeling tutorial</a> goes deeper into structured content and the GraphQL API.</p>
 </li>
 <li>
 <p>The <a href="https://developer.enonic.com/docs/frameworks">front-end frameworks overview</a> presents the other ways to build a front-end for Enonic.</p>
@@ -518,7 +526,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:24:15 UTC
+Last updated 2026-11-24 22:24:27 UTC
 </div>
 </div>
 </body>

@@ -456,10 +456,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#task_create_the_app">Task: Create the app</a></li>
 <li><a href="#task_build_and_deploy_the_app">Task: Build and deploy the app</a></li>
-</ul>
-</li>
-<li><a href="#xp_admin">XP admin</a>
-<ul class="sectlevel2">
 <li><a href="#task_log_in_to_xp_admin">Task: Log in to XP admin</a></li>
 </ul>
 </li>
@@ -471,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you&#8217;ll work on for the rest of the tutorial.</p>
+<p>In this chapter, you&#8217;ll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you&#8217;ll build on for the rest of the tutorial.</p>
 </div>
 </div>
 </div>
@@ -531,30 +527,25 @@ Run <code>enonic</code> without arguments to list the available commands, and <c
 <p><strong>Create and start the sandbox</strong> - Run this command in your terminal:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create tutorial_siteframework -t essentials -v 7.16.11 -f</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create tutorial_siteframework -t essentials -v 8.1.3 -f</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This creates a sandbox called <code>tutorial_siteframework</code> running Enonic XP 7.16.11, installs the applications in the <code>essentials</code> template, including Content Studio, and starts the sandbox.</p>
+<p>This creates a sandbox called <code>tutorial_siteframework</code> running Enonic XP 8.1.3, installs the applications in the <code>essentials</code> template, including Content Studio, and starts the sandbox.</p>
 </div>
 </li>
 <li>
-<p><strong>Verify that XP is running</strong> - Wait until the terminal stops printing new log lines, then open <a href="http://localhost:8080">http://localhost:8080</a> in your browser.
-You should see the XP boot page, with the title "Welcome to the Enonic SDK".</p>
+<p><strong>Verify that XP is running</strong> - Wait until the terminal stops printing new log lines, then open <a href="http://localhost:8080">http://localhost:8080</a> in your browser. You should see the XP boot page:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-welcome.png" alt="The XP boot page with the title Welcome to the Enonic SDK and a Log In as Guest button" width="1440">
+</div>
+</div>
 </li>
 </ol>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To stop the sandbox, press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> in its terminal. To start it again, run <code>enonic sandbox start tutorial_siteframework</code>. Sandboxes share the same ports, so stop this one before starting the sandbox of another tutorial.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Leave the sandbox running in this terminal, and open a new terminal for the next task.</p>
 </div>
 </div>
 </div>
@@ -563,89 +554,86 @@ To stop the sandbox, press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></sp
 <h2 id="app"><a class="link" href="#app">App</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Almost everything you build on XP is packaged as an application. Instead of starting from an empty folder, you&#8217;ll create your app from a starter that contains the components, content types, and sample content used in this tutorial.</p>
+<p>Everything you build in this tutorial lives in an Enonic app. You&#8217;ll create it from the <code>starter-ts</code> starter, which gives you an empty app with TypeScript and a build setup.</p>
 </div>
 <div class="sect2">
 <h3 id="task_create_the_app"><a class="link" href="#task_create_the_app">Task: Create the app</a></h3>
-<div class="paragraph">
-<p>Use a dedicated workspace folder for Enonic tutorials, such as <code>enonic-tutorials/</code>, so each tutorial&#8217;s source folder stays separate.</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Create the app from the starter</strong> - Open a new terminal window in your tutorials workspace folder, leaving the sandbox running in the first one, and run:</p>
+<p><strong>Create the project</strong> - From the folder where you keep your projects, run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project create com.example.tutorial.siteframework -r tutorial-site-framework -b 7.x -s tutorial_siteframework -d tutorial-siteframework-enonic -f</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project create com.example.tutorial.siteframework -r starter-ts -s tutorial_siteframework -d tutorial-siteframework-enonic -f</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This creates an app named <code>com.example.tutorial.siteframework</code> in the folder <code>tutorial-siteframework-enonic</code>, using the <a href="https://github.com/enonic/tutorial-site-framework">tutorial-site-framework</a> repository as a starter, and links the app to the <code>tutorial_siteframework</code> sandbox.</p>
+<p>The command creates the folder <code>tutorial-siteframework-enonic</code>, gives the app the name <code>com.example.tutorial.siteframework</code>, and links the project to the <code>tutorial_siteframework</code> sandbox.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Use the app name <code>com.example.tutorial.siteframework</code>. The sample content you&#8217;ll add in the next chapter refers to content types by this name.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p><strong>Inspect the project structure</strong> - The project folder contains a basic app structure. These are the parts you&#8217;ll meet in this tutorial:</p>
+<p><strong>Give the app a title</strong> - The title is what Content Studio shows when you pick the app. Replace the content of the application descriptor with the following:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/enonic.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Application"
+title: "Site Framework tutorial"
+description: "A site built with the Enonic Site Framework"
+vendorName: "Acme Inc"
+vendorUrl: "https://example.com"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The parts of the project you&#8217;ll work with are:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">build.gradle           <i class="conum" data-value="1"></i><b>(1)</b>
-code-samples/          <i class="conum" data-value="2"></i><b>(2)</b>
-docs/                  <i class="conum" data-value="3"></i><b>(3)</b>
-tsup/                  <i class="conum" data-value="4"></i><b>(4)</b>
-src/
-  main/
-    resources/
-      import/          <i class="conum" data-value="5"></i><b>(5)</b>
-      assets/          <i class="conum" data-value="6"></i><b>(6)</b>
-      site/
-        content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
-          country/
-          city/
-        parts/         <i class="conum" data-value="8"></i><b>(8)</b>
-        pages/         <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+<pre class="highlight"><code class="language-text" data-lang="text">build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
+src/main/resources/
+  enonic.yaml <i class="conum" data-value="2"></i><b>(2)</b>
+  assets/ <i class="conum" data-value="3"></i><b>(3)</b>
+  cms/ <i class="conum" data-value="4"></i><b>(4)</b>
+    cms.yaml
+    content-types/
+    layouts/
+    pages/
+    parts/</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Core build files</td>
+<td>The build file, where you add the libraries the app uses</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Code samples that you&#8217;ll copy into the app in later chapters</td>
+<td>The application descriptor</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The documentation you are reading now</td>
+<td>Static assets, such as CSS files</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Build files for the TypeScript compilation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Sample content that is imported when the app starts</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Location for static assets</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Two pre-defined content types, country and city</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Part components - leaf components to place on pages</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>Page components - the root component of a page</td>
+<td>Everything related to the CMS: content types and the components that render them</td>
 </tr>
 </table>
-</div>
-</li>
-</ol>
 </div>
 </div>
 <div class="sect2">
@@ -653,7 +641,7 @@ src/
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Start the development watcher</strong> - Change to the project folder and start development mode:</p>
+<p><strong>Start dev mode</strong> - Run these commands in the new terminal:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-shell" data-lang="shell">cd tutorial-siteframework-enonic
@@ -661,73 +649,40 @@ enonic dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This builds the app, deploys it to the <code>tutorial_siteframework</code> sandbox, and then keeps watching the folder.
-When you save a file, your TypeScript code is compiled and the sandbox picks up the change. There is no need for manual deployments.</p>
-</div>
-<div class="paragraph">
-<p>Keep this command running in its own terminal while you follow the tutorial. Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> to stop watching, and run <code>enonic dev</code> from <code>tutorial-siteframework-enonic</code> to resume later.</p>
+<p><code>enonic dev</code> builds the app, deploys it to the sandbox, and then watches the source files. Each time you save a file, the app is rebuilt and redeployed.</p>
 </div>
 </li>
 <li>
-<p><strong>Verify that the app has started</strong> - The first build downloads a few things, so give it a moment. Then look for lines like these in the terminal where the sandbox is running:</p>
+<p><strong>Verify the build</strong> - The first build downloads dependencies and takes a little while. When it is done, the terminal prints:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">INFO  com.example.tutorial.siteframework - (/main.js) Project "myfirstsite" successfully created
-INFO  com.example.tutorial.siteframework - (/main.js) Importing "myfirstsite" data</code></pre>
+<pre class="highlight"><code class="language-text" data-lang="text">BUILD SUCCESSFUL
+Waiting for changes to input files...</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="xp_admin"><a class="link" href="#xp_admin">XP admin</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The sandbox has a web interface for administration, where each admin tool is its own application.</p>
+<p>Leave <code>enonic dev</code> running. When a later chapter asks you to restart it, press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and run <code>enonic dev</code> again.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="task_log_in_to_xp_admin"><a class="link" href="#task_log_in_to_xp_admin">Task: Log in to XP admin</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the boot page</strong> - Open <a href="http://localhost:8080">http://localhost:8080</a> in your browser, or reload it if it is already open:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/xp-boot.png" alt="The XP boot page, with a Log In as Guest button and a list of installed applications" width="1085">
-</div>
-</div>
-<div class="paragraph">
-<p>The boot page gives an overview of the sandbox, including the installed applications and the <a href="https://developer.enonic.com/docs/platform/7.x/deployment/config">standard configuration files</a>.
-Your app, <code>My First Site</code>, is in the list, together with the applications that were installed when you created the sandbox.</p>
-</div>
+<p><strong>Log in</strong> - On the <a href="http://localhost:8080">XP boot page</a>, click <b class="button">Log In as Guest</b>.</p>
 </li>
 <li>
-<p><strong>Log in</strong> - Click <b class="button">Log In as Guest</b> to open the XP admin dashboard:</p>
+<p><strong>Verify the result</strong> - You are now on the XP admin home page, with a tile for each installed admin tool, including Applications and Content Studio:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/xp-dashboard.jpg" alt="The XP admin dashboard, with the XP menu on the right-hand side" width="1727">
+<img src="media/xp-admin.jpg" alt="The XP admin home page with tiles for Dashboard, Applications, Content Studio, Data toolbox and Users" width="1440">
 </div>
-</div>
-<div class="paragraph">
-<p>The menu on the right-hand side, the <em>XP menu</em>, lets you move between admin tools. Applications can add their own admin tools to it.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If things don&#8217;t look exactly the same, don&#8217;t worry. The background picture changes between versions of XP, and the dashboard is localized to your browser&#8217;s preferred language.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -736,17 +691,17 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. The background p
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve installed the Enonic CLI, created a sandbox running XP 7, and created, built, and deployed an app from a starter to that sandbox.</p>
+<p>You&#8217;ve installed the Enonic CLI, started a sandbox running Enonic XP, and created and deployed an app from the <code>starter-ts</code> starter.</p>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="content.ahtml">explore the sample content in Content Studio</a>.</p>
+<p>Next, you&#8217;ll <a href="content.ahtml">create content types and add sample content</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:24:15 UTC
+Last updated 2026-11-24 22:24:27 UTC
 </div>
 </div>
 </body>

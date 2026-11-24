@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Static assets</title>
+<title>Content Studio and content types</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,17 +438,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Static assets</h1>
+<h1>Content Studio and content types</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#asset_library">Asset library</a>
+<li><a href="#content_studio">Content Studio</a>
 <ul class="sectlevel2">
-<li><a href="#task_add_the_asset_library">Task: Add the Asset library</a></li>
-<li><a href="#task_serve_a_css_file">Task: Serve a CSS file</a></li>
+<li><a href="#task_explore_the_sample_content">Task: Explore the sample content</a></li>
 </ul>
 </li>
-<li><a href="#caching">Caching</a></li>
+<li><a href="#sites_and_apps">Sites and apps</a>
+<ul class="sectlevel2">
+<li><a href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></li>
+</ul>
+</li>
+<li><a href="#content_types">Content types</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_your_own_content">Task: Create your own content</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -457,215 +465,141 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll style the site by serving a CSS file with the Asset library.</p>
+<p>In this chapter, you&#8217;ll open Content Studio, explore the sample content your app imported, and create content of your own from the app&#8217;s content types.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="asset_library"><a class="link" href="#asset_library">Asset library</a></h2>
+<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, the site consists of HTML and images from the content. Static assets, such as CSS and JavaScript files, are served by the <a href="https://developer.enonic.com/docs/lib-asset">Asset library</a>. Every file you place in the <code>src/main/resources/assets/</code> folder gets a URL, which you create with the <code>assetUrl()</code> function.</p>
+<p>Content Studio is the editorial interface of Enonic XP. The first time your app starts, it creates a content project called <code>My First Site</code> and imports sample content into it.</p>
 </div>
 <div class="sect2">
-<h3 id="task_add_the_asset_library"><a class="link" href="#task_add_the_asset_library">Task: Add the Asset library</a></h3>
+<h3 id="task_explore_the_sample_content"><a class="link" href="#task_explore_the_sample_content">Task: Explore the sample content</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Include the library</strong> - In <code>build.gradle</code>, remove the <code>//</code> in front of this line:</p>
-<div class="listingblock">
-<div class="title">build.gradle</div>
-<div class="content">
-<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include libs.asset</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Install the type definitions</strong> - Stop <code>enonic dev</code> with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>, and run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">npm install --save-dev @enonic-types/lib-asset</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Map the import path</strong> - In <code>src/main/resources/tsconfig.json</code>, add this line to <code>compilerOptions.paths</code>, above the <code>"/lib/xp/*"</code> entry:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/tsconfig.json</div>
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">      "/lib/enonic/asset": ["../../../node_modules/@enonic-types/lib-asset"],</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Expose the asset API</strong> - The library serves the files through an API, which must be listed in the site descriptor. Replace the content of the site descriptor with the following:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/site.yaml</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Site"
-apis:
-  - "asset"</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="task_serve_a_css_file"><a class="link" href="#task_serve_a_css_file">Task: Serve a CSS file</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/assets/styles/main.css</div>
-<div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">:root {
-  color-scheme: light dark;
-  --accent: light-dark(#7a3fb8, #c79bf2);
-  --border: light-dark(#d9d9e3, #3b3b4a);
-}
-
-body {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-}
-
-h1 {
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.5rem;
-}
-
-a {
-  color: var(--accent);
-}
-
-article {
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-}
-
-figure {
-  margin: 0;
-}
-
-img {
-  max-width: 100%;
-  border-radius: 0.25rem;
-}
-
-figcaption {
-  font-style: italic;
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Update the implementation</strong> - Replace the content of the page component implementation with the following:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/pages/hello/hello.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '@enonic-types/core';
-
-import { assetUrl } from '/lib/enonic/asset';
-import { render } from '/lib/thymeleaf';
-import { getContent } from '/lib/xp/portal';
-
-const VIEW = resolve('./hello.html');
-
-export function GET(): Response {
-  const content = getContent()!;
-
-  const model = {
-    displayName: content.displayName,
-    mainRegion: content.page!.regions.main,
-    cssUrl: assetUrl({ path: 'styles/main.css' }),
-  };
-
-  return {
-    body: render(VIEW, model),
-  };
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The model now includes the URL of the stylesheet.</p>
-</div>
-</li>
-<li>
-<p><strong>Update the view</strong> - Replace the content of the page component view with the following:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/pages/hello/hello.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
-    &lt;link rel="stylesheet" data-th-href="${cssUrl}"/&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;header&gt;
-      &lt;h1 data-th-text="${displayName}"&gt;Sample header&lt;/h1&gt;
-    &lt;/header&gt;
-    &lt;main data-portal-region="main"&gt;
-      &lt;div data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
-        &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/main&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>One line has changed: a <code>&lt;link&gt;</code> element in the <code>&lt;head&gt;</code> includes the stylesheet.</p>
-</div>
-</li>
-<li>
-<p><strong>Restart dev mode</strong> - Run <code>enonic dev</code> again, and wait for <code>BUILD SUCCESSFUL</code>.</p>
-</li>
-<li>
-<p><strong>Verify the styling</strong> - In Content Studio, select a country. The preview is now styled:</p>
+<p><strong>Open Content Studio</strong> - Open the XP menu on the right-hand side, and select <code>Content Studio</code>.
+You should see some of the imported content:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/css.png" alt="The preview of Norway with styling: a heading with a colored line below it, and each city in a bordered box" width="1440">
+<img src="media/imported-content.png" alt="Tree structure showing countries and cities in Content Studio" width="1024">
 </div>
 </div>
 </li>
+<li>
+<p><strong>Expand the content tree</strong> - The root item of the tree is <code>Hello World</code>. Its icon shows that it is a site.
+Expand it to reveal <code>Columbia</code>, <code>Norway</code>, <code>USA</code>, and <code>Templates</code> as child items.</p>
+</li>
 </ol>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="caching"><a class="link" href="#caching">Caching</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The URL of the stylesheet looks something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">/site/siteframework/draft/hello-world/_/com.example.tutorial.siteframework:asset/1795477566231/styles/main.css</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The number is a fingerprint of the app, and changes every time the app is deployed. Because a new version of a file always gets a new URL, the Asset library can tell browsers and CDNs to cache each URL for as long as they like.</p>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-In development mode, which you are using now, the caching is deactivated.
+Ignore the <code>Templates</code> folder for now. You&#8217;ll get back to it in the <a href="page-templates.ahtml">page templates chapter</a>.
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A site is a content item with one or more apps assigned to it. Assigning an app gives the site, and Content Studio, access to what the app contains, such as content types and components.</p>
+</div>
+<div class="sect2">
+<h3 id="task_find_the_app_on_the_site"><a class="link" href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the site</strong> - Select the <code>Hello World</code> content and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Verify the assigned app</strong> - In the form on the left-hand side, your app <code>My First Site</code> is listed under <code>Applications</code>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/hello-world-content.png" alt="The Hello World site content, with the My First Site app assigned to it" width="920">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="content_types"><a class="link" href="#content_types">Content types</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every content item has a content type.</p>
+</div>
+<div class="paragraph">
+<p>XP ships with a set of standard content types: <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of media types that handle different kinds of files.</p>
+</div>
+<div class="paragraph">
+<p>Apps can define their own content types. Your app contains two, <code>Country</code> and <code>City</code>, defined under <code>src/main/resources/site/content-types/</code>.
+A content type is defined in a descriptor file. This is the descriptor of <code>City</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/main/resources/site/content-types/city/city.xml</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;City&lt;/display-name&gt;
+  &lt;description&gt;Place where many people live&lt;/description&gt;
+  &lt;super-type&gt;base:structured&lt;/super-type&gt;
+  &lt;form&gt;
+    &lt;input type="ImageSelector" name="photo"&gt;
+      &lt;label&gt;Photo&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+    &lt;/input&gt;
+    &lt;input type="TextLine" name="slogan"&gt;
+      &lt;label&gt;City slogan&lt;/label&gt;
+      &lt;occurrences minimum="0" maximum="1"/&gt;
+    &lt;/input&gt;
+    &lt;input type="Long" name="population"&gt;
+      &lt;label&gt;Population&lt;/label&gt;
+      &lt;occurrences minimum="1" maximum="1"/&gt;
+      &lt;config&gt;
+          &lt;min&gt;1&lt;/min&gt;
+      &lt;/config&gt;
+    &lt;/input&gt;
+  &lt;/form&gt;
+&lt;/content-type&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Content Studio turns the descriptor into an editing form:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/city-form.png" alt="Form for the city content type" width="920">
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_create_your_own_content"><a class="link" href="#task_create_your_own_content">Task: Create your own content</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a country</strong> - Select the <code>Hello World</code> site, click <b class="button">New</b>, and select the <code>Country</code> content type.
+Fill in the form with a country of your choosing, and save it.</p>
+</li>
+<li>
+<p><strong>Add a city</strong> - Select your new country, click <b class="button">New</b>, and select the <code>City</code> content type.
+Fill in the form, and save it. Add more cities if you like.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Your country is listed in the content tree below <code>Hello World</code>, with its cities as child items.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -673,17 +607,29 @@ In development mode, which you are using now, the caching is deactivated.
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve added the Asset library to your app, and used it to serve a stylesheet for the site.</p>
+<p>You&#8217;ve explored the sample content, seen how an app is assigned to a site, and created content from the two content types in your app.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details, visit the reference documentation for <a href="https://developer.enonic.com/docs/platform/7.x/cms/content-types">content types</a> and <a href="https://developer.enonic.com/docs/platform/7.x/cms/schemas">the schema system</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="layouts.ahtml">arrange components in columns with a layout</a>.</p>
+<p>Next, you&#8217;ll <a href="pages.ahtml">render the content with a page component</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:23:56 UTC
+Last updated 2026-11-24 22:24:50 UTC
 </div>
 </div>
 </body>

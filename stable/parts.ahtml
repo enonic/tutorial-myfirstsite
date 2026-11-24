@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Parts - flexible components for your pages</title>
+<title>Parts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,22 +438,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Parts - flexible components for your pages</h1>
+<h1>Parts</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#the_country_part">The country part</a>
+<li><a href="#parts">Parts</a></li>
+<li><a href="#country_part">Country part</a>
 <ul class="sectlevel2">
-<li><a href="#task_add_the_country_part">Task: Add the country part</a></li>
+<li><a href="#task_create_the_country_part">Task: Create the country part</a></li>
+<li><a href="#task_add_the_part_to_a_country">Task: Add the part to a country</a></li>
 </ul>
 </li>
-<li><a href="#configurable_part">Configurable part</a>
+<li><a href="#city_list_part">City list part</a>
 <ul class="sectlevel2">
-<li><a href="#task_add_and_configure_the_city_list">Task: Add and configure the city list</a></li>
+<li><a href="#task_create_the_city_list_part">Task: Create the city list part</a></li>
+<li><a href="#task_add_and_configure_the_part">Task: Add and configure the part</a></li>
 </ul>
 </li>
-<li><a href="#image_service">Image service</a></li>
-<li><a href="#logging">Logging</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -462,273 +463,127 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll place two parts on a page: one that shows the details of a country, and one that lists its cities and can be configured by the editor.</p>
+<p>In this chapter, you&#8217;ll create two parts: one that presents a country, and one that lists its cities and can be configured by editors.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="the_country_part"><a class="link" href="#the_country_part">The country part</a></h2>
+<h2 id="parts"><a class="link" href="#parts">Parts</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Parts are the visual building blocks of a page. Like the Text component, parts are added to regions, but you write their rendering yourself.</p>
+<p>A <em>part</em> is a component editors can place in a region. Like a page component, it consists of a descriptor, an implementation, and a view. Parts are placed in the <code>src/main/resources/cms/parts/</code> folder.</p>
 </div>
 <div class="paragraph">
-<p>Your app has a part that shows details from the <code>Country</code> content type. Like a page component, it consists of a descriptor, a controller, and a view. Parts are placed in the <code>src/main/resources/site/parts/</code> folder:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;Country&lt;/display-name&gt;
-  &lt;description&gt;Show simple details of the country&lt;/description&gt;
-  &lt;form/&gt;
-&lt;/part&gt;</code></pre>
+<p>Parts are rendered in the context of the content item the page belongs to. This means the same part shows different content on different pages.</p>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { Content } from '@enonic-types/core';
-import type { Response } from '/index.d';
-
-// @ts-expect-error no-types
-import {render} from '/lib/thymeleaf';
-import {getContent} from '/lib/xp/portal';
-
-type ContentCountry = { description?: string, wikipedia?: string }
-
-// Specify the view file to use
-const VIEW = resolve('./country.html');
-
-// Handle the GET request
-export function get(): Response {
-
-    // Get the country content as a JSON object
-    const content = getContent&lt;Content&lt;ContentCountry&gt;&gt;();
-
-    // Prepare the model object with the needed data from the content
-    const model = {
-        name: content.displayName,
-        description: content.data?.description || "Missing description",
-        wikipedia: content.data?.wikipedia
-    }
-
-    // Prepare the response object
-    const response: Response = {
-		body: render(VIEW, model)
-	};
-
-    return response;
-}</code></pre>
 </div>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/country/country.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div&gt;
-    &lt;ul&gt;
-        &lt;li data-th-if="${description}" data-th-text="${description}"&gt;Nice city indeed&lt;/li&gt;
-        &lt;li data-th-if="${wikipedia}"&gt;
-            &lt;a data-th-href="${wikipedia}"&gt;Wikipedia&lt;/a&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-</div>
-</div>
+<div class="sect1">
+<h2 id="country_part"><a class="link" href="#country_part">Country part</a></h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="task_add_the_country_part"><a class="link" href="#task_add_the_country_part">Task: Add the country part</a></h3>
+<h3 id="task_create_the_country_part"><a class="link" href="#task_create_the_country_part">Task: Create the country part</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the country page</strong> - In Content Studio, edit the country you added the region to in the <a href="regions.ahtml">previous chapter</a>.</p>
-</li>
-<li>
-<p><strong>Insert the part</strong> - Drag <code>Part</code> from the <code>Components</code> widget on the right-hand side into the region, and select <code>Country</code> in the list.</p>
-</li>
-<li>
-<p><strong>Verify the result</strong> - The page should look something like this:</p>
-<div class="imageblock">
+<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/country/country.yaml</div>
 <div class="content">
-<img src="media/country-part-on-columbia.png" alt="The country part on the Columbia page, showing facts about the country" width="600">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Part"
+title: "Country"
+description: "Show simple details of the country"
+form: []</code></pre>
 </div>
 </div>
 </li>
-</ol>
+<li>
+<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/country/country.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Content, Response } from '@enonic-types/core';
+
+import { render } from '/lib/thymeleaf';
+import { getContent } from '/lib/xp/portal';
+
+type Country = { description?: string, wikipedia?: string };
+
+const VIEW = resolve('./country.html');
+
+export function GET(): Response {
+  const content = getContent&lt;Content&lt;Country&gt;&gt;()!;
+
+  const model = {
+    description: content.data.description || 'Missing description',
+    wikipedia: content.data.wikipedia,
+  };
+
+  return {
+    body: render(VIEW, model),
+  };
+}</code></pre>
 </div>
-<div class="admonitionblock tip">
+</div>
+<div class="paragraph">
+<p>The part reads the fields of the <code>country</code> content type from <code>content.data</code>. The <code>Country</code> type describes those fields to TypeScript.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the view</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/country/country.html</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;section class="country"&gt;
+  &lt;p data-th-text="${description}"&gt;A nice country indeed&lt;/p&gt;
+  &lt;p data-th-if="${wikipedia}"&gt;
+    &lt;a data-th-href="${wikipedia}"&gt;Wikipedia&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You can also manage the components on a page from the page component view. It shows the components as a tree, on the left-hand side or floating above the page editor.
+The markup of a component must have a single root element.
 </td>
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/page-component-input.png" alt="The page component view, a tree structure for managing the components on a page" width="500">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="configurable_part"><a class="link" href="#configurable_part">Configurable part</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <code>City list</code> part is slightly more advanced. It:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>lists the cities within a country</p>
 </li>
-<li>
-<p>shows an image of each city</p>
-</li>
-<li>
-<p>lets the editor choose the image cropping format</p>
-</li>
-</ul>
+</ol>
 </div>
-<div class="paragraph">
-<p>The part is also included in your app:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;part xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;City list&lt;/display-name&gt;
-  &lt;description&gt;Show all cities in a country&lt;/description&gt;
-  &lt;form&gt;
-    &lt;input type="ComboBox" name="crop"&gt;
-      &lt;label&gt;Image crop&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;option value="ORIGINAL"&gt;Original&lt;/option&gt;
-        &lt;option value="WIDESCREEN"&gt;Widescreen&lt;/option&gt;
-        &lt;option value="SQUARE"&gt;Square&lt;/option&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/part&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { Content, PartComponent } from '@enonic-types/core';
-import type { Response } from '/index.d';
-
-// @ts-expect-error no-types
-import {render} from '/lib/thymeleaf';
-import {query} from '/lib/xp/content';
-import {getComponent, getContent, imageUrl, ImageUrlParams} from '/lib/xp/portal';
-
-type PartDescriptor = "company.starter.myfirstsite:city-list"
-type PartConfig = { crop: 'ORGINAL' | 'WIDESCREEN' | 'SQUARE' }
-type ContentCity = { photo?: string, slogan?: string, population: string }
-
-// Specify the view file to use
-const VIEW = resolve('./city-list.html');
-
-// Handle the GET request
-export function get(): Response {
-
-    // Get the part configuration for the map
-    const config = getComponent&lt;PartComponent&lt;PartDescriptor, PartConfig&gt;&gt;().config;
-    const countryPath = getContent()._path;
-
-    // Get all child item cities's  
-    const result = query&lt;Content&lt;ContentCity&gt;&gt;({
-        start: 0,
-        count: 100,
-        contentTypes: [app.name + ':city'],
-        query: "_path LIKE '/content" + countryPath + "/*'",
-        sort: "modifiedTime DESC"
-    });
-
-    // Create a crop based on configuration
-    const scale = getImageScale(config.crop)
-
-    // Map results to cities
-    const cities = (result.hits || []).map(item=&gt; ({
-        name: item.displayName,
-        photo: item.data.photo &amp;&amp; imageUrl({ id: item.data.photo, scale: scale }),
-        caption: getCitySlogan(item.data.slogan,item.data.population)
-    }));
-
-    // Set the model object
-    const model = {cities};
-
-    // Server log to inspect the model object
-    log.info('Model object %s', JSON.stringify(model, null, 4));
-
-    // Prepare the response object
-    const response: Response = {
-		body: render(VIEW, model)
-	};
-
-    return response;
-}
-
-function getImageScale(crop: string = 'ORIGINAL'): ImageUrlParams['scale'] {
-    if (crop == 'SQUARE') { 
-        return 'square(1080)';
-    }
-    
-    if (crop == 'WIDESCREEN') { 
-        return 'block(1080,300)';
-    }
-
-    return 'width(1080)';
-}
-
-function getCitySlogan(slogan: string, population?: string): string {
-    return [slogan, population ? 'population: ' + population : '']
-        .filter(Boolean)
-        .join(' - ');
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/parts/city-list/city-list.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="cities" style="min-height:100px;"&gt;
-    &lt;h2&gt;Cities&lt;/h2&gt;
-    &lt;p data-th-if="${#lists.isEmpty(cities)}"&gt;No cities found&lt;/p&gt;
-    &lt;div data-th-unless="${#lists.isEmpty(cities)}" class="city" data-th-each="city : ${cities}"&gt;
-        &lt;h3 data-th-text="${city.name}"&gt;Utopia&lt;/h3&gt;
-        &lt;figure&gt;
-            &lt;img data-th-if="${city.photo}" data-th-src="${city.photo}"/&gt;
-            &lt;figcaption data-th-if="${city.caption}" data-th-text="${city.caption}"&gt;Best city every&lt;/figcaption&gt;
-        &lt;/figure&gt;
-        &lt;br/&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In the view, the <code>th:if</code> and <code>th:unless</code> attributes handle an empty list. If no cities are found, the template displays "No cities found". Otherwise, it loops through the cities and outputs the details of each one.</p>
 </div>
 <div class="sect2">
-<h3 id="task_add_and_configure_the_city_list"><a class="link" href="#task_add_and_configure_the_city_list">Task: Add and configure the city list</a></h3>
+<h3 id="task_add_the_part_to_a_country"><a class="link" href="#task_add_the_part_to_a_country">Task: Add the part to a country</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Insert the part</strong> - Add a new part to the same region as before, and select <code>City list</code> in the list.</p>
+<p><strong>Open a country</strong> - In Content Studio, select <code>Norway</code> and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p><strong>Configure the part</strong> - With the part selected, change its settings in the panel on the right-hand side. For example, select <code>Widescreen</code> in the <code>Image crop</code> dropdown, and click <b class="button">Apply</b>.</p>
+<p><strong>Select the page component</strong> - Open the context panel and select <code>Page</code> in its dropdown, as you did for the site. In the <code>Template</code> field, select <code>Hello page</code>. The preview shows the page with an empty region.</p>
 </li>
 <li>
-<p><strong>Verify the result</strong> - The page lists the cities of the country, with images in the format you chose:</p>
+<p><strong>Insert a part</strong> - Select the <code>Page</code> tab above the form. Right-click the <code>main</code> region in the component tree, and select <span class="menuseq"><b class="menu">Insert</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Part</b></span>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/city-list-part-on-columbia.jpg" alt="The city list part on the Columbia page, configured to show widescreen images" width="1227">
+<img src="media/part-insert.png" alt="The context menu of the main region, with Insert and then Part selected" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the part</strong> - An empty part appears in the region, and the context panel shows a <code>Part</code> field. Select <code>Country</code>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The preview shows the description of Norway, and a link to Wikipedia:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/country-part.png" alt="The preview of Norway, showing its description and Wikipedia link below the heading" width="1440">
 </div>
 </div>
 </li>
@@ -738,18 +593,144 @@ function getCitySlogan(slogan: string, population?: string): string {
 </div>
 </div>
 <div class="sect1">
-<h2 id="image_service"><a class="link" href="#image_service">Image service</a></h2>
+<h2 id="city_list_part"><a class="link" href="#city_list_part">City list part</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Images are scaled and cropped in real time by the <a href="https://developer.enonic.com/docs/platform/7.x/runtime/engines/site-engine/image-service">image service</a>. The part controller uses the <code>imageUrl()</code> function to create a link to each image, with the desired size and cropping.</p>
+<p>The second part lists the cities of a country, which are the child items of the country content. It also has a form, which lets editors choose how the city photos are cropped.</p>
+</div>
+<div class="sect2">
+<h3 id="task_create_the_city_list_part"><a class="link" href="#task_create_the_city_list_part">Task: Create the city list part</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Include the Content library</strong> - The part uses the Content library to fetch the cities. In <code>build.gradle</code>, remove the <code>//</code> in front of this line:</p>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include xplibs.content</code></pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="logging"><a class="link" href="#logging">Logging</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The <code>City list</code> controller also writes its model object to the log. Open a country page, then check the terminal where the sandbox is running to see what the controller passes to the view.</p>
+<p>Then stop <code>enonic dev</code> with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>, and run it again.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/city-list/city-list.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Part"
+title: "City list"
+description: "Show all cities in a country"
+form:
+  - type: "ComboBox"
+    name: "crop"
+    label: "Image crop"
+    options:
+      - value: "ORIGINAL"
+        label: "Original"
+      - value: "WIDESCREEN"
+        label: "Widescreen"
+      - value: "SQUARE"
+        label: "Square"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>form</code> works like the form of a content type, but the values are stored with the component.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/city-list/city-list.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Content, PartComponent, Response } from '@enonic-types/core';
+
+import { render } from '/lib/thymeleaf';
+import { getChildren } from '/lib/xp/content';
+import { getComponent, getContent, imageUrl, type ImageUrlParams } from '/lib/xp/portal';
+
+type City = { photo?: string, slogan?: string, population: number };
+type Crop = 'ORIGINAL' | 'WIDESCREEN' | 'SQUARE';
+type CityList = PartComponent&lt;`${string}:city-list`, { crop?: Crop }&gt;;
+
+const VIEW = resolve('./city-list.html');
+
+const SCALES: Record&lt;Crop, ImageUrlParams['scale']&gt; = {
+  ORIGINAL: 'width(1080)',
+  WIDESCREEN: 'block(1080,300)',
+  SQUARE: 'square(1080)',
+};
+
+export function GET(): Response {
+  const config = getComponent&lt;CityList&gt;()!.config;
+  const scale = SCALES[config.crop || 'ORIGINAL'];
+
+  const children = getChildren&lt;Content&lt;City&gt;&gt;({
+    key: getContent()!._path,
+    count: 100,
+  });
+
+  const cities = children.hits
+    .filter((item) =&gt; item.type === `${app.name}:city`)
+    .map((item) =&gt; ({
+      name: item.displayName,
+      photo: item.data.photo &amp;&amp; imageUrl({ id: item.data.photo, scale }),
+      caption: [item.data.slogan, `Population: ${item.data.population}`].filter(Boolean).join(' - '),
+    }));
+
+  return {
+    body: render(VIEW, { cities }),
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>getComponent()</code> returns the part itself, including the values of its form in <code>config</code>. <code>getChildren()</code> fetches the child items of the country, and <code>imageUrl()</code> creates a URL to each photo, scaled as configured.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the view</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/parts/city-list/city-list.html</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;section class="cities"&gt;
+  &lt;h2&gt;Cities&lt;/h2&gt;
+  &lt;p data-th-if="${#lists.isEmpty(cities)}"&gt;No cities found&lt;/p&gt;
+  &lt;article data-th-each="city : ${cities}"&gt;
+    &lt;h3 data-th-text="${city.name}"&gt;Utopia&lt;/h3&gt;
+    &lt;figure&gt;
+      &lt;img data-th-if="${city.photo}" data-th-src="${city.photo}" data-th-alt="${city.name}"/&gt;
+      &lt;figcaption data-th-text="${city.caption}"&gt;Best city ever&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_add_and_configure_the_part"><a class="link" href="#task_add_and_configure_the_part">Task: Add and configure the part</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Insert the part</strong> - In the editor for <code>Norway</code>, right-click the <code>main</code> region again, and select <span class="menuseq"><b class="menu">Insert</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Part</b></span>. Select <code>City list</code> in the <code>Part</code> field. The part is added below the country part.</p>
+</li>
+<li>
+<p><strong>Configure the part</strong> - With the part selected, select <code>Widescreen</code> in the <code>Image crop</code> field in the context panel, and click <b class="button">Apply</b>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The preview lists the cities of Norway, and the photo is cropped to a wide format:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/city-list-part.png" alt="The preview of Norway with the country part and a list of cities, and the Image crop setting in the context panel" width="1440">
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -757,7 +738,7 @@ function getCitySlogan(slogan: string, population?: string): string {
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve placed two parts on a page, and configured one of them from Content Studio. With parts, you build visual blocks that editors can combine and configure on their own.</p>
+<p>You&#8217;ve created a part that presents the current content item, and a part that fetches other content and can be configured by editors.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -766,20 +747,20 @@ function getCitySlogan(slogan: string, population?: string): string {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To learn more about parts, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/parts">parts documentation</a>.
+For more details, visit the <a href="https://developer.enonic.com/docs/cms/stable/pages/parts">parts documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="page-templates.ahtml">reuse the page across all countries with page templates</a>.</p>
+<p>Next, you&#8217;ll <a href="page-templates.ahtml">reuse the page for all countries with a page template</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:24:15 UTC
+Last updated 2026-11-24 22:24:27 UTC
 </div>
 </div>
 </body>

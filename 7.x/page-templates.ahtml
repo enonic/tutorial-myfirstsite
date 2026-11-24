@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Demo</title>
+<title>Page templates</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,13 +438,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Demo</h1>
+<h1>Page templates</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#what_the_demo_contains">What the demo contains</a></li>
-<li><a href="#task_run_the_demo">Task: Run the demo</a></li>
-<li><a href="#compare_with_your_own_app">Compare with your own app</a></li>
+<li><a href="#reusable_pages">Reusable pages</a>
+<ul class="sectlevel2">
+<li><a href="#task_save_a_page_as_a_template">Task: Save a page as a template</a></li>
+<li><a href="#task_create_a_template_from_scratch">Task: Create a template from scratch</a></li>
+</ul>
+</li>
+<li><a href="#automatic_fixed_or_customized">Automatic, fixed, or customized</a>
+<ul class="sectlevel2">
+<li><a href="#task_switch_a_page_to_automatic">Task: Switch a page to automatic</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -452,97 +461,178 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page shows how to run the finished site without following the tutorial. The <a href="https://github.com/enonic/tutorial-site-framework">tutorial repository</a> holds the result of all nine chapters: the code, and the content as it looks at the end.</p>
+<p>In this chapter, you&#8217;ll create page templates, so every country is rendered the same way without setting up each page by hand.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="what_the_demo_contains"><a class="link" href="#what_the_demo_contains">What the demo contains</a></h2>
+<h2 id="reusable_pages"><a class="link" href="#reusable_pages">Reusable pages</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The demo app is the app you build in the tutorial, with one addition. The first time it starts, it creates the <code>Site Framework</code> content project, imports the complete content, including the page setup and the page template, and publishes the site. The import code is in <code>src/main/resources/main.ts</code>, and the content in <code>src/main/resources/import/</code>.</p>
+<p>With the current approach, you&#8217;d have to set up a page for every country. Page templates are more efficient.
+A page template is a content item that holds a page and supports one or more content types, for example <code>Country</code>. All content items of those types are then rendered by the template.</p>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>Page templates live in the <code>Templates</code> folder you saw in the <a href="content.ahtml">content chapter</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="task_save_a_page_as_a_template"><a class="link" href="#task_save_a_page_as_a_template">Task: Save a page as a template</a></h3>
+<div class="paragraph">
+<p>Take advantage of the page you&#8217;ve already built for a country.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the country</strong> - Select the country with the page, and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Save the page as a template</strong> - Select the page component, and click <b class="button">Save as Template</b> in its context menu.</p>
+</li>
+<li>
+<p><strong>Name the template</strong> - Give the template a suitable name, for example <code>Country template</code>.</p>
+</li>
+<li>
+<p><strong>Select the supported content type</strong> - Select <code>Country</code> in the <code>Supports</code> dropdown.</p>
+<div class="paragraph">
+<p>This video shows the process:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template.gif" alt="Creating a page template from a page" width="960">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Select other countries in the content grid. Each of them is now rendered by the page template.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_create_a_template_from_scratch"><a class="link" href="#task_create_a_template_from_scratch">Task: Create a template from scratch</a></h3>
+<div class="paragraph">
+<p>Like any other content, a page template can also be created from scratch.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create new content</strong> - Select the <code>Templates</code> content item and click <b class="button">New</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-1.png" alt="The content grid with the Templates item selected, and the pointer on the New button" width="418">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the content type</strong> - Select the <code>Page template</code> content type:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-2.png" alt="Modal showing the page template content type" width="718">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the supported content type</strong> - Select <code>Country</code> in the <code>Supports</code> dropdown:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-3.png" alt="The Supports dropdown listing content types, with Country highlighted" width="336">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Select the page component</strong> - In the panel on the right-hand side, select the <code>Hello Regions!</code> page component:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-4.png" alt="List of available page components, with Hello Regions! highlighted" width="499">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Add a part</strong> - Right-click the <code>Drop here</code> region, select <code>Insert</code> &#8594; <code>Part</code>, and then select the <code>City list</code> part:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-template-5.png" alt="List of available parts to add to the region" width="612">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Name and save the template</strong> - Give the page template a name, such as <code>New Country Template</code>, and save it.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Select different countries in the content grid to check that they are rendered by the new template.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="automatic_fixed_or_customized"><a class="link" href="#automatic_fixed_or_customized">Automatic, fixed, or customized</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each content item can use its page in one of three ways: <code>Automatic</code>, which is the default and lets XP select a supporting template, a specific template that you select, or a customized page that is no longer linked to a template.</p>
+</div>
+<div class="paragraph">
+<p>The country you set up by hand still uses its own custom page.</p>
+</div>
+<div class="sect2">
+<h3 id="task_switch_a_page_to_automatic"><a class="link" href="#task_switch_a_page_to_automatic">Task: Switch a page to automatic</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the page</strong> - Edit the country you built the page on, open the page editor, and select the page.</p>
+</li>
+<li>
+<p><strong>Change the template setting</strong> - In the component view on the right-hand side, change the <code>Template</code> setting from <code>Custom</code> to <code>Automatic</code>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The country is now rendered by a page template, like the other countries.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The demo uses its own sandbox, so it does not interfere with the one you use for the tutorial. Both sandboxes use port 8080, so only one of them can run at a time.
+You now have two page templates that support the <code>Country</code> content type. In <code>Automatic</code> mode, the newest template is used, in this case <code>New Country Template</code>. To use the other template, select it explicitly.
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="task_run_the_demo"><a class="link" href="#task_run_the_demo">Task: Run the demo</a></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Create a sandbox</strong> - If the tutorial sandbox is running, stop it first. Then run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t essentials -v 8.1.3 -f</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Create the app</strong> - In a new terminal, from the folder where you keep your projects, run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project create com.example.demo.siteframework -r tutorial-site-framework -s demo_siteframework -d demo-siteframework-enonic -f</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Build and deploy the app</strong> - Run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">cd demo-siteframework-enonic
-enonic dev</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Verify the import</strong> - When the app has started, the sandbox log contains these lines:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">Project "siteframework" created
-Imported 20 content items into project "siteframework"
-Published the "Hello World" site</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Open the site</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway">http://localhost:8080/site/siteframework/master/hello-world/norway</a> in your browser:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/result.png" alt="The published page for Norway, with the description in the left column and the cities in the right column" width="1280">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To see how the pages are put together, open <a href="http://localhost:8080">http://localhost:8080</a>, click <b class="button">Log In as Guest</b>, and open Content Studio.</p>
-</div>
-</div>
 </div>
 <div class="sect1">
-<h2 id="compare_with_your_own_app"><a class="link" href="#compare_with_your_own_app">Compare with your own app</a></h2>
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have followed the tutorial, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: <code>main.ts</code> and the <code>import/</code> folder, which exist to set up the content, and the extra libraries they need in <code>build.gradle</code>.</p>
+<p>You&#8217;ve created two page templates, one from an existing page and one from scratch, and rendered all countries with them.
+Page templates are content, so editors can manage and publish them like any other content.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To control the rendering of certain pages without using page templates, check out <a href="https://developer.enonic.com/docs/platform/7.x/framework/mappings">controller mappings</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, you&#8217;ll <a href="static-assets.ahtml">add and serve static assets</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:23:56 UTC
+Last updated 2026-11-24 22:24:50 UTC
 </div>
 </div>
 </body>

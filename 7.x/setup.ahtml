@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Layout components</title>
+<title>Setting up the developer environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,19 +438,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Layout components</h1>
+<h1>Setting up the developer environment</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#layouts">Layouts</a>
+<li><a href="#enonic_cli">Enonic CLI</a>
 <ul class="sectlevel2">
-<li><a href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></li>
+<li><a href="#task_install_the_cli">Task: Install the CLI</a></li>
 </ul>
 </li>
-<li><a href="#page_contributions">Page contributions</a></li>
-<li><a href="#layout_in_the_page_template">Layout in the page template</a>
+<li><a href="#sandbox">Sandbox</a>
 <ul class="sectlevel2">
-<li><a href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></li>
+<li><a href="#task_create_a_sandbox">Task: Create a sandbox</a></li>
+</ul>
+</li>
+<li><a href="#app">App</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_the_app">Task: Create the app</a></li>
+<li><a href="#task_build_and_deploy_the_app">Task: Build and deploy the app</a></li>
+</ul>
+</li>
+<li><a href="#xp_admin">XP admin</a>
+<ul class="sectlevel2">
+<li><a href="#task_log_in_to_xp_admin">Task: Log in to XP admin</a></li>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
@@ -461,189 +471,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll create a layout that arranges components in two columns, and see how a component can contribute CSS to the page it is placed on.</p>
+<p>In this chapter, you&#8217;ll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you&#8217;ll work on for the rest of the tutorial.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="layouts"><a class="link" href="#layouts">Layouts</a></h2>
+<h2 id="enonic_cli"><a class="link" href="#enonic_cli">Enonic CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>layout</em> is a component with regions of its own, which makes it a container for other components. Like pages and parts, a layout consists of a descriptor, an implementation, and a view. Layouts are placed in the <code>src/main/resources/cms/layouts/</code> folder.</p>
+<p>The Enonic CLI (Command Line Interface) manages local XP instances, creates projects from starters, and builds and deploys your apps.</p>
 </div>
 <div class="sect2">
-<h3 id="task_create_the_two_column_layout"><a class="link" href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></h3>
+<h3 id="task_install_the_cli"><a class="link" href="#task_install_the_cli">Task: Install the CLI</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
+<p><strong>Install the command-line tool</strong> - If you have <code>npm</code> on your machine, run:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.yaml</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Layout"
-title: "Two columns"
-description: "A layout with two configurable columns"
-form:
-  - type: "RadioButton"
-    name: "sizes"
-    label: "Column sizes"
-    options:
-      - value: "33-66"
-        label: "33/66"
-      - value: "50-50"
-        label: "50/50"
-      - value: "66-33"
-        label: "66/33"
-    default: "50-50"
-regions:
-  - "left"
-  - "right"</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">npm install -g @enonic/cli</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The descriptor combines what you&#8217;ve seen in pages and parts: it declares regions, and it has a form. The form lets editors choose the width of the columns.</p>
+<p>If not, there are <a href="https://developer.enonic.com/start">alternative ways to install the Enonic CLI</a>.</p>
 </div>
 </li>
 <li>
-<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/assets/styles/two-columns.css</div>
-<div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">.two-columns {
-  display: grid;
-  gap: 2rem;
-}
-
-.two-columns--33-66 {
-  grid-template-columns: 1fr 2fr;
-}
-
-.two-columns--50-50 {
-  grid-template-columns: 1fr 1fr;
-}
-
-.two-columns--66-33 {
-  grid-template-columns: 2fr 1fr;
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { LayoutComponent, Response } from '@enonic-types/core';
-
-import { assetUrl } from '/lib/enonic/asset';
-import { render } from '/lib/thymeleaf';
-import { getComponent } from '/lib/xp/portal';
-
-type TwoColumns = LayoutComponent&lt;`${string}:two-columns`, { sizes: string }&gt;;
-
-const VIEW = resolve('./two-columns.html');
-
-export function GET(): Response {
-  const component = getComponent&lt;TwoColumns&gt;()!;
-
-  const model = {
-    sizes: component.config.sizes,
-    leftRegion: component.regions.left,
-    rightRegion: component.regions.right,
-  };
-
-  return {
-    body: render(VIEW, model),
-    pageContributions: {
-      headEnd: [
-        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}"/&gt;`,
-      ],
-    },
-  };
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Create the view</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-th-class="'two-columns two-columns--' + ${sizes}"&gt;
-  &lt;div data-portal-region="left"&gt;
-    &lt;div data-th-each="component : ${leftRegion.components}" data-th-remove="tag"&gt;
-      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div data-portal-region="right"&gt;
-    &lt;div data-th-each="component : ${rightRegion.components}" data-th-remove="tag"&gt;
-      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The view renders the two regions in the same way the page component renders its <code>main</code> region.</p>
-</div>
+<p><strong>Verify the installation</strong> - Run <code>enonic -v</code>.
+The command prints the version of the installed CLI.</p>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="page_contributions"><a class="link" href="#page_contributions">Page contributions</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The stylesheet of the layout is only needed on pages where the layout is used. The page component knows nothing about the layout, so the layout adds the stylesheet itself, with a <a href="https://developer.enonic.com/docs/code/stable/web/sites/contributions">page contribution</a>.</p>
-</div>
-<div class="paragraph">
-<p>A page contribution lets a component inject markup at specific places in the page: at the beginning or end of <code>&lt;head&gt;</code>, or at the beginning or end of <code>&lt;body&gt;</code>. The implementation above returns a <code>pageContributions</code> property in its response, with a <code>&lt;link&gt;</code> element for the end of <code>&lt;head&gt;</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="layout_in_the_page_template"><a class="link" href="#layout_in_the_page_template">Layout in the page template</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="task_add_the_layout_to_the_page_template"><a class="link" href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Open the page template</strong> - In Content Studio, expand the <code>Templates</code> folder below the site, select the <code>Country</code> template, and click <b class="button">Edit</b>.</p>
-</li>
-<li>
-<p><strong>Insert the layout</strong> - Select the <code>Page</code> tab. Right-click the <code>main</code> region in the component tree, and select <span class="menuseq"><b class="menu">Insert</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Layout</b></span>. In the <code>Layout</code> field in the context panel, select <code>Two columns</code>.</p>
-</li>
-<li>
-<p><strong>Move the parts into the columns</strong> - The layout appears in the component tree, with the regions <code>left</code> and <code>right</code> below it. Drag the <code>Country</code> part onto <code>left</code>, and the <code>City list</code> part onto <code>right</code>.</p>
-</li>
-<li>
-<p><strong>Save the template</strong> - Click <b class="button">Save</b>.</p>
-</li>
-<li>
-<p><strong>Change the column sizes</strong> - Select <code>Two columns</code> in the component tree. In the context panel, select <code>33/66</code> in the <code>Column sizes</code> field, and click <b class="button">Apply</b>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/two-columns.png" alt="The page template with the layout selected, the two parts in its left and right regions, and the Column sizes setting" width="1440">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Verify the result</strong> - Go back to the content list and select a country. The description is shown in a narrow column on the left, and the cities in a wide column on the right.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You&#8217;ve created a layout with two regions and a configuration, added a stylesheet to the page with a page contribution, and rearranged the page template.
-With content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -652,20 +509,244 @@ With content types, pages, parts, layouts, and page templates, you have the buil
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details, visit the <a href="https://developer.enonic.com/docs/cms/stable/pages/parts">layouts documentation</a>.
+Run <code>enonic</code> without arguments to list the available commands, and <code>enonic latest</code> to check for a newer version of the CLI.
 </td>
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sandbox"><a class="link" href="#sandbox">Sandbox</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="go-online.ahtml">publish the site</a>.</p>
+<p>A <em>sandbox</em> is a local developer instance of Enonic XP. Each sandbox is isolated from the others, with its own data and configuration, and can run a different version of XP.</p>
+</div>
+<div class="sect2">
+<h3 id="task_create_a_sandbox"><a class="link" href="#task_create_a_sandbox">Task: Create a sandbox</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create and start the sandbox</strong> - Run this command in your terminal:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create tutorial_siteframework -t essentials -v 7.16.11 -f</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates a sandbox called <code>tutorial_siteframework</code> running Enonic XP 7.16.11, installs the applications in the <code>essentials</code> template, including Content Studio, and starts the sandbox.</p>
+</div>
+</li>
+<li>
+<p><strong>Verify that XP is running</strong> - Wait until the terminal stops printing new log lines, then open <a href="http://localhost:8080">http://localhost:8080</a> in your browser.
+You should see the XP boot page, with the title "Welcome to the Enonic SDK".</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To stop the sandbox, press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> in its terminal. To start it again, run <code>enonic sandbox start tutorial_siteframework</code>. Sandboxes share the same ports, so stop this one before starting the sandbox of another tutorial.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app"><a class="link" href="#app">App</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Almost everything you build on XP is packaged as an application. Instead of starting from an empty folder, you&#8217;ll create your app from a starter that contains the components, content types, and sample content used in this tutorial.</p>
+</div>
+<div class="sect2">
+<h3 id="task_create_the_app"><a class="link" href="#task_create_the_app">Task: Create the app</a></h3>
+<div class="paragraph">
+<p>Use a dedicated workspace folder for Enonic tutorials, such as <code>enonic-tutorials/</code>, so each tutorial&#8217;s source folder stays separate.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create the app from the starter</strong> - Open a new terminal window in your tutorials workspace folder, leaving the sandbox running in the first one, and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project create com.example.tutorial.siteframework -r tutorial-site-framework -b 7.x -s tutorial_siteframework -d tutorial-siteframework-enonic -f</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates an app named <code>com.example.tutorial.siteframework</code> in the folder <code>tutorial-siteframework-enonic</code>, using the <a href="https://github.com/enonic/tutorial-site-framework">tutorial-site-framework</a> repository as a starter, and links the app to the <code>tutorial_siteframework</code> sandbox.</p>
+</div>
+</li>
+<li>
+<p><strong>Inspect the project structure</strong> - The project folder contains a basic app structure. These are the parts you&#8217;ll meet in this tutorial:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">build.gradle           <i class="conum" data-value="1"></i><b>(1)</b>
+code-samples/          <i class="conum" data-value="2"></i><b>(2)</b>
+docs/                  <i class="conum" data-value="3"></i><b>(3)</b>
+tsup/                  <i class="conum" data-value="4"></i><b>(4)</b>
+src/
+  main/
+    resources/
+      import/          <i class="conum" data-value="5"></i><b>(5)</b>
+      assets/          <i class="conum" data-value="6"></i><b>(6)</b>
+      site/
+        content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+          country/
+          city/
+        parts/         <i class="conum" data-value="8"></i><b>(8)</b>
+        pages/         <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Core build files</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Code samples that you&#8217;ll copy into the app in later chapters</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The documentation you are reading now</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Build files for the TypeScript compilation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Sample content that is imported when the app starts</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Location for static assets</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Two pre-defined content types, country and city</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Part components - leaf components to place on pages</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Page components - the root component of a page</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_build_and_deploy_the_app"><a class="link" href="#task_build_and_deploy_the_app">Task: Build and deploy the app</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Start the development watcher</strong> - Change to the project folder and start development mode:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">cd tutorial-siteframework-enonic
+enonic dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This builds the app, deploys it to the <code>tutorial_siteframework</code> sandbox, and then keeps watching the folder.
+When you save a file, your TypeScript code is compiled and the sandbox picks up the change. There is no need for manual deployments.</p>
+</div>
+<div class="paragraph">
+<p>Keep this command running in its own terminal while you follow the tutorial. Press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> to stop watching, and run <code>enonic dev</code> from <code>tutorial-siteframework-enonic</code> to resume later.</p>
+</div>
+</li>
+<li>
+<p><strong>Verify that the app has started</strong> - The first build downloads a few things, so give it a moment. Then look for lines like these in the terminal where the sandbox is running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">INFO  com.example.tutorial.siteframework - (/main.js) Project "myfirstsite" successfully created
+INFO  com.example.tutorial.siteframework - (/main.js) Importing "myfirstsite" data</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="xp_admin"><a class="link" href="#xp_admin">XP admin</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The sandbox has a web interface for administration, where each admin tool is its own application.</p>
+</div>
+<div class="sect2">
+<h3 id="task_log_in_to_xp_admin"><a class="link" href="#task_log_in_to_xp_admin">Task: Log in to XP admin</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the boot page</strong> - Open <a href="http://localhost:8080">http://localhost:8080</a> in your browser, or reload it if it is already open:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-boot.png" alt="The XP boot page, with a Log In as Guest button and a list of installed applications" width="1085">
+</div>
+</div>
+<div class="paragraph">
+<p>The boot page gives an overview of the sandbox, including the installed applications and the <a href="https://developer.enonic.com/docs/platform/7.x/deployment/config">standard configuration files</a>.
+Your app, <code>My First Site</code>, is in the list, together with the applications that were installed when you created the sandbox.</p>
+</div>
+</li>
+<li>
+<p><strong>Log in</strong> - Click <b class="button">Log In as Guest</b> to open the XP admin dashboard:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-dashboard.jpg" alt="The XP admin dashboard, with the XP menu on the right-hand side" width="1727">
+</div>
+</div>
+<div class="paragraph">
+<p>The menu on the right-hand side, the <em>XP menu</em>, lets you move between admin tools. Applications can add their own admin tools to it.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If things don&#8217;t look exactly the same, don&#8217;t worry. The background picture changes between versions of XP, and the dashboard is localized to your browser&#8217;s preferred language.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve installed the Enonic CLI, created a sandbox running XP 7, and created, built, and deployed an app from a starter to that sandbox.</p>
+</div>
+<div class="paragraph">
+<p>Next, you&#8217;ll <a href="content.ahtml">explore the sample content in Content Studio</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:23:56 UTC
+Last updated 2026-11-24 22:24:50 UTC
 </div>
 </div>
 </body>

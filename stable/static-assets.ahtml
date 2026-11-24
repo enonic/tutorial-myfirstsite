@@ -442,17 +442,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#asset_service">Asset service</a>
+<li><a href="#asset_library">Asset library</a>
 <ul class="sectlevel2">
+<li><a href="#task_add_the_asset_library">Task: Add the Asset library</a></li>
 <li><a href="#task_serve_a_css_file">Task: Serve a CSS file</a></li>
 </ul>
 </li>
-<li><a href="#perfect_cache">Perfect cache</a></li>
-<li><a href="#static_assets_library">Static Assets library</a>
-<ul class="sectlevel2">
-<li><a href="#task_serve_an_asset_with_an_immutable_url">Task: Serve an asset with an immutable URL</a></li>
-</ul>
-</li>
+<li><a href="#caching">Caching</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -461,57 +457,182 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll style the site by serving a CSS file through the asset service, and then serve a second stylesheet with an immutable URL using the Static Assets library.</p>
+<p>In this chapter, you&#8217;ll style the site by serving a CSS file with the Asset library.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="asset_service"><a class="link" href="#asset_service">Asset service</a></h2>
+<h2 id="asset_library"><a class="link" href="#asset_library">Asset library</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, the site is made up of dynamic HTML and images. Static assets, such as CSS and JavaScript files, are served by the <a href="https://developer.enonic.com/docs/platform/7.x/runtime/engines/asset-service">asset service</a>. Every file you place in the <code>src/main/resources/assets</code> folder is available at a URL.</p>
+<p>So far, the site consists of HTML and images from the content. Static assets, such as CSS and JavaScript files, are served by the <a href="https://developer.enonic.com/docs/lib-asset">Asset library</a>. Every file you place in the <code>src/main/resources/assets/</code> folder gets a URL, which you create with the <code>assetUrl()</code> function.</p>
 </div>
-<div class="paragraph">
-<p>Your app already includes a sample CSS file: <code>src/main/resources/assets/mvp.css</code>.</p>
+<div class="sect2">
+<h3 id="task_add_the_asset_library"><a class="link" href="#task_add_the_asset_library">Task: Add the Asset library</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Include the library</strong> - In <code>build.gradle</code>, remove the <code>//</code> in front of this line:</p>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include libs.asset</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Install the type definitions</strong> - Stop <code>enonic dev</code> with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>, and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">npm install --save-dev @enonic-types/lib-asset</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Map the import path</strong> - In <code>src/main/resources/tsconfig.json</code>, add this line to <code>compilerOptions.paths</code>, above the <code>"/lib/xp/*"</code> entry:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/tsconfig.json</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">      "/lib/enonic/asset": ["../../../node_modules/@enonic-types/lib-asset"],</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Expose the asset API</strong> - The library serves the files through an API, which must be listed in the site descriptor. Replace the content of the site descriptor with the following:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/site.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Site"
+apis:
+  - "asset"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="task_serve_a_css_file"><a class="link" href="#task_serve_a_css_file">Task: Serve a CSS file</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/assets/styles/main.css</div>
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">:root {
+  color-scheme: light dark;
+  --accent: light-dark(#7a3fb8, #c79bf2);
+  --border: light-dark(#d9d9e3, #3b3b4a);
+}
+
+body {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+article {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 0.25rem;
+}
+
+figcaption {
+  font-style: italic;
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Update the implementation</strong> - Replace the content of the page component implementation with the following:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/pages/hello/hello.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '@enonic-types/core';
+
+import { assetUrl } from '/lib/enonic/asset';
+import { render } from '/lib/thymeleaf';
+import { getContent } from '/lib/xp/portal';
+
+const VIEW = resolve('./hello.html');
+
+export function GET(): Response {
+  const content = getContent()!;
+
+  const model = {
+    displayName: content.displayName,
+    mainRegion: content.page!.regions.main,
+    cssUrl: assetUrl({ path: 'styles/main.css' }),
+  };
+
+  return {
+    body: render(VIEW, model),
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The model now includes the URL of the stylesheet.</p>
+</div>
+</li>
+<li>
 <p><strong>Update the view</strong> - Replace the content of the page component view with the following:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html</div>
+<div class="title">src/main/resources/cms/pages/hello/hello.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html color-mode="user"&gt;
+&lt;html&gt;
   &lt;head&gt;
     &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
-    &lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;
+    &lt;link rel="stylesheet" data-th-href="${cssUrl}"/&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;header&gt;
-      &lt;h1 data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
+      &lt;h1 data-th-text="${displayName}"&gt;Sample header&lt;/h1&gt;
     &lt;/header&gt;
     &lt;main data-portal-region="main"&gt;
-        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
-            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-        &lt;/div&gt;
+      &lt;div data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
+        &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/main&gt;
-    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Two things have changed: one line includes the CSS file, and an attribute on the <code>html</code> element activates dark mode support, if dark mode is switched on in your system.</p>
+<p>One line has changed: a <code>&lt;link&gt;</code> element in the <code>&lt;head&gt;</code> includes the stylesheet.</p>
 </div>
 </li>
 <li>
-<p><strong>Verify the styling</strong> - Open a country page. With dark mode switched on, the result looks something like this:</p>
+<p><strong>Restart dev mode</strong> - Run <code>enonic dev</code> again, and wait for <code>BUILD SUCCESSFUL</code>.</p>
+</li>
+<li>
+<p><strong>Verify the styling</strong> - In Content Studio, select a country. The preview is now styled:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/css.jpg" alt="A country page in dark mode after adding the CSS" width="1024">
+<img src="media/css.png" alt="The preview of Norway with styling: a heading with a colored line below it, and each city in a bordered box" width="1440">
 </div>
 </div>
 </li>
@@ -521,13 +642,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="perfect_cache"><a class="link" href="#perfect_cache">Perfect cache</a></h2>
+<h2 id="caching"><a class="link" href="#caching">Caching</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In production, XP serves every asset with cache headers that let browsers, proxies, and CDNs cache it, without ever having to download it again.</p>
+<p>The URL of the stylesheet looks something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">/site/siteframework/draft/hello-world/_/com.example.tutorial.siteframework:asset/1795477566231/styles/main.css</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The generated asset URL contains a prefix based on a signature of the files in the app. The signature changes with every new version of the app. The <code>assetUrl()</code> function uses this signature when generating the URL, so clients always get the most recent version.</p>
+<p>The number is a fingerprint of the app, and changes every time the app is deployed. Because a new version of a file always gets a new URL, the Asset library can tell browsers and CDNs to cache each URL for as long as they like.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -536,7 +662,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In development mode, which you are using now, cache headers are deactivated.
+In development mode, which you are using now, the caching is deactivated.
 </td>
 </tr>
 </table>
@@ -544,110 +670,10 @@ In development mode, which you are using now, cache headers are deactivated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="static_assets_library"><a class="link" href="#static_assets_library">Static Assets library</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>With advanced build tools, assets may be split into chunks and served incrementally. Changing the URL of every asset on each deployment is then no longer optimal. The <a href="https://market.enonic.com/vendors/enonic/lib-static">Static Assets library</a> (<code>lib-static</code>) gives you full control over how assets are served.</p>
-</div>
-<div class="paragraph">
-<p>The library is bundled with your app, and serves the files in the <code>src/main/resources/static</code> folder. To make the URLs immutable, a content hash is added to each file name at build time. The hash is generated from the content and location of the file, and only changes when they do. The browser can then cache the asset indefinitely, and load it from the cache every time it meets the URL.</p>
-</div>
-<div class="sect2">
-<h3 id="task_serve_an_asset_with_an_immutable_url"><a class="link" href="#task_serve_an_asset_with_an_immutable_url">Task: Serve an asset with an immutable URL</a></h3>
-<div class="paragraph">
-<p>Add the Enonic logo to the page, through a stylesheet in the <code>static</code> folder.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Update the controller</strong> - Replace the content of the page component controller with the following:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
-
-// @ts-expect-error no-types
-import { render } from '/lib/thymeleaf';
-import { getContent } from '/lib/xp/portal';
-import { getStaticAssetUrl } from '../../static';
-
-// Specify the view file to use
-const VIEW = resolve('./hello.html');
-
-// Handle the GET request
-export function get(): Response {
-
-	// Get the content that is using the page
-	const content = getContent();
-
-	// Prepare the model that will be passed to the view
-	const model = {
-		displayName: content.displayName,
-		mainRegion: content.page.regions.main,
-		staticCssUrl: getStaticAssetUrl('styles.css'),
-	}
-
-	// Prepare the response object
-	const response: Response = {
-		body: render(VIEW, model)
-	};
-
-	return response;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The controller now passes a <code>staticCssUrl</code> property to the view. The value is generated by the <code>getStaticAssetUrl</code> helper function, which takes the original file name of an asset and returns its full URL, including the hash.</p>
-</div>
-</li>
-<li>
-<p><strong>Update the view</strong> - Replace the content of the page component view with the following:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html color-mode="user"&gt;
-  &lt;head&gt;
-	&lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
-	&lt;link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=mvp.css'})}" href="../assets/mvp.css" type="text/css" media="all"/&gt;
-	&lt;link rel="stylesheet" data-th-href="${staticCssUrl}" href="static/styles.css" type="text/css" media="all"/&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;header&gt;
-      &lt;h1 class="enonic-logo" data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
-    &lt;/header&gt;
-    &lt;main data-portal-region="main"&gt;
-        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
-            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Two things have changed: a <code>&lt;link&gt;</code> tag references the static CSS file, and the <code>&lt;h1&gt;</code> tag has <code>class="enonic-logo"</code>, which adds the Enonic logo through the CSS.</p>
-</div>
-</li>
-<li>
-<p><strong>Verify the result</strong> - Open a country page. The Enonic logo is shown next to the heading:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/static-assets.png" alt="A country page with the Enonic logo, added through the static stylesheet" width="499">
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve served a CSS file through the asset service, and a second one with an immutable URL through the Static Assets library.</p>
+<p>You&#8217;ve added the Asset library to your app, and used it to serve a stylesheet for the site.</p>
 </div>
 <div class="paragraph">
 <p>Next, you&#8217;ll <a href="layouts.ahtml">arrange components in columns with a layout</a>.</p>
@@ -657,7 +683,7 @@ export function get(): Response {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:24:15 UTC
+Last updated 2026-11-24 22:24:27 UTC
 </div>
 </div>
 </body>

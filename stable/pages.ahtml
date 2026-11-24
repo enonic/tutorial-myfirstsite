@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Visualize your content with pages</title>
+<title>Pages</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,14 +438,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Visualize your content with pages</h1>
+<h1>Pages</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#page_component">Page component</a></li>
-<li><a href="#controller">Controller</a></li>
-<li><a href="#view">View</a></li>
-<li><a href="#task_create_your_first_page">Task: Create your first page</a></li>
+<li><a href="#page_components">Page components</a></li>
+<li><a href="#libraries">Libraries</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_the_libraries">Task: Add the libraries</a></li>
+</ul>
+</li>
+<li><a href="#site_descriptor">Site descriptor</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_the_site_descriptor">Task: Create the site descriptor</a></li>
+</ul>
+</li>
+<li><a href="#hello_page">Hello page</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_the_page_component">Task: Create the page component</a></li>
+<li><a href="#task_add_the_page_to_the_site">Task: Add the page to the site</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -454,145 +467,99 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll get to know the page component that ships with your app - its descriptor, controller, and view - and use it to render the site.</p>
+<p>In this chapter, you&#8217;ll create your first page component and use it to render the site.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="page_component"><a class="link" href="#page_component">Page component</a></h2>
+<h2 id="page_components"><a class="link" href="#page_components">Page components</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At this point, you have content, but nothing renders it. With the <a href="https://developer.enonic.com/docs/platform/7.x/framework">Enonic Site Framework</a>, XP renders the content itself.
-A page is composed of one or more components, always with a page component as its root.</p>
+<p>So far, the content has no visual presentation. In the Site Framework, a <em>page component</em> is what turns a content item into a web page. It consists of three files, placed together in a folder under <code>src/main/resources/cms/pages/</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <em>descriptor</em> (<code>.yaml</code>), which makes the page component available in Content Studio</p>
+</li>
+<li>
+<p>An <em>implementation</em> (<code>.ts</code>), which handles the request and returns a response</p>
+</li>
+<li>
+<p>A <em>view</em> (<code>.html</code>), a template the implementation uses to produce the markup</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Your app includes a page component named <code>hello</code>. A component is defined by a descriptor file, placed in a particular location within your app. For page components, that is <code>src/main/resources/site/pages/</code>:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
-&lt;page&gt;
-  &lt;display-name&gt;Hello Page Controller&lt;/display-name&gt;
-  &lt;form/&gt;
-&lt;/page&gt;</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Like content types, components can define a form using the <a href="https://developer.enonic.com/docs/platform/7.x/cms/schemas">schema system</a>. You&#8217;ll see an example in the <a href="parts.ahtml">parts chapter</a>.
-</td>
-</tr>
-</table>
+<p>When a visitor requests a content item, the site service finds the page component selected for it, and runs its implementation. The implementation exports a function per HTTP method it supports, such as <code>GET</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="controller"><a class="link" href="#controller">Controller</a></h2>
+<h2 id="libraries"><a class="link" href="#libraries">Libraries</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each component can have its own controller, which is responsible for rendering it. This is the controller of the <code>hello</code> page component:</p>
+<p>Apps get their functionality from libraries, which are added to the build file. The page component uses two of them: the Portal library, which gives access to the content being rendered, and the Thymeleaf library, which renders HTML templates.</p>
 </div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
-
-// @ts-expect-error no-types
-import {render} from '/lib/thymeleaf';
-import {getContent} from '/lib/xp/portal';
-
-// Specify the view file to use
-const VIEW = resolve('./hello.html');
-
-// Handle the GET request
-export function get(): Response {
-
-    // Get the content that is using the page
-	const content = getContent();
-
-	// Prepare the model that will be passed to the view
-	const model = {
-		displayName: content.displayName
-	}
-
-	// Prepare the response object
-	const response: Response = {
-		body: render(VIEW, model)
-	};
-
-	return response;
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The controller file must be placed in the component directory and use the same name as the directory.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The controller is written in TypeScript. The build system compiles each <code>.ts</code> file and places the generated <code>.js</code> file in the same location. XP picks up and invokes the resulting <code>.js</code> file.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="view"><a class="link" href="#view">View</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The controller passes its model to an HTML template - the view in the Model View Controller (MVC) pattern:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/pages/hello/hello.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1 data-th-text="${displayName} + ' - we made it!'"&gt;Sample header&lt;/h1&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The view is plain HTML, extended with attributes from the <a href="https://market.enonic.com/vendors/enonic/thymeleaf-lib">Thymeleaf</a> templating language.
-Other template engines are available as libraries, such as <a href="https://market.enonic.com/vendors/enonic/mustache-lib">Mustache</a> and <a href="https://market.enonic.com/vendors/tineikt/freemarker-xp-library">Freemarker</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="task_create_your_first_page"><a class="link" href="#task_create_your_first_page">Task: Create your first page</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>For the <code>hello</code> page component to render something, a content item must use it.</p>
-</div>
+<div class="sect2">
+<h3 id="task_add_the_libraries"><a class="link" href="#task_add_the_libraries">Task: Add the libraries</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the site</strong> - In Content Studio, select the <code>Hello World</code> site and click <b class="button">Edit</b>.</p>
-</li>
-<li>
-<p><strong>Select the page component</strong> - In the preview panel on the right-hand side, select <code>Hello Page Controller</code> in the list.
-Your changes are saved automatically.</p>
-</li>
-<li>
-<p><strong>Verify the rendering</strong> - The preview shows the display name of the site, followed by the text <code>- we made it!</code>:</p>
-<div class="imageblock">
+<p><strong>Include the libraries</strong> - In <code>build.gradle</code>, both libraries are listed, but commented out. Remove the <code>//</code> in front of these two lines:</p>
+<div class="listingblock">
+<div class="title">build.gradle</div>
 <div class="content">
-<img src="media/hello-world.gif" alt="Setting up the page" width="960">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include xplibs.portal</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include libs.thymeleaf</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Install the type definitions</strong> - The Portal library types are already installed. Stop <code>enonic dev</code> with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>, and install the ones for Thymeleaf:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">npm install --save-dev @enonic-types/lib-thymeleaf</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Map the import path</strong> - In <code>src/main/resources/tsconfig.json</code>, add this line to <code>compilerOptions.paths</code>, above the <code>"/lib/xp/*"</code> entry:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/tsconfig.json</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">      "/lib/thymeleaf": ["../../../node_modules/@enonic-types/lib-thymeleaf"],</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Restart dev mode</strong> - Changes to <code>build.gradle</code> are only picked up when the build starts. Run <code>enonic dev</code> again, and wait for <code>BUILD SUCCESSFUL</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="site_descriptor"><a class="link" href="#site_descriptor">Site descriptor</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An app only takes part in rendering a site when it has a <em>site descriptor</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="task_create_the_site_descriptor"><a class="link" href="#task_create_the_site_descriptor">Task: Create the site descriptor</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create the file</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/site.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Site"</code></pre>
 </div>
 </div>
 </li>
@@ -600,12 +567,112 @@ Your changes are saved automatically.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<h2 id="hello_page"><a class="link" href="#hello_page">Hello page</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="task_create_the_page_component"><a class="link" href="#task_create_the_page_component">Task: Create the page component</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/pages/hello/hello.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Page"
+title: "Hello page"
+description: "A page that greets you with the name of the content"
+form: []
+regions: []</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>You&#8217;ve seen how a page component consists of a descriptor, a controller, and a view, and used it to render the <code>Hello World</code> site.
-The page isn&#8217;t entirely static: the controller reads the display name of the content and passes it to the view, which adds a hardcoded text.</p>
+<p>The <code>title</code> is the name editors see in Content Studio. The <code>form</code> and <code>regions</code> are empty for now.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/pages/hello/hello.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '@enonic-types/core';
+
+import { render } from '/lib/thymeleaf';
+import { getContent } from '/lib/xp/portal';
+
+const VIEW = resolve('./hello.html');
+
+export function GET(): Response {
+  const content = getContent()!;
+
+  const model = {
+    displayName: content.displayName,
+  };
+
+  return {
+    body: render(VIEW, model),
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>getContent()</code> returns the content item the page is rendered for. The implementation picks out its display name, and passes it to the view as a <em>model</em>.</p>
+</div>
+</li>
+<li>
+<p><strong>Create the view</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/pages/hello/hello.html</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title data-th-text="${displayName}"&gt;Sample title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 data-th-text="${displayName} + ' - we made it!'"&gt;Sample header&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>data-th-text</code> attributes are Thymeleaf instructions. They replace the sample text of the element with a value from the model.</p>
+</div>
+</li>
+<li>
+<p><strong>Verify the build</strong> - The terminal prints <code>BUILD SUCCESSFUL</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_add_the_page_to_the_site"><a class="link" href="#task_add_the_page_to_the_site">Task: Add the page to the site</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the site</strong> - In Content Studio, select <code>Hello World</code> and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Open the page settings</strong> - Click the <b class="button">Show Context Panel</b> icon in the top right corner. In the dropdown at the top of the panel, select <code>Page</code>.</p>
+</li>
+<li>
+<p><strong>Select the page component</strong> - In the <code>Template</code> field, select <code>Hello page</code>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/page-settings.png" alt="The context panel with the Template dropdown open, listing Automatic and Hello page" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The preview panel now shows the site, rendered by your page component. Content Studio saves the page setup automatically:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/hello-page.png" alt="The preview panel showing the heading Hello World - we made it!" width="1440">
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -614,20 +681,41 @@ The page isn&#8217;t entirely static: the controller reads the display name of t
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To learn more about pages, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages">pages documentation</a>.
+Click <b class="button">Preview</b> in the toolbar to open the page in a separate browser tab.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve added libraries to your app, created a site descriptor and a page component, and used the page component to render the site.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details, visit the <a href="https://developer.enonic.com/docs/code/stable/web/sites/components">components documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="regions.ahtml">add a region to the page</a>, so more components can be placed on it.</p>
+<p>Next, you&#8217;ll <a href="regions.ahtml">make the page editable with regions</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:24:15 UTC
+Last updated 2026-11-24 22:24:27 UTC
 </div>
 </div>
 </body>

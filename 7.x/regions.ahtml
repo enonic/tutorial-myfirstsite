@@ -442,9 +442,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#regions">Regions</a>
+<li><a href="#component_dropzones">Component dropzones</a>
 <ul class="sectlevel2">
 <li><a href="#task_add_a_region_to_the_page">Task: Add a region to the page</a></li>
+</ul>
+</li>
+<li><a href="#text_component">Text component</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_text_to_the_region">Task: Add text to the region</a></li>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
@@ -455,74 +460,79 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll add a region to the page component, so editors can compose the page from other components.</p>
+<p>In this chapter, you&#8217;ll add a region to the page component, so pages can be composed from several components in Content Studio.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="regions"><a class="link" href="#regions">Regions</a></h2>
+<h2 id="component_dropzones"><a class="link" href="#component_dropzones">Component dropzones</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>region</em> is a named area of a page where editors can place components. The page component declares its regions in the descriptor, and decides in its view where each region ends up in the markup.</p>
-</div>
-<div class="paragraph">
-<p>The components themselves are not rendered by the page. For each component in a region, the view leaves a placeholder, and the site service replaces it with the rendered component.</p>
+<p>A region is a named area of a page where editors can add components. For Content Studio to offer this, the page component must declare one or more regions.</p>
 </div>
 <div class="sect2">
 <h3 id="task_add_a_region_to_the_page"><a class="link" href="#task_add_a_region_to_the_page">Task: Add a region to the page</a></h3>
+<div class="paragraph">
+<p>Add a single region called <code>main</code> to the <code>hello</code> page component, using the code samples that came with the starter.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Update the descriptor</strong> - Replace the content of the descriptor with the following:</p>
+<p><strong>Update the descriptor</strong> - Replace the content of the page component descriptor with the following, which declares the region:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/cms/pages/hello/hello.yaml</div>
+<div class="title">src/main/resources/site/pages/hello/hello.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Page"
-title: "Hello page"
-description: "A page that greets you with the name of the content"
-form: []
-regions:
-  - "main"</code></pre>
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;page xmlns="urn:enonic:xp:model:1.0"&gt;
+  &lt;display-name&gt;Hello Regions!&lt;/display-name&gt;
+  &lt;description&gt;Drag'n drop enabled&lt;/description&gt;
+  &lt;form/&gt;
+  &lt;regions&gt;
+    &lt;region name="main"/&gt;
+  &lt;/regions&gt;
+&lt;/page&gt;</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The page now declares a region called <code>main</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Update the implementation</strong> - Replace the content of the implementation with the following:</p>
+<p><strong>Update the controller</strong> - Replace the content of the controller with this version, which passes the region to the view:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/cms/pages/hello/hello.ts</div>
+<div class="title">src/main/resources/site/pages/hello/hello.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '@enonic-types/core';
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Response } from '/index.d';
 
-import { render } from '/lib/thymeleaf';
-import { getContent } from '/lib/xp/portal';
+// @ts-expect-error no-types
+import {render} from '/lib/thymeleaf';
+import {getContent} from '/lib/xp/portal';
 
+// Specify the view file to use
 const VIEW = resolve('./hello.html');
 
-export function GET(): Response {
-  const content = getContent()!;
+// Handle the GET request
+export function get(): Response {
 
-  const model = {
-    displayName: content.displayName,
-    mainRegion: content.page!.regions.main,
-  };
+    // Get the content that is using the page
+    const content = getContent();
 
-  return {
-    body: render(VIEW, model),
-  };
+    // Prepare the model that will be passed to the view
+    const model = {
+      displayName: content.displayName,
+      mainRegion: content.page.regions.main
+    }
+
+    // Prepare the response object
+    const response: Response = {
+		  body: render(VIEW, model)
+	  };
+
+    return response;
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The model now includes the <code>main</code> region of the page.</p>
-</div>
 </li>
 <li>
-<p><strong>Update the view</strong> - Replace the content of the view with the following:</p>
+<p><strong>Update the view</strong> - Replace the content of the view with this version, which renders the region:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/cms/pages/hello/hello.html</div>
+<div class="title">src/main/resources/site/pages/hello/hello.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -531,26 +541,33 @@ export function GET(): Response {
   &lt;/head&gt;
   &lt;body&gt;
     &lt;header&gt;
-      &lt;h1 data-th-text="${displayName}"&gt;Sample header&lt;/h1&gt;
+      &lt;h1 data-th-text="${displayName} + ' - with regions'"&gt;Sample header&lt;/h1&gt;
     &lt;/header&gt;
     &lt;main data-portal-region="main"&gt;
-      &lt;div data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
-        &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-      &lt;/div&gt;
+        &lt;div data-th-if="${mainRegion}" data-th-each="component : ${mainRegion.components}" data-th-remove="tag"&gt;
+            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+        &lt;/div&gt;
     &lt;/main&gt;
+    &lt;footer&gt;My first site - powered by Enonic&lt;/footer&gt;  
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>data-portal-region</code> attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with <code>data-portal-component</code>.</p>
+<p>Your sandbox picks up the changes automatically, since <code>enonic dev</code> is running.</p>
 </div>
 </li>
 <li>
-<p><strong>Verify the result</strong> - In Content Studio, open the <code>Hello World</code> site and select the <code>Page</code> tab above the form. The tab lists the components of the page as a tree, with the <code>main</code> region below the page component. The preview shows the empty region as a drop zone:</p>
+<p><strong>Open a country</strong> - In Content Studio, select one of the country content items and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Select the page component</strong> - Activate the page editor with the monitor icon in the top right corner, and select the <code>Hello Regions!</code> page component.</p>
+</li>
+<li>
+<p><strong>Verify the region</strong> - The page now contains an empty region, marked <code>Drop here</code>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-regions.png" alt="The Page tab with the component tree, and the preview showing an empty region with the text Drop components here" width="1440">
+<img src="media/hello-regions.gif" alt="Setting up a page with a region" width="960">
 </div>
 </div>
 </li>
@@ -560,10 +577,39 @@ export function GET(): Response {
 </div>
 </div>
 <div class="sect1">
+<h2 id="text_component"><a class="link" href="#text_component">Text component</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Text component is a standard component included in XP. It comes with a default rendering, which you can customize if needed.</p>
+</div>
+<div class="sect2">
+<h3 id="task_add_text_to_the_region"><a class="link" href="#task_add_text_to_the_region">Task: Add text to the region</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Insert a text component</strong> - Drag <code>Text</code> from the <code>Components</code> widget on the right-hand side into the region.
+You can also right-click the region and select <code>Insert</code> &#8594; <code>Text</code>.</p>
+</li>
+<li>
+<p><strong>Write some text</strong> - Type a text, for example "Hello Regions!", and save the content.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The text is rendered inside the region, below the page heading.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more details, visit the reference documentation for the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/text">Text component</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve declared a region in the page component and rendered it in the view. The page is now ready to be filled with components.</p>
+<p>You&#8217;ve declared a region in the page component, and filled it with a text component from Content Studio.
+Regions aren&#8217;t limited to pages. They are also used in layouts, a component type you&#8217;ll meet in the <a href="layouts.ahtml">layouts chapter</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -572,20 +618,20 @@ export function GET(): Response {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details, visit the <a href="https://developer.enonic.com/docs/cms/stable/pages/page">page documentation</a>.
+To learn more about regions, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/regions">regions documentation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="parts.ahtml">create parts to place in the region</a>.</p>
+<p>Next, you&#8217;ll <a href="parts.ahtml">add parts to the region</a>. Parts are components you write the rendering for yourself.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 09:23:56 UTC
+Last updated 2026-11-24 22:24:50 UTC
 </div>
 </div>
 </body>
