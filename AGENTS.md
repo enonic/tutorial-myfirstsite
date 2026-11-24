@@ -45,12 +45,11 @@ Two versions are published, as listed in `docs/versions.json` on `master`:
 
 | Branch | Label | Shown as | Content |
 |--------|-------|----------|---------|
-| `7.x` | `stable` (latest) | 7.x | The XP 7 tutorial, where the reader scaffolds the repository itself. Only fixes go here. |
-| `master` | `next` | next | The XP 8 tutorial described in this file. Not indexed by search engines. |
+| `master` | `stable` (latest) | 8.x | The XP 8 tutorial described in this file. |
+| `7.x` | `7.x` | 7.x | The XP 7 tutorial, where the reader scaffolds the repository itself. Only fixes go here. |
 
 A push to either branch that touches `docs/` republishes the tutorial immediately. `docs/versions.json` is read from
-`master` only. When the XP 8 version ships, point `stable` at `master` and give `7.x` its own label. Nothing from `master`
-is backported to `7.x`; the two branches share no code.
+`master` only. Nothing from `master` is backported to `7.x`; the two branches share no code.
 
 ## How the tutorial is put together
 
