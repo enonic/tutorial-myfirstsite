@@ -20,7 +20,10 @@ documentation, which chapters link to instead of repeating.
 
 - The **Enonic Site Framework** is the built-in way to build content-driven sites: the site service resolves the page for
   a content item and renders its components with server-side JavaScript implementations and HTML templates, with mappings,
-  processors, and page contributions around that. It is presented alongside Next.js and React4XP.
+  processors, and page contributions around that.
+- Enonic is headless first, so the Site Framework and React4XP may be presented next to Next.js, but always as
+  alternatives to using a third-party front-end framework, never as the default. Do not write "headless first" in the
+  tutorial itself; say that Enonic works with any front-end framework.
 - Two perspectives, two terms. The **site service** is the runtime: what XP does with a request to `/site`. The **Site
   Framework** is the developer's view: what you build a site with. Use "site service" when XP is the subject of the
   sentence and "Site Framework" when the developer is.
