@@ -1,0 +1,16 @@
+.two-columns {
+  display: grid;
+  gap: 2rem;
+}
+
+.two-columns--33-66 {
+  grid-template-columns: 1fr 2fr;
+}
+
+.two-columns--50-50 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.two-columns--66-33 {
+  grid-template-columns: 2fr 1fr;
+}

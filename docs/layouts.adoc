@@ -3,74 +3,81 @@ include::.variables.adoc[]
 :toc: right
 :imagesdir: media
 :sourcedir: ../src/main/resources
+:experimental:
 
-In this chapter, you'll use a layout to arrange components in two columns, and see how a component can contribute CSS to the page it is placed on.
+In this chapter, you'll create a layout that arranges components in two columns, and see how a component can contribute CSS to the page it is placed on.
 
-== Two-column layout
+== Layouts
 
-Layouts are components that contain regions, which makes them containers for other components. Your app includes a layout with two regions that work as columns, and a configuration option that lets editors control the width of each column.
+A _layout_ is a component with regions of its own, which makes it a container for other components. Like pages and parts, a layout consists of a descriptor, an implementation, and a view. Layouts are placed in the `src/main/resources/cms/layouts/` folder.
 
-Like pages and parts, a layout consists of a descriptor, a controller, and a view. Layouts are placed in the `src/main/resources/site/layouts/` folder:
+=== Task: Create the two-column layout
 
-.src/main/resources/site/layouts/two-columns/two-columns.xml
-[source,xml]
+. *Create the descriptor* - Create the file below with the following content:
++
+.src/main/resources/cms/layouts/two-columns/two-columns.yaml
+[source,yaml]
 ----
-include::{sourcedir}/site/layouts/two-columns/two-columns.xml[]
+include::{sourcedir}/cms/layouts/two-columns/two-columns.yaml[]
+----
++
+The descriptor combines what you've seen in pages and parts: it declares regions, and it has a form. The form lets editors choose the width of the columns.
+
+. *Create the stylesheet* - Create the file below with the following content:
++
+.src/main/resources/assets/styles/two-columns.css
+[source,css]
+----
+include::{sourcedir}/assets/styles/two-columns.css[]
 ----
 
-The descriptor combines what you've seen in pages and parts: it declares regions, and it has a form.
-
-.src/main/resources/site/layouts/two-columns/two-columns.ts
+. *Create the implementation* - Create the file below with the following content:
++
+.src/main/resources/cms/layouts/two-columns/two-columns.ts
 [source,typescript]
 ----
-include::{sourcedir}/site/layouts/two-columns/two-columns.ts[]
+include::{sourcedir}/cms/layouts/two-columns/two-columns.ts[]
 ----
 
-.src/main/resources/site/layouts/two-columns/two-columns.html
+. *Create the view* - Create the file below with the following content:
++
+.src/main/resources/cms/layouts/two-columns/two-columns.html
 [source,html]
 ----
-include::{sourcedir}/site/layouts/two-columns/two-columns.html[]
+include::{sourcedir}/cms/layouts/two-columns/two-columns.html[]
 ----
++
+The view renders the two regions in the same way the page component renders its `main` region.
 
 == Page contributions
 
-The layout comes with CSS that is only loaded on pages where the layout is used. The stylesheet is placed in the assets folder:
+The stylesheet of the layout is only needed on pages where the layout is used. The page component knows nothing about the layout, so the layout adds the stylesheet itself, with a {code-docs}/web/sites/contributions[page contribution].
 
-.src/main/resources/assets/styles/two-columns.scss
-[source,scss]
-----
-include::{sourcedir}/assets/styles/two-columns.scss[]
-----
+A page contribution lets a component inject markup at specific places in the page: at the beginning or end of `<head>`, or at the beginning or end of `<body>`. The implementation above returns a `pageContributions` property in its response, with a `<link>` element for the end of `<head>`.
 
-NOTE: The build system compiles the `scss` file to `css`.
+== Layout in the page template
 
-To add the CSS to the page, the controller uses {xp-docs}/{xp-docs-version}/framework/contributions[page contributions]. A page contribution lets a component inject HTML at specific places in the resulting markup: at the beginning or end of `<head>`, or at the beginning or end of `<body>`.
+=== Task: Add the layout to the page template
 
-The controller above returns the page contribution together with the rest of its response.
+. *Open the page template* - In Content Studio, expand the `Templates` folder below the site, select the `Country` template, and click btn:[Edit].
 
-== Task: Add the layout to a page
+. *Insert the layout* - Select the `Page` tab. Right-click the `main` region in the component tree, and select menu:Insert[Layout]. In the `Layout` field in the context panel, select `Two columns`.
 
-. *Open the site* - In Content Studio, select the `Hello World` site and click btn:[Edit].
+. *Move the parts into the columns* - The layout appears in the component tree, with the regions `left` and `right` below it. Drag the `Country` part onto `left`, and the `City list` part onto `right`.
 
-. *Insert the layout* - Insert a layout in the `main` region, and select `Two columns` in the list:
+. *Save the template* - Click btn:[Save].
+
+. *Change the column sizes* - Select `Two columns` in the component tree. In the context panel, select `33/66` in the `Column sizes` field, and click btn:[Apply]:
 +
-image::two-column-layout.png["Two-column layout with the 50/50 setting and empty left and right regions", width=1226]
+image::two-columns.png["The page template with the layout selected, the two parts in its left and right regions, and the Column sizes setting", width=1440]
 
-. *Add text to the columns* - Add a text component to each of the two regions, and write some text:
-+
-image::two-column-layout-with-texts.png["Two-column layout with the 50/50 setting and a text in each region", width=1226]
-
-. *Change the column sizes* - With the layout selected, switch between `33/66`, `50/50`, and `66/33` in the `Column sizes` dropdown in the panel on the right-hand side.
-
-. *Verify the result* - The width of the columns follows the setting you select:
-+
-image::two-column-layout-33-66-with-texts.png["Two-column layout with the 33/66 setting and a text in each region", width=1226]
+. *Verify the result* - Go back to the content list and select a country. The description is shown in a narrow column on the left, and the cities in a wide column on the right.
 
 == Summary
 
-You've added a layout with two regions to a page, filled its columns, and changed its configuration.
-By combining content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.
+You've created a layout with two regions and a configuration, added a stylesheet to the page with a page contribution, and rearranged the page template.
+With content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.
 
-TIP: For more details, visit the {xp-docs}/{xp-docs-version}/cms/pages/layouts[layouts documentation].
+TIP: For more details, visit the {cms-docs}/pages/parts[layouts documentation].
 
 Next, you'll <<go-online#,publish the site>>.

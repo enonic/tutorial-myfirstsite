@@ -1,76 +1,52 @@
-import { create as createProject, get as getProject } from '/lib/xp/project';
-import { run } from '/lib/xp/context';
 import { isMaster } from '/lib/xp/cluster';
+import { publish } from '/lib/xp/content';
+import { run } from '/lib/xp/context';
 import { importNodes } from '/lib/xp/export';
-import {DEBUG_MODE} from '/constants'; // Using relative, so it will be inlined (and tree-shaken).
+import { create as createProject, get as getProject } from '/lib/xp/project';
 
-const projectData = {
-    id: 'myfirstsite',
-    displayName: 'My First Site',
-    description: 'Intro to building websites with the Enonic framework',
-    readAccess: {
-        public: true
-    }
+const PROJECT_ID = 'siteframework';
+
+function runAsAdmin<T>(callback: () => T): T {
+  return run({
+    principals: ['role:system.admin'],
+    repository: `com.enonic.cms.${PROJECT_ID}`,
+    branch: 'draft',
+  }, callback);
 }
 
-function runInContext(callback) {
-    let result;
-    try {
-        result = run({
-            principals: ["role:system.admin"],
-            repository: 'com.enonic.cms.' + projectData.id,
-        }, callback);
-    } catch (e) {
-        if (DEBUG_MODE) log.info('Error: ' + e.message);
-    }
+function importContent(): void {
+  const result = importNodes({
+    source: resolve('/import'),
+    targetNodePath: '/content',
+    xslt: resolve('/import/replace_app.xsl'),
+    xsltParams: { applicationId: app.name },
+    includeNodeIds: true,
+  });
 
-    return result;
+  result.importErrors.forEach((error) => log.warning(`Import error: ${error.message}`));
+  log.info(`Imported ${result.addedNodes.length} content items into project "${PROJECT_ID}"`);
+
+  publish({ keys: ['/hello-world'] });
+  log.info('Published the "Hello World" site');
 }
 
-function doCreateProject() {
-    return createProject(projectData);
-}
+function initialize(): void {
+  if (runAsAdmin(() => getProject({ id: PROJECT_ID }))) {
+    log.info(`Project "${PROJECT_ID}" already exists, skipping the content import`);
+    return;
+  }
 
-function doGetProject() {
-    return getProject({ id: projectData.id });
-}
+  runAsAdmin(() => createProject({
+    id: PROJECT_ID,
+    displayName: 'Site Framework',
+    description: 'Content for the Enonic Site Framework tutorial',
+    publicRead: true,
+  }));
+  log.info(`Project "${PROJECT_ID}" created`);
 
-function initializeProject() {
-    let project = runInContext(doGetProject);
-
-    if (!project) {
-        if (DEBUG_MODE) log.info('Project "' + projectData.id + '" not found. Creating...');
-        project = runInContext(doCreateProject);
-
-        if (project) {
-            if (DEBUG_MODE) log.info('Project "' + projectData.id + '" successfully created');
-            if (DEBUG_MODE) log.info('Importing "' + projectData.id + '" data');
-
-            runInContext(createContent);
-        } else {
-            if (DEBUG_MODE) log.error('Project "' + projectData.id + '" failed to import');
-        }
-    }
-}
-
-function createContent() {
-    const nodes = importNodes({
-        source: resolve('/import'),
-		targetNodePath: '/content',
-		xslt: resolve('/import/replace_app.xsl'),
-		xsltParams: { applicationId: app.name },
-        includeNodeIds: true,
-        nodeImported: () => {},
-        nodeResolved: () => {}
-    });
-
-    if (nodes.importErrors.length > 0) {
-        if (DEBUG_MODE) log.warning('Errors:');
-		nodes.importErrors.forEach(element => DEBUG_MODE && log.warning(element.message));
-    }
+  runAsAdmin(importContent);
 }
 
 if (isMaster()) {
-    initializeProject();
+  initialize();
 }
-

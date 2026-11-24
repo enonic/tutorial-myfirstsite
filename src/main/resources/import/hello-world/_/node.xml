@@ -2,22 +2,9 @@
     <id>9038a78a-210d-4199-b17a-31554f1e8c13</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2019-04-16T15:27:32.482Z</timestamp>
-    <inheritPermissions>true</inheritPermissions>
+    <timestamp>2026-11-23T23:53:25.949Z</timestamp>
     <permissions>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -41,19 +28,7 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.editor">
+        <principal key="role:cms.project.siteframework.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -65,18 +40,42 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.author">
+        <principal key="role:cms.project.siteframework.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
                 <value>MODIFY</value>
                 <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.author">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -87,20 +86,36 @@
         <string name="type">portal:site</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2019-04-16T15:27:32.462Z</dateTime>
+        <dateTime name="modifiedTime">2026-11-23T23:32:01.728Z</dateTime>
         <string name="modifier">user:system:su</string>
         <string name="creator">user:system:su</string>
         <dateTime name="createdTime">2019-04-12T13:12:32.748Z</dateTime>
         <property-set name="publish">
-            <dateTime isNull="true" name="first"/>
-            <dateTime isNull="true" name="from"/>
-            <dateTime isNull="true" name="to"/>
+            <dateTime name="time">2026-11-23T23:53:25.949Z</dateTime>
+            <dateTime name="from">2026-11-23T23:53:25.941Z</dateTime>
+            <dateTime name="first">2026-11-23T23:53:25.941Z</dateTime>
+        </property-set>
+        <property-set name="workflow">
+            <string name="state">READY</string>
         </property-set>
         <property-set name="data">
             <string isNull="true" name="description"/>
             <property-set name="siteConfig">
-                <string name="applicationKey">company.starter.myfirstsite</string>
+                <string name="applicationKey">com.example.tutorial.siteframework</string>
                 <property-set name="config"/>
+            </property-set>
+        </property-set>
+        <property-set name="components">
+            <string name="type">page</string>
+            <string name="path">/</string>
+            <property-set name="page">
+                <string name="descriptor">com.example.tutorial.siteframework:hello</string>
+                <boolean name="customized">false</boolean>
+                <property-set name="config">
+                    <property-set name="com-example-tutorial-siteframework">
+                        <property-set name="hello"/>
+                    </property-set>
+                </property-set>
             </property-set>
         </property-set>
     </data>
@@ -122,7 +137,90 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>data.siteConfig.applicationkey</path>
+                <path>data.siteconfig.applicationkey</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>true</nGram>
+                    <fulltext>true</fulltext>
+                    <includeInAllText>true</includeInAllText>
+                    <indexValueProcessors>
+                        <indexValueProcessor>htmlStripper</indexValueProcessor>
+                    </indexValueProcessors>
+                </indexConfig>
+                <path>components.text.value</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.part.descriptor</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.page.template</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.page.descriptor</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.page.customized</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.layout.descriptor</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.image.id</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components.fragment.id</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -133,16 +231,6 @@
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
                 <path>x.*</path>
-            </pathIndexConfig>
-            <pathIndexConfig>
-                <indexConfig>
-                    <decideByType>false</decideByType>
-                    <enabled>true</enabled>
-                    <nGram>true</nGram>
-                    <fulltext>true</fulltext>
-                    <includeInAllText>false</includeInAllText>
-                </indexConfig>
-                <path>attachment.text</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -192,7 +280,7 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>modifiedTime</path>
+                <path>modifiedtime</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -203,6 +291,19 @@
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
                 <path>language</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>true</nGram>
+                    <fulltext>true</fulltext>
+                    <includeInAllText>true</includeInAllText>
+                    <languages>
+                        <language>en</language>
+                    </languages>
+                </indexConfig>
+                <path>displayname</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -232,7 +333,17 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>createdTime</path>
+                <path>createdtime</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>false</enabled>
+                    <nGram>false</nGram>
+                    <fulltext>false</fulltext>
+                    <includeInAllText>false</includeInAllText>
+                </indexConfig>
+                <path>components</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -246,6 +357,9 @@
             </pathIndexConfig>
         </pathIndexConfigs>
         <allTextIndexConfig>
+            <enabled>true</enabled>
+            <nGram>true</nGram>
+            <fulltext>true</fulltext>
             <languages>
                 <language>en</language>
             </languages>

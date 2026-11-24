@@ -1,0 +1,11 @@
+<section class="cities">
+  <h2>Cities</h2>
+  <p data-th-if="${#lists.isEmpty(cities)}">No cities found</p>
+  <article data-th-each="city : ${cities}">
+    <h3 data-th-text="${city.name}">Utopia</h3>
+    <figure>
+      <img data-th-if="${city.photo}" data-th-src="${city.photo}" data-th-alt="${city.name}"/>
+      <figcaption data-th-text="${city.caption}">Best city ever</figcaption>
+    </figure>
+  </article>
+</section>

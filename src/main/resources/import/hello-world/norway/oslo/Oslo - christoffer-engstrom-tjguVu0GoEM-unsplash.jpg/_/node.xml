@@ -2,22 +2,9 @@
     <id>389355f7-3c64-465d-9108-16ab82d2d83a</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2023-05-12T13:18:36.432Z</timestamp>
-    <inheritPermissions>true</inheritPermissions>
+    <timestamp>2026-11-23T23:53:26.305Z</timestamp>
     <permissions>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -41,19 +28,7 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.myfirstsite.viewer">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.contributor">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.editor">
+        <principal key="role:cms.project.siteframework.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -65,18 +40,42 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.everyone">
-            <allow type="array">
-                <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.myfirstsite.author">
+        <principal key="role:cms.project.siteframework.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
                 <value>MODIFY</value>
                 <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.author">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.siteframework.viewer">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:system.everyone">
+            <allow type="array">
+                <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -129,6 +128,11 @@
             <string name="sha512">6f39f8c61c33e53bb1d6d758af6e799957b09de8759240e2b1a448e60a8e96aacb319fd97d0ae484421d039ebf408d028a90b63716dfa98043e0059675482f35</string>
             <string isNull="true" name="text"/>
         </property-set>
+        <property-set name="publish">
+            <dateTime name="time">2026-11-23T23:53:26.305Z</dateTime>
+            <dateTime name="from">2026-11-23T23:53:25.941Z</dateTime>
+            <dateTime name="first">2026-11-23T23:53:25.941Z</dateTime>
+        </property-set>
     </data>
     <indexConfigs>
         <analyzer>document_index_default</analyzer>
@@ -148,7 +152,7 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>data.siteConfig.applicationkey</path>
+                <path>data.siteconfig.applicationkey</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -218,7 +222,7 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>modifiedTime</path>
+                <path>modifiedtime</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -258,7 +262,7 @@
                     <fulltext>false</fulltext>
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
-                <path>createdTime</path>
+                <path>createdtime</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
@@ -272,6 +276,9 @@
             </pathIndexConfig>
         </pathIndexConfigs>
         <allTextIndexConfig>
+            <enabled>true</enabled>
+            <nGram>true</nGram>
+            <fulltext>true</fulltext>
             <languages>
                 <language>en</language>
             </languages>

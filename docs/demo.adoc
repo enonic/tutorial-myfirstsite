@@ -1,0 +1,56 @@
+= Demo
+include::.variables.adoc[]
+:toc: right
+:imagesdir: media
+:experimental:
+
+This page shows how to run the finished site without following the tutorial. The https://github.com/enonic/{tutorial-repo}[tutorial repository] holds the result of all nine chapters: the code, and the content as it looks at the end.
+
+== What the demo contains
+
+The demo app is the app you build in the tutorial, with one addition. The first time it starts, it creates the `{cms-project-displayname}` content project, imports the complete content, including the page setup and the page template, and publishes the site. The import code is in `src/main/resources/main.ts`, and the content in `src/main/resources/import/`.
+
+NOTE: The demo uses its own sandbox, so it does not interfere with the one you use for the tutorial. Both sandboxes use port 8080, so only one of them can run at a time.
+
+== Task: Run the demo
+
+. *Create a sandbox* - If the tutorial sandbox is running, stop it first. Then run:
++
+[source,shell,{subs}]
+----
+enonic sandbox create {demo-sandbox-name} -t essentials -v {xp-version} -f
+----
+
+. *Create the app* - In a new terminal, from the folder where you keep your projects, run:
++
+[source,shell,{subs}]
+----
+enonic project create {demo-app-name-full} -r {tutorial-repo} -s {demo-sandbox-name} -d {demo-app-dir} -f
+----
+
+. *Build and deploy the app* - Run:
++
+[source,shell,{subs}]
+----
+cd {demo-app-dir}
+enonic dev
+----
+
+. *Verify the import* - When the app has started, the sandbox log contains these lines:
++
+[source,text,{subs}]
+----
+Project "{cms-project-id}" created
+Imported 20 content items into project "{cms-project-id}"
+Published the "Hello World" site
+----
+
+. *Open the site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway] in your browser:
++
+image::result.png["The published page for Norway, with the description in the left column and the cities in the right column", width=1280]
+
+To see how the pages are put together, open {xp-url}[{xp-url}], click btn:[Log In as Guest], and open Content Studio.
+
+== Compare with your own app
+
+If you have followed the tutorial, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: `main.ts` and the `import/` folder, which exist to set up the content, and the extra libraries they need in `build.gradle`.

@@ -1,72 +1,112 @@
-= Content Studio and content types
+= Content
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
-:sourcedir: ../
+:sourcedir: ../src/main/resources
 
-In this chapter, you'll open Content Studio, explore the sample content your app imported, and create content of your own from the app's content types.
-
-== Content Studio
-
-Content Studio is the editorial interface of Enonic XP. The first time your app starts, it creates a content project called `{cms-project-displayname}` and imports sample content into it.
-
-=== Task: Explore the sample content
-
-. *Open Content Studio* - Open the XP menu on the right-hand side, and select `Content Studio`.
-You should see some of the imported content:
-+
-image::imported-content.png["Tree structure showing countries and cities in Content Studio", width=1024]
-
-. *Expand the content tree* - The root item of the tree is `Hello World`. Its icon shows that it is a site.
-Expand it to reveal `Columbia`, `Norway`, `USA`, and `Templates` as child items.
-
-TIP: Ignore the `Templates` folder for now. You'll get back to it in the <<page-templates#,page templates chapter>>.
-
-== Sites and apps
-
-A site is a content item with one or more apps assigned to it. Assigning an app gives the site, and Content Studio, access to what the app contains, such as content types and components.
-
-=== Task: Find the app on the site
-
-. *Open the site* - Select the `Hello World` content and click btn:[Edit].
-
-. *Verify the assigned app* - In the form on the left-hand side, your app `{app-displayname}` is listed under `Applications`:
-+
-image::hello-world-content.png["The Hello World site content, with the My First Site app assigned to it", width=920]
+In this chapter, you'll create two content types, add sample content that uses them, and connect your app to a site in Content Studio.
 
 == Content types
 
-Every content item has a content type.
+Every content item in Enonic has a _content type_. The content type defines the fields editors fill in, and therefore the data you have available when you render the content.
 
-XP ships with a set of standard content types: `Shortcut`, `Folder`, `Site`, and a selection of media types that handle different kinds of files.
+The site in this tutorial presents countries and their cities, so you need a content type for each. Content types are YAML files in the `src/main/resources/cms/content-types/` folder, each in a folder with the same name as the file.
 
-Apps can define their own content types. Your app contains two, `Country` and `City`, defined under `src/main/resources/site/content-types/`.
-A content type is defined in a descriptor file. This is the descriptor of `City`:
+=== Task: Create the content types
 
-.src/main/resources/site/content-types/city/city.xml
-[source,xml]
+. *Create the country content type* - Create the file below with the following content:
++
+.src/main/resources/cms/content-types/country/country.yaml
+[source,yaml]
 ----
-include::{sourcedir}src/main/resources/site/content-types/city/city.xml[]
+include::{sourcedir}/cms/content-types/country/country.yaml[]
 ----
++
+A country has a description and a link to Wikipedia. The name of the country is the display name that every content item has, so it needs no field of its own.
 
-Content Studio turns the descriptor into an editing form:
+. *Create the city content type* - Create the file below with the following content:
++
+.src/main/resources/cms/content-types/city/city.yaml
+[source,yaml]
+----
+include::{sourcedir}/cms/content-types/city/city.yaml[]
+----
++
+A city has a photo, a slogan, and a population. The `occurrences` setting makes the population mandatory.
 
-image::city-form.png["Form for the city content type", width=920]
+. *Verify the build* - The terminal running `enonic dev` prints `BUILD SUCCESSFUL` again. Your app now contains the two content types.
 
-=== Task: Create your own content
+TIP: To learn more about forms and input types, visit the {cms-docs}/content/content-types[content types documentation].
 
-. *Create a country* - Select the `Hello World` site, click btn:[New], and select the `Country` content type.
-Fill in the form with a country of your choosing, and save it.
+== Sample content
 
-. *Add a city* - Select your new country, click btn:[New], and select the `City` content type.
-Fill in the form, and save it. Add more cities if you like.
+Instead of typing in a set of countries and cities yourself, you'll install a small app that does it for you. The `{fixture-app-title}` app creates a content project called `{cms-project-displayname}`, with a site, three countries, and their cities.
 
-. *Verify the result* - Your country is listed in the content tree below `Hello World`, with its cities as child items.
+=== Task: Install the sample content
+
+. *Download the app* - Download {fixture-url}[{fixture-file}] to your computer.
+
+. *Open Applications* - On the XP admin home page, click btn:[Applications].
+
+. *Upload the app* - Click btn:[Install]. In the dialog, click the upload button to the right of the search field, and select the file you downloaded:
++
+image::install-fixture.png["The Install Application dialog with a search field and an upload button", width=1440]
+
+. *Verify the result* - The dialog closes, and `{fixture-app-title}` is listed among the installed applications, together with your own app, `{app-title}`.
+
+== Content Studio
+
+Content Studio is the editorial interface of Enonic. This is where editors create and publish content, and where you'll put together the pages of your site.
+
+=== Task: Explore the content
+
+. *Open Content Studio* - Go back to the XP admin home page and click btn:[Content Studio]. It opens in the `{cms-project-displayname}` project.
+
+. *Expand the site* - Click the arrow to the left of the `Hello World` site to list the countries, and select one of them:
++
+image::content-studio.png["Content Studio with the Hello World site expanded, showing Colombia, Norway, USA and Templates", width=1440]
++
+The preview panel on the right says `No preview available`. The content exists, but nothing renders it yet.
+
+. *Look at a country* - Select `Norway` and click btn:[Edit]. The form has the fields you defined in the `country` content type. Close the browser tab when you are done.
+
+== Sites and apps
+
+A _site_ is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it.
+
+The sample content already uses your content types. To create new content with them, and later to render pages, your app must be added to the site.
+
+=== Task: Add your app to the site
+
+. *Open the site* - Select `Hello World` and click btn:[Edit].
+
+. *Add the app* - In the `Applications` field, search for `{app-title}`, select it, and click btn:[Apply]:
++
+image::site-app.png["The Hello World site with the Site Framework tutorial app added in the Applications field", width=1440]
++
+Content Studio saves the change automatically.
+
+. *Close the tab* - Go back to the browser tab with the content list.
+
+=== Task: Create a country and a city
+
+. *Create a country* - Select `Hello World` and click btn:[New]. Select `Country` in the dialog:
++
+image::new-content.png["The dialog for creating content, listing the available content types", width=1440]
+
+. *Fill in the form* - Use `Sweden` as the display name, add a description and a Wikipedia URL, and click btn:[Save]:
++
+image::new-country.png["The form for a new country, with display name, description and Wikipedia URL filled in", width=1440]
+
+. *Create a city* - Go back to the content list, select `Sweden`, and click btn:[New]. Select `City`, and use `Stockholm` as the display name. Fill in a slogan and a population, and click btn:[Save]:
++
+image::new-city.png["The form for a new city, with display name, slogan and population filled in", width=1440]
+
+. *Verify the result* - In the content list, `Sweden` is listed below `Hello World`, with `Stockholm` below it.
 
 == Summary
 
-You've explored the sample content, seen how an app is assigned to a site, and created content from the two content types in your app.
-
-TIP: For more details, visit the reference documentation for {xp-docs}/{xp-docs-version}/cms/content-types[content types] and {xp-docs}/{xp-docs-version}/cms/schemas[the schema system].
+You've created two content types, installed sample content, added your app to the site, and created content of your own.
+Content types, sites, and the content itself are part of the CMS, and work the same way whichever front-end you use.
 
 Next, you'll <<pages#,render the content with a page component>>.

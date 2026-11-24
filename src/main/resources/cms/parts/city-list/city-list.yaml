@@ -1,0 +1,14 @@
+kind: "Part"
+title: "City list"
+description: "Show all cities in a country"
+form:
+  - type: "ComboBox"
+    name: "crop"
+    label: "Image crop"
+    options:
+      - value: "ORIGINAL"
+        label: "Original"
+      - value: "WIDESCREEN"
+        label: "Widescreen"
+      - value: "SQUARE"
+        label: "Square"

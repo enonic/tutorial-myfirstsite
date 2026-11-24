@@ -3,38 +3,40 @@ include::.variables.adoc[]
 :toc: right
 :imagesdir: media
 
-This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. You'll render content with pages, parts, and layouts, and compose and publish the result in Content Studio.
+This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. Starting from an empty app, you'll create content types, render content with pages, parts, and layouts, and compose and publish the result in Content Studio.
 
 == Intro
 
-With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side JavaScript controllers and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.
+With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side TypeScript and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.
 
 When you are done, a country page on your site will look something like this:
 
-image::static-assets.png["A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image", width=560]
+image::result.png["A published country page with a description and Wikipedia link in the left column and a list of cities in the right column", width=1280]
 
 You will complete the following steps:
 
 * <<setup#,Set up>> the CLI, a local sandbox, and your own app
-* Explore the sample content and its content types in <<content#,Content Studio>>
+* Create content types and add sample <<content#,content>>
 * Render content with a <<pages#,page component>>
 * Open the page to editors with <<regions#,regions>>
 * Add <<parts#,parts>> that render and list content
 * Reuse a page across content items with <<page-templates#,page templates>>
-* Serve CSS and images as <<static-assets#,static assets>>
+* Serve CSS as <<static-assets#,static assets>>
 * Arrange components in columns with <<layouts#,layouts>>
 * <<go-online#,Publish>> the site
 
-The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The controllers and views are specific to the Site Framework.
+The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.
 
 TIP: Enonic also supports {frameworks-docs}[other front-end frameworks]. Next.js renders outside XP and fetches content through the API. React4XP runs inside XP like the Site Framework, but replaces its page rendering with one based on React.
 
 NOTE: Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic.
 
+If you only want to see the result, the <<demo#,demo page>> shows how to run the finished site without following the chapters.
+
 [#prerequisites]
 == Prerequisites
 
-No prior Enonic experience is required. Basic familiarity with HTML and JavaScript or TypeScript is helpful.
+No prior Enonic experience is required. Basic familiarity with HTML and TypeScript or JavaScript is helpful.
 
 To follow this tutorial you will need:
 

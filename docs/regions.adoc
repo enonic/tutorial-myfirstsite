@@ -4,70 +4,54 @@ include::.variables.adoc[]
 :imagesdir: media
 :sourcedir: ../
 
-In this chapter, you'll add a region to the page component, so pages can be composed from several components in Content Studio.
+In this chapter, you'll add a region to the page component, so editors can compose the page from other components.
 
-== Component dropzones
+== Regions
 
-A region is a named area of a page where editors can add components. For Content Studio to offer this, the page component must declare one or more regions.
+A _region_ is a named area of a page where editors can place components. The page component declares its regions in the descriptor, and decides in its view where each region ends up in the markup.
+
+The components themselves are not rendered by the page. For each component in a region, the view leaves a placeholder, and the site service replaces it with the rendered component.
 
 === Task: Add a region to the page
 
-Add a single region called `main` to the `hello` page component, using the code samples that came with the starter.
-
-. *Update the descriptor* - Replace the content of the page component descriptor with the following, which declares the region:
+. *Update the descriptor* - Replace the content of the descriptor with the following:
 +
-.src/main/resources/site/pages/hello/hello.xml
-[source,xml]
+.src/main/resources/cms/pages/hello/hello.yaml
+[source,yaml]
 ----
-include::{sourcedir}code-samples/pages/hello-region/hello.xml[]
+include::{sourcedir}src/main/resources/cms/pages/hello/hello.yaml[]
 ----
-
-. *Update the controller* - Replace the content of the controller with this version, which passes the region to the view:
 +
-.src/main/resources/site/pages/hello/hello.ts
+The page now declares a region called `main`.
+
+. *Update the implementation* - Replace the content of the implementation with the following:
++
+.src/main/resources/cms/pages/hello/hello.ts
 [source,typescript]
 ----
-include::{sourcedir}code-samples/pages/hello-region/hello.ts[]
+include::{sourcedir}code-samples/hello-regions/hello.ts[]
 ----
-
-. *Update the view* - Replace the content of the view with this version, which renders the region:
 +
-.src/main/resources/site/pages/hello/hello.html
+The model now includes the `main` region of the page.
+
+. *Update the view* - Replace the content of the view with the following:
++
+.src/main/resources/cms/pages/hello/hello.html
 [source,html]
 ----
-include::{sourcedir}code-samples/pages/hello-region/hello.html[]
+include::{sourcedir}code-samples/hello-regions/hello.html[]
 ----
 +
-Your sandbox picks up the changes automatically, since `enonic dev` is running.
+The `data-portal-region` attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with `data-portal-component`.
 
-. *Open a country* - In Content Studio, select one of the country content items and click btn:[Edit].
-
-. *Select the page component* - Activate the page editor with the monitor icon in the top right corner, and select the `Hello Regions!` page component.
-
-. *Verify the region* - The page now contains an empty region, marked `Drop here`:
+. *Verify the result* - In Content Studio, open the `Hello World` site and select the `Page` tab above the form. The tab lists the components of the page as a tree, with the `main` region below the page component. The preview shows the empty region as a drop zone:
 +
-image::hello-regions.gif["Setting up a page with a region", width=960]
-
-== Text component
-
-The Text component is a standard component included in XP. It comes with a default rendering, which you can customize if needed.
-
-=== Task: Add text to the region
-
-. *Insert a text component* - Drag `Text` from the `Components` widget on the right-hand side into the region.
-You can also right-click the region and select `Insert` -> `Text`.
-
-. *Write some text* - Type a text, for example "Hello Regions!", and save the content.
-
-. *Verify the result* - The text is rendered inside the region, below the page heading.
-
-For more details, visit the reference documentation for the {xp-docs}/{xp-docs-version}/cms/pages/text[Text component].
+image::hello-regions.png["The Page tab with the component tree, and the preview showing an empty region with the text Drop components here", width=1440]
 
 == Summary
 
-You've declared a region in the page component, and filled it with a text component from Content Studio.
-Regions aren't limited to pages. They are also used in layouts, a component type you'll meet in the <<layouts#,layouts chapter>>.
+You've declared a region in the page component and rendered it in the view. The page is now ready to be filled with components.
 
-TIP: To learn more about regions, visit the {xp-docs}/{xp-docs-version}/cms/pages/regions[regions documentation].
+TIP: For more details, visit the {cms-docs}/pages/page[page documentation].
 
-Next, you'll <<parts#,add parts to the region>>. Parts are components you write the rendering for yourself.
+Next, you'll <<parts#,create parts to place in the region>>.

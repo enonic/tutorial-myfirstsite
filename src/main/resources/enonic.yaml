@@ -1,0 +1,5 @@
+kind: "Application"
+title: "Site Framework tutorial"
+description: "A site built with the Enonic Site Framework"
+vendorName: "Acme Inc"
+vendorUrl: "https://example.com"

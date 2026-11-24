@@ -2,83 +2,44 @@
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
+:experimental:
 
-In this chapter, you'll create page templates, so every country is rendered the same way without setting up each page by hand.
+In this chapter, you'll turn the page you made for Norway into a page template, so every country gets the same page.
 
-== Reusable pages
+== Page templates
 
-With the current approach, you'd have to set up a page for every country. Page templates are more efficient.
-A page template is a content item that holds a page and supports one or more content types, for example `Country`. All content items of those types are then rendered by the template.
+The page you composed belongs to Norway only. The other countries still have no page, and composing one for each of them would not scale.
 
-Page templates live in the `Templates` folder you saw in the <<content#,content chapter>>.
+A _page template_ is a content item that holds a page setup, and a list of the content types it supports. When a content item has no page of its own, the site service looks for a page template that supports its content type, and renders the item with that.
 
-=== Task: Save a page as a template
+=== Task: Create a page template
 
-Take advantage of the page you've already built for a country.
-
-. *Open the country* - Select the country with the page, and click btn:[Edit].
-
-. *Save the page as a template* - Select the page component, and click btn:[Save as Template] in its context menu.
-
-. *Name the template* - Give the template a suitable name, for example `Country template`.
-
-. *Select the supported content type* - Select `Country` in the `Supports` dropdown.
+. *Save the page as a template* - In the editor for `Norway`, select the `Page` tab. Right-click the page component, `Hello page`, at the top of the component tree, and select `Save as Template`:
 +
-This video shows the process:
+image::save-as-template.png["The context menu of the page component, with Inspect, Reset and Save as Template", width=1440]
+
+. *Rename the template* - The new page template opens in a separate browser tab. It supports the `Country` content type, and is named after the content it was created from. Change the display name to `Country`, and click btn:[Save]:
 +
-image::page-template.gif["Creating a page template from a page", width=960]
-
-. *Verify the result* - Select other countries in the content grid. Each of them is now rendered by the page template.
-
-=== Task: Create a template from scratch
-
-Like any other content, a page template can also be created from scratch.
-
-. *Create new content* - Select the `Templates` content item and click btn:[New]:
+image::page-template.png["The page template named Country, supporting the Country content type", width=1440]
 +
-image::page-template-1.png["The content grid with the Templates item selected, and the pointer on the New button", width=418]
+The preview shows `Missing description` and `No cities found`, because the template itself is not a country.
 
-. *Select the content type* - Select the `Page template` content type:
+=== Task: Use the template for all countries
+
+Norway still has its own page, which takes precedence over the template.
+
+. *Reset the page* - Go back to the editor for `Norway`. Right-click `Hello page` in the component tree, select `Reset`, and confirm. Norway now gets its page from the template, and looks the same as before.
+
+. *Verify the result* - Go back to the content list and select another country, for instance `Colombia`. The preview shows it with the same page:
 +
-image::page-template-2.png["Modal showing the page template content type", width=718]
+image::template-applied.png["The preview of Colombia, rendered with the page template", width=1440]
 
-. *Select the supported content type* - Select `Country` in the `Supports` dropdown:
-+
-image::page-template-3.png["The Supports dropdown listing content types, with Country highlighted", width=336]
-
-. *Select the page component* - In the panel on the right-hand side, select the `Hello Regions!` page component:
-+
-image::page-template-4.png["List of available page components, with Hello Regions! highlighted", width=499]
-
-. *Add a part* - Right-click the `Drop here` region, select `Insert` -> `Part`, and then select the `City list` part:
-+
-image::page-template-5.png["List of available parts to add to the region", width=612]
-
-. *Name and save the template* - Give the page template a name, such as `New Country Template`, and save it.
-
-. *Verify the result* - Select different countries in the content grid to check that they are rendered by the new template.
-
-== Automatic, fixed, or customized
-
-Each content item can use its page in one of three ways: `Automatic`, which is the default and lets XP select a supporting template, a specific template that you select, or a customized page that is no longer linked to a template.
-
-The country you set up by hand still uses its own custom page.
-
-=== Task: Switch a page to automatic
-
-. *Open the page* - Edit the country you built the page on, open the page editor, and select the page.
-
-. *Change the template setting* - In the component view on the right-hand side, change the `Template` setting from `Custom` to `Automatic`.
-
-. *Verify the result* - The country is now rendered by a page template, like the other countries.
-
-IMPORTANT: You now have two page templates that support the `Country` content type. In `Automatic` mode, the newest template is used, in this case `New Country Template`. To use the other template, select it explicitly.
+Page templates are stored in the `Templates` folder below the site. To change the page for all countries, edit the template.
 
 == Summary
 
-You've created two page templates, one from an existing page and one from scratch, and rendered all countries with them.
-Page templates are content, so editors can manage and publish them like any other content.
+You've created a page template from an existing page, and used it to render all content of the same type.
 
-TIP: To control the rendering of certain pages without using page templates, check out {xp-docs}/{xp-docs-version}/framework/mappings[controller mappings].
+TIP: For more details, visit the {cms-docs}/pages/page-templates[page templates documentation].
 
-Next, you'll <<static-assets#,add and serve static assets>>.
+Next, you'll <<static-assets#,style the site with a CSS file>>.

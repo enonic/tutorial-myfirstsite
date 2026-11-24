@@ -1,71 +1,128 @@
-= Visualize your content with pages
+= Pages
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
-:sourcedir: ../src/main/resources/site/pages
+:sourcedir: ../
+:experimental:
 
-In this chapter, you'll get to know the page component that ships with your app - its descriptor, controller, and view - and use it to render the site.
+In this chapter, you'll create your first page component and use it to render the site.
 
-== Page component
+== Page components
 
-At this point, you have content, but nothing renders it. With the {xp-docs}/{xp-docs-version}/framework[Enonic Site Framework], XP renders the content itself.
-A page is composed of one or more components, always with a page component as its root.
+So far, the content has no visual presentation. In the Site Framework, a _page component_ is what turns a content item into a web page. It consists of three files, placed together in a folder under `src/main/resources/cms/pages/`:
 
-Your app includes a page component named `hello`. A component is defined by a descriptor file, placed in a particular location within your app. For page components, that is `src/main/resources/site/pages/`:
+* A _descriptor_ (`.yaml`), which makes the page component available in Content Studio
+* An _implementation_ (`.ts`), which handles the request and returns a response
+* A _view_ (`.html`), a template the implementation uses to produce the markup
 
-.src/main/resources/site/pages/hello/hello.xml
-[source,xml]
+When a visitor requests a content item, the site service finds the page component selected for it, and runs its implementation. The implementation exports a function per HTTP method it supports, such as `GET`.
+
+== Libraries
+
+Apps get their functionality from libraries, which are added to the build file. The page component uses two of them: the Portal library, which gives access to the content being rendered, and the Thymeleaf library, which renders HTML templates.
+
+=== Task: Add the libraries
+
+. *Include the libraries* - In `build.gradle`, both libraries are listed, but commented out. Remove the `//` in front of these two lines:
++
+.build.gradle
+[source,groovy]
 ----
-include::{sourcedir}/hello/hello.xml[]
+  include xplibs.portal
+----
++
+[source,groovy]
+----
+  include libs.thymeleaf
 ----
 
-TIP: Like content types, components can define a form using the {xp-docs}/{xp-docs-version}/cms/schemas[schema system]. You'll see an example in the <<parts#,parts chapter>>.
+. *Install the type definitions* - The Portal library types are already installed. Stop `enonic dev` with kbd:[Ctrl+C], and install the ones for Thymeleaf:
++
+[source,shell]
+----
+npm install --save-dev @enonic-types/lib-thymeleaf
+----
 
-== Controller
+. *Map the import path* - In `src/main/resources/tsconfig.json`, add this line to `compilerOptions.paths`, above the `"/lib/xp/*"` entry:
++
+.src/main/resources/tsconfig.json
+[source,json]
+----
+      "/lib/thymeleaf": ["../../../node_modules/@enonic-types/lib-thymeleaf"],
+----
 
-Each component can have its own controller, which is responsible for rendering it. This is the controller of the `hello` page component:
+. *Restart dev mode* - Changes to `build.gradle` are only picked up when the build starts. Run `enonic dev` again, and wait for `BUILD SUCCESSFUL`.
 
-.src/main/resources/site/pages/hello/hello.ts
+== Site descriptor
+
+An app only takes part in rendering a site when it has a _site descriptor_.
+
+=== Task: Create the site descriptor
+
+. *Create the file* - Create the file below with the following content:
++
+.src/main/resources/cms/site.yaml
+[source,yaml]
+----
+include::{sourcedir}code-samples/site-basic/site.yaml[]
+----
+
+== Hello page
+
+=== Task: Create the page component
+
+. *Create the descriptor* - Create the file below with the following content:
++
+.src/main/resources/cms/pages/hello/hello.yaml
+[source,yaml]
+----
+include::{sourcedir}code-samples/hello-basic/hello.yaml[]
+----
++
+The `title` is the name editors see in Content Studio. The `form` and `regions` are empty for now.
+
+. *Create the implementation* - Create the file below with the following content:
++
+.src/main/resources/cms/pages/hello/hello.ts
 [source,typescript]
 ----
-include::{sourcedir}/hello/hello.ts[]
+include::{sourcedir}code-samples/hello-basic/hello.ts[]
 ----
++
+`getContent()` returns the content item the page is rendered for. The implementation picks out its display name, and passes it to the view as a _model_.
 
-NOTE: The controller file must be placed in the component directory and use the same name as the directory.
-
-The controller is written in TypeScript. The build system compiles each `.ts` file and places the generated `.js` file in the same location. XP picks up and invokes the resulting `.js` file.
-
-== View
-
-The controller passes its model to an HTML template - the view in the Model View Controller (MVC) pattern:
-
-.src/main/resources/site/pages/hello/hello.html
+. *Create the view* - Create the file below with the following content:
++
+.src/main/resources/cms/pages/hello/hello.html
 [source,html]
 ----
-include::{sourcedir}/hello/hello.html[]
+include::{sourcedir}code-samples/hello-basic/hello.html[]
 ----
-
-The view is plain HTML, extended with attributes from the https://market.enonic.com/vendors/enonic/thymeleaf-lib[Thymeleaf] templating language.
-Other template engines are available as libraries, such as https://market.enonic.com/vendors/enonic/mustache-lib[Mustache] and https://market.enonic.com/vendors/tineikt/freemarker-xp-library[Freemarker].
-
-== Task: Create your first page
-
-For the `hello` page component to render something, a content item must use it.
-
-. *Open the site* - In Content Studio, select the `Hello World` site and click btn:[Edit].
-
-. *Select the page component* - In the preview panel on the right-hand side, select `Hello Page Controller` in the list.
-Your changes are saved automatically.
-
-. *Verify the rendering* - The preview shows the display name of the site, followed by the text `- we made it!`:
 +
-image::hello-world.gif["Setting up the page", width=960]
+The `data-th-text` attributes are Thymeleaf instructions. They replace the sample text of the element with a value from the model.
+
+. *Verify the build* - The terminal prints `BUILD SUCCESSFUL`.
+
+=== Task: Add the page to the site
+
+. *Open the site* - In Content Studio, select `Hello World` and click btn:[Edit].
+
+. *Open the page settings* - Click the btn:[Show Context Panel] icon in the top right corner. In the dropdown at the top of the panel, select `Page`.
+
+. *Select the page component* - In the `Template` field, select `Hello page`:
++
+image::page-settings.png["The context panel with the Template dropdown open, listing Automatic and Hello page", width=1440]
+
+. *Verify the result* - The preview panel now shows the site, rendered by your page component. Content Studio saves the page setup automatically:
++
+image::hello-page.png["The preview panel showing the heading Hello World - we made it!", width=1440]
+
+TIP: Click btn:[Preview] in the toolbar to open the page in a separate browser tab.
 
 == Summary
 
-You've seen how a page component consists of a descriptor, a controller, and a view, and used it to render the `Hello World` site.
-The page isn't entirely static: the controller reads the display name of the content and passes it to the view, which adds a hardcoded text.
+You've added libraries to your app, created a site descriptor and a page component, and used the page component to render the site.
 
-TIP: To learn more about pages, visit the {xp-docs}/{xp-docs-version}/cms/pages[pages documentation].
+TIP: For more details, visit the {code-docs}/web/sites/components[components documentation].
 
-Next, you'll <<regions#,add a region to the page>>, so more components can be placed on it.
+Next, you'll <<regions#,make the page editable with regions>>.

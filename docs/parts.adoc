@@ -1,101 +1,124 @@
-= Parts - flexible components for your pages
+= Parts
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
-:sourcedir: ../src/main/resources/site/parts
+:sourcedir: ../src/main/resources
+:experimental:
 
-In this chapter, you'll place two parts on a page: one that shows the details of a country, and one that lists its cities and can be configured by the editor.
+In this chapter, you'll create two parts: one that presents a country, and one that lists its cities and can be configured by editors.
 
-== The country part
+== Parts
 
-Parts are the visual building blocks of a page. Like the Text component, parts are added to regions, but you write their rendering yourself.
+A _part_ is a component editors can place in a region. Like a page component, it consists of a descriptor, an implementation, and a view. Parts are placed in the `src/main/resources/cms/parts/` folder.
 
-Your app has a part that shows details from the `Country` content type. Like a page component, it consists of a descriptor, a controller, and a view. Parts are placed in the `src/main/resources/site/parts/` folder:
+Parts are rendered in the context of the content item the page belongs to. This means the same part shows different content on different pages.
 
-.src/main/resources/site/parts/country/country.xml
-[source,xml]
+== Country part
+
+=== Task: Create the country part
+
+. *Create the descriptor* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/country/country.yaml
+[source,yaml]
 ----
-include::{sourcedir}/country/country.xml[]
+include::{sourcedir}/cms/parts/country/country.yaml[]
 ----
 
-.src/main/resources/site/parts/country/country.ts
+. *Create the implementation* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/country/country.ts
 [source,typescript]
 ----
-include::{sourcedir}/country/country.ts[]
+include::{sourcedir}/cms/parts/country/country.ts[]
 ----
++
+The part reads the fields of the `country` content type from `content.data`. The `Country` type describes those fields to TypeScript.
 
-.src/main/resources/site/parts/country/country.html
+. *Create the view* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/country/country.html
 [source,html]
 ----
-include::{sourcedir}/country/country.html[]
+include::{sourcedir}/cms/parts/country/country.html[]
 ----
-
-=== Task: Add the country part
-
-. *Open the country page* - In Content Studio, edit the country you added the region to in the <<regions#,previous chapter>>.
-
-. *Insert the part* - Drag `Part` from the `Components` widget on the right-hand side into the region, and select `Country` in the list.
-
-. *Verify the result* - The page should look something like this:
 +
-image::country-part-on-columbia.png["The country part on the Columbia page, showing facts about the country", width=600]
+IMPORTANT: The markup of a component must have a single root element.
 
-TIP: You can also manage the components on a page from the page component view. It shows the components as a tree, on the left-hand side or floating above the page editor.
+=== Task: Add the part to a country
 
-image::page-component-input.png["The page component view, a tree structure for managing the components on a page", width=500]
+. *Open a country* - In Content Studio, select `Norway` and click btn:[Edit].
 
-== Configurable part
+. *Select the page component* - Open the context panel and select `Page` in its dropdown, as you did for the site. In the `Template` field, select `Hello page`. The preview shows the page with an empty region.
 
-The `City list` part is slightly more advanced. It:
+. *Insert a part* - Select the `Page` tab above the form. Right-click the `main` region in the component tree, and select menu:Insert[Part]:
++
+image::part-insert.png["The context menu of the main region, with Insert and then Part selected", width=1440]
 
-* lists the cities within a country
-* shows an image of each city
-* lets the editor choose the image cropping format
+. *Select the part* - An empty part appears in the region, and the context panel shows a `Part` field. Select `Country`.
 
-The part is also included in your app:
+. *Verify the result* - The preview shows the description of Norway, and a link to Wikipedia:
++
+image::country-part.png["The preview of Norway, showing its description and Wikipedia link below the heading", width=1440]
 
-.src/main/resources/site/parts/city-list/city-list.xml
-[source,xml]
+== City list part
+
+The second part lists the cities of a country, which are the child items of the country content. It also has a form, which lets editors choose how the city photos are cropped.
+
+=== Task: Create the city list part
+
+. *Include the Content library* - The part uses the Content library to fetch the cities. In `build.gradle`, remove the `//` in front of this line:
++
+.build.gradle
+[source,groovy]
 ----
-include::{sourcedir}/city-list/city-list.xml[]
+  include xplibs.content
 ----
++
+Then stop `enonic dev` with kbd:[Ctrl+C], and run it again.
 
-.src/main/resources/site/parts/city-list/city-list.ts
+. *Create the descriptor* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/city-list/city-list.yaml
+[source,yaml]
+----
+include::{sourcedir}/cms/parts/city-list/city-list.yaml[]
+----
++
+The `form` works like the form of a content type, but the values are stored with the component.
+
+. *Create the implementation* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/city-list/city-list.ts
 [source,typescript]
 ----
-include::{sourcedir}/city-list/city-list.ts[]
+include::{sourcedir}/cms/parts/city-list/city-list.ts[]
 ----
++
+`getComponent()` returns the part itself, including the values of its form in `config`. `getChildren()` fetches the child items of the country, and `imageUrl()` creates a URL to each photo, scaled as configured.
 
-.src/main/resources/site/parts/city-list/city-list.html
+. *Create the view* - Create the file below with the following content:
++
+.src/main/resources/cms/parts/city-list/city-list.html
 [source,html]
 ----
-include::{sourcedir}/city-list/city-list.html[]
+include::{sourcedir}/cms/parts/city-list/city-list.html[]
 ----
 
-In the view, the `th:if` and `th:unless` attributes handle an empty list. If no cities are found, the template displays "No cities found". Otherwise, it loops through the cities and outputs the details of each one.
+=== Task: Add and configure the part
 
-=== Task: Add and configure the city list
+. *Insert the part* - In the editor for `Norway`, right-click the `main` region again, and select menu:Insert[Part]. Select `City list` in the `Part` field. The part is added below the country part.
 
-. *Insert the part* - Add a new part to the same region as before, and select `City list` in the list.
+. *Configure the part* - With the part selected, select `Widescreen` in the `Image crop` field in the context panel, and click btn:[Apply].
 
-. *Configure the part* - With the part selected, change its settings in the panel on the right-hand side. For example, select `Widescreen` in the `Image crop` dropdown, and click btn:[Apply].
-
-. *Verify the result* - The page lists the cities of the country, with images in the format you chose:
+. *Verify the result* - The preview lists the cities of Norway, and the photo is cropped to a wide format:
 +
-image::city-list-part-on-columbia.jpg["The city list part on the Columbia page, configured to show widescreen images", width=1227]
-
-== Image service
-
-Images are scaled and cropped in real time by the {xp-docs}/{xp-docs-version}/runtime/engines/site-engine/image-service[image service]. The part controller uses the `imageUrl()` function to create a link to each image, with the desired size and cropping.
-
-== Logging
-
-The `City list` controller also writes its model object to the log. Open a country page, then check the terminal where the sandbox is running to see what the controller passes to the view.
+image::city-list-part.png["The preview of Norway with the country part and a list of cities, and the Image crop setting in the context panel", width=1440]
 
 == Summary
 
-You've placed two parts on a page, and configured one of them from Content Studio. With parts, you build visual blocks that editors can combine and configure on their own.
+You've created a part that presents the current content item, and a part that fetches other content and can be configured by editors.
 
-TIP: To learn more about parts, visit the {xp-docs}/{xp-docs-version}/cms/pages/parts[parts documentation].
+TIP: For more details, visit the {cms-docs}/pages/parts[parts documentation].
 
-Next, you'll <<page-templates#,reuse the page across all countries with page templates>>.
+Next, you'll <<page-templates#,reuse the page for all countries with a page template>>.

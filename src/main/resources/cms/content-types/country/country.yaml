@@ -1,0 +1,12 @@
+kind: "ContentType"
+title: "Country"
+description: "A nation on mother earth"
+superType: "base:structured"
+form:
+  - type: "TextArea"
+    name: "description"
+    label: "Description"
+  - type: "TextLine"
+    name: "wikipedia"
+    label: "Wikipedia URL"
+    regexp: "^(https?)://[^\\s/$.?#].[^\\s]*$"

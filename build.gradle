@@ -1,68 +1,108 @@
 plugins {
-	id 'java'
-	id 'com.enonic.xp.app' version '3.6.2'
-	id 'com.github.node-gradle.node' version '7.1.0'
-}
-
-app {
-	name = "${appName}"
-	displayName = "${appDisplayName}"
-	vendorName = "${vendorName}"
-	vendorUrl = "${vendorUrl}"
-	systemVersion = "${xpVersion}"
+  id 'com.enonic.xp.app'
+  id 'com.github.node-gradle.node' version '7.1.0'
 }
 
 dependencies {
-	compileOnly "com.enonic.xp:core-api:${xpVersion}"
-	compileOnly "com.enonic.xp:portal-api:${xpVersion}"
-	include "com.enonic.xp:lib-cluster:${xpVersion}"
-	include "com.enonic.xp:lib-content:${xpVersion}"
-    include "com.enonic.xp:lib-context:${xpVersion}"
-	include "com.enonic.xp:lib-export:${xpVersion}"
-	include "com.enonic.xp:lib-io:${xpVersion}"
-	include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.xp:lib-project:${xpVersion}"
-	include 'com.enonic.lib:lib-cache:3.0.1'
-	include 'com.enonic.lib:lib-http-client:4.0.1'
-	include "com.enonic.lib:lib-thymeleaf:3.0.1"
-	include "com.enonic.lib:lib-mustache:3.0.0"
-	include 'com.enonic.lib:lib-static:3.0.0'
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Libraries bundled with Enonic XP (versioned by xpVersion via the xplibs catalog)
+  // ─────────────────────────────────────────────────────────────────────────
+  // include xplibs.admin
+  // include xplibs.app
+  // include xplibs.auditlog
+  // include xplibs.auth
+  include xplibs.cluster
+  // include xplibs.common
+  include xplibs.content
+  include xplibs.context
+  // include xplibs.event
+  include xplibs.export
+  // include xplibs.grid
+  // include xplibs.i18n
+  // include xplibs.io
+  // include xplibs.mail
+  // include xplibs.node
+  include xplibs.portal
+  include xplibs.project
+  // include xplibs.repo
+  // include xplibs.scheduler
+  // include xplibs.schema
+  // include xplibs.sse
+  // include xplibs.task
+  // include xplibs.value
+  // include xplibs.vhost
+  // include xplibs.websocket
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Libraries from the Enonic Market (versions in gradle/libs.versions.toml)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  // https://market.enonic.com/vendors/enonic/lib-asset
+  include libs.asset
+
+  // https://market.enonic.com/vendors/enonic/cache-lib
+  // include libs.cache
+
+  // https://market.enonic.com/vendors/enonic/http-client-lib
+  // include libs.http.client
+
+  // https://market.enonic.com/vendors/enonic/mustache-lib
+  // include libs.mustache
+
+  // https://market.enonic.com/vendors/enonic/router-lib
+  // include libs.router
+
+  // https://market.enonic.com/vendors/enonic/lib-static
+  // include libs.static
+
+  // https://market.enonic.com/vendors/enonic/thymeleaf-lib
+  include libs.thymeleaf
 }
 
 repositories {
-	mavenLocal()
-	mavenCentral()
-	xp.enonicRepo()
+  mavenLocal()
+  mavenCentral()
+  xp.enonicRepo()
 }
 
 node {
-	// Whether to download and install a specific Node.js version or not
-	// If false, it will use the globally installed Node.js
-	// If true, it will download node using above parameters
-	// Note that npm is bundled with Node.js
-	download = true
+  // Whether to download and install a specific Node.js version or not
+  // If false, it will use the globally installed Node.js
+  // If true, it will download node using above parameters
+  // Note that npm is bundled with Node.js
+  download = true
 
-	// Version of node to download and install (only used if download is true)
-	// It will be unpacked in the workDir
-	version = '20.12.2'
+  // Version of node to download and install (only used if download is true)
+  // It will be unpacked in the workDir
+  version = '24.20.0'
 }
 
-apply from: "$projectDir/gradle/env.gradle"
-
-tasks.withType(Copy).configureEach {
-	includeEmptyDirs = false
+processResources {
+	exclude '**/.gitkeep'
+  exclude '**/*.json'
+	exclude '**/*.ts'
+	exclude '**/*.tsx'
 }
 
-tasks.register('dev', NpmTask) {
-	args = [
-		'run',
-		'watch'
-	]
-	dependsOn npmInstall, deploy
-	environment = [
-		'FORCE_COLOR': 'true',
-	]
+tasks.register('npmBuild', NpmTask) {
+  args = [
+    'run',
+    '--silent',
+    'build'
+  ]
+  dependsOn npmInstall
+  environment = [
+    'FORCE_COLOR': 'true',
+    'LOG_LEVEL_FROM_GRADLE': gradle.startParameter.logLevel.toString(),
+    'NODE_ENV': project.findProperty('env') == 'dev' ? 'development' : 'production'
+  ]
+  inputs.dir 'src/main/resources'
+  outputs.dir 'build/resources/main'
+  outputs.upToDateWhen { false }
 }
+
+jar.dependsOn npmBuild
 
 tasks.register('npmCheck', NpmTask) {
 	dependsOn npmInstall
@@ -75,34 +115,24 @@ tasks.register('npmCheck', NpmTask) {
 	]
 }
 
-// If you ALWAYS want to SKIP `test` and `check` tasks on development build, uncomment the 'if...' below
-// if (!isProd()) {
 check.dependsOn npmCheck
-// }
 
-tasks.register('npmBuild', NpmTask) {
+tasks.register('npmTest', NpmTask) {
 	args = [
 		'run',
-		//'--silent',
-		isProd() ? 'minify' : 'build'
+		'test'
 	]
 	dependsOn npmInstall
 	environment = [
 		'FORCE_COLOR': 'true',
-		'LOG_LEVEL_FROM_GRADLE': gradle.startParameter.logLevel.toString(),
-		'NODE_ENV': nodeEnvironment()
 	]
-	inputs.dir 'src/main/resources'
-	outputs.dir 'build/resources/main'
+  inputs.dir 'src/jest'
+  outputs.dir 'coverage'
+  outputs.upToDateWhen { false }
 }
 
-jar.dependsOn npmBuild
+test.dependsOn npmTest
 
-processResources {
-	exclude '**/.gitkeep'
-	exclude '**/*.json'
-	exclude '**/*.scss'
-	exclude '**/*.ts'
-	exclude '**/*.tsx'
-	exclude 'static/images/**/*.*'
+tasks.withType(Copy).configureEach {
+  includeEmptyDirs = false
 }

@@ -2,32 +2,36 @@
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
+:experimental:
 
 In this chapter, you'll publish the `Hello World` site, making it available outside Content Studio.
 
 == Publishing
 
-In Content Studio, you work in the `draft` branch. Publishing merges the selected items from `draft` to the `master` branch, which is the one visitors see.
+In Content Studio, you work in the `draft` branch. Publishing copies the selected items from `draft` to the `master` branch, which is the one visitors see.
 
 === Task: Publish the site
 
-. *Select the site* - Select the `Hello World` site in the content grid.
+. *Select the site* - Select the `Hello World` site in the content list.
 
-. *Open the Publishing Wizard* - Select btn:[Publish Tree] in the action menu in the top right corner. The Publishing Wizard opens.
+. *Open the Publishing Wizard* - Click the arrow next to the publish button in the top right corner, and select `Publish tree`. The Publishing Wizard opens, listing the site and everything below it.
 
-. *Mark the content as ready* - Items that are `In progress` block publishing. Click btn:[Mark as ready] to fix this.
+. *Mark the content as ready* - Items that are `In progress` block publishing. If the wizard lists any, click btn:[Mark as ready].
 
-. *Publish* - Click btn:[Publish]:
+. *Publish* - Click btn:[Publish now]:
 +
-image::publish.gif["Publishing all items in the project", width=800]
+image::publish.png["The Publishing Wizard listing the Hello World site and its child items", width=1440]
 
-. *Verify the published site* - Open {xp-url}/site/{cms-project-id}/master/hello-world[{xp-url}/site/{cms-project-id}/master/hello-world] in your browser. It shows the site as served from the `master` branch.
+. *Verify the published site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway] in a private browser window, where you are not logged in. It shows the page as served from the `master` branch:
++
+image::result.png["The published page for Norway, with the description in the left column and the cities in the right column", width=1280]
 
 == Summary
 
-You did it! 🎉 You've built a site with the Enonic Site Framework: pages, parts, and layouts that render structured content, composed and published from Content Studio.
+You did it! 🎉 You've built a site with the Enonic Site Framework: content types, a page, parts, and a layout that render structured content, composed and published from Content Studio.
 
 That completes the tutorial. If you want to keep going, these are good places to continue:
 
+* The <<demo#,demo>> shows how to run the finished site from the tutorial's own repository, and compare it with yours.
 * The {modeling-tutorial}[content modeling tutorial] goes deeper into structured content and the GraphQL API.
 * The {frameworks-docs}[front-end frameworks overview] presents the other ways to build a front-end for Enonic.

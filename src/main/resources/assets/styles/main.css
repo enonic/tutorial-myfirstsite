@@ -1,0 +1,42 @@
+:root {
+  color-scheme: light dark;
+  --accent: light-dark(#7a3fb8, #c79bf2);
+  --border: light-dark(#d9d9e3, #3b3b4a);
+}
+
+body {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+article {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 0.25rem;
+}
+
+figcaption {
+  font-style: italic;
+}

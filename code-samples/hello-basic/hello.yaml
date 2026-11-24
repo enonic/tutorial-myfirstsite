@@ -1,0 +1,5 @@
+kind: "Page"
+title: "Hello page"
+description: "A page that greets you with the name of the content"
+form: []
+regions: []

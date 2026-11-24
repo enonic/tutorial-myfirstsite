@@ -3,7 +3,7 @@ include::.variables.adoc[]
 :toc: right
 :imagesdir: media
 
-In this chapter, you'll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you'll work on for the rest of the tutorial.
+In this chapter, you'll install the Enonic CLI, start a local Enonic XP sandbox, and create and deploy the app you'll build on for the rest of the tutorial.
 
 == Enonic CLI
 
@@ -40,61 +40,65 @@ enonic sandbox create {sandbox-name} -t essentials -v {xp-version} -f
 +
 This creates a sandbox called `{sandbox-name}` running Enonic XP {xp-version}, installs the applications in the `essentials` template, including Content Studio, and starts the sandbox.
 
-. *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}] in your browser.
-You should see the XP boot page, with the title "Welcome to the Enonic SDK".
+. *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}] in your browser. You should see the XP boot page:
++
+image::xp-welcome.png["The XP boot page with the title Welcome to the Enonic SDK and a Log In as Guest button", width=1440]
 
-TIP: To stop the sandbox, press kbd:[Ctrl+C] in its terminal. To start it again, run `enonic sandbox start {sandbox-name}`. Sandboxes share the same ports, so stop this one before starting the sandbox of another tutorial.
+Leave the sandbox running in this terminal, and open a new terminal for the next task.
 
 == App
 
-Almost everything you build on XP is packaged as an application. Instead of starting from an empty folder, you'll create your app from a starter that contains the components, content types, and sample content used in this tutorial.
+Everything you build in this tutorial lives in an Enonic app. You'll create it from the `{starter-repo}` starter, which gives you an empty app with TypeScript and a build setup.
 
 === Task: Create the app
 
-Use a dedicated workspace folder for Enonic tutorials, such as `enonic-tutorials/`, so each tutorial's source folder stays separate.
-
-. *Create the app from the starter* - Open a new terminal window in your tutorials workspace folder, leaving the sandbox running in the first one, and run:
+. *Create the project* - From the folder where you keep your projects, run:
 +
 [source,shell,{subs}]
 ----
-enonic project create {app-name-full} -r {starter-repo} -b {starter-branch} -s {sandbox-name} -d {app-dir} -f
+enonic project create {app-name-full} -r {starter-repo} -s {sandbox-name} -d {app-dir} -f
 ----
 +
-This creates an app named `{app-name-full}` in the folder `{app-dir}`, using the https://github.com/enonic/{starter-repo}[{starter-repo}] repository as a starter, and links the app to the `{sandbox-name}` sandbox.
-
-. *Inspect the project structure* - The project folder contains a basic app structure. These are the parts you'll meet in this tutorial:
+The command creates the folder `{app-dir}`, gives the app the name `{app-name-full}`, and links the project to the `{sandbox-name}` sandbox.
 +
+IMPORTANT: Use the app name `{app-name-full}`. The sample content you'll add in the next chapter refers to content types by this name.
+
+. *Give the app a title* - The title is what Content Studio shows when you pick the app. Replace the content of the application descriptor with the following:
++
+.src/main/resources/enonic.yaml
+[source,yaml,{subs}]
+----
+kind: "Application"
+title: "{app-title}"
+description: "A site built with the Enonic Site Framework"
+vendorName: "Acme Inc"
+vendorUrl: "https://example.com"
+----
+
+The parts of the project you'll work with are:
+
 [source,text]
 ----
-build.gradle           # <1>
-code-samples/          # <2>
-docs/                  # <3>
-tsup/                  # <4>
-src/
-  main/
-    resources/
-      import/          # <5>
-      assets/          # <6>
-      site/
-        content-types/ # <7>
-          country/
-          city/
-        parts/         # <8>
-        pages/         # <9>
+build.gradle <1>
+src/main/resources/
+  enonic.yaml <2>
+  assets/ <3>
+  cms/ <4>
+    cms.yaml
+    content-types/
+    layouts/
+    pages/
+    parts/
 ----
-<1> Core build files
-<2> Code samples that you'll copy into the app in later chapters
-<3> The documentation you are reading now
-<4> Build files for the TypeScript compilation
-<5> Sample content that is imported when the app starts
-<6> Location for static assets
-<7> Two pre-defined content types, country and city
-<8> Part components - leaf components to place on pages
-<9> Page components - the root component of a page
+
+<1> The build file, where you add the libraries the app uses
+<2> The application descriptor
+<3> Static assets, such as CSS files
+<4> Everything related to the CMS: content types and the components that render them
 
 === Task: Build and deploy the app
 
-. *Start the development watcher* - Change to the project folder and start development mode:
+. *Start dev mode* - Run these commands in the new terminal:
 +
 [source,shell,{subs}]
 ----
@@ -102,42 +106,28 @@ cd {app-dir}
 enonic dev
 ----
 +
-This builds the app, deploys it to the `{sandbox-name}` sandbox, and then keeps watching the folder.
-When you save a file, your TypeScript code is compiled and the sandbox picks up the change. There is no need for manual deployments.
-+
-Keep this command running in its own terminal while you follow the tutorial. Press kbd:[Ctrl+C] to stop watching, and run `enonic dev` from `{app-dir}` to resume later.
+`enonic dev` builds the app, deploys it to the sandbox, and then watches the source files. Each time you save a file, the app is rebuilt and redeployed.
 
-. *Verify that the app has started* - The first build downloads a few things, so give it a moment. Then look for lines like these in the terminal where the sandbox is running:
+. *Verify the build* - The first build downloads dependencies and takes a little while. When it is done, the terminal prints:
 +
-[source,text,{subs}]
+[source,text]
 ----
-INFO  {app-name-full} - (/main.js) Project "{cms-project-id}" successfully created
-INFO  {app-name-full} - (/main.js) Importing "{cms-project-id}" data
+BUILD SUCCESSFUL
+Waiting for changes to input files...
 ----
 
-== XP admin
-
-The sandbox has a web interface for administration, where each admin tool is its own application.
+Leave `enonic dev` running. When a later chapter asks you to restart it, press kbd:[Ctrl+C] and run `enonic dev` again.
 
 === Task: Log in to XP admin
 
-. *Open the boot page* - Open {xp-url}[{xp-url}] in your browser, or reload it if it is already open:
-+
-image::xp-boot.png["The XP boot page, with a Log In as Guest button and a list of installed applications", width=1085]
-+
-The boot page gives an overview of the sandbox, including the installed applications and the {xp-docs}/{xp-docs-version}/deployment/config[standard configuration files].
-Your app, `{app-displayname}`, is in the list, together with the applications that were installed when you created the sandbox.
+. *Log in* - On the {xp-url}[XP boot page], click btn:[Log In as Guest].
 
-. *Log in* - Click btn:[Log In as Guest] to open the XP admin dashboard:
+. *Verify the result* - You are now on the XP admin home page, with a tile for each installed admin tool, including Applications and Content Studio:
 +
-image::xp-dashboard.jpg["The XP admin dashboard, with the XP menu on the right-hand side", width=1727]
-+
-The menu on the right-hand side, the _XP menu_, lets you move between admin tools. Applications can add their own admin tools to it.
-
-NOTE: If things don't look exactly the same, don't worry. The background picture changes between versions of XP, and the dashboard is localized to your browser's preferred language.
+image::xp-admin.jpg["The XP admin home page with tiles for Dashboard, Applications, Content Studio, Data toolbox and Users", width=1440]
 
 == Summary
 
-You've installed the Enonic CLI, created a sandbox running XP 7, and created, built, and deployed an app from a starter to that sandbox.
+You've installed the Enonic CLI, started a sandbox running Enonic XP, and created and deployed an app from the `{starter-repo}` starter.
 
-Next, you'll <<content#,explore the sample content in Content Studio>>.
+Next, you'll <<content#,create content types and add sample content>>.

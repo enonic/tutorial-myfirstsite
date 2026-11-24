@@ -1,21 +1,28 @@
 // Shared attributes. Dot-prefixed so asciidoctor does not compile it as a page.
 :experimental:
-:xp-version: 7.16.11
+:xp-version: 8.1.3
 :cli-version: 4.1.4
-:cs-version: 5.4.17
+:cs-version: 6.1.1
 :sandbox-name: tutorial_siteframework
 :app-name: siteframework
 :app-name-full: com.example.tutorial.{app-name}
 :app-dir: tutorial-{app-name}-enonic
-:app-displayname: My First Site
-:starter-repo: tutorial-site-framework
-:starter-branch: master
-:cms-project-id: myfirstsite
-:cms-project-displayname: My First Site
+:app-title: Site Framework tutorial
+:starter-repo: starter-ts
+:tutorial-repo: tutorial-site-framework
+:demo-app-name-full: com.example.demo.{app-name}
+:demo-app-dir: demo-{app-name}-enonic
+:demo-sandbox-name: demo_siteframework
+:fixture-app-title: Site Framework tutorial fixture
+:fixture-file: tutorial-siteframework-fixture.jar
+:fixture-url: https://repo.enonic.com/public/com/enonic/tutorial/tutorial-siteframework-fixture/1.0.0/tutorial-siteframework-fixture-1.0.0.jar
+:cms-project-id: siteframework
+:cms-project-displayname: Site Framework
 :app-root: src/main/resources
 :xp-url: http://localhost:8080
-:xp-docs: https://developer.enonic.com/docs/platform
-:xp-docs-version: 7.x
+:code-docs: https://developer.enonic.com/docs/code/stable
+:cms-docs: https://developer.enonic.com/docs/cms/stable
+:cs-docs: https://developer.enonic.com/docs/content-studio/stable
 :frameworks-docs: https://developer.enonic.com/docs/frameworks
-:modeling-tutorial: https://developer.enonic.com/learn/content-modeling/7.x
+:modeling-tutorial: https://developer.enonic.com/learn/content-modeling
 :subs: subs="attributes+"
