@@ -19,13 +19,16 @@ documentation, which chapters link to instead of repeating.
 ## Positioning and vocabulary
 
 - The **Enonic Site Framework** is the built-in way to build content-driven sites: the site service resolves the page for
-  a content item and renders its components with server-side JavaScript controllers and HTML templates, with mappings,
+  a content item and renders its components with server-side JavaScript implementations and HTML templates, with mappings,
   processors, and page contributions around that. It is presented alongside Next.js and React4XP.
 - Two perspectives, two terms. The **site service** is the runtime: what XP does with a request to `/site`. The **Site
   Framework** is the developer's view: what you build a site with. Use "site service" when XP is the subject of the
   sentence and "Site Framework" when the developer is.
-- React4XP also runs on the site service, but deploys its own mapping that takes over the request and does the page
-  rendering itself, bypassing the Site Framework's built-in page rendering. Next.js renders outside Enonic.
+- React4XP also runs on the site service. It uses mappings to replace the built-in page and component rendering with
+  rendering based on React. Next.js renders outside Enonic.
+- The Site Framework couples rendering to the component definition: the implementation lives next to the descriptor.
+  React4XP detaches the two, binding components and content types to React views in a component registry, as headless
+  front-ends do. That makes React4XP closer to headless than the Site Framework is, even though both run inside XP.
 - Write "Enonic Site Framework" on first mention and "the Site Framework" after that. Singular "Site", no abbreviation. Do
   not call it "the JS framework", "the Enonic framework", "MVC", or "site engine".
 - Call the root component of a page a "page component", never "controller" or "page". Use each component's display name
