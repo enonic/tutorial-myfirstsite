@@ -135,5 +135,5 @@ Each of these was hit while the tutorial was built and tested on XP 8.1.3 with C
 - Every page in `docs/menu.json` has real content; add new pages to the menu.
 - A section landing page is `docs/topic.adoc` with children in `docs/topic/`; no `index.adoc` in subdirectories.
 - Wrap identifiers containing `_` in `+...+` outside source blocks.
-- Use relative `<<path#,Label>>` links and never a `^` suffix.
+- Use relative `<<path#,Label>>` links and never a `^` suffix, except on links to the reader's local XP (`{xp-url}`), which open in a new tab so the reader stays in the tutorial.
 - Only `.adoc` and `.json` files under `docs/` stay out of the published site; everything else becomes a page or a media item.

@@ -45,11 +45,11 @@ Imported 20 content items into project "{cms-project-id}"
 Published the "Hello World" site
 ----
 
-. *Open the site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway] in your browser:
+. *Open the site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway^] in your browser:
 +
 image::result.png["The published page for Norway, with the description in the left column and the cities in the right column", width=1280]
 
-To see how the pages are put together, open {xp-url}[{xp-url}], click btn:[Log In as Guest], and open Content Studio.
+To see how the pages are put together, open {xp-url}[{xp-url}^], click btn:[Log In as Guest], and open Content Studio.
 
 == Compare with your own app
 

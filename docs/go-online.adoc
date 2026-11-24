@@ -22,7 +22,7 @@ In Content Studio, you work in the `draft` branch. Publishing copies the selecte
 +
 image::publish.png["The Publishing Wizard listing the Hello World site and its child items", width=1440]
 
-. *Verify the published site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway] in a private browser window, where you are not logged in. It shows the page as served from the `master` branch:
+. *Verify the published site* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway^] in a private browser window, where you are not logged in. It shows the page as served from the `master` branch:
 +
 image::result.png["The published page for Norway, with the description in the left column and the cities in the right column", width=1280]
 

@@ -40,7 +40,7 @@ enonic sandbox create {sandbox-name} -t essentials -f
 +
 This creates a sandbox called `{sandbox-name}` running the latest version of Enonic XP, installs the applications in the `essentials` template, including Content Studio, and starts the sandbox.
 
-. *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}] in your browser. You should see the XP boot page:
+. *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}^] in your browser. You should see the XP boot page:
 +
 image::xp-welcome.png["The XP boot page with the title Welcome to the Enonic SDK and a Log In as Guest button", width=1440]
 
@@ -120,7 +120,7 @@ Leave `enonic dev` running. When a later chapter asks you to restart it, press k
 
 === Task: Log in to XP admin
 
-. *Log in* - On the {xp-url}[XP boot page], click btn:[Log In as Guest].
+. *Log in* - On the {xp-url}[XP boot page^], click btn:[Log In as Guest].
 
 . *Verify the result* - You are now on the XP admin home page, with a tile for each installed admin tool, including Applications and Content Studio:
 +
