@@ -18,7 +18,7 @@ NOTE: The demo uses its own sandbox, so it does not interfere with the one you u
 +
 [source,shell,{subs}]
 ----
-enonic sandbox create {demo-sandbox-name} -t essentials -v {xp-version} -f
+enonic sandbox create {demo-sandbox-name} -t essentials -f
 ----
 
 . *Create the app* - In a new terminal, from the folder where you keep your projects, run:

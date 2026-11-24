@@ -35,10 +35,10 @@ A _sandbox_ is a local developer instance of Enonic XP. Each sandbox is isolated
 +
 [source,shell,{subs}]
 ----
-enonic sandbox create {sandbox-name} -t essentials -v {xp-version} -f
+enonic sandbox create {sandbox-name} -t essentials -f
 ----
 +
-This creates a sandbox called `{sandbox-name}` running Enonic XP {xp-version}, installs the applications in the `essentials` template, including Content Studio, and starts the sandbox.
+This creates a sandbox called `{sandbox-name}` running the latest version of Enonic XP, installs the applications in the `essentials` template, including Content Studio, and starts the sandbox.
 
 . *Verify that XP is running* - Wait until the terminal stops printing new log lines, then open {xp-url}[{xp-url}] in your browser. You should see the XP boot page:
 +
