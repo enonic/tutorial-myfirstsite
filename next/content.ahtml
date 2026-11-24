@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Content Studio and content types</title>
+<title>Content</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,23 +438,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and content types</h1>
+<h1>Content</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#content_types">Content types</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_the_content_types">Task: Create the content types</a></li>
+</ul>
+</li>
+<li><a href="#sample_content">Sample content</a>
+<ul class="sectlevel2">
+<li><a href="#task_install_the_sample_content">Task: Install the sample content</a></li>
+</ul>
+</li>
 <li><a href="#content_studio">Content Studio</a>
 <ul class="sectlevel2">
-<li><a href="#task_explore_the_sample_content">Task: Explore the sample content</a></li>
+<li><a href="#task_explore_the_content">Task: Explore the content</a></li>
 </ul>
 </li>
 <li><a href="#sites_and_apps">Sites and apps</a>
 <ul class="sectlevel2">
-<li><a href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></li>
-</ul>
-</li>
-<li><a href="#content_types">Content types</a>
-<ul class="sectlevel2">
-<li><a href="#task_create_your_own_content">Task: Create your own content</a></li>
+<li><a href="#task_add_your_app_to_the_site">Task: Add your app to the site</a></li>
+<li><a href="#task_create_a_country_and_a_city">Task: Create a country and a city</a></li>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
@@ -465,32 +471,77 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll open Content Studio, explore the sample content your app imported, and create content of your own from the app&#8217;s content types.</p>
+<p>In this chapter, you&#8217;ll create two content types, add sample content that uses them, and connect your app to a site in Content Studio.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
+<h2 id="content_types"><a class="link" href="#content_types">Content types</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Content Studio is the editorial interface of Enonic XP. The first time your app starts, it creates a content project called <code>My First Site</code> and imports sample content into it.</p>
+<p>Every content item in Enonic has a <em>content type</em>. The content type defines the fields editors fill in, and therefore the data you have available when you render the content.</p>
+</div>
+<div class="paragraph">
+<p>The site in this tutorial presents countries and their cities, so you need a content type for each. Content types are YAML files in the <code>src/main/resources/cms/content-types/</code> folder, each in a folder with the same name as the file.</p>
 </div>
 <div class="sect2">
-<h3 id="task_explore_the_sample_content"><a class="link" href="#task_explore_the_sample_content">Task: Explore the sample content</a></h3>
+<h3 id="task_create_the_content_types"><a class="link" href="#task_create_the_content_types">Task: Create the content types</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open Content Studio</strong> - Open the XP menu on the right-hand side, and select <code>Content Studio</code>.
-You should see some of the imported content:</p>
-<div class="imageblock">
+<p><strong>Create the country content type</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/content-types/country/country.yaml</div>
 <div class="content">
-<img src="media/imported-content.png" alt="Tree structure showing countries and cities in Content Studio" width="1024">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "ContentType"
+title: "Country"
+description: "A nation on mother earth"
+superType: "base:structured"
+form:
+  - type: "TextArea"
+    name: "description"
+    label: "Description"
+  - type: "TextLine"
+    name: "wikipedia"
+    label: "Wikipedia URL"
+    regexp: "^(https?)://[^\\s/$.?#].[^\\s]*$"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>A country has a description and a link to Wikipedia. The name of the country is the display name that every content item has, so it needs no field of its own.</p>
 </div>
 </li>
 <li>
-<p><strong>Expand the content tree</strong> - The root item of the tree is <code>Hello World</code>. Its icon shows that it is a site.
-Expand it to reveal <code>Columbia</code>, <code>Norway</code>, <code>USA</code>, and <code>Templates</code> as child items.</p>
+<p><strong>Create the city content type</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/content-types/city/city.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "ContentType"
+title: "City"
+description: "Place where many people live"
+superType: "base:structured"
+form:
+  - type: "ImageSelector"
+    name: "photo"
+    label: "Photo"
+  - type: "TextLine"
+    name: "slogan"
+    label: "City slogan"
+  - type: "Long"
+    name: "population"
+    label: "Population"
+    occurrences:
+      min: 1
+      max: 1
+    min: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A city has a photo, a slogan, and a population. The <code>occurrences</code> setting makes the population mandatory.</p>
+</div>
+</li>
+<li>
+<p><strong>Verify the build</strong> - The terminal running <code>enonic dev</code> prints <code>BUILD SUCCESSFUL</code> again. Your app now contains the two content types.</p>
 </li>
 </ol>
 </div>
@@ -501,7 +552,7 @@ Expand it to reveal <code>Columbia</code>, <code>Norway</code>, <code>USA</code>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Ignore the <code>Templates</code> folder for now. You&#8217;ll get back to it in the <a href="page-templates.ahtml">page templates chapter</a>.
+To learn more about forms and input types, visit the <a href="https://developer.enonic.com/docs/cms/stable/content/content-types">content types documentation</a>.
 </td>
 </tr>
 </table>
@@ -510,25 +561,31 @@ Ignore the <code>Templates</code> folder for now. You&#8217;ll get back to it in
 </div>
 </div>
 <div class="sect1">
-<h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
+<h2 id="sample_content"><a class="link" href="#sample_content">Sample content</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A site is a content item with one or more apps assigned to it. Assigning an app gives the site, and Content Studio, access to what the app contains, such as content types and components.</p>
+<p>Instead of typing in a set of countries and cities yourself, you&#8217;ll install a small app that does it for you. The <code>Site Framework tutorial fixture</code> app creates a content project called <code>Site Framework</code>, with a site, three countries, and their cities.</p>
 </div>
 <div class="sect2">
-<h3 id="task_find_the_app_on_the_site"><a class="link" href="#task_find_the_app_on_the_site">Task: Find the app on the site</a></h3>
+<h3 id="task_install_the_sample_content"><a class="link" href="#task_install_the_sample_content">Task: Install the sample content</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the site</strong> - Select the <code>Hello World</code> content and click <b class="button">Edit</b>.</p>
+<p><strong>Download the app</strong> - Download <a href="https://repo.enonic.com/public/com/enonic/tutorial/tutorial-siteframework-fixture/1.0.0/tutorial-siteframework-fixture-1.0.0.jar">tutorial-siteframework-fixture.jar</a> to your computer.</p>
 </li>
 <li>
-<p><strong>Verify the assigned app</strong> - In the form on the left-hand side, your app <code>My First Site</code> is listed under <code>Applications</code>:</p>
+<p><strong>Open Applications</strong> - On the XP admin home page, click <b class="button">Applications</b>.</p>
+</li>
+<li>
+<p><strong>Upload the app</strong> - Click <b class="button">Install</b>. In the dialog, click the upload button to the right of the search field, and select the file you downloaded:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/hello-world-content.png" alt="The Hello World site content, with the My First Site app assigned to it" width="920">
+<img src="media/install-fixture.png" alt="The Install Application dialog with a search field and an upload button" width="1440">
 </div>
 </div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The dialog closes, and <code>Site Framework tutorial fixture</code> is listed among the installed applications, together with your own app, <code>Site Framework tutorial</code>.</p>
 </li>
 </ol>
 </div>
@@ -536,67 +593,100 @@ Ignore the <code>Templates</code> folder for now. You&#8217;ll get back to it in
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_types"><a class="link" href="#content_types">Content types</a></h2>
+<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Every content item has a content type.</p>
-</div>
-<div class="paragraph">
-<p>XP ships with a set of standard content types: <code>Shortcut</code>, <code>Folder</code>, <code>Site</code>, and a selection of media types that handle different kinds of files.</p>
-</div>
-<div class="paragraph">
-<p>Apps can define their own content types. Your app contains two, <code>Country</code> and <code>City</code>, defined under <code>src/main/resources/site/content-types/</code>.
-A content type is defined in a descriptor file. This is the descriptor of <code>City</code>:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/content-types/city/city.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;City&lt;/display-name&gt;
-  &lt;description&gt;Place where many people live&lt;/description&gt;
-  &lt;super-type&gt;base:structured&lt;/super-type&gt;
-  &lt;form&gt;
-    &lt;input type="ImageSelector" name="photo"&gt;
-      &lt;label&gt;Photo&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-    &lt;input type="TextLine" name="slogan"&gt;
-      &lt;label&gt;City slogan&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-    &lt;input type="Long" name="population"&gt;
-      &lt;label&gt;Population&lt;/label&gt;
-      &lt;occurrences minimum="1" maximum="1"/&gt;
-      &lt;config&gt;
-          &lt;min&gt;1&lt;/min&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/content-type&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Content Studio turns the descriptor into an editing form:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/city-form.png" alt="Form for the city content type" width="920">
-</div>
+<p>Content Studio is the editorial interface of Enonic. This is where editors create and publish content, and where you&#8217;ll put together the pages of your site.</p>
 </div>
 <div class="sect2">
-<h3 id="task_create_your_own_content"><a class="link" href="#task_create_your_own_content">Task: Create your own content</a></h3>
+<h3 id="task_explore_the_content"><a class="link" href="#task_explore_the_content">Task: Explore the content</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Create a country</strong> - Select the <code>Hello World</code> site, click <b class="button">New</b>, and select the <code>Country</code> content type.
-Fill in the form with a country of your choosing, and save it.</p>
+<p><strong>Open Content Studio</strong> - Go back to the XP admin home page and click <b class="button">Content Studio</b>. It opens in the <code>Site Framework</code> project.</p>
 </li>
 <li>
-<p><strong>Add a city</strong> - Select your new country, click <b class="button">New</b>, and select the <code>City</code> content type.
-Fill in the form, and save it. Add more cities if you like.</p>
+<p><strong>Expand the site</strong> - Click the arrow to the left of the <code>Hello World</code> site to list the countries, and select one of them:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/content-studio.png" alt="Content Studio with the Hello World site expanded, showing Colombia, Norway, USA and Templates" width="1440">
+</div>
+</div>
+<div class="paragraph">
+<p>The preview panel on the right says <code>No preview available</code>. The content exists, but nothing renders it yet.</p>
+</div>
 </li>
 <li>
-<p><strong>Verify the result</strong> - Your country is listed in the content tree below <code>Hello World</code>, with its cities as child items.</p>
+<p><strong>Look at a country</strong> - Select <code>Norway</code> and click <b class="button">Edit</b>. The form has the fields you defined in the <code>country</code> content type. Close the browser tab when you are done.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <em>site</em> is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it.</p>
+</div>
+<div class="paragraph">
+<p>The sample content already uses your content types. To create new content with them, and later to render pages, your app must be added to the site.</p>
+</div>
+<div class="sect2">
+<h3 id="task_add_your_app_to_the_site"><a class="link" href="#task_add_your_app_to_the_site">Task: Add your app to the site</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the site</strong> - Select <code>Hello World</code> and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Add the app</strong> - In the <code>Applications</code> field, search for <code>Site Framework tutorial</code>, select it, and click <b class="button">Apply</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/site-app.png" alt="The Hello World site with the Site Framework tutorial app added in the Applications field" width="1440">
+</div>
+</div>
+<div class="paragraph">
+<p>Content Studio saves the change automatically.</p>
+</div>
+</li>
+<li>
+<p><strong>Close the tab</strong> - Go back to the browser tab with the content list.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task_create_a_country_and_a_city"><a class="link" href="#task_create_a_country_and_a_city">Task: Create a country and a city</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a country</strong> - Select <code>Hello World</code> and click <b class="button">New</b>. Select <code>Country</code> in the dialog:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/new-content.png" alt="The dialog for creating content, listing the available content types" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Fill in the form</strong> - Use <code>Sweden</code> as the display name, add a description and a Wikipedia URL, and click <b class="button">Save</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/new-country.png" alt="The form for a new country, with display name, description and Wikipedia URL filled in" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Create a city</strong> - Go back to the content list, select <code>Sweden</code>, and click <b class="button">New</b>. Select <code>City</code>, and use <code>Stockholm</code> as the display name. Fill in a slogan and a population, and click <b class="button">Save</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="media/new-city.png" alt="The form for a new city, with display name, slogan and population filled in" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Verify the result</strong> - In the content list, <code>Sweden</code> is listed below <code>Hello World</code>, with <code>Stockholm</code> below it.</p>
 </li>
 </ol>
 </div>
@@ -607,19 +697,8 @@ Fill in the form, and save it. Add more cities if you like.</p>
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve explored the sample content, seen how an app is assigned to a site, and created content from the two content types in your app.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-For more details, visit the reference documentation for <a href="https://developer.enonic.com/docs/platform/7.x/cms/content-types">content types</a> and <a href="https://developer.enonic.com/docs/platform/7.x/cms/schemas">the schema system</a>.
-</td>
-</tr>
-</table>
+<p>You&#8217;ve created two content types, installed sample content, added your app to the site, and created content of your own.
+Content types, sites, and the content itself are part of the CMS, and work the same way whichever front-end you use.</p>
 </div>
 <div class="paragraph">
 <p>Next, you&#8217;ll <a href="pages.ahtml">render the content with a page component</a>.</p>
@@ -629,7 +708,7 @@ For more details, visit the reference documentation for <a href="https://develop
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 22:02:39 UTC
+Last updated 2026-11-24 06:56:37 UTC
 </div>
 </div>
 </body>

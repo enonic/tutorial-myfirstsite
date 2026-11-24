@@ -442,9 +442,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#two_column_layout">Two-column layout</a></li>
+<li><a href="#layouts">Layouts</a>
+<ul class="sectlevel2">
+<li><a href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></li>
+</ul>
+</li>
 <li><a href="#page_contributions">Page contributions</a></li>
-<li><a href="#task_add_the_layout_to_a_page">Task: Add the layout to a page</a></li>
+<li><a href="#layout_in_the_page_template">Layout in the page template</a>
+<ul class="sectlevel2">
+<li><a href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -453,108 +461,133 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll use a layout to arrange components in two columns, and see how a component can contribute CSS to the page it is placed on.</p>
+<p>In this chapter, you&#8217;ll create a layout that arranges components in two columns, and see how a component can contribute CSS to the page it is placed on.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="two_column_layout"><a class="link" href="#two_column_layout">Two-column layout</a></h2>
+<h2 id="layouts"><a class="link" href="#layouts">Layouts</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Layouts are components that contain regions, which makes them containers for other components. Your app includes a layout with two regions that work as columns, and a configuration option that lets editors control the width of each column.</p>
+<p>A <em>layout</em> is a component with regions of its own, which makes it a container for other components. Like pages and parts, a layout consists of a descriptor, an implementation, and a view. Layouts are placed in the <code>src/main/resources/cms/layouts/</code> folder.</p>
+</div>
+<div class="sect2">
+<h3 id="task_create_the_two_column_layout"><a class="link" href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Layout"
+title: "Two columns"
+description: "A layout with two configurable columns"
+form:
+  - type: "RadioButton"
+    name: "sizes"
+    label: "Column sizes"
+    options:
+      - value: "33-66"
+        label: "33/66"
+      - value: "50-50"
+        label: "50/50"
+      - value: "66-33"
+        label: "66/33"
+    default: "50-50"
+regions:
+  - "left"
+  - "right"</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Like pages and parts, a layout consists of a descriptor, a controller, and a view. Layouts are placed in the <code>src/main/resources/site/layouts/</code> folder:</p>
+<p>The descriptor combines what you&#8217;ve seen in pages and parts: it declares regions, and it has a form. The form lets editors choose the width of the columns.</p>
 </div>
+</li>
+<li>
+<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/layouts/two-columns/two-columns.xml</div>
+<div class="title">src/main/resources/assets/styles/two-columns.css</div>
 <div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;layout xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;Two columns&lt;/display-name&gt;
-  &lt;description&gt;A layout with configurable two columns&lt;/description&gt;
-  &lt;form&gt;
-    &lt;input type="ComboBox" name="sizes"&gt;
-        &lt;label&gt;Column sizes&lt;/label&gt; 
-        &lt;occurrences minimum="1" maximum="1"/&gt;
-        &lt;config&gt;
-            &lt;option value="33_66"&gt;33/66&lt;/option&gt;
-            &lt;option value="50_50"&gt;50/50&lt;/option&gt;
-            &lt;option value="66_33"&gt;66/33&lt;/option&gt;
-        &lt;/config&gt;
-        &lt;default&gt;50_50&lt;/default&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-  &lt;regions&gt;
-    &lt;region name="left"/&gt;
-    &lt;region name="right"/&gt;
-  &lt;/regions&gt;
-&lt;/layout&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The descriptor combines what you&#8217;ve seen in pages and parts: it declares regions, and it has a form.</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/site/layouts/two-columns/two-columns.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import { LayoutComponent, LayoutRegion } from '@enonic-types/core';
-import type { Response } from '/index.d';
+<pre class="highlight"><code class="language-css" data-lang="css">.two-columns {
+  display: grid;
+  gap: 2rem;
+}
 
-// @ts-expect-error no-types
-import {render} from '/lib/thymeleaf';
-import {assetUrl, getComponent} from '/lib/xp/portal';
+.two-columns--33-66 {
+  grid-template-columns: 1fr 2fr;
+}
 
-type LayoutDescriptor = "company.starter.myfirstsite:two-column"
-type LayoutConfig = { sizes: '33_66' | '50_50' | '66_33' }
-type Layout = LayoutComponent&lt; LayoutDescriptor,LayoutConfig, {left: LayoutRegion, right: LayoutRegion} &gt;
+.two-columns--50-50 {
+  grid-template-columns: 1fr 1fr;
+}
 
-// Specify the view file to use
-const VIEW = resolve('./two-columns.html');
-
-// Handle the GET request
-export function get(): Response {
-
-  // Get the layout component
-  const component = getComponent&lt;Layout&gt;();
-
-  // Prepare the model that will be passed to the view
-  const model = {
-    sizes: component.config.sizes,
-    leftRegion: component.regions.left,
-    rightRegion: component.regions.right
-  }
-
-  // Prepare the response object
-  const response: Response = {
-    body: render(VIEW, model),
-    pageContributions: {
-      
-      headEnd: [
-        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}" type="text/css" /&gt;`
-      ]
-    }
-  };
-
-  
-  return response;
+.two-columns--66-33 {
+  grid-template-columns: 2fr 1fr;
 }</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
 <div class="listingblock">
-<div class="title">src/main/resources/site/layouts/two-columns/two-columns.html</div>
+<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { LayoutComponent, Response } from '@enonic-types/core';
+
+import { assetUrl } from '/lib/enonic/asset';
+import { render } from '/lib/thymeleaf';
+import { getComponent } from '/lib/xp/portal';
+
+type TwoColumns = LayoutComponent&lt;`${string}:two-columns`, { sizes: string }&gt;;
+
+const VIEW = resolve('./two-columns.html');
+
+export function GET(): Response {
+  const component = getComponent&lt;TwoColumns&gt;()!;
+
+  const model = {
+    sizes: component.config.sizes,
+    leftRegion: component.regions.left,
+    rightRegion: component.regions.right,
+  };
+
+  return {
+    body: render(VIEW, model),
+    pageContributions: {
+      headEnd: [
+        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}"/&gt;`,
+      ],
+    },
+  };
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Create the view</strong> - Create the file below with the following content:</p>
+<div class="listingblock">
+<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.html</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-th-class="'two-columns two-columns--' + ${sizes}"&gt;
-    &lt;div data-portal-region="left"&gt;
-        &lt;div data-th-if="${leftRegion}" data-th-each="component : ${leftRegion.components}" data-th-remove="tag"&gt;
-            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-        &lt;/div&gt;
+  &lt;div data-portal-region="left"&gt;
+    &lt;div data-th-each="component : ${leftRegion.components}" data-th-remove="tag"&gt;
+      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
     &lt;/div&gt;
-    &lt;div data-portal-region="right"&gt;
-        &lt;div data-th-if="${rightRegion}" data-th-each="component : ${rightRegion.components}" data-th-remove="tag"&gt;
-            &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;    
+  &lt;/div&gt;
+  &lt;div data-portal-region="right"&gt;
+    &lt;div data-th-each="component : ${rightRegion.components}" data-th-remove="tag"&gt;
+      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The view renders the two regions in the same way the page component renders its <code>main</code> region.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -563,85 +596,45 @@ export function get(): Response {
 <h2 id="page_contributions"><a class="link" href="#page_contributions">Page contributions</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The layout comes with CSS that is only loaded on pages where the layout is used. The stylesheet is placed in the assets folder:</p>
-</div>
-<div class="listingblock">
-<div class="title">src/main/resources/assets/styles/two-columns.scss</div>
-<div class="content">
-<pre class="highlight"><code class="language-scss" data-lang="scss">.two-columns {
-    display: grid;
-    gap: 2rem;
-
-    &amp;--33_66 {
-        grid-template-columns: calc(33.3% - 1rem) auto;
-    }
-
-    &amp;--50_50 {
-        grid-template-columns: repeat(2, calc(50% - 1rem));
-    }
-    
-    &amp;--66_33 {
-        grid-template-columns: calc(66.6% - 2rem) auto;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The build system compiles the <code>scss</code> file to <code>css</code>.
-</td>
-</tr>
-</table>
+<p>The stylesheet of the layout is only needed on pages where the layout is used. The page component knows nothing about the layout, so the layout adds the stylesheet itself, with a <a href="https://developer.enonic.com/docs/code/stable/web/sites/contributions">page contribution</a>.</p>
 </div>
 <div class="paragraph">
-<p>To add the CSS to the page, the controller uses <a href="https://developer.enonic.com/docs/platform/7.x/framework/contributions">page contributions</a>. A page contribution lets a component inject HTML at specific places in the resulting markup: at the beginning or end of <code>&lt;head&gt;</code>, or at the beginning or end of <code>&lt;body&gt;</code>.</p>
-</div>
-<div class="paragraph">
-<p>The controller above returns the page contribution together with the rest of its response.</p>
+<p>A page contribution lets a component inject markup at specific places in the page: at the beginning or end of <code>&lt;head&gt;</code>, or at the beginning or end of <code>&lt;body&gt;</code>. The implementation above returns a <code>pageContributions</code> property in its response, with a <code>&lt;link&gt;</code> element for the end of <code>&lt;head&gt;</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="task_add_the_layout_to_a_page"><a class="link" href="#task_add_the_layout_to_a_page">Task: Add the layout to a page</a></h2>
+<h2 id="layout_in_the_page_template"><a class="link" href="#layout_in_the_page_template">Layout in the page template</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="task_add_the_layout_to_the_page_template"><a class="link" href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the site</strong> - In Content Studio, select the <code>Hello World</code> site and click <b class="button">Edit</b>.</p>
+<p><strong>Open the page template</strong> - In Content Studio, expand the <code>Templates</code> folder below the site, select the <code>Country</code> template, and click <b class="button">Edit</b>.</p>
 </li>
 <li>
-<p><strong>Insert the layout</strong> - Insert a layout in the <code>main</code> region, and select <code>Two columns</code> in the list:</p>
+<p><strong>Insert the layout</strong> - Select the <code>Page</code> tab. Right-click the <code>main</code> region in the component tree, and select <span class="menuseq"><b class="menu">Insert</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Layout</b></span>. In the <code>Layout</code> field in the context panel, select <code>Two columns</code>.</p>
+</li>
+<li>
+<p><strong>Move the parts into the columns</strong> - The layout appears in the component tree, with the regions <code>left</code> and <code>right</code> below it. Drag the <code>Country</code> part onto <code>left</code>, and the <code>City list</code> part onto <code>right</code>.</p>
+</li>
+<li>
+<p><strong>Save the template</strong> - Click <b class="button">Save</b>.</p>
+</li>
+<li>
+<p><strong>Change the column sizes</strong> - Select <code>Two columns</code> in the component tree. In the context panel, select <code>33/66</code> in the <code>Column sizes</code> field, and click <b class="button">Apply</b>:</p>
 <div class="imageblock">
 <div class="content">
-<img src="media/two-column-layout.png" alt="Two-column layout with the 50/50 setting and empty left and right regions" width="1226">
+<img src="media/two-columns.png" alt="The page template with the layout selected, the two parts in its left and right regions, and the Column sizes setting" width="1440">
 </div>
 </div>
 </li>
 <li>
-<p><strong>Add text to the columns</strong> - Add a text component to each of the two regions, and write some text:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/two-column-layout-with-texts.png" alt="Two-column layout with the 50/50 setting and a text in each region" width="1226">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Change the column sizes</strong> - With the layout selected, switch between <code>33/66</code>, <code>50/50</code>, and <code>66/33</code> in the <code>Column sizes</code> dropdown in the panel on the right-hand side.</p>
-</li>
-<li>
-<p><strong>Verify the result</strong> - The width of the columns follows the setting you select:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/two-column-layout-33-66-with-texts.png" alt="Two-column layout with the 33/66 setting and a text in each region" width="1226">
-</div>
-</div>
+<p><strong>Verify the result</strong> - Go back to the content list and select a country. The description is shown in a narrow column on the left, and the cities in a wide column on the right.</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>
@@ -649,8 +642,8 @@ The build system compiles the <code>scss</code> file to <code>css</code>.
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve added a layout with two regions to a page, filled its columns, and changed its configuration.
-By combining content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.</p>
+<p>You&#8217;ve created a layout with two regions and a configuration, added a stylesheet to the page with a page contribution, and rearranged the page template.
+With content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -659,7 +652,7 @@ By combining content types, pages, parts, layouts, and page templates, you have 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more details, visit the <a href="https://developer.enonic.com/docs/platform/7.x/cms/pages/layouts">layouts documentation</a>.
+For more details, visit the <a href="https://developer.enonic.com/docs/cms/stable/pages/parts">layouts documentation</a>.
 </td>
 </tr>
 </table>
@@ -672,7 +665,7 @@ For more details, visit the <a href="https://developer.enonic.com/docs/platform/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 22:02:39 UTC
+Last updated 2026-11-24 06:56:37 UTC
 </div>
 </div>
 </body>

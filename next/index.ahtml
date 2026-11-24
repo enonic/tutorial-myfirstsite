@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. You&#8217;ll render content with pages, parts, and layouts, and compose and publish the result in Content Studio.</p>
+<p>This step-by-step tutorial introduces the Enonic Site Framework, the built-in way to build content-driven websites on Enonic XP. Starting from an empty app, you&#8217;ll create content types, render content with pages, parts, and layouts, and compose and publish the result in Content Studio.</p>
 </div>
 </div>
 </div>
@@ -460,14 +460,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="intro"><a class="link" href="#intro">Intro</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side JavaScript controllers and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.</p>
+<p>With the Enonic Site Framework, Enonic XP renders your site itself. For each request, XP finds the content, resolves its page, and runs your server-side TypeScript and HTML templates to produce the response. Editors compose the pages visually in Content Studio, using the components you build.</p>
 </div>
 <div class="paragraph">
 <p>When you are done, a country page on your site will look something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/static-assets.png" alt="A rendered country page with the Enonic logo, a text, country facts and a list of cities with an image" width="560">
+<img src="media/result.png" alt="A published country page with a description and Wikipedia link in the left column and a list of cities in the right column" width="1280">
 </div>
 </div>
 <div class="paragraph">
@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="setup.ahtml">Set up</a> the CLI, a local sandbox, and your own app</p>
 </li>
 <li>
-<p>Explore the sample content and its content types in <a href="content.ahtml">Content Studio</a></p>
+<p>Create content types and add sample <a href="content.ahtml">content</a></p>
 </li>
 <li>
 <p>Render content with a <a href="pages.ahtml">page component</a></p>
@@ -494,7 +494,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Reuse a page across content items with <a href="page-templates.ahtml">page templates</a></p>
 </li>
 <li>
-<p>Serve CSS and images as <a href="static-assets.ahtml">static assets</a></p>
+<p>Serve CSS as <a href="static-assets.ahtml">static assets</a></p>
 </li>
 <li>
 <p>Arrange components in columns with <a href="layouts.ahtml">layouts</a></p>
@@ -505,7 +505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The controllers and views are specific to the Site Framework.</p>
+<p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -531,13 +531,16 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If you only want to see the result, the <a href="demo.ahtml">demo page</a> shows how to run the finished site without following the chapters.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="prerequisites"><a class="link" href="#prerequisites">Prerequisites</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No prior Enonic experience is required. Basic familiarity with HTML and JavaScript or TypeScript is helpful.</p>
+<p>No prior Enonic experience is required. Basic familiarity with HTML and TypeScript or JavaScript is helpful.</p>
 </div>
 <div class="paragraph">
 <p>To follow this tutorial you will need:</p>
@@ -584,11 +587,11 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enonic XP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.16.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8.1.3</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Content Studio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.4.17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.1.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -600,7 +603,7 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-23 22:02:39 UTC
+Last updated 2026-11-24 06:56:37 UTC
 </div>
 </div>
 </body>
