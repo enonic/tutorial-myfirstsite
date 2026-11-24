@@ -1,4 +1,4 @@
-= Build a website with the Enonic Site Framework
+= Enonic Site Framework tutorial
 include::.variables.adoc[]
 :toc: right
 :imagesdir: media
