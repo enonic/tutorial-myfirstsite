@@ -507,14 +507,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Enonic also supports <a href="https://developer.enonic.com/docs/frameworks">other front-end frameworks</a>. Next.js renders outside XP and fetches content through the API. React4XP runs inside XP like the Site Framework, but replaces the built-in page and component rendering with rendering based on React.
+Enonic works with any <a href="https://developer.enonic.com/docs/frameworks">front-end framework</a>. Next.js, for example, renders outside XP and fetches content over HTTP. The Site Framework is an alternative to using a third-party front-end framework. So is React4XP, which runs inside XP like the Site Framework, but replaces the built-in page and component rendering with rendering based on React.
 </td>
 </tr>
 </table>
@@ -603,7 +603,7 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 07:40:20 UTC
+Last updated 2026-11-24 08:20:08 UTC
 </div>
 </div>
 </body>
