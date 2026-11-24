@@ -485,7 +485,7 @@ The demo uses its own sandbox, so it does not interfere with the one you use for
 <p><strong>Create a sandbox</strong> - If the tutorial sandbox is running, stop it first. Then run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t essentials -v 8.1.3 -f</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t essentials -f</code></pre>
 </div>
 </div>
 </li>
@@ -517,7 +517,7 @@ Published the "Hello World" site</code></pre>
 </div>
 </li>
 <li>
-<p><strong>Open the site</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway">http://localhost:8080/site/siteframework/master/hello-world/norway</a> in your browser:</p>
+<p><strong>Open the site</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/norway</a> in your browser:</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/result.png" alt="The published page for Norway, with the description in the left column and the cities in the right column" width="1280">
@@ -527,7 +527,7 @@ Published the "Hello World" site</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>To see how the pages are put together, open <a href="http://localhost:8080">http://localhost:8080</a>, click <b class="button">Log In as Guest</b>, and open Content Studio.</p>
+<p>To see how the pages are put together, open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>, click <b class="button">Log In as Guest</b>, and open Content Studio.</p>
 </div>
 </div>
 </div>
@@ -542,7 +542,7 @@ Published the "Hello World" site</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 22:24:27 UTC
+Last updated 2026-11-24 23:00:05 UTC
 </div>
 </div>
 </body>
