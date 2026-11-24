@@ -514,7 +514,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Enonic also supports <a href="https://developer.enonic.com/docs/frameworks">other front-end frameworks</a>. Next.js renders outside XP and fetches content through the API. React4XP runs inside XP like the Site Framework, but replaces its page rendering with one based on React.
+Enonic also supports <a href="https://developer.enonic.com/docs/frameworks">other front-end frameworks</a>. Next.js renders outside XP and fetches content through the API. React4XP runs inside XP like the Site Framework, but replaces the built-in page and component rendering with rendering based on React.
 </td>
 </tr>
 </table>
@@ -603,7 +603,7 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-24 06:56:37 UTC
+Last updated 2026-11-24 07:40:20 UTC
 </div>
 </div>
 </body>
