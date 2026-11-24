@@ -14,7 +14,7 @@ In Content Studio, you work in the `draft` branch. Publishing copies the selecte
 
 . *Select the site* - Select the `Hello World` site in the content list.
 
-. *Open the Publishing Wizard* - Click the arrow next to the publish button in the top right corner, and select `Publish tree`. The Publishing Wizard opens, listing the site and everything below it.
+. *Open the Publishing Wizard* - Click the arrow next to the btn:[Mark as ready] button in the top right corner, and select `Publish tree`. The Publishing Wizard opens, listing the site and everything below it.
 
 . *Mark the content as ready* - Items that are `In progress` block publishing. If the wizard lists any, click btn:[Mark as ready].
 
