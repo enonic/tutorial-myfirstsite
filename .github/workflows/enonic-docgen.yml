@@ -5,6 +5,7 @@ on:
     branches:
       - "master"
       - "7.x"
+      - "advanced-features"
     paths:
       - 'docs/**'
   workflow_dispatch:

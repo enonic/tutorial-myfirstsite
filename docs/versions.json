@@ -7,6 +7,10 @@
       "latest": true
     },
     {
+      "label": "next",
+      "checkout": "advanced-features"
+    },
+    {
       "label": "7.x",
       "checkout": "7.x"
     }
