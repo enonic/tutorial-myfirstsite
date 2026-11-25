@@ -1,0 +1,5 @@
+kind: "API"
+title: "Countries"
+description: "The countries of the site and their cities, as CSV"
+allow:
+  - "role:system.everyone"

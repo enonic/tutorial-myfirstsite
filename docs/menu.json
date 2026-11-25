@@ -41,6 +41,24 @@
       "document": "go-online"
     },
     {
+      "title": "Advanced features",
+      "document": "advanced",
+      "menuItems": [
+        {
+          "title": "Mappings",
+          "document": "advanced/mappings"
+        },
+        {
+          "title": "APIs",
+          "document": "advanced/apis"
+        },
+        {
+          "title": "More apps",
+          "document": "advanced/apps"
+        }
+      ]
+    },
+    {
       "title": "Demo",
       "document": "demo"
     }

@@ -42,7 +42,7 @@ The model now includes the `main` region of the page.
 include::{sourcedir}code-samples/hello-regions/hello.html[]
 ----
 +
-The `data-portal-region` attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with `data-portal-component`.
+The `data-portal-region` attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with `data-portal-component`. The `path` of a component is the name of its region and its position in it, such as `/main/0`.
 
 . *Verify the result* - In Content Studio, open the `Hello World` site and select the `Page` tab above the form. The tab lists the components of the page as a tree, with the `main` region below the page component. The preview shows the empty region as a drop zone:
 +
