@@ -4,10 +4,11 @@ include::../.variables.adoc[]
 :imagesdir: ../media
 :sourcedir: ../../src/main/resources
 :experimental:
+:api-url: {xp-url}/site/{cms-project-id}/master/hello-world/_/{app-name-full}:countries
 
-On this page, you'll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.
+In this chapter, you'll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.
 
-This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
+This chapter requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
 
 == APIs
 
@@ -49,7 +50,7 @@ include::{sourcedir}/cms/site.yaml[lines=5..7]
 
 . *Verify the build* - The terminal running `enonic dev` prints `BUILD SUCCESSFUL`.
 
-. *Verify the result* - Open {xp-url}/site/{cms-project-id}/master/hello-world/_/{app-name-full}:countries[the API on your site^] in your browser. It downloads `countries.csv`, which looks something like this:
+. *Verify the result* - Open {api-url}[{api-url}^] in your browser. It downloads `countries.csv`, which looks something like this:
 +
 [source,text]
 ----

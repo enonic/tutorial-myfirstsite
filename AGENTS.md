@@ -16,8 +16,9 @@ templates, static assets, layouts, and publishing. Readers are developers who ar
 and the GraphQL API belong to the content modeling tutorial; component and schema details belong to the reference
 documentation, which chapters link to instead of repeating.
 
-The optional `Advanced features` section (`docs/advanced.adoc` and `docs/advanced/`) follows the nine chapters. It covers
-mappings and APIs, built in the same app, and ends with a page where the reader installs the Sitemap.xml app from Enonic
+The optional `Advanced features` section (`docs/advanced.adoc` and `docs/advanced/`) follows chapters 1 to 9. Its pages are
+called chapters too, but are not numbered. It covers
+mappings and APIs, built in the same app, and ends with a chapter where the reader installs the Sitemap.xml app from Enonic
 Market to see how another app takes part in a site. The nine chapters stay complete on their own, and the celebration
 stays in chapter 9. Response processors, page contributions, filters and request re-routing are out of scope here.
 
@@ -72,9 +73,9 @@ A push to either branch that touches `docs/` republishes the tutorial immediatel
   `main.ts` imports it on first start, rewrites the application ID to `app.name` with `import/replace_app.xsl`, and
   publishes the site, so the demo runs under any application ID.
 - **Both apps create the project only if it does not exist**, so installing one after the other never imports twice.
-- **The advanced pages build in the same app**, and their code is part of the final result here: the `llms.txt` mapping,
-  the `countries` API, and the footer link in the `hello` page component. Each advanced page starts from the result of
-  chapter 9 and must not depend on another advanced page. The Sitemap.xml page adds no code. The complete content
+- **The advanced chapters build in the same app**, and their code is part of the final result here: the `llms.txt` mapping,
+  the `countries` API, and the footer link in the `hello` page component. Each advanced chapter starts from the result of
+  chapter 9 and must not depend on another advanced chapter. The Sitemap.xml chapter adds no code. The complete content
   has the Sitemap.xml app added to the site, with `Country` included, so the demo serves `sitemap.xml`. That is why the demo sandbox
   uses the `sitekit` template, which installs the app, while the reader's sandbox stays on `essentials`.
 - **One app renders, others contribute.** This is the principle the advanced section teaches. Keep everything that

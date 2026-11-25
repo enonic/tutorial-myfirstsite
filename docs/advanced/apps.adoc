@@ -4,9 +4,9 @@ include::../.variables.adoc[]
 :imagesdir: ../media
 :experimental:
 
-On this page, you'll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.
+In this chapter, you'll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.
 
-This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>. It refers to the <<mappings#,Mappings>> page, but you don't need to have completed it.
+This chapter requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>. It refers to the <<mappings#,Mappings>> chapter, but you don't need to have completed it.
 
 == More than one app
 
@@ -79,7 +79,7 @@ mappings:
     pattern: "/sitemap(-\\d+)?\\.xml(\\.gz)?"
 ----
 
-This is a mapping, like the one for `llms.txt` on the <<mappings#,Mappings>> page. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:
+This is a mapping, like the one for `llms.txt` in the <<mappings#,Mappings>> chapter. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:
 
 * A request for `sitemap.xml` matches the mapping in the Sitemap.xml app, and is answered there.
 * A request for `llms.txt` matches the mapping in your app, if you have added it.
@@ -91,8 +91,18 @@ Mappings are one of several ways for an app to take part in a site. An app can a
 
 NOTE: The <<../demo#,demo>> has the Sitemap.xml app added to the site already. Its sandbox is created from the `sitekit` template, which installs the app.
 
+== More apps to explore
+
+Sitemap.xml is one of many apps that contribute to a site in this way. These are worth a look:
+
+* https://market.enonic.com/vendors/enonic/com.enonic.app.robotstxt[Robots.txt] - Serves `robots.txt` for your site, editable in Content Studio
+* https://market.enonic.com/vendors/enonic/com.enonic.app.metafields[SEO Meta Fields] - Adds fields for search engine optimization to your content, and the matching meta tags to your pages
+* https://market.enonic.com/vendors/enonic/booster[Booster] - Caches the responses of your site to improve performance. Booster requires an Enonic license
+
+You install them and add them to your site the same way as Sitemap.xml. Visit https://market.enonic.com[Enonic Market] for the full selection.
+
 == Summary
 
 You've installed an app from Enonic Market, added it to your site, and seen how its mapping works side by side with the rendering in your own app.
 
-That completes the advanced features. Visit https://market.enonic.com[Enonic Market] to find more apps to add to your site.
+That completes the advanced features.

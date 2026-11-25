@@ -5,9 +5,9 @@ include::../.variables.adoc[]
 :sourcedir: ../../src/main/resources
 :experimental:
 
-On this page, you'll make your site answer at a URL that has no content behind it, by mapping the URL to a function in your app.
+In this chapter, you'll make your site answer at a URL that has no content behind it, by mapping the URL to a function in your app.
 
-This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
+This chapter requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
 
 == Mappings
 
@@ -63,7 +63,7 @@ The file is made from the content each time it is requested. Publish a new count
 
 A mapping is the right tool when the URL is decided for you, as it is for `llms.txt`. When you can choose the URL yourself, an <<apis#,API>> is usually a better fit.
 
-Mappings can do more than this page shows. A mapping can match content instead of a URL, for instance all content of one type, and it can point to a filter that runs before and after the rendering instead of replacing it.
+Mappings can do more than this chapter shows. A mapping can match content instead of a URL, for instance all content of one type, and it can point to a filter that runs before and after the rendering instead of replacing it.
 
 == Summary
 
