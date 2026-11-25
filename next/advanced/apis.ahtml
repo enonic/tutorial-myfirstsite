@@ -454,10 +454,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>On this page, you&#8217;ll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.</p>
+<p>In this chapter, you&#8217;ll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.</p>
 </div>
 <div class="paragraph">
-<p>This page requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>.</p>
+<p>This chapter requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>.</p>
 </div>
 </div>
 </div>
@@ -553,7 +553,7 @@ export function GET(): Response {
 <p><strong>Verify the build</strong> - The terminal running <code>enonic dev</code> prints <code>BUILD SUCCESSFUL</code>.</p>
 </li>
 <li>
-<p><strong>Verify the result</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/_/com.example.tutorial.siteframework:countries" target="_blank" rel="noopener">the API on your site</a> in your browser. It downloads <code>countries.csv</code>, which looks something like this:</p>
+<p><strong>Verify the result</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/_/com.example.tutorial.siteframework:countries" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/_/com.example.tutorial.siteframework:countries</a> in your browser. It downloads <code>countries.csv</code>, which looks something like this:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-text" data-lang="text">Country,Cities,Population
@@ -687,7 +687,7 @@ For more details, visit the <a href="https://developer.enonic.com/docs/code/stab
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:08:15 UTC
+Last updated 2026-11-25 08:43:48 UTC
 </div>
 </div>
 </body>

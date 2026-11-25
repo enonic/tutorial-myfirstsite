@@ -447,6 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#task_add_the_app_to_the_site">Task: Add the app to the site</a></li>
 <li><a href="#task_publish_and_verify">Task: Publish and verify</a></li>
 <li><a href="#how_the_app_takes_part">How the app takes part</a></li>
+<li><a href="#more_apps_to_explore">More apps to explore</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -455,10 +456,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>On this page, you&#8217;ll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.</p>
+<p>In this chapter, you&#8217;ll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.</p>
 </div>
 <div class="paragraph">
-<p>This page requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>. It refers to the <a href="mappings.ahtml">Mappings</a> page, but you don&#8217;t need to have completed it.</p>
+<p>This chapter requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>. It refers to the <a href="mappings.ahtml">Mappings</a> chapter, but you don&#8217;t need to have completed it.</p>
 </div>
 </div>
 </div>
@@ -581,7 +582,7 @@ mappings:
 </div>
 </div>
 <div class="paragraph">
-<p>This is a mapping, like the one for <code>llms.txt</code> on the <a href="mappings.ahtml">Mappings</a> page. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:</p>
+<p>This is a mapping, like the one for <code>llms.txt</code> in the <a href="mappings.ahtml">Mappings</a> chapter. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -617,20 +618,44 @@ The <a href="../demo.ahtml">demo</a> has the Sitemap.xml app added to the site a
 </div>
 </div>
 <div class="sect1">
+<h2 id="more_apps_to_explore"><a class="link" href="#more_apps_to_explore">More apps to explore</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sitemap.xml is one of many apps that contribute to a site in this way. These are worth a look:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/com.enonic.app.robotstxt">Robots.txt</a> - Serves <code>robots.txt</code> for your site, editable in Content Studio</p>
+</li>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/com.enonic.app.metafields">SEO Meta Fields</a> - Adds fields for search engine optimization to your content, and the matching meta tags to your pages</p>
+</li>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/booster">Booster</a> - Caches the responses of your site to improve performance. Booster requires an Enonic license</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You install them and add them to your site the same way as Sitemap.xml. Visit <a href="https://market.enonic.com">Enonic Market</a> for the full selection.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You&#8217;ve installed an app from Enonic Market, added it to your site, and seen how its mapping works side by side with the rendering in your own app.</p>
 </div>
 <div class="paragraph">
-<p>That completes the advanced features. Visit <a href="https://market.enonic.com">Enonic Market</a> to find more apps to add to your site.</p>
+<p>That completes the advanced features.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:08:15 UTC
+Last updated 2026-11-25 08:43:48 UTC
 </div>
 </div>
 </body>

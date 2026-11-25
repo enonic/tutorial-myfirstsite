@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The pages in this section go beyond the nine chapters. Each one adds a single feature to the site you built: a mapping, an API, and an app from Enonic Market. They are optional, and the first two can be read in any order.</p>
+<p>The chapters in this section go beyond chapters 1 to 9. Each one adds a single feature to the site you built: a mapping, an API, and an app from Enonic Market. They are optional, and the first two can be read in any order.</p>
 </div>
 </div>
 </div>
@@ -460,10 +460,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="before_you_start"><a class="link" href="#before_you_start">Before you start</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Every page assumes that you have completed <a href="go-online.ahtml">chapter 9</a>: the <code>Hello World</code> site is published, the sandbox is running, and <code>enonic dev</code> is running in your app folder.</p>
+<p>Every chapter assumes that you have completed <a href="go-online.ahtml">chapter 9</a>: the <code>Hello World</code> site is published, the sandbox is running, and <code>enonic dev</code> is running in your app folder.</p>
 </div>
 <div class="paragraph">
-<p>If you run the <a href="demo.ahtml">demo</a> instead, you already have the result of all three pages, and can follow along in the code and in Content Studio.</p>
+<p>The <a href="demo.ahtml">demo</a> contains the result of all three chapters.</p>
 </div>
 </div>
 </div>
@@ -515,7 +515,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:08:15 UTC
+Last updated 2026-11-25 08:43:48 UTC
 </div>
 </div>
 </body>

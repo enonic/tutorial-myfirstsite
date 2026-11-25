@@ -505,7 +505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>When you have completed the chapters, the optional <a href="advanced.ahtml">advanced features</a> show how to serve custom URLs, expose APIs, and add more apps to the site.</p>
+<p>When you have completed the nine chapters, the optional <a href="advanced.ahtml">advanced features</a> chapters show how to serve custom URLs, expose APIs, and add more apps to the site.</p>
 </div>
 <div class="paragraph">
 <p>The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.</p>
@@ -606,7 +606,7 @@ Throughout this tutorial, "XP" refers to "Enonic XP", the platform behind Enonic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:08:15 UTC
+Last updated 2026-11-25 08:43:48 UTC
 </div>
 </div>
 </body>
