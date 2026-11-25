@@ -16,6 +16,11 @@ templates, static assets, layouts, and publishing. Readers are developers who ar
 and the GraphQL API belong to the content modeling tutorial; component and schema details belong to the reference
 documentation, which chapters link to instead of repeating.
 
+The optional `Advanced features` section (`docs/advanced.adoc` and `docs/advanced/`) follows the nine chapters. It covers
+mappings and APIs, built in the same app, and ends with a page where the reader installs the Sitemap.xml app from Enonic
+Market to see how another app takes part in a site. The nine chapters stay complete on their own, and the celebration
+stays in chapter 9. Response processors, page contributions, filters and request re-routing are out of scope here.
+
 ## Positioning and vocabulary
 
 - The **Enonic Site Framework** is the built-in way to build content-driven sites: the site service resolves the page for
@@ -67,6 +72,13 @@ A push to either branch that touches `docs/` republishes the tutorial immediatel
   `main.ts` imports it on first start, rewrites the application ID to `app.name` with `import/replace_app.xsl`, and
   publishes the site, so the demo runs under any application ID.
 - **Both apps create the project only if it does not exist**, so installing one after the other never imports twice.
+- **The advanced pages build in the same app**, and their code is part of the final result here: the `llms.txt` mapping,
+  the `countries` API, and the footer link in the `hello` page component. Each advanced page starts from the result of
+  chapter 9 and must not depend on another advanced page. The Sitemap.xml page adds no code. The complete content
+  has the Sitemap.xml app added to the site, with `Country` included, so the demo serves `sitemap.xml`. That is why the demo sandbox
+  uses the `sitekit` template, which installs the app, while the reader's sandbox stays on `essentials`.
+- **One app renders, others contribute.** This is the principle the advanced section teaches. Keep everything that
+  renders pages in the tutorial app.
 - **What the reader does not write:** `main.ts`, `import/`, and the `cluster`, `context`, `export` and `project`
   libraries in `build.gradle`. Everything else under `src/` must match what the chapters tell the reader to create.
 
@@ -115,6 +127,12 @@ Each of these was hit while the tutorial was built and tested on XP 8.1.3 with C
 - **The Text component is not offered in Content Studio 6**, so no chapter uses it.
 - **Selecting a page component or a part saves automatically; dragging a component in the tree does not.** The layouts
   chapter tells the reader to click Save.
+- **A mapping's `controller` must name the compiled `.js` file.** With `.ts`, XP tries to run the TypeScript source and
+  the request fails with a parse error.
+- **An API mounted on a site is only reachable at the site root**, as `+/_/<app>:<api>+`, and only after it is listed in
+  `apis` in the site descriptor.
+- **The app configuration on a site is content.** After adding or configuring an app on a published site, the site must
+  be published again before the change shows on `master`.
 - **Saving several files in quick succession can make one dev build fail** on the jar step. The next save fixes it.
 
 ## Key conventions specific to this repository

@@ -1,0 +1,98 @@
+= Adding more apps to a site
+include::../.variables.adoc[]
+:toc: right
+:imagesdir: ../media
+:experimental:
+
+On this page, you'll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.
+
+This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>. It refers to the <<mappings#,Mappings>> page, but you don't need to have completed it.
+
+== More than one app
+
+Your app renders the site: it owns the pages, parts, and layouts. That job is best left to a single app.
+
+Other apps can still be added to the same site, and add features of their own next to yours. A sitemap is a good example. It has nothing to do with how your pages look, every site needs one, and there is an app for it already.
+
+== Task: Install the app
+
+. *Open Applications* - On the XP admin home page, click btn:[Applications].
+
+. *Find the app* - Click btn:[Install], and type `Sitemap` in the search field:
++
+image::install-sitemap.png["The Install Application dialog with Sitemap in the search field, listing the Sitemap.xml app", width=1440]
+
+. *Install the app* - Click btn:[Install] next to `Sitemap.xml`, and close the dialog when it says `Installed`.
+
+. *Verify the result* - The app is listed among the installed applications, as `Sitemap XML`.
+
+== Task: Add the app to the site
+
+. *Open the site* - In Content Studio, select `Hello World` and click btn:[Edit].
+
+. *Add the app* - In the `Applications` field, search for `Sitemap XML`, select it, and click btn:[Apply]. The app is listed below your own, `{app-title}`.
+
+. *Open the configuration* - Click the pencil icon next to `Sitemap XML`.
+
+. *Include the countries* - Below `Include by type`, click btn:[Add]. Select `Country` in the `Content Type` field, and click btn:[Apply]:
++
+image::sitemap-config.png["The configuration of the Sitemap XML app, with Country selected in the Content Type field", width=1440]
++
+Content Studio saves the change automatically.
+
+The configuration form is part of the Sitemap.xml app. An app can define a form, which Content Studio shows for every site the app is added to. The values are stored on the site.
+
+== Task: Publish and verify
+
+The list of apps and their configuration belong to the site content, so the change must be published before visitors get the sitemap.
+
+. *Publish the site* - Go back to the content list, select `Hello World`, and click btn:[Mark as ready]. The Publishing Wizard opens. Click btn:[Publish now].
+
+. *Verify the result* - Open {xp-url}/site/{cms-project-id}/master/hello-world/sitemap.xml[{xp-url}/site/{cms-project-id}/master/hello-world/sitemap.xml^] in your browser. It lists the site and the countries:
++
+[source,xml,{subs}]
+----
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{xp-url}/site/{cms-project-id}/master/hello-world</loc>
+    ...
+  </url>
+  <url>
+    <loc>{xp-url}/site/{cms-project-id}/master/hello-world/norway</loc>
+    ...
+  </url>
+  ...
+</urlset>
+----
+
+== How the app takes part
+
+You did not change your own app, and it knows nothing about the sitemap. The whole connection is in the site descriptor of the Sitemap.xml app:
+
+.cms/site.yaml in the Sitemap.xml app
+[source,yaml]
+----
+kind: "Site"
+mappings:
+  - controller: "/cms/controllers/sitemap/sitemap.js"
+    order: 12
+    pattern: "/sitemap(-\\d+)?\\.xml(\\.gz)?"
+----
+
+This is a mapping, like the one for `llms.txt` on the <<mappings#,Mappings>> page. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:
+
+* A request for `sitemap.xml` matches the mapping in the Sitemap.xml app, and is answered there.
+* A request for `llms.txt` matches the mapping in your app, if you have added it.
+* All other requests match no mapping, and continue to the page rendering in your app.
+
+The `order` decides which mapping wins when several of them match the same request. Lower numbers come first, and the default is 50.
+
+Mappings are one of several ways for an app to take part in a site. An app can also run {code-docs}/web/filters[filters] around the requests, change the rendered pages with {code-docs}/web/sites/processors[response processors], and offer {code-docs}/web/apis[APIs] for other apps to mount. In all of these cases the rule stays the same: one app renders the site, and the others contribute around it.
+
+NOTE: The <<../demo#,demo>> has the Sitemap.xml app added to the site already. Its sandbox is created from the `sitekit` template, which installs the app.
+
+== Summary
+
+You've installed an app from Enonic Market, added it to your site, and seen how its mapping works side by side with the rendering in your own app.
+
+That completes the advanced features. Visit https://market.enonic.com[Enonic Market] to find more apps to add to your site.

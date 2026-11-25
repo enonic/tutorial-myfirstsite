@@ -25,6 +25,8 @@ You will complete the following steps:
 * Arrange components in columns with <<layouts#,layouts>>
 * <<go-online#,Publish>> the site
 
+When you have completed the chapters, the optional <<advanced#,advanced features>> show how to serve custom URLs, expose APIs, and add more apps to the site.
+
 The content types, regions, and page templates you meet here are concepts of the CMS and apply whichever front-end you use. The component implementations and views are specific to the Site Framework.
 
 NOTE: Enonic works with any {frameworks-docs}[front-end framework]. Next.js, for example, renders outside XP and fetches content over HTTP. The Site Framework is an alternative to using a third-party front-end framework. So is React4XP, which runs inside XP like the Site Framework, but replaces the built-in page and component rendering with rendering based on React.

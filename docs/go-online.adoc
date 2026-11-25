@@ -26,12 +26,27 @@ image::publish.png["The Publishing Wizard listing the Hello World site and its c
 +
 image::result.png["The published page for Norway, with the description in the left column and the cities in the right column", width=1280]
 
+== Component URLs
+
+Now that the site is published, you can see how the site service puts a page together. Every component on a page has a URL of its own: add `+/_/component/+` and the path of the component to the address of the page, and the component is rendered alone, without the page around it.
+
+Try these on your site:
+
+* {xp-url}/site/{cms-project-id}/master/hello-world/norway/_/component/main/0[The layout^], which is the first component in the `main` region
+* {xp-url}/site/{cms-project-id}/master/hello-world/norway/_/component/main/0/left/0[The country part^], the first component in the `left` region of the layout
+* {xp-url}/site/{cms-project-id}/master/hello-world/norway/_/component/main/0/right/0[The city list part^], the first component in the `right` region of the layout
+
+Each of them shows the markup of one component, without the heading and the styling of the page. A page can use these URLs to update a single component without reloading everything.
+
+TIP: For more details, visit the {code-docs}/web/sites/components#direct-rendering[direct component rendering documentation].
+
 == Summary
 
 You did it! 🎉 You've built a site with the Enonic Site Framework: content types, a page, parts, and a layout that render structured content, composed and published from Content Studio.
 
 That completes the tutorial. If you want to keep going, these are good places to continue:
 
+* <<advanced#,Advanced features>> adds mappings, APIs, and an app from Enonic Market to the site you have built.
 * The <<demo#,demo>> shows how to run the finished site from the tutorial's own repository, and compare it with yours.
 * The {modeling-tutorial}[content modeling tutorial] goes deeper into structured content and the GraphQL API.
 * The {frameworks-docs}[front-end frameworks overview] presents the other ways to build a front-end for Enonic.

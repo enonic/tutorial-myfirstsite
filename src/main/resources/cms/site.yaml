@@ -1,3 +1,7 @@
 kind: "Site"
+mappings:
+  - controller: "/cms/mappings/llms-txt.js"
+    pattern: '/llms\.txt'
 apis:
   - "asset"
+  - "countries"

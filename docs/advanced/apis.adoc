@@ -1,0 +1,103 @@
+= APIs
+include::../.variables.adoc[]
+:toc: right
+:imagesdir: ../media
+:sourcedir: ../../src/main/resources
+:experimental:
+
+On this page, you'll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.
+
+This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
+
+== APIs
+
+An _API_ is an HTTP endpoint in your app. It consists of a descriptor and an implementation, placed together in a folder under `src/main/resources/apis/`.
+
+Unlike a <<mappings#,mapping>>, an API does not pick its own address. Its URL is made from the name of the app and the name of the API, and it can only be reached where it has been _mounted_.
+
+You have already mounted one. In <<../static-assets#,chapter 7>>, you added `asset` to the `apis` list in the site descriptor. That mounted the API of the Asset library on your site, which is why the URL of your stylesheet contains `{app-name-full}:asset`.
+
+== Task: Create the API
+
+. *Create the descriptor* - Create the file below with the following content:
++
+.src/main/resources/apis/countries/countries.yaml
+[source,yaml]
+----
+include::{sourcedir}/apis/countries/countries.yaml[]
+----
++
+The `allow` list decides who can call the API. The role `system.everyone` makes it public.
+
+. *Create the implementation* - Create the file below with the following content:
++
+.src/main/resources/apis/countries/countries.ts
+[source,typescript]
+----
+include::{sourcedir}/apis/countries/countries.ts[]
+----
++
+For each country, the function counts the cities and adds up their population. The response sets the content type to CSV, and a header that tells the browser to save the result as `countries.csv`.
+
+. *Mount the API* - In the site descriptor, add `countries` to the `apis` list:
++
+.src/main/resources/cms/site.yaml
+[source,yaml]
+----
+include::{sourcedir}/cms/site.yaml[lines=5..7]
+----
+
+. *Verify the build* - The terminal running `enonic dev` prints `BUILD SUCCESSFUL`.
+
+. *Verify the result* - Open {xp-url}/site/{cms-project-id}/master/hello-world/_/{app-name-full}:countries[the API on your site^] in your browser. It downloads `countries.csv`, which looks something like this:
++
+[source,text]
+----
+Country,Cities,Population
+"Norway",3,1059779
+"Sweden",1,984748
+"Colombia",3,12072487
+"USA",3,1978100
+----
+
+The API is mounted at the root of the site only. The same address below a country does not exist, and neither does the API on any other site, until an app mounts it there.
+
+== Task: Link to the API
+
+The address of an API depends on where it is mounted, so don't write it by hand. The Portal library creates it for you.
+
+. *Update the implementation* - Replace the content of the page component implementation with the following:
++
+.src/main/resources/cms/pages/hello/hello.ts
+[source,typescript]
+----
+include::{sourcedir}/cms/pages/hello/hello.ts[]
+----
++
+`apiUrl()` creates the URL of an API where it is mounted in the current context, here on the site.
+
+. *Update the view* - Replace the content of the page component view with the following:
++
+.src/main/resources/cms/pages/hello/hello.html
+[source,html]
+----
+include::{sourcedir}/cms/pages/hello/hello.html[]
+----
++
+The view now has a `<footer>` with a link to the API.
+
+. *Verify the result* - Open {xp-url}/site/{cms-project-id}/master/hello-world/norway[{xp-url}/site/{cms-project-id}/master/hello-world/norway^] and click `Countries as CSV` at the bottom of the page. The browser downloads the file.
+
+== When to use an API
+
+An API is the right tool when you decide the URL. When the URL is decided for you, as for `llms.txt`, use a <<mappings#,mapping>>.
+
+An API is also not tied to the site. The same API can be mounted on other sites, and on the web endpoint of XP, where it is available without a site at all.
+
+== Summary
+
+You've created an API, mounted it on your site, and used the Portal library to link to it.
+
+TIP: For more details, visit the {code-docs}/web/apis[APIs documentation].
+
+Next, you can <<apps#,add another app to your site>>.

@@ -1,0 +1,29 @@
+= Advanced features
+include::.variables.adoc[]
+:toc: right
+
+The pages in this section go beyond the nine chapters. Each one adds a single feature to the site you built: a mapping, an API, and an app from Enonic Market. They are optional, and the first two can be read in any order.
+
+== Before you start
+
+Every page assumes that you have completed <<go-online#,chapter 9>>: the `Hello World` site is published, the sandbox is running, and `enonic dev` is running in your app folder.
+
+If you run the <<demo#,demo>> instead, you already have the result of all three pages, and can follow along in the code and in Content Studio.
+
+== One app renders, others contribute
+
+So far, a single app has done everything on your site. That is how rendering works best: one app owns the pages, parts, and layouts of a site.
+
+A site can still have several apps, and the others don't have to render anything. An app can contribute to a site in other ways:
+
+* Serving specific URLs with <<advanced/mappings#,mappings>>
+* Exposing <<advanced/apis#,APIs>>
+* Changing requests and responses with {code-docs}/web/filters[filters] and {code-docs}/web/sites/processors[response processors]
+
+You'll use the first two in your own app, and then see <<advanced/apps#,another app do the same>> on your site.
+
+== In this section
+
+* <<advanced/mappings#,Mappings>> - Serve a file at a fixed URL, with `llms.txt` as the example
+* <<advanced/apis#,APIs>> - Offer the countries as a CSV file through an API
+* <<advanced/apps#,More apps>> - Install Sitemap.xml from Enonic Market, and see how it takes part in your site

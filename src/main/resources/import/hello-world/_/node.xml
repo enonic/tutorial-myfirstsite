@@ -104,6 +104,15 @@
                 <string name="applicationKey">com.example.tutorial.siteframework</string>
                 <property-set name="config"/>
             </property-set>
+            <property-set name="siteConfig">
+                <string name="applicationKey">com.enonic.app.sitemapxml</string>
+                <property-set name="config">
+                    <property-set name="siteMap">
+                        <string name="contentType">com.example.tutorial.siteframework:country</string>
+                        <string name="priority">0.5</string>
+                    </property-set>
+                </property-set>
+            </property-set>
         </property-set>
         <property-set name="components">
             <string name="type">page</string>

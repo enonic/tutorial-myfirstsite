@@ -10,7 +10,7 @@ following all chapters from `starter-ts`, and the content as it looks at the end
 Install the [Enonic CLI](https://developer.enonic.com/start), then run:
 
 ```bash
-enonic sandbox create demo_siteframework -t essentials -f
+enonic sandbox create demo_siteframework -t sitekit -f
 enonic project create com.example.demo.siteframework -r tutorial-site-framework -s demo_siteframework -d demo-siteframework-enonic -f
 cd demo-siteframework-enonic
 enonic dev
@@ -19,6 +19,10 @@ enonic dev
 On first start the app creates the `Site Framework` content project, imports the content in
 `src/main/resources/import/`, and publishes the site. Open
 http://localhost:8080/site/siteframework/master/hello-world/norway to see the result.
+
+The app also includes the mapping and the API from the Advanced features section: `llms.txt` is served at
+http://localhost:8080/site/siteframework/master/hello-world/llms.txt, and every page links to the countries as CSV. The site also has the Sitemap.xml app from the `sitekit` template added, so
+`sitemap.xml` is served the same way.
 
 ## What a reader does not write
 

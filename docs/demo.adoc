@@ -4,7 +4,7 @@ include::.variables.adoc[]
 :imagesdir: media
 :experimental:
 
-This page shows how to run the finished site without following the tutorial. The https://github.com/enonic/{tutorial-repo}[tutorial repository] holds the result of all nine chapters: the code, and the content as it looks at the end.
+This page shows how to run the finished site without following the tutorial. The https://github.com/enonic/{tutorial-repo}[tutorial repository] holds the result of all nine chapters, and of the <<advanced#,Advanced features>>: the code, and the content as it looks at the end.
 
 == What the demo contains
 
@@ -18,8 +18,10 @@ NOTE: The demo uses its own sandbox, so it does not interfere with the one you u
 +
 [source,shell,{subs}]
 ----
-enonic sandbox create {demo-sandbox-name} -t essentials -f
+enonic sandbox create {demo-sandbox-name} -t sitekit -f
 ----
++
+The `sitekit` template installs a selection of apps for websites. One of them is Sitemap.xml, which the demo site uses.
 
 . *Create the app* - In a new terminal, from the folder where you keep your projects, run:
 +
@@ -53,4 +55,4 @@ To see how the pages are put together, open {xp-url}[{xp-url}^], click btn:[Log 
 
 == Compare with your own app
 
-If you have followed the tutorial, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: `main.ts` and the `import/` folder, which exist to set up the content, and the extra libraries they need in `build.gradle`.
+If you have followed the tutorial, including the Advanced features, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: `main.ts` and the `import/` folder, which exist to set up the content, and the extra libraries they need in `build.gradle`.

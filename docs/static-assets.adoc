@@ -41,7 +41,7 @@ npm install --save-dev @enonic-types/lib-asset
 .src/main/resources/cms/site.yaml
 [source,yaml]
 ----
-include::{sourcedir}/cms/site.yaml[]
+include::../code-samples/site-assets/site.yaml[]
 ----
 
 === Task: Serve a CSS file
@@ -59,7 +59,7 @@ include::{sourcedir}/assets/styles/main.css[]
 .src/main/resources/cms/pages/hello/hello.ts
 [source,typescript]
 ----
-include::{sourcedir}/cms/pages/hello/hello.ts[]
+include::../code-samples/hello-assets/hello.ts[]
 ----
 +
 The model now includes the URL of the stylesheet.
@@ -69,7 +69,7 @@ The model now includes the URL of the stylesheet.
 .src/main/resources/cms/pages/hello/hello.html
 [source,html]
 ----
-include::{sourcedir}/cms/pages/hello/hello.html[]
+include::../code-samples/hello-assets/hello.html[]
 ----
 +
 One line has changed: a `<link>` element in the `<head>` includes the stylesheet.

@@ -72,7 +72,7 @@ The preview panel on the right says `No preview available`. The content exists, 
 
 == Sites and apps
 
-A _site_ is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it.
+A _site_ is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it. A site can have several apps: one of them normally renders the pages, while the others add features of their own.
 
 The sample content already uses your content types. To create new content with them, and later to render pages, your app must be added to the site.
 

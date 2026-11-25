@@ -1,0 +1,74 @@
+= Mappings
+include::../.variables.adoc[]
+:toc: right
+:imagesdir: ../media
+:sourcedir: ../../src/main/resources
+:experimental:
+
+On this page, you'll make your site answer at a URL that has no content behind it, by mapping the URL to a function in your app.
+
+This page requires the result of <<../go-online#,chapter 9>>, as described in <<../advanced#,Advanced features>>.
+
+== Mappings
+
+Every page you have rendered so far belongs to a content item: the site service finds the content at the requested path, and renders its page. Some URLs are different. Files such as `robots.txt`, `sitemap.xml`, and `llms.txt` have a fixed address at the root of a site, and there is no content item to render.
+
+A _mapping_ binds a URL pattern to a function in your app. Mappings are listed in the site descriptor, and the site service checks them before it starts rendering a page. When a pattern matches, your function handles the request, and no page is rendered.
+
+The example here is https://llmstxt.org[llms.txt], a proposed convention for telling AI tools what a site contains, written as Markdown.
+
+== Task: Serve llms.txt
+
+. *Create the function* - Create the file below with the following content:
++
+.src/main/resources/cms/mappings/llms-txt.ts
+[source,typescript]
+----
+include::{sourcedir}/cms/mappings/llms-txt.ts[]
+----
++
+The function works like the implementation of a part: it exports `GET`, and returns a response. `getSite()` returns the site the request belongs to, `getChildren()` fetches the content below it, and `pageUrl()` creates the address of each country. Instead of rendering a view, the function returns the text directly.
+
+. *Add the mapping* - In the site descriptor, add these lines between `kind` and `apis`:
++
+.src/main/resources/cms/site.yaml
+[source,yaml]
+----
+include::{sourcedir}/cms/site.yaml[lines=2..4]
+----
++
+The `pattern` is a regular expression, matched against the part of the URL that follows the site. The backslash makes the dot match a dot only, and the single quotes keep YAML from interpreting the backslash.
++
+NOTE: The `controller` property points to the compiled file, so it ends with `.js`, not `.ts`.
+
+. *Verify the build* - The terminal running `enonic dev` prints `BUILD SUCCESSFUL`.
+
+. *Verify the result* - Open {xp-url}/site/{cms-project-id}/master/hello-world/llms.txt[{xp-url}/site/{cms-project-id}/master/hello-world/llms.txt^] in your browser. It lists the countries of your site:
++
+[source,markdown,{subs}]
+----
+# Hello World
+
+## Countries
+
+- [Norway]({xp-url}/site/{cms-project-id}/master/hello-world/norway): Home of the midnight sun
+- [Sweden]({xp-url}/site/{cms-project-id}/master/hello-world/sweden): Home of the midsummer celebration
+- [Colombia]({xp-url}/site/{cms-project-id}/master/hello-world/colombia): Home of El Dorado
+- [USA]({xp-url}/site/{cms-project-id}/master/hello-world/usa): The United States of America - home of the brave
+----
++
+The file is made from the content each time it is requested. Publish a new country, and it shows up in the list.
+
+== When to use a mapping
+
+A mapping is the right tool when the URL is decided for you, as it is for `llms.txt`. When you can choose the URL yourself, an <<apis#,API>> is usually a better fit.
+
+Mappings can do more than this page shows. A mapping can match content instead of a URL, for instance all content of one type, and it can point to a filter that runs before and after the rendering instead of replacing it.
+
+== Summary
+
+You've created a function that returns a text file, and mapped it to a URL at the root of your site.
+
+TIP: For more details, visit the {code-docs}/web/sites/mappings[mappings documentation].
+
+Next, you can <<apis#,offer the countries as a CSV file through an API>>.
