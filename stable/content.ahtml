@@ -628,7 +628,7 @@ To learn more about forms and input types, visit the <a href="https://developer.
 <h2 id="sites_and_apps"><a class="link" href="#sites_and_apps">Sites and apps</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>site</em> is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it.</p>
+<p>A <em>site</em> is a content item that marks the root of a website. Apps are added to a site, and this makes the content types and components of the app available to the content below it. A site can have several apps: one of them normally renders the pages, while the others add features of their own.</p>
 </div>
 <div class="paragraph">
 <p>The sample content already uses your content types. To create new content with them, and later to render pages, your app must be added to the site.</p>
@@ -708,7 +708,7 @@ Content types, sites, and the content itself are part of the CMS, and work the s
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:24 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page shows how to run the finished site without following the tutorial. The <a href="https://github.com/enonic/tutorial-site-framework">tutorial repository</a> holds the result of all nine chapters: the code, and the content as it looks at the end.</p>
+<p>This page shows how to run the finished site without following the tutorial. The <a href="https://github.com/enonic/tutorial-site-framework">tutorial repository</a> holds the result of all nine chapters, and of the <a href="advanced.ahtml">Advanced features</a>: the code, and the content as it looks at the end.</p>
 </div>
 </div>
 </div>
@@ -485,8 +485,11 @@ The demo uses its own sandbox, so it does not interfere with the one you use for
 <p><strong>Create a sandbox</strong> - If the tutorial sandbox is running, stop it first. Then run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t essentials -f</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t sitekit -f</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The <code>sitekit</code> template installs a selection of apps for websites. One of them is Sitemap.xml, which the demo site uses.</p>
 </div>
 </li>
 <li>
@@ -535,14 +538,14 @@ Published the "Hello World" site</code></pre>
 <h2 id="compare_with_your_own_app"><a class="link" href="#compare_with_your_own_app">Compare with your own app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have followed the tutorial, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: <code>main.ts</code> and the <code>import/</code> folder, which exist to set up the content, and the extra libraries they need in <code>build.gradle</code>.</p>
+<p>If you have followed the tutorial, including the Advanced features, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: <code>main.ts</code> and the <code>import/</code> folder, which exist to set up the content, and the extra libraries they need in <code>build.gradle</code>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:24 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

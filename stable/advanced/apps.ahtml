@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Demo</title>
+<title>Adding more apps to a site</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,13 +438,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Demo</h1>
+<h1>Adding more apps to a site</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#what_the_demo_contains">What the demo contains</a></li>
-<li><a href="#task_run_the_demo">Task: Run the demo</a></li>
-<li><a href="#compare_with_your_own_app">Compare with your own app</a></li>
+<li><a href="#more_than_one_app">More than one app</a></li>
+<li><a href="#task_install_the_app">Task: Install the app</a></li>
+<li><a href="#task_add_the_app_to_the_site">Task: Add the app to the site</a></li>
+<li><a href="#task_publish_and_verify">Task: Publish and verify</a></li>
+<li><a href="#how_the_app_takes_part">How the app takes part</a></li>
+<li><a href="#more_apps_to_explore">More apps to explore</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -452,15 +456,152 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page shows how to run the finished site without following the tutorial. The <a href="https://github.com/enonic/tutorial-site-framework">tutorial repository</a> holds the result of all nine chapters, and of the <a href="advanced.ahtml">Advanced features</a>: the code, and the content as it looks at the end.</p>
+<p>In this chapter, you&#8217;ll install the Sitemap.xml app from Enonic Market, add it to your site, and see how an app can contribute to a site without rendering any of its pages.</p>
+</div>
+<div class="paragraph">
+<p>This chapter requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>. It refers to the <a href="mappings.ahtml">Mappings</a> chapter, but you don&#8217;t need to have completed it.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="what_the_demo_contains"><a class="link" href="#what_the_demo_contains">What the demo contains</a></h2>
+<h2 id="more_than_one_app"><a class="link" href="#more_than_one_app">More than one app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The demo app is the app you build in the tutorial, with one addition. The first time it starts, it creates the <code>Site Framework</code> content project, imports the complete content, including the page setup and the page template, and publishes the site. The import code is in <code>src/main/resources/main.ts</code>, and the content in <code>src/main/resources/import/</code>.</p>
+<p>Your app renders the site: it owns the pages, parts, and layouts. That job is best left to a single app.</p>
+</div>
+<div class="paragraph">
+<p>Other apps can still be added to the same site, and add features of their own next to yours. A sitemap is a good example. It has nothing to do with how your pages look, every site needs one, and there is an app for it already.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task_install_the_app"><a class="link" href="#task_install_the_app">Task: Install the app</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open Applications</strong> - On the XP admin home page, click <b class="button">Applications</b>.</p>
+</li>
+<li>
+<p><strong>Find the app</strong> - Click <b class="button">Install</b>, and type <code>Sitemap</code> in the search field:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../media/install-sitemap.png" alt="The Install Application dialog with Sitemap in the search field, listing the Sitemap.xml app" width="1440">
+</div>
+</div>
+</li>
+<li>
+<p><strong>Install the app</strong> - Click <b class="button">Install</b> next to <code>Sitemap.xml</code>, and close the dialog when it says <code>Installed</code>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - The app is listed among the installed applications, as <code>Sitemap XML</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task_add_the_app_to_the_site"><a class="link" href="#task_add_the_app_to_the_site">Task: Add the app to the site</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Open the site</strong> - In Content Studio, select <code>Hello World</code> and click <b class="button">Edit</b>.</p>
+</li>
+<li>
+<p><strong>Add the app</strong> - In the <code>Applications</code> field, search for <code>Sitemap XML</code>, select it, and click <b class="button">Apply</b>. The app is listed below your own, <code>Site Framework tutorial</code>.</p>
+</li>
+<li>
+<p><strong>Open the configuration</strong> - Click the pencil icon next to <code>Sitemap XML</code>.</p>
+</li>
+<li>
+<p><strong>Include the countries</strong> - Below <code>Include by type</code>, click <b class="button">Add</b>. Select <code>Country</code> in the <code>Content Type</code> field, and click <b class="button">Apply</b>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../media/sitemap-config.png" alt="The configuration of the Sitemap XML app, with Country selected in the Content Type field" width="1440">
+</div>
+</div>
+<div class="paragraph">
+<p>Content Studio saves the change automatically.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The configuration form is part of the Sitemap.xml app. An app can define a form, which Content Studio shows for every site the app is added to. The values are stored on the site.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task_publish_and_verify"><a class="link" href="#task_publish_and_verify">Task: Publish and verify</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The list of apps and their configuration belong to the site content, so the change must be published before visitors get the sitemap.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Publish the site</strong> - Go back to the content list, select <code>Hello World</code>, and click <b class="button">Mark as ready</b>. The Publishing Wizard opens. Click <b class="button">Publish now</b>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/sitemap.xml" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/sitemap.xml</a> in your browser. It lists the site and the countries:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:8080/site/siteframework/master/hello-world&lt;/loc&gt;
+    ...
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:8080/site/siteframework/master/hello-world/norway&lt;/loc&gt;
+    ...
+  &lt;/url&gt;
+  ...
+&lt;/urlset&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how_the_app_takes_part"><a class="link" href="#how_the_app_takes_part">How the app takes part</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You did not change your own app, and it knows nothing about the sitemap. The whole connection is in the site descriptor of the Sitemap.xml app:</p>
+</div>
+<div class="listingblock">
+<div class="title">cms/site.yaml in the Sitemap.xml app</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Site"
+mappings:
+  - controller: "/cms/controllers/sitemap/sitemap.js"
+    order: 12
+    pattern: "/sitemap(-\\d+)?\\.xml(\\.gz)?"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a mapping, like the one for <code>llms.txt</code> in the <a href="mappings.ahtml">Mappings</a> chapter. When a request for your site arrives, the site service collects the mappings of every app that is added to the site, and checks them before it renders anything:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A request for <code>sitemap.xml</code> matches the mapping in the Sitemap.xml app, and is answered there.</p>
+</li>
+<li>
+<p>A request for <code>llms.txt</code> matches the mapping in your app, if you have added it.</p>
+</li>
+<li>
+<p>All other requests match no mapping, and continue to the page rendering in your app.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>order</code> decides which mapping wins when several of them match the same request. Lower numbers come first, and the default is 50.</p>
+</div>
+<div class="paragraph">
+<p>Mappings are one of several ways for an app to take part in a site. An app can also run <a href="https://developer.enonic.com/docs/code/stable/web/filters">filters</a> around the requests, change the rendered pages with <a href="https://developer.enonic.com/docs/code/stable/web/sites/processors">response processors</a>, and offer <a href="https://developer.enonic.com/docs/code/stable/web/apis">APIs</a> for other apps to mount. In all of these cases the rule stays the same: one app renders the site, and the others contribute around it.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -469,7 +610,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The demo uses its own sandbox, so it does not interfere with the one you use for the tutorial. Both sandboxes use port 8080, so only one of them can run at a time.
+The <a href="../demo.ahtml">demo</a> has the Sitemap.xml app added to the site already. Its sandbox is created from the <code>sitekit</code> template, which installs the app.
 </td>
 </tr>
 </table>
@@ -477,75 +618,44 @@ The demo uses its own sandbox, so it does not interfere with the one you use for
 </div>
 </div>
 <div class="sect1">
-<h2 id="task_run_the_demo"><a class="link" href="#task_run_the_demo">Task: Run the demo</a></h2>
+<h2 id="more_apps_to_explore"><a class="link" href="#more_apps_to_explore">More apps to explore</a></h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Create a sandbox</strong> - If the tutorial sandbox is running, stop it first. Then run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic sandbox create demo_siteframework -t sitekit -f</code></pre>
+<div class="paragraph">
+<p>Sitemap.xml is one of many apps that contribute to a site in this way. These are worth a look:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/com.enonic.app.robotstxt">Robots.txt</a> - Serves <code>robots.txt</code> for your site, editable in Content Studio</p>
+</li>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/com.enonic.app.metafields">SEO Meta Fields</a> - Adds fields for search engine optimization to your content, and the matching meta tags to your pages</p>
+</li>
+<li>
+<p><a href="https://market.enonic.com/vendors/enonic/booster">Booster</a> - Caches the responses of your site to improve performance. Booster requires an Enonic license</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The <code>sitekit</code> template installs a selection of apps for websites. One of them is Sitemap.xml, which the demo site uses.</p>
-</div>
-</li>
-<li>
-<p><strong>Create the app</strong> - In a new terminal, from the folder where you keep your projects, run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project create com.example.demo.siteframework -r tutorial-site-framework -s demo_siteframework -d demo-siteframework-enonic -f</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Build and deploy the app</strong> - Run:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">cd demo-siteframework-enonic
-enonic dev</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Verify the import</strong> - When the app has started, the sandbox log contains these lines:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">Project "siteframework" created
-Imported 20 content items into project "siteframework"
-Published the "Hello World" site</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Open the site</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/norway</a> in your browser:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/result.png" alt="The published page for Norway, with the description in the left column and the cities in the right column" width="1280">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To see how the pages are put together, open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>, click <b class="button">Log In as Guest</b>, and open Content Studio.</p>
+<p>You install them and add them to your site the same way as Sitemap.xml. Visit <a href="https://market.enonic.com">Enonic Market</a> for the full selection.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="compare_with_your_own_app"><a class="link" href="#compare_with_your_own_app">Compare with your own app</a></h2>
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have followed the tutorial, including the Advanced features, your app and the demo app contain the same content types, components, and assets. The demo app differs in two places: <code>main.ts</code> and the <code>import/</code> folder, which exist to set up the content, and the extra libraries they need in <code>build.gradle</code>.</p>
+<p>You&#8217;ve installed an app from Enonic Market, added it to your site, and seen how its mapping works side by side with the rendering in your own app.</p>
+</div>
+<div class="paragraph">
+<p>That completes the advanced features.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:48 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

@@ -543,7 +543,7 @@ export function GET(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>data-portal-region</code> attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with <code>data-portal-component</code>.</p>
+<p>The <code>data-portal-region</code> attribute tells Content Studio where the region is. Inside it, the view loops over the components of the region, and outputs a placeholder for each of them with <code>data-portal-component</code>. The <code>path</code> of a component is the name of its region and its position in it, such as <code>/main/0</code>.</p>
 </div>
 </li>
 <li>
@@ -585,7 +585,7 @@ For more details, visit the <a href="https://developer.enonic.com/docs/cms/stabl
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:24 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

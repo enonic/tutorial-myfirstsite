@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Layout components</title>
+<title>Advanced features</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,22 +438,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Layout components</h1>
+<h1>Advanced features</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#layouts">Layouts</a>
-<ul class="sectlevel2">
-<li><a href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></li>
-</ul>
-</li>
-<li><a href="#page_contributions">Page contributions</a></li>
-<li><a href="#layout_in_the_page_template">Layout in the page template</a>
-<ul class="sectlevel2">
-<li><a href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></li>
-</ul>
-</li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#before_you_start">Before you start</a></li>
+<li><a href="#one_app_renders_others_contribute">One app renders, others contribute</a></li>
+<li><a href="#in_this_section">In this section</a></li>
 </ul>
 </div>
 </div>
@@ -461,211 +452,70 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll create a layout that arranges components in two columns, and see how a component can contribute CSS to the page it is placed on.</p>
+<p>The chapters in this section go beyond chapters 1 to 9. Each one adds a single feature to the site you built: a mapping, an API, and an app from Enonic Market. They are optional, and the first two can be read in any order.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="layouts"><a class="link" href="#layouts">Layouts</a></h2>
+<h2 id="before_you_start"><a class="link" href="#before_you_start">Before you start</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>layout</em> is a component with regions of its own, which makes it a container for other components. Like pages and parts, a layout consists of a descriptor, an implementation, and a view. Layouts are placed in the <code>src/main/resources/cms/layouts/</code> folder.</p>
-</div>
-<div class="sect2">
-<h3 id="task_create_the_two_column_layout"><a class="link" href="#task_create_the_two_column_layout">Task: Create the two-column layout</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.yaml</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Layout"
-title: "Two columns"
-description: "A layout with two configurable columns"
-form:
-  - type: "RadioButton"
-    name: "sizes"
-    label: "Column sizes"
-    options:
-      - value: "33-66"
-        label: "33/66"
-      - value: "50-50"
-        label: "50/50"
-      - value: "66-33"
-        label: "66/33"
-    default: "50-50"
-regions:
-  - "left"
-  - "right"</code></pre>
-</div>
+<p>Every chapter assumes that you have completed <a href="go-online.ahtml">chapter 9</a>: the <code>Hello World</code> site is published, the sandbox is running, and <code>enonic dev</code> is running in your app folder.</p>
 </div>
 <div class="paragraph">
-<p>The descriptor combines what you&#8217;ve seen in pages and parts: it declares regions, and it has a form. The form lets editors choose the width of the columns.</p>
-</div>
-</li>
-<li>
-<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/assets/styles/two-columns.css</div>
-<div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">.two-columns {
-  display: grid;
-  gap: 2rem;
-}
-
-.two-columns--33-66 {
-  grid-template-columns: 1fr 2fr;
-}
-
-.two-columns--50-50 {
-  grid-template-columns: 1fr 1fr;
-}
-
-.two-columns--66-33 {
-  grid-template-columns: 2fr 1fr;
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { LayoutComponent, Response } from '@enonic-types/core';
-
-import { assetUrl } from '/lib/enonic/asset';
-import { render } from '/lib/thymeleaf';
-import { getComponent } from '/lib/xp/portal';
-
-type TwoColumns = LayoutComponent&lt;`${string}:two-columns`, { sizes: string }&gt;;
-
-const VIEW = resolve('./two-columns.html');
-
-export function GET(): Response {
-  const component = getComponent&lt;TwoColumns&gt;()!;
-
-  const model = {
-    sizes: component.config.sizes,
-    leftRegion: component.regions.left,
-    rightRegion: component.regions.right,
-  };
-
-  return {
-    body: render(VIEW, model),
-    pageContributions: {
-      headEnd: [
-        `&lt;link rel="stylesheet" href="${assetUrl({ path: 'styles/two-columns.css' })}"/&gt;`,
-      ],
-    },
-  };
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Create the view</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/cms/layouts/two-columns/two-columns.html</div>
-<div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-th-class="'two-columns two-columns--' + ${sizes}"&gt;
-  &lt;div data-portal-region="left"&gt;
-    &lt;div data-th-each="component : ${leftRegion.components}" data-th-remove="tag"&gt;
-      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div data-portal-region="right"&gt;
-    &lt;div data-th-each="component : ${rightRegion.components}" data-th-remove="tag"&gt;
-      &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The view renders the two regions in the same way the page component renders its <code>main</code> region.</p>
-</div>
-</li>
-</ol>
-</div>
+<p>The <a href="demo.ahtml">demo</a> contains the result of all three chapters.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="page_contributions"><a class="link" href="#page_contributions">Page contributions</a></h2>
+<h2 id="one_app_renders_others_contribute"><a class="link" href="#one_app_renders_others_contribute">One app renders, others contribute</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The stylesheet of the layout is only needed on pages where the layout is used. The page component knows nothing about the layout, so the layout adds the stylesheet itself, with a <a href="https://developer.enonic.com/docs/code/stable/web/sites/contributions">page contribution</a>.</p>
+<p>So far, a single app has done everything on your site. That is how rendering works best: one app owns the pages, parts, and layouts of a site.</p>
 </div>
 <div class="paragraph">
-<p>A page contribution lets a component inject markup at specific places in the page: at the beginning or end of <code>&lt;head&gt;</code>, or at the beginning or end of <code>&lt;body&gt;</code>. The implementation above returns a <code>pageContributions</code> property in its response, with a <code>&lt;link&gt;</code> element for the end of <code>&lt;head&gt;</code>.</p>
+<p>A site can still have several apps, and the others don&#8217;t have to render anything. An app can contribute to a site in other ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Serving specific URLs with <a href="advanced/mappings.ahtml">mappings</a></p>
+</li>
+<li>
+<p>Exposing <a href="advanced/apis.ahtml">APIs</a></p>
+</li>
+<li>
+<p>Changing requests and responses with <a href="https://developer.enonic.com/docs/code/stable/web/filters">filters</a> and <a href="https://developer.enonic.com/docs/code/stable/web/sites/processors">response processors</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll use the first two in your own app, and then see <a href="advanced/apps.ahtml">another app do the same</a> on your site.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="layout_in_the_page_template"><a class="link" href="#layout_in_the_page_template">Layout in the page template</a></h2>
+<h2 id="in_this_section"><a class="link" href="#in_this_section">In this section</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="task_add_the_layout_to_the_page_template"><a class="link" href="#task_add_the_layout_to_the_page_template">Task: Add the layout to the page template</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p><strong>Open the page template</strong> - In Content Studio, expand the <code>Templates</code> folder below the site, select the <code>Country</code> template, and click <b class="button">Edit</b>.</p>
+<p><a href="advanced/mappings.ahtml">Mappings</a> - Serve a file at a fixed URL, with <code>llms.txt</code> as the example</p>
 </li>
 <li>
-<p><strong>Insert the layout</strong> - Select the <code>Page</code> tab. Right-click the <code>main</code> region in the component tree, and select <span class="menuseq"><b class="menu">Insert</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Layout</b></span>. In the <code>Layout</code> field in the context panel, select <code>Two columns</code>.</p>
+<p><a href="advanced/apis.ahtml">APIs</a> - Offer the countries as a CSV file through an API</p>
 </li>
 <li>
-<p><strong>Move the parts into the columns</strong> - The layout appears in the component tree, with the regions <code>left</code> and <code>right</code> below it. Drag the <code>Country</code> part onto <code>left</code>, and the <code>City list</code> part onto <code>right</code>.</p>
+<p><a href="advanced/apps.ahtml">More apps</a> - Install Sitemap.xml from Enonic Market, and see how it takes part in your site</p>
 </li>
-<li>
-<p><strong>Save the template</strong> - Click <b class="button">Save</b>.</p>
-</li>
-<li>
-<p><strong>Change the column sizes</strong> - Select <code>Two columns</code> in the component tree. In the context panel, select <code>33/66</code> in the <code>Column sizes</code> field, and click <b class="button">Apply</b>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/two-columns.png" alt="The page template with the layout selected, the two parts in its left and right regions, and the Column sizes setting" width="1440">
-</div>
-</div>
-</li>
-<li>
-<p><strong>Verify the result</strong> - Go back to the content list and select a country. The description is shown in a narrow column on the left, and the cities in a wide column on the right.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You&#8217;ve created a layout with two regions and a configuration, added a stylesheet to the page with a page contribution, and rearranged the page template.
-With content types, pages, parts, layouts, and page templates, you have the building blocks for a complete site.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-For more details, visit the <a href="https://developer.enonic.com/docs/cms/stable/pages/parts">layouts documentation</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Next, you&#8217;ll <a href="go-online.ahtml">publish the site</a>.</p>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:48 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

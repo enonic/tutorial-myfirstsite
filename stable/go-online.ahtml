@@ -447,6 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#task_publish_the_site">Task: Publish the site</a></li>
 </ul>
 </li>
+<li><a href="#component_urls">Component URLs</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -500,6 +501,45 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="component_urls"><a class="link" href="#component_urls">Component URLs</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the site is published, you can see how the site service puts a page together. Every component on a page has a URL of its own: add <code>/_/component/</code> and the path of the component to the address of the page, and the component is rendered alone, without the page around it.</p>
+</div>
+<div class="paragraph">
+<p>Try these on your site:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://localhost:8080/site/siteframework/master/hello-world/norway/_/component/main/0" target="_blank" rel="noopener">The layout</a>, which is the first component in the <code>main</code> region</p>
+</li>
+<li>
+<p><a href="http://localhost:8080/site/siteframework/master/hello-world/norway/_/component/main/0/left/0" target="_blank" rel="noopener">The country part</a>, the first component in the <code>left</code> region of the layout</p>
+</li>
+<li>
+<p><a href="http://localhost:8080/site/siteframework/master/hello-world/norway/_/component/main/0/right/0" target="_blank" rel="noopener">The city list part</a>, the first component in the <code>right</code> region of the layout</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of them shows the markup of one component, without the heading and the styling of the page. A page can use these URLs to update a single component without reloading everything.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details, visit the <a href="https://developer.enonic.com/docs/code/stable/web/sites/components#direct-rendering">direct component rendering documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -510,6 +550,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><a href="advanced.ahtml">Advanced features</a> adds mappings, APIs, and an app from Enonic Market to the site you have built.</p>
+</li>
 <li>
 <p>The <a href="demo.ahtml">demo</a> shows how to run the finished site from the tutorial&#8217;s own repository, and compare it with yours.</p>
 </li>
@@ -526,7 +569,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:24 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>

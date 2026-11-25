@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="application-name" content="siteframework">
-<title>Static assets</title>
+<title>APIs</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,17 +438,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Static assets</h1>
+<h1>APIs</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#asset_library">Asset library</a>
-<ul class="sectlevel2">
-<li><a href="#task_add_the_asset_library">Task: Add the Asset library</a></li>
-<li><a href="#task_serve_a_css_file">Task: Serve a CSS file</a></li>
-</ul>
-</li>
-<li><a href="#caching">Caching</a></li>
+<li><a href="#apis">APIs</a></li>
+<li><a href="#task_create_the_api">Task: Create the API</a></li>
+<li><a href="#task_link_to_the_api">Task: Link to the API</a></li>
+<li><a href="#when_to_use_an_api">When to use an API</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </div>
@@ -457,114 +454,131 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this chapter, you&#8217;ll style the site by serving a CSS file with the Asset library.</p>
+<p>In this chapter, you&#8217;ll create an API that returns the countries of your site as a CSV file, mount it on the site, and link to it from every page.</p>
+</div>
+<div class="paragraph">
+<p>This chapter requires the result of <a href="../go-online.ahtml">chapter 9</a>, as described in <a href="../advanced.ahtml">Advanced features</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="asset_library"><a class="link" href="#asset_library">Asset library</a></h2>
+<h2 id="apis"><a class="link" href="#apis">APIs</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, the site consists of HTML and images from the content. Static assets, such as CSS and JavaScript files, are served by the <a href="https://developer.enonic.com/docs/lib-asset">Asset library</a>. Every file you place in the <code>src/main/resources/assets/</code> folder gets a URL, which you create with the <code>assetUrl()</code> function.</p>
+<p>An <em>API</em> is an HTTP endpoint in your app. It consists of a descriptor and an implementation, placed together in a folder under <code>src/main/resources/apis/</code>.</p>
 </div>
-<div class="sect2">
-<h3 id="task_add_the_asset_library"><a class="link" href="#task_add_the_asset_library">Task: Add the Asset library</a></h3>
+<div class="paragraph">
+<p>Unlike a <a href="mappings.ahtml">mapping</a>, an API does not pick its own address. Its URL is made from the name of the app and the name of the API, and it can only be reached where it has been <em>mounted</em>.</p>
+</div>
+<div class="paragraph">
+<p>You have already mounted one. In <a href="../static-assets.ahtml">chapter 7</a>, you added <code>asset</code> to the <code>apis</code> list in the site descriptor. That mounted the API of the Asset library on your site, which is why the URL of your stylesheet contains <code>com.example.tutorial.siteframework:asset</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task_create_the_api"><a class="link" href="#task_create_the_api">Task: Create the API</a></h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Include the library</strong> - In <code>build.gradle</code>, remove the <code>//</code> in front of this line:</p>
+<p><strong>Create the descriptor</strong> - Create the file below with the following content:</p>
 <div class="listingblock">
-<div class="title">build.gradle</div>
+<div class="title">src/main/resources/apis/countries/countries.yaml</div>
 <div class="content">
-<pre class="highlight"><code class="language-groovy" data-lang="groovy">  include libs.asset</code></pre>
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "API"
+title: "Countries"
+description: "The countries of the site and their cities, as CSV"
+allow:
+  - "role:system.everyone"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The <code>allow</code> list decides who can call the API. The role <code>system.everyone</code> makes it public.</p>
 </div>
 </li>
 <li>
-<p><strong>Install the type definitions</strong> - Stop <code>enonic dev</code> with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>, and run:</p>
+<p><strong>Create the implementation</strong> - Create the file below with the following content:</p>
 <div class="listingblock">
+<div class="title">src/main/resources/apis/countries/countries.ts</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">npm install --save-dev @enonic-types/lib-asset</code></pre>
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">import type { Content, Response } from '@enonic-types/core';
+
+import { getChildren } from '/lib/xp/content';
+import { getSite } from '/lib/xp/portal';
+
+type City = { photo?: string, slogan?: string, population: number };
+
+export function GET(): Response {
+  const children = getChildren({
+    key: getSite()!._path,
+    count: 100,
+  });
+
+  const rows = children.hits
+    .filter((item) =&gt; item.type === `${app.name}:country`)
+    .map((country) =&gt; {
+      const cities = getChildren&lt;Content&lt;City&gt;&gt;({ key: country._path, count: 100 }).hits
+        .filter((item) =&gt; item.type === `${app.name}:city`);
+      const population = cities.reduce((sum, city) =&gt; sum + city.data.population, 0);
+
+      return [`"${country.displayName.replace(/"/g, '""')}"`, cities.length, population];
+    });
+
+  return {
+    contentType: 'text/csv; charset=utf-8',
+    headers: {
+      'Content-Disposition': 'attachment; filename="countries.csv"',
+    },
+    body: [['Country', 'Cities', 'Population'], ...rows].map((row) =&gt; row.join(',')).join('\n'),
+  };
+}</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>For each country, the function counts the cities and adds up their population. The response sets the content type to CSV, and a header that tells the browser to save the result as <code>countries.csv</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Map the import path</strong> - In <code>src/main/resources/tsconfig.json</code>, add this line to <code>compilerOptions.paths</code>, above the <code>"/lib/xp/*"</code> entry:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/tsconfig.json</div>
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">      "/lib/enonic/asset": ["../../../node_modules/@enonic-types/lib-asset"],</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><strong>Expose the asset API</strong> - The library serves the files through an API, which must be listed in the site descriptor. Replace the content of the site descriptor with the following:</p>
+<p><strong>Mount the API</strong> - In the site descriptor, add <code>countries</code> to the <code>apis</code> list:</p>
 <div class="listingblock">
 <div class="title">src/main/resources/cms/site.yaml</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Site"
-apis:
-  - "asset"</code></pre>
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apis:
+  - "asset"
+  - "countries"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Verify the build</strong> - The terminal running <code>enonic dev</code> prints <code>BUILD SUCCESSFUL</code>.</p>
+</li>
+<li>
+<p><strong>Verify the result</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/_/com.example.tutorial.siteframework:countries" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/_/com.example.tutorial.siteframework:countries</a> in your browser. It downloads <code>countries.csv</code>, which looks something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">Country,Cities,Population
+"Norway",3,1059779
+"Sweden",1,984748
+"Colombia",3,12072487
+"USA",3,1978100</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>The API is mounted at the root of the site only. The same address below a country does not exist, and neither does the API on any other site, until an app mounts it there.</p>
 </div>
-<div class="sect2">
-<h3 id="task_serve_a_css_file"><a class="link" href="#task_serve_a_css_file">Task: Serve a CSS file</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task_link_to_the_api"><a class="link" href="#task_link_to_the_api">Task: Link to the API</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The address of an API depends on where it is mounted, so don&#8217;t write it by hand. The Portal library creates it for you.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p><strong>Create the stylesheet</strong> - Create the file below with the following content:</p>
-<div class="listingblock">
-<div class="title">src/main/resources/assets/styles/main.css</div>
-<div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">:root {
-  color-scheme: light dark;
-  --accent: light-dark(#7a3fb8, #c79bf2);
-  --border: light-dark(#d9d9e3, #3b3b4a);
-}
-
-body {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-}
-
-h1 {
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.5rem;
-}
-
-a {
-  color: var(--accent);
-}
-
-article {
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-}
-
-figure {
-  margin: 0;
-}
-
-img {
-  max-width: 100%;
-  border-radius: 0.25rem;
-}
-
-figcaption {
-  font-style: italic;
-}</code></pre>
-</div>
-</div>
-</li>
 <li>
 <p><strong>Update the implementation</strong> - Replace the content of the page component implementation with the following:</p>
 <div class="listingblock">
@@ -574,7 +588,7 @@ figcaption {
 
 import { assetUrl } from '/lib/enonic/asset';
 import { render } from '/lib/thymeleaf';
-import { getContent } from '/lib/xp/portal';
+import { apiUrl, getContent } from '/lib/xp/portal';
 
 const VIEW = resolve('./hello.html');
 
@@ -585,6 +599,7 @@ export function GET(): Response {
     displayName: content.displayName,
     mainRegion: content.page!.regions.main,
     cssUrl: assetUrl({ path: 'styles/main.css' }),
+    csvUrl: apiUrl({ api: `${app.name}:countries` }),
   };
 
   return {
@@ -594,7 +609,7 @@ export function GET(): Response {
 </div>
 </div>
 <div class="paragraph">
-<p>The model now includes the URL of the stylesheet.</p>
+<p><code>apiUrl()</code> creates the URL of an API where it is mounted in the current context, here on the site.</p>
 </div>
 </li>
 <li>
@@ -617,55 +632,32 @@ export function GET(): Response {
         &lt;div data-portal-component="${component.path}" data-th-remove="tag"&gt;&lt;/div&gt;
       &lt;/div&gt;
     &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;a data-th-href="${csvUrl}"&gt;Countries as CSV&lt;/a&gt;
+    &lt;/footer&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>One line has changed: a <code>&lt;link&gt;</code> element in the <code>&lt;head&gt;</code> includes the stylesheet.</p>
+<p>The view now has a <code>&lt;footer&gt;</code> with a link to the API.</p>
 </div>
 </li>
 <li>
-<p><strong>Restart dev mode</strong> - Run <code>enonic dev</code> again, and wait for <code>BUILD SUCCESSFUL</code>.</p>
-</li>
-<li>
-<p><strong>Verify the styling</strong> - In Content Studio, select a country. The preview is now styled:</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/css.png" alt="The preview of Norway with styling: a heading with a colored line below it, and each city in a bordered box" width="1440">
-</div>
-</div>
+<p><strong>Verify the result</strong> - Open <a href="http://localhost:8080/site/siteframework/master/hello-world/norway" target="_blank" rel="noopener">http://localhost:8080/site/siteframework/master/hello-world/norway</a> and click <code>Countries as CSV</code> at the bottom of the page. The browser downloads the file.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="caching"><a class="link" href="#caching">Caching</a></h2>
+<h2 id="when_to_use_an_api"><a class="link" href="#when_to_use_an_api">When to use an API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The URL of the stylesheet looks something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">/site/siteframework/draft/hello-world/_/com.example.tutorial.siteframework:asset/1795477566231/styles/main.css</code></pre>
-</div>
+<p>An API is the right tool when you decide the URL. When the URL is decided for you, as for <code>llms.txt</code>, use a <a href="mappings.ahtml">mapping</a>.</p>
 </div>
 <div class="paragraph">
-<p>The number is a fingerprint of the app, and changes every time the app is deployed. Because a new version of a file always gets a new URL, the Asset library can tell browsers and CDNs to cache each URL for as long as they like.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In development mode, which you are using now, the caching is deactivated.
-</td>
-</tr>
-</table>
+<p>An API is also not tied to the site. The same API can be mounted on other sites, and on the web endpoint of XP, where it is available without a site at all.</p>
 </div>
 </div>
 </div>
@@ -673,17 +665,29 @@ In development mode, which you are using now, the caching is deactivated.
 <h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;ve added the Asset library to your app, and used it to serve a stylesheet for the site.</p>
+<p>You&#8217;ve created an API, mounted it on your site, and used the Portal library to link to it.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more details, visit the <a href="https://developer.enonic.com/docs/code/stable/web/apis">APIs documentation</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Next, you&#8217;ll <a href="layouts.ahtml">arrange components in columns with a layout</a>.</p>
+<p>Next, you can <a href="apps.ahtml">add another app to your site</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-11-25 08:43:48 UTC
+Last updated 2026-11-25 08:50:09 UTC
 </div>
 </div>
 </body>
