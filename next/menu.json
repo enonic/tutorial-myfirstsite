@@ -1,0 +1,66 @@
+{
+  "menuItems": [
+    {
+      "title": "Introduction",
+      "document": "index"
+    },
+    {
+      "title": "1 - Setup",
+      "document": "setup"
+    },
+    {
+      "title": "2 - Content",
+      "document": "content"
+    },
+    {
+      "title": "3 - Pages",
+      "document": "pages"
+    },
+    {
+      "title": "4 - Regions",
+      "document": "regions"
+    },
+    {
+      "title": "5 - Parts",
+      "document": "parts"
+    },
+    {
+      "title": "6 - Page templates",
+      "document": "page-templates"
+    },
+    {
+      "title": "7 - Static assets",
+      "document": "static-assets"
+    },
+    {
+      "title": "8 - Layouts",
+      "document": "layouts"
+    },
+    {
+      "title": "9 - Go online",
+      "document": "go-online"
+    },
+    {
+      "title": "Advanced features",
+      "document": "advanced",
+      "menuItems": [
+        {
+          "title": "Mappings",
+          "document": "advanced/mappings"
+        },
+        {
+          "title": "APIs",
+          "document": "advanced/apis"
+        },
+        {
+          "title": "More apps",
+          "document": "advanced/apps"
+        }
+      ]
+    },
+    {
+      "title": "Demo",
+      "document": "demo"
+    }
+  ]
+}
